@@ -1,0 +1,205 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{hyperref}
+%\usepackage{graphicx}
+\usepackage{fancyhdr}
+%\usepackage{lastpage}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage{color}
+\usepackage{url}
+%\usepackage{moreverb}
+\usepackage{verbatim}
+\usepackage{textcomp}
+\usepackage{mathptmx}
+\usepackage{dingbat}
+\usepackage{pifont}
+\usepackage{acronym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{supertabular}
+\usepackage{listings}
+\usepackage{threeparttable}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{subfigure}
+
+\usepackage[numbers,sort]{natbib}
+
+\renewcommand{\algorithmiccomment}[1]{\hfill {\tt //} #1}
+\newcommand{\tick}{\ding{52}}
+\newcommand{\xmark}{\ding{56}}
+
+\date{}
+\begin{document}
+
+\author{
+\IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
+Panos Louridas,\IEEEauthorrefmark{2} and Angelos Keromytis\IEEEauthorrefmark{1}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}
+Network Security Lab\\
+Department of Computer Scinence\\
+Columbia University\\
+\{dimitro, angelos\}@cs.columbia.edu\\
+\IEEEauthorrefmark{2}
+Software Engineering and Security Lab\\
+Department of Management Science and Technology\\
+Athens University of Economics and Business\\
+louridas@aueb.gr
+}}
+
+\title{Questioning how Researchers Develop and Present IDS}
+
+\maketitle
+\begin{abstract}
+In this paper we examine how intrusion-detection
+systems developed to counter a specific category
+of application attacks are developed and presented to
+the research community.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Security and Protection, Intrusion-Detection Systems, Code injection Attacks, Cyber Security Experiments, Effectivenes, Efficiency.
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+
+Introduction~\cite{I05}. Also see~\cite{A00}.
+
+Requirements:
+\begin{itemize}
+	\item {\bf Flexibility} We check if an approach
+can be adjusted in order to detect different {\sc cia} categories.
+	\item {\bf Ease of use} We examine if the mechanism that
+implements an approach is practical and can be easily adopted
+by security experts.
+	\item {\bf Effectiveness} As long as we examine security
+mechanisms that detect either attacks or defects,
+the non-existence of false positive and negative alarms
+is a reasonable requirement.
+	\item {\bf Efficiency} Finally, we examine
+the computational overhead of the mechanisms that affect the experience of
+a web user who actually uses the protected application.
+	\item {\bf Security} How resilient is the system to
+attacks made to to circumvent it.
+\end{itemize}
+All the aforementioned requirements are considered critical
+when building security mechanisms that protect
+applications~\cite{A01,A00}.
+
+\section{Covered Area}
+
+We decided to narrow down our
+research to countermeasures developed to
+detect attacks that target applications. Such attacks include
+buffer overflow attacks~\cite{K11}, {\sc sql} injection
+attacks~\cite{RL12b}, cross-site scripting ({\sc xss})
+attacks~\cite{SG07}, cross-site request forgery ({\sc csrf})
+attacks~\cite{LZRL09} and others.
+Such attacks top the vulnerability lists of numerous bulletin providers for several
+years.\footnote{\url{http://www.sans.org/top-cyber-security-risks/}, \url{http://cwe.mitre.org/top25/}}
+Consider the {\sc owasp}\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project}}
+(Open Web Application Security Project)
+Top Ten project whose main goal is to raise awareness about
+web application security by identifying some of the most critical risks facing
+organizations which is referenced by numerous researchers.
+In its three consecutive Top Ten lists (2007, 2010, 2013), different
+source code-driven injection attacks dominate the top five positions.
+This indicates that
+apart from the fact that malicious users find new ways to bypass
+defense mechanisms by using a variety of techniques despite the numerous
+countermeasures that are being introduced.
+Note that the number of systems developed to counter {\sc sql}
+injection attacks until 2006 was more than twenty~\cite{HVO06}.
+Since then the number has doubled.
+In our research we focus on the top {\sc tba} systems that counter
+application attacks, in terms of citations.
+
+\section{Analysis}
+
+\begin{table*}
+%\tbl{Performance of System Prototype. Time is Measured in $\mu$s.}{
+\centering
+    \begin{threeparttable}
+    \begin{small}
+\scalebox{0.93}{
+    \begin{tabular}{l|c|cc|c}
+    \hline
+    \bf{Approach}
+	& \bf{Mechanism}
+    & \multicolumn{2}{|c|}{Requirements}
+	& \bf{Attack Vector} \\
+	&& \bf{FP/FN}
+	& \bf{Computational Overhead}\tnote{4} & \\
+    \hline
+	\multirow{11}{*}{Runtime Tainting}
+	&  	{\it SigFree}~\cite{WPLZ10} & \xmark,\xmark & 10\% & {\it binary code} \\
+	&  	{\sc csse}~\cite{PB05} & \xmark,\xmark & 2--10\% & {\sc sql} \\
+	&  	{\it {\sc lift}}~\cite{QWLKZW06} & \tick,\tick & 6.2\% & {\it binary code} \\ 
+	&  	{\it Haldar et al.}~\cite{HCF05} & {\bf ?},{\bf ?} & \xmark & {\sc sql} \\ 
+	&  	{\it SecuriFly}~\cite{MLL05} & \xmark,\tick & 9--125\% & {\sc sql}, {\sc xss} \\ 
+	&  	{\it Xu et al.}~\cite{XBS06} & \tick,\xmark & 76\% & {\sc sql}, {\sc xss} \\ 
+    &  	{\it {\sc wasc}}~\cite{NLC07} & \xmark,\xmark & 30\% & {\sc sql}, {\sc xss} \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & \xmark,\xmark & 2.2$\times$ & {\sc sql}, {\sc xss}, {\sc php} \\
+	&  	{\it Vogt et al.}~\cite{VFJKKV07} & \xmark,{\bf ?} & {\bf ?} & {\sc xss} \\
+	& 	{\it Stock et al.}~\cite{SLMS14} & 0.09\%,\xmark & 7-17\% & {\sc xss} \\
+	%& {\it Lekies et al.}~\cite{LSJ13} & & & \\
+	\hline
+	\hline      
+	\multirow{3}{*}{{\sc isr}}
+	&  {\it {\sc sql}rand}~\cite{BK04} & {\bf ?},{\bf ?} & 6.5{\it ms} & {\sc sql} \\ 
+	&  {\it Noncespaces}~\cite{GC09} & \tick,\tick &  10.3\% & {\sc xss} \\ 
+    &  {\it x{\sc js}}~\cite{APKLM10} & \tick,\tick & 1.6--40{\it ms} & {\sc xss} \\
+	\hline
+	\hline    
+	\multirow{11}{*}{Policy Enforcement}
+	&  {\it {\sc dsi}}~\cite{NSS06} & \xmark,\xmark & 1.85\% & {\sc xss} \\ 
+	&  {\it BrowserShield}~\cite{RDWDE07} & \tick,\tick & 8\% & {\sc xss} \\ 
+	&  {\it Blueprint}~\cite{LV09} & \tick/\tick & 13.6\% & {\sc xss} \\ 
+	&  {\it CoreScript}~\cite{YCIS07} & {\bf ?},{\bf ?} &  {\bf ?} & {\sc xss} \\ 
+	&  {\it ConScript}~\cite{ML10} & {\bf ?},{\bf ?} & 7\% & {\sc xss} \\
+	&  {\it {\sc met}}~\cite{ELX07} & {\bf ?},{\bf ?} &  {\bf ?} & {\sc xss} \\ 
+    &  {\it {\sc beep}}~\cite{TNH07}  & \tick,\tick & 14.4\% & {\sc xss} \\
+	&  {\it {\sc csp}} & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\ 
+    &  {\it Google Caja} & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\
+	&  {\it Kiriansky et al.~\cite{KBA02}} & {\bf ?},{\bf ?} & $\sim$1\% & {\it binary code} \\
+	& {\it {\sc cfi}~\cite{ABEL05}} & {\bf ?},{\bf ?} & 0.09--26.78\% & {\it binary code} \\
+	\hline
+	\hline  
+        \multirow{12}{*}{Training}
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & \tick,\tick & {\bf ?} & {\sc sql} \\ 
+	&   {\it {\sc didafit}}~\cite{LLW02} & \xmark,\xmark & {\bf ?} & {\sc sql} \\
+	&   {\it Valeur et al.}~\cite{VMV05} & 0.37\%,{\bf ?} & 1{\it ms} & {\sc sql} \\
+	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & {\bf ?},{\bf ?} & 3\% & {\sc sql} \\
+	& 	{\it Diglossia}~\cite{SMS13} & \xmark,\xmark  & 13\% & {\sc sql}, No{\sc sql} \\
+	& 	{\it {\sc sd}river}~\cite{MS09,MKS09} & \tick,\tick & 39\% & {\sc sql}, {\sc xp}ath \\
+	& 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & \xmark,\xmark  & \xmark & {\sc sql}, {\sc xp}ath \\
+	& 	{\it Mattos et al.}~\cite{MSM13} & \tick,{\bf ?} &  {\bf ?} & {\sc xml}, {\sc xp}ath \\
+	& 	{\it {\sc sm}ask}~\cite{JB07} & \xmark,\xmark & {\bf ?} & {\sc sql}, {\sc xss} \\
+	& 	{\it {\sc swap}}~\cite{WPLKK09} & \tick,\tick & $\sim$180\% & {\sc xss} \\ 
+    & 	{\it {\sc xssds}}~\cite{JEP08}  & \xmark,\xmark & {\bf ?} &  {\sc xss} \\
+    & 	{\it {\sc xss-guard}}~\cite{BV08} & {\bf ?},\xmark & 5---24\% & {\sc xss} \\
+	\hline
+    \end{tabular}}
+    \begin{tablenotes}
+	\begin{footnotesize}
+       \item[1] {\it Flexibility} indicates if the approach can be adjusted
+	in order to detect different {\sc cia} categories.
+       \item[4] {\it User Experience} is affected if the mechanism suffers
+	from runtime overhead.
+	\end{footnotesize}
+    \end{tablenotes}
+    \caption{Dynamic Detection: Comparison summary of mechanisms developed to counter {\sc cia}s.}
+    \label{tab:comp2}
+    \end{small}
+    \end{threeparttable}
+\end{table*}
+
+\bibliographystyle{IEEEtran}
+\bibliography{questioning}
+
+\end{document} 
+
