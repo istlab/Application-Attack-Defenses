@@ -135,7 +135,9 @@ application attacks, in terms of citations.
 	&& \bf{FP/FN}
 	& \bf{Computational Overhead}\tnote{4} & \\
     \hline
-	\multirow{11}{*}{Runtime Tainting}
+	\multirow{13}{*}{Runtime Tainting}
+	&   {\it Kiriansky et al.~\cite{KBA02}} & {\bf ?},{\bf ?} & $\sim$1\% & {\it binary code} \\
+	&   {\it {\sc cfi}~\cite{ABEL05}} & {\bf ?},{\bf ?} & 0.09--26.78\% & {\it binary code} \\
 	&  	{\it SigFree}~\cite{WPLZ10} & \xmark,\xmark & 10\% & {\it binary code} \\
 	&  	{\sc csse}~\cite{PB05} & \xmark,\xmark & 2--10\% & {\sc sql} \\
 	&  	{\it {\sc lift}}~\cite{QWLKZW06} & \tick,\tick & 6.2\% & {\it binary code} \\ 
@@ -155,7 +157,7 @@ application attacks, in terms of citations.
     &  {\it x{\sc js}}~\cite{APKLM10} & \tick,\tick & 1.6--40{\it ms} & {\sc xss} \\
 	\hline
 	\hline    
-	\multirow{13}{*}{Policy Enforcement}
+	\multirow{14}{*}{Policy Enforcement}
 	&  {\it {\sc dsi}}~\cite{NSS06} & \xmark,\xmark & 1.85\% & {\sc xss} \\ 
 	&  {\it BrowserShield}~\cite{RDWDE07} & \tick,\tick & 8\% & {\sc xss} \\ 
 	&  {\it Blueprint}~\cite{LV09} & \tick/\tick & 13.6\% & {\sc xss} \\ 
@@ -167,8 +169,9 @@ application attacks, in terms of citations.
     &  {\it {\sc beep}}~\cite{TNH07}  & \tick,\tick & 14.4\% & {\sc xss} \\
 	&  {\it {\sc csp}} & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\ 
     &  {\it Google Caja} & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\
-	&  {\it Kiriansky et al.~\cite{KBA02}} & {\bf ?},{\bf ?} & $\sim$1\% & {\it binary code} \\
-	& {\it {\sc cfi}~\cite{ABEL05}} & {\bf ?},{\bf ?} & 0.09--26.78\% & {\it binary code} \\
+    &  {\it Phung et al.}~\cite{PSC09} & \xmark,{\bf ?} & 5.37\% & {\sc xss} \\
+    &  {\it TreeHouse}~\cite{IW12} & {\bf ?},{\bf ?} & 757–--1218ms & {\sc xss} \\
+    &  {\it Dhawan et al.}~\cite{DSG12} & \xmark,{\bf ?} & 16---114\% & {\sc xss} \\
 	\hline
 	\hline  
         \multirow{12}{*}{Training}
