@@ -90,6 +90,45 @@ All the aforementioned requirements are considered critical
 when building security mechanisms that protect
 applications~\cite{A01,A00}.
 
+\section{Intrusion Detection Accuracy}
+
+An intrusion detection system examines some software artifact and
+reports vulnerabilities. The value an intrusion detection system can
+be measured in terms of its \emph{accuracy}, which gauges the quality
+of its output. An intrusion detection system makes predictions for
+vulnerabilities. The following may happen:
+\begin{itemize}
+\item A prediction about a vulnerability is true. That is a \emph{true
+    positive}. 
+\item A prediction about a vulnerability is false; intrusion
+  detection reported something that in reality is not vulnerability.
+  That is a \emph{false positive}.
+\item A prediction about the absence of a vulnerability is true. That
+  is a \emph{true negative}: intrusion detection evaluated something
+  as being safe, and it is.
+\item A prediction about the absence of a vulnerability is false. That
+  is a \emph{false negative}: intrusion detection missed a
+  vulnerability.
+\end{itemize}
+In terms of the above, the \emph{Positive Predictive Value} (PPV) is
+defined as the ratio of true positives over all reported positives,
+while the \emph{Negative Predictive Value} (NPV) is defined as the
+ratio of true negatives over all reported negatives. In intrusion
+detection, the PPV is an indicator of how much we should be worried
+about a reported vulnerability being true. Conversely, the NPV is an
+indicator of how much we should be reassured when no vulnerabilities
+are reported.
+
+What we need to proceed:
+\begin{itemize}
+\item Do the studies report the sample size? Note that we must be
+  careful with what we mean by sample size. A single item in the
+  sample is something that can be vulnerable or not. 
+\item Do the studies report true positives, false positives, true
+  negatives, false negatives?
+\end{itemize}
+
+
 \section{Covered Area}
 
 We decided to narrow down our
