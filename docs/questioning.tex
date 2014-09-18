@@ -71,32 +71,55 @@ Introduction~\cite{I05}. Also see~\cite{A00}.
 
 Requirements:
 \begin{itemize}
-	\item {\bf Flexibility} We check if an approach
+\item {\bf Flexibility} We check if an approach
 can be adjusted in order to detect different {\sc cia} categories.
-	\item {\bf Ease of use} We examine if the mechanism that
+\item {\bf Ease of use} We examine if the mechanism that
 implements an approach is practical and can be easily adopted
 by security experts.
-	\item {\bf Effectiveness} As long as we examine security
+\item {\bf Effectiveness} As long as we examine security
 mechanisms that detect either attacks or defects,
 the non-existence of false positive and negative alarms
 is a reasonable requirement.
-	\item {\bf Efficiency} Finally, we examine
+\item {\bf Efficiency} Finally, we examine
 the computational overhead of the mechanisms that affect the experience of
 a web user who actually uses the protected application.
-	\item {\bf Security} How resilient is the system to
+\item {\bf Security} How resilient is the system to
 attacks made to to circumvent it.
 \end{itemize}
 All the aforementioned requirements are considered critical
 when building security mechanisms that protect
 applications~\cite{A01,A00}.
 
+The evaluation of 
+
+\section{Analysis Dimensions}
+
+\begin{itemize}
+\item {\bf Sensitivity}, the probability that an attack will be
+  caught.
+\item {\bf Specificity}, the probability that a normal interaction
+  will test negative.
+\item {\bf Positive Predictive Value} (PPV), the probability that a
+  reported attack is a real attack.
+\item {\bf Negative Predictive Value} (NPV), the probability that if
+  nothing is reported no attack has taken place.
+\end{itemize}
+
+To do any meaningful calculation of the above, we need to define
+precisely the following in our methodology:
+\begin{itemize}
+\item True Positive (TP)
+\item False Positive (FP)
+\item True Negative (TN)
+\item False Negative (FN)
+\end{itemize}
+
 \section{Intrusion Detection Accuracy}
 
 An intrusion detection system examines some software artifact and
 reports vulnerabilities. The value an intrusion detection system can
 be measured in terms of its \emph{accuracy}, which gauges the quality
-of its output. An intrusion detection system makes predictions for
-vulnerabilities. The following may happen:
+of its output. An intrusion detection system:
 \begin{itemize}
 \item A prediction about a vulnerability is true. That is a \emph{true
     positive}. 
