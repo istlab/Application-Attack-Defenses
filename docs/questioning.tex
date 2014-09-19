@@ -180,43 +180,39 @@ Since then the number has doubled.
 In our research we focus on the top {\sc tba} systems that counter
 application attacks, in terms of citations.
 
-\begin{table*}
+\begin{landscape}
+\begin{table}
 %\tbl{Performance of System Prototype. Time is Measured in $\mu$s.}{
 \centering
     \begin{threeparttable}
     \begin{small}
-\scalebox{0.93}{
+\scalebox{0.99}{
     \begin{tabular}{l|c|c|cc|c}
     \hline
     \bf{Approach}
 	& \bf{Mechanism}
 	& \bf{\# of Citations}
     & \multicolumn{2}{|c|}{Requirements}
-	& \bf{Attack Vector} \\
+	& \bf{Attack} \\
 	&&& \bf{TP,TN,FP,FN}
 	& \bf{Computational Overhead}\tnote{4} & \\
     \hline
 	\multirow{9}{*}{Runtime Tainting}
-	%	&   {\it Kiriansky et al.~\cite{KBA02}} & {\bf ?},{\bf ?} & $\sim$1\% & {\it binary code} \\
-	%	&   {\it {\sc cfi}~\cite{ABEL05}} & {\bf ?},{\bf ?} & 0.09--26.78\% & {\it binary code} \\
-	%	&  	{\it SigFree}~\cite{WPLZ10} & 111 & \xmark,\xmark & 10\% & {\it binary code} \\
-	%	&  	{\it {\sc lift}}~\cite{QWLKZW06} & 268 & \tick,\tick & 6.2\% & {\it binary code} \\ 
-	&  	{\sc csse}~\cite{PB05} & 312 & \xmark,\xmark & 2--10\% & {\sc sql} \\
-	&  	{\it Haldar et al.}~\cite{HCF05} & 177 & {\bf ?},{\bf ?} & \xmark & {\sc sql} \\ 
-	&  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql}, {\sc xss} \\ 
-	&  	{\it Xu et al.}~\cite{XBS06} & 297 & \tick,\xmark & 76\% & {\sc sql}, {\sc xss} \\ 
-    &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & \xmark,\xmark & 30\% & {\sc sql}, {\sc xss} \\
+	&  	{\sc csse}~\cite{PB05} & 312 & \xmark,\xmark & 2--10\% & {\sc sql} injection \\
+	&  	{\it Haldar et al.}~\cite{HCF05} & 177 & {\bf ?},{\bf ?} & \xmark & {\sc sql} injection \\ 
+	&  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
+	&  	{\it Xu et al.}~\cite{XBS06} & 297 & \tick,\xmark & 76\% & {\sc sql} injection, {\sc xss} \\ 
+    &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & \xmark,\xmark & 30\% & {\sc sql} injection, {\sc xss} \\
 	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & \xmark,{\bf ?} & {\bf ?} & {\sc xss} \\
 	&   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & {\bf ?},{\bf ?},{\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\
-	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & \xmark,\xmark & 2.2$\times$ & {\sc sql}, {\sc xss}, {\sc php} \\
-	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & 0.09\%,\xmark & 7-17\% & {\sc xss} \\
-	%& {\it Lekies et al.}~\cite{LSJ13} & & & \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & \xmark,\xmark & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
+	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & 0.09\%,\xmark & 7--17\% & {\sc xss} \\
 	\hline
 	\hline      
 	\multirow{3}{*}{{\sc isr}}
-	&  {\it {\sc sql}rand}~\cite{BK04} & 286 & {\bf ?},{\bf ?} & 6.5{\it ms} & {\sc sql} \\ 
-	&  {\it Noncespaces}~\cite{GC09} & 109 & \tick,\tick &  10.3\% & {\sc xss} \\ 
-    &  {\it x{\sc js}}~\cite{APKLM10} & 18 & \tick,\tick & 1.6--40{\it ms} & {\sc xss} \\
+	&   {\it {\sc sql}rand}~\cite{BK04} & 286 & {\bf ?},{\bf ?} & 6.5{\it ms} & {\sc sql} injection \\ 
+	&   {\it Noncespaces}~\cite{GC09} & 109 & \tick,\tick &  10.3\% & {\sc xss} \\ 
+    &   {\it x{\sc js}}~\cite{APKLM10} & 18 & \tick,\tick & 1.6--40{\it ms} & {\sc xss} \\
 	\hline
 	\hline    
 	\multirow{13}{*}{Policy Enforcement}
@@ -231,26 +227,22 @@ application attacks, in terms of citations.
 	&   {\it WebJail}~\cite{VDDPJ11} & 25 & {\bf ?},{\bf ?} & $\sim$7ms & {\sc xss} \\ 
 	&   {\it ConScript}~\cite{ML10} & 122 & {\bf ?},{\bf ?} & 7\% & {\sc xss} \\
 	&   {\it j{\sc csrf}}~\cite{PS11} & 2 & 2,7,0,0 & 2ms & {\sc csrf} \\
-	%   &  {\it {\sc csp}} & 0 & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\ 
-    %   &  {\it Google Caja} & 0 & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\
-    &   {\it TreeHouse}~\cite{IW12} & 18 & {\bf ?},{\bf ?} & 757–--1218ms & {\sc xss} \\
+    &   {\it TreeHouse}~\cite{IW12} & 18 & {\bf ?},{\bf ?} & 757–-1218ms & {\sc xss} \\
    	&   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & {\bf ?},{\bf ?} & up to 365\% & {\sc xss}\\
-    %   &  {\it Dhawan et al.}~\cite{DSG12} & 7 & \xmark,{\bf ?} & 16---114\% & {\sc xss} \\
 	\hline
 	\hline  
         \multirow{12}{*}{Training}
-    &   {\it {\sc didafit}}~\cite{LLW02} & 85 & \xmark,\xmark & {\bf ?} & {\sc sql} \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & \tick,\tick & {\bf ?} & {\sc sql} \\ 
-	&   {\it Valeur et al.}~\cite{VMV05} & 226 & 0.37\%,{\bf ?} & 1{\it ms} & {\sc sql} \\
-	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & 243 & {\bf ?},{\bf ?} & 3\% & {\sc sql} \\
-	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & \xmark,\xmark & {\bf ?} & {\sc sql}, {\sc xss} \\
+    &   {\it {\sc didafit}}~\cite{LLW02} & 85 & \xmark,\xmark & {\bf ?} & {\sc sql} injection \\
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & \tick,\tick & {\bf ?} & {\sc sql} injection \\ 
+	&   {\it Valeur et al.}~\cite{VMV05} & 226 & 0.37\%,{\bf ?} & 1{\it ms} & {\sc sql} injection \\
+	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & 243 & {\bf ?},{\bf ?} & 3\% & {\sc sql} injection \\
+	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & \xmark,\xmark & {\bf ?} & {\sc sql} injection, {\sc xss} \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & \xmark,\xmark & {\bf ?} &  {\sc xss} \\
-    & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & {\bf ?},\xmark & 5---24\% & {\sc xss} \\
+    & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & {\bf ?},\xmark & 5--24\% & {\sc xss} \\
     & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & \tick,\tick & $\sim$180\% & {\sc xss} \\ 
-	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 20,8,5 & \tick,\tick & 39\% & {\sc sql}, {\sc xp}ath \\
-	& 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql}, {\sc xp}ath \\
-	%   & 	{\it Mattos et al.}~\cite{MSM13} & 2 & \tick,{\bf ?} &  {\bf ?} & {\sc xml}, {\sc xp}ath \\
-	& 	{\it Diglossia}~\cite{SMS13} & 3 & \xmark,\xmark  & 13\% & {\sc sql}, No{\sc sql} \\
+	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 20,8,5 & \tick,\tick & 39\% & {\sc sql} and {\sc xp}ath injection \\
+	& 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
+	& 	{\it Diglossia}~\cite{SMS13} & 3 & \xmark,\xmark  & 13\% & {\sc sql} and No{\sc sql} injection \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
@@ -262,6 +254,83 @@ application attacks, in terms of citations.
 	\end{footnotesize}
     \end{tablenotes}
     \caption{Comparison summary of mechanisms developed to counter application attacks.}
+    \label{tab:comp2}
+    \end{small}
+    \end{threeparttable}
+\end{table}
+\end{landscape}
+
+\begin{table*}
+\centering
+    \begin{threeparttable}
+    \begin{small}
+\scalebox{0.99}{
+    \begin{tabular}{l|c|ccc}
+    \hline
+    \bf{Approach}
+	& \bf{Mechanism}
+    & \multicolumn{3}{|c|}{Availability} \\
+	&& \bf{Source Code}
+	& \bf{Executable}\tnote{4}
+	& \bf{Testbed} \\
+    \hline
+	\multirow{9}{*}{Runtime Tainting}
+	&  	{\sc csse}~\cite{PB05} & \xmark,\xmark & 2--10\% & - \\
+	&  	{\it Haldar et al.}~\cite{HCF05}  & {\bf ?},{\bf ?} & \xmark & - \\ 
+	&  	{\it SecuriFly}~\cite{MLL05}  & \xmark,\tick & 9--125\% & - \\ 
+	&  	{\it Xu et al.}~\cite{XBS06}  & \tick,\xmark & 76\% & - \\ 
+    &  	{\it {\sc wasc}}~\cite{NLC07} & \xmark,\xmark & 30\% & - \\
+	&  	{\it Vogt et al.}~\cite{VFJKKV07}  & \xmark,{\bf ?} & {\bf ?} & - \\
+	&   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\bf ?},{\bf ?},{\bf ?},{\bf ?} & {\bf ?} & - \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & \xmark,\xmark & 2.2$\times$ & - \\
+	& 	{\it Stock et al.}~\cite{SLMS14} & 0.09\%,\xmark & 7--17\% & - \\
+	\hline
+	\hline      
+	\multirow{3}{*}{{\sc isr}}
+	&   {\it {\sc sql}rand}~\cite{BK04}  & {\bf ?},{\bf ?} & 6.5{\it ms} & - \\ 
+	&   {\it Noncespaces}~\cite{GC09}  & \tick,\tick &  10.3\% & - \\ 
+    &   {\it x{\sc js}}~\cite{APKLM10} & \tick,\tick & 1.6--40{\it ms} & - \\
+	\hline
+	\hline    
+	\multirow{13}{*}{Policy Enforcement}
+	&   {\it {\sc dsi}}~\cite{NSS06}  & \xmark,\xmark & 1.85\% & - \\ 
+	&   {\it BrowserShield}~\cite{RDWDE07}  & \tick,\tick & 8\% & - \\ 
+	&   {\it CoreScript}~\cite{YCIS07} & {\bf ?},{\bf ?} &  {\bf ?} & - \\ 
+	&   {\it {\sc met}}~\cite{ELX07} & {\bf ?},{\bf ?} &  {\bf ?} & - \\ 
+    &   {\it {\sc beep}}~\cite{TNH07} & \tick,\tick & 14.4\% & - \\
+    &   {\it {\sc soma}}~\cite{OWVS08}  & 5,0,0,0 & 5.58\% & - \\
+	&   {\it Blueprint}~\cite{LV09} & \tick/\tick & 13.6\% & - \\ 
+	&   {\it Phung et al.}~\cite{PSC09} & \xmark,{\bf ?} & 5.37\% & - \\
+	&   {\it WebJail}~\cite{VDDPJ11}  & {\bf ?},{\bf ?} & $\sim$7ms & - \\ 
+	&   {\it ConScript}~\cite{ML10}  & {\bf ?},{\bf ?} & 7\% & - \\
+	&   {\it j{\sc csrf}}~\cite{PS11}  & 2,7,0,0 & 2ms & - \\
+    &   {\it TreeHouse}~\cite{IW12}  & {\bf ?},{\bf ?} & 757–-1218ms & - \\
+   	&   {\it {\sc js}and}~\cite{AVBPDP12}  & {\bf ?},{\bf ?} & up to 365\% & - \\
+	\hline
+	\hline  
+        \multirow{12}{*}{Training}
+    &   {\it {\sc didafit}}~\cite{LLW02}  & \xmark,\xmark & {\bf ?} & - \\
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & \tick,\tick & {\bf ?} & - \\ 
+	&   {\it Valeur et al.}~\cite{VMV05} & 0.37\%,{\bf ?} & 1{\it ms} & - \\
+	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & {\bf ?},{\bf ?} & 3\% & - \\
+	& 	{\it {\sc sm}ask}~\cite{JB07}  & \xmark,\xmark & {\bf ?} & - \\
+	& 	{\it {\sc xssds}}~\cite{JEP08} & \xmark,\xmark & {\bf ?} & - \\
+    & 	{\it {\sc xss-guard}}~\cite{BV08} & {\bf ?},\xmark & 5--24\% & - \\
+    & 	{\it {\sc swap}}~\cite{WPLKK09} & \tick,\tick & $\sim$180\% & - \\ 
+	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick,\tick & 39\% & - \\
+	& 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & \xmark,\xmark  & \xmark & - \\
+	& 	{\it Diglossia}~\cite{SMS13} & \xmark,\xmark  & 13\% & - \\
+	\hline
+    \end{tabular}}
+    \begin{tablenotes}
+	\begin{footnotesize}
+       \item[1] {\it Flexibility} indicates if the approach can be adjusted
+	in order to detect different {\sc cia} categories.
+       \item[4] {\it User Experience} is affected if the mechanism suffers
+	from runtime overhead.
+	\end{footnotesize}
+    \end{tablenotes}
+    \caption{Availability of the corresponding mechanisms.}
     \label{tab:comp2}
     \end{small}
     \end{threeparttable}
