@@ -198,11 +198,11 @@ application attacks, in terms of citations.
 	&&& \bf{TP,TN,FP,FN}
 	& \bf{Computational Overhead}\tnote{4} & \\
     \hline
-	\multirow{11}{*}{Runtime Tainting}
-%	&   {\it Kiriansky et al.~\cite{KBA02}} & {\bf ?},{\bf ?} & $\sim$1\% & {\it binary code} \\
-%	&   {\it {\sc cfi}~\cite{ABEL05}} & {\bf ?},{\bf ?} & 0.09--26.78\% & {\it binary code} \\
-	&  	{\it SigFree}~\cite{WPLZ10} & 111 & \xmark,\xmark & 10\% & {\it binary code} \\
-	&  	{\it {\sc lift}}~\cite{QWLKZW06} & 268 & \tick,\tick & 6.2\% & {\it binary code} \\ 
+	\multirow{9}{*}{Runtime Tainting}
+	%	&   {\it Kiriansky et al.~\cite{KBA02}} & {\bf ?},{\bf ?} & $\sim$1\% & {\it binary code} \\
+	%	&   {\it {\sc cfi}~\cite{ABEL05}} & {\bf ?},{\bf ?} & 0.09--26.78\% & {\it binary code} \\
+	%	&  	{\it SigFree}~\cite{WPLZ10} & 111 & \xmark,\xmark & 10\% & {\it binary code} \\
+	%	&  	{\it {\sc lift}}~\cite{QWLKZW06} & 268 & \tick,\tick & 6.2\% & {\it binary code} \\ 
 	&  	{\sc csse}~\cite{PB05} & 312 & \xmark,\xmark & 2--10\% & {\sc sql} \\
 	&  	{\it Haldar et al.}~\cite{HCF05} & 177 & {\bf ?},{\bf ?} & \xmark & {\sc sql} \\ 
 	&  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql}, {\sc xss} \\ 
@@ -231,17 +231,17 @@ application attacks, in terms of citations.
 	&  {\it {\sc js}and}~\cite{AVBPDP12} & 22 & {\bf ?},{\bf ?} & up to 365\% & {\sc xss}\\
 	&  {\it {\sc met}}~\cite{ELX07} & 58 & {\bf ?},{\bf ?} &  {\bf ?} & {\sc xss} \\ 
     &  {\it {\sc beep}}~\cite{TNH07} & 282 & \tick,\tick & 14.4\% & {\sc xss} \\
-	% &  {\it {\sc csp}} & 0 & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\ 
-    % &  {\it Google Caja} & 0 & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\
-     &  {\it Phung et al.}~\cite{PSC09} & 75 & \xmark,{\bf ?} & 5.37\% & {\sc xss} \\
+	%  &  {\it {\sc csp}} & 0 & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\ 
+    %  &  {\it Google Caja} & 0 & {\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\
+    &  {\it Phung et al.}~\cite{PSC09} & 75 & \xmark,{\bf ?} & 5.37\% & {\sc xss} \\
     &  {\it TreeHouse}~\cite{IW12} & 18 & {\bf ?},{\bf ?} & 757–--1218ms & {\sc xss} \\
-    % &  {\it Dhawan et al.}~\cite{DSG12} & 7 & \xmark,{\bf ?} & 16---114\% & {\sc xss} \\
+    %  &  {\it Dhawan et al.}~\cite{DSG12} & 7 & \xmark,{\bf ?} & 16---114\% & {\sc xss} \\
     & {\it {\sc soma}}~\cite{OWVS08} & 46 & 5,0,0,0 & 5.58\% & {\sc xss}, {\sc csrf}\\
     & {\it j{\sc csrf}}~\cite{PS11} & 2 & 2,7,0,0 & 2ms & {\sc csrf} \\
 	\hline
 	\hline  
         \multirow{12}{*}{Training}
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 376 & \tick,\tick & {\bf ?} & {\sc sql} \\ 
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & \tick,\tick & {\bf ?} & {\sc sql} \\ 
 	&   {\it {\sc didafit}}~\cite{LLW02} & 85 & \xmark,\xmark & {\bf ?} & {\sc sql} \\
 	&   {\it Valeur et al.}~\cite{VMV05} & 226 & 0.37\%,{\bf ?} & 1{\it ms} & {\sc sql} \\
 	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & 243 & {\bf ?},{\bf ?} & 3\% & {\sc sql} \\
