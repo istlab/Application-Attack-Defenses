@@ -233,18 +233,18 @@ application attacks, in terms of citations.
    	% TODO@dimitro: discuss this with Panos?
 	\hline
 	\hline  
-        \multirow{12}{*}{Training}
+        \multirow{11}{*}{Training}
     &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\bf ?} & {\sc sql} injection \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,0,0,0)\_a & {\bf ?} & {\sc sql} injection \\ 
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\bf ?} & {\sc sql} injection \\ 
 	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
 	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
-	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & \xmark,\xmark & {\bf ?} & {\sc sql} injection, {\sc xss} \\
-	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & \xmark,\xmark & {\bf ?} &  {\sc xss} \\
-    & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & {\bf ?},\xmark & 5--24\% & {\sc xss} \\
-    & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & \tick,\tick & $\sim$180\% & {\sc xss} \\ 
-	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 20,8,5 & \tick,\tick & 39\% & {\sc sql} and {\sc xp}ath injection \\
-	& 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
-	& 	{\it Diglossia}~\cite{SMS13} & 3 & \xmark,\xmark  & 13\% & {\sc sql} and No{\sc sql} injection \\
+	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\bf ?} & {\sc sql} injection, {\sc xss} \\
+	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\bf ?} &  {\sc xss} \\
+    & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
+    & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% & {\sc xss} \\ 
+	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 20,8,5 & (241,{\sc nq},0,0)\_a & 39\% & {\sc sql} and {\sc xp}ath injection \\
+	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
+	& 	{\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
@@ -302,7 +302,8 @@ found (1169). This is a complex paper --- we need to elaborate.
 
 Notes on {\sc isr} mechanisms:
 \begin{enumerate}
-\item {\it {\sc sql}rand}~\cite{BK04}: Both exploits from {\sc cve}.
+\item {\it {\sc sql}rand}~\cite{BK04}: Both exploits from {\sc cve} --- though
+this is not mentioned in the publication.
 \item {\it Noncespaces}~\cite{GC09} was only tested on one
 known vulnerable application (TikiWiki). The authors mention that they performed
 a number of attacks but they do not state how many.
@@ -356,6 +357,22 @@ the authors mention that the tool can produce both {\sc fp} and
 {\sc fn}.
 \item {\it libAnomaly}~\cite{VMV05} --- one application tested ({\sc php}-Nuke).
 \item {\sc sqlg}uard~\cite{BWS05} --- no testing at all.
+\item {\sc sm}ask~\cite{JB07} was tested on real-world applications
+with exploits from {\sc cve} --- though this is not mentioned in the publication.
+\item {\sc xssds}~\cite{JEP08} --- testing was based on 
+defects found in the security mailing
+list: {\it Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}}.
+The authors provide multiple {\sc fp} rates depending on the experiment.
+\item {\sc xss-guard}~\cite{BV08} was tested on real-world applications
+with exploits from {\sc cve}.
+\item {\sc swap}~\cite{WPLKK09} was tested on a real-world application ({\sc phpbb})
+with exploits from {\sc cve} --- though this is not mentioned in the publication.
+%\item {\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} have developed a
+%mechanism to detect {\sc sql} and {\sc xp}ath injection attacks
+%only on web services. Their testing involve a real-world benchmark
+%({\sc tpc}-app).\footnote{\url{http://www.tpc.org/}}
+\item {\it Diglossia}~\cite{SMS13} was tested on real-world applications
+with exploits from {\sc cve}.
 \end{enumerate}
 
 \begin{table*}
@@ -406,18 +423,18 @@ the authors mention that the tool can produce both {\sc fp} and
    	% &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
 	\hline  
-        \multirow{12}{*}{Training}
+        \multirow{11}{*}{Training}
     &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\sc ao} & {\sc na} \\
 	&   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
 	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & {\sc ao} & {\sc ao} & {\sc na} \\
-	& 	{\it {\sc sm}ask}~\cite{JB07} & - & - & - \\
-	& 	{\it {\sc xssds}}~\cite{JEP08} & - & - & - \\
-    & 	{\it {\sc xss-guard}}~\cite{BV08} & - & - & - \\
-    & 	{\it {\sc swap}}~\cite{WPLKK09} & - & - & - \\
+	& 	{\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
+	& 	{\it {\sc xssds}}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
+    & 	{\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
+    & 	{\it {\sc swap}}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
-	& 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & - & - & - \\
-	& 	{\it Diglossia}~\cite{SMS13} & - & - & - \\
+	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & {\bf ?} & {\bf ?} & {\bf ?} \\
+	& 	{\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
     \end{tabular}}
         \begin{tablenotes}
