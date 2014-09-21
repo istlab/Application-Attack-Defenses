@@ -179,6 +179,7 @@ injection attacks until 2006 was more than twenty~\cite{HVO06}.
 Since then the number has doubled.
 In our research we focus on the top {\sc tba} systems that counter
 application attacks, in terms of citations.
+% TODO@dimitro: explain why you leave out {\it SecuriFly}~\cite{MLL05}.
 
 \begin{landscape}
 \begin{table}
@@ -198,44 +199,45 @@ application attacks, in terms of citations.
 	& \bf{Computational Overhead}\tnote{4} & \\
     \hline
 	\multirow{9}{*}{Runtime Tainting}
-	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc na},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection \\
-	&  	{\it Haldar et al.}~\cite{HCF05} & 177 & {\bf ?},{\bf ?} & \xmark & {\sc sql} injection \\ 
-	&  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
-	&  	{\it Xu et al.}~\cite{XBS06} & 297 & \tick,\xmark & 76\% & {\sc sql} injection, {\sc xss} \\ 
-    &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & \xmark,\xmark & 30\% & {\sc sql} injection, {\sc xss} \\
-	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & \xmark,{\bf ?} & {\bf ?} & {\sc xss} \\
-	&   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & {\bf ?},{\bf ?},{\bf ?},{\bf ?} & {\bf ?} & {\sc xss} \\
-	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & \xmark,\xmark & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
-	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & 0.09\%,\xmark & 7--17\% & {\sc xss} \\
+	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection \\
+	&  	{\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
+	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
+	&  	{\it Xu et al.}~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% & {\sc sql} injection, {\sc xss}, Buffer Overflows \\ 
+    &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% & {\sc sql} injection, {\sc xss} \\
+	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} & {\sc xss} \\
+	&   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (15,{\sc nq},{\sc nq},{\sc nq})\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
+	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
 	\hline
 	\hline      
 	\multirow{3}{*}{{\sc isr}}
-	&   {\it {\sc sql}rand}~\cite{BK04} & 286 & {\bf ?},{\bf ?} & 6.5{\it ms} & {\sc sql} injection \\ 
-	&   {\it Noncespaces}~\cite{GC09} & 109 & \tick,\tick &  10.3\% & {\sc xss} \\ 
-    &   {\it x{\sc js}}~\cite{APKLM10} & 18 & \tick,\tick & 1.6--40{\it ms} & {\sc xss} \\
+	&   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & +6.5{\it ms} & {\sc sql} injection \\ 
+	&   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
+    &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
 	\hline
 	\hline    
-	\multirow{13}{*}{Policy Enforcement}
-	&   {\it {\sc dsi}}~\cite{NSS06} & 135 & \xmark,\xmark & 1.85\% & {\sc xss} \\ 
-	&   {\it BrowserShield}~\cite{RDWDE07} & 219 & \tick,\tick & 8\% & {\sc xss} \\ 
-	&   {\it CoreScript}~\cite{YCIS07} & 181 & {\bf ?},{\bf ?} &  {\bf ?} & {\sc xss} \\ 
-	&   {\it {\sc met}}~\cite{ELX07} & 58 & {\bf ?},{\bf ?} &  {\bf ?} & {\sc xss} \\ 
-    &   {\it {\sc beep}}~\cite{TNH07} & 282 & \tick,\tick & 14.4\% & {\sc xss} \\
-    &   {\it {\sc soma}}~\cite{OWVS08} & 46 & 5,0,0,0 & 5.58\% & {\sc xss}, {\sc csrf}\\
-	&   {\it Blueprint}~\cite{LV09} & 110 & \tick/\tick & 13.6\% & {\sc xss} \\ 
-	&   {\it Phung et al.}~\cite{PSC09} & 75 & \xmark,{\bf ?} & 5.37\% & {\sc xss} \\
-	&   {\it WebJail}~\cite{VDDPJ11} & 25 & {\bf ?},{\bf ?} & $\sim$7ms & {\sc xss} \\ 
-	&   {\it ConScript}~\cite{ML10} & 122 & {\bf ?},{\bf ?} & 7\% & {\sc xss} \\
-	&   {\it j{\sc csrf}}~\cite{PS11} & 2 & 2,7,0,0 & 2ms & {\sc csrf} \\
-    &   {\it TreeHouse}~\cite{IW12} & 18 & {\bf ?},{\bf ?} & 757–-1218ms & {\sc xss} \\
-   	&   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & {\bf ?},{\bf ?} & up to 365\% & {\sc xss}\\
+	\multirow{12}{*}{Policy Enforcement}
+	&   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
+	&   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
+	&   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\ 
+	&   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
+    &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% & {\sc xss} \\
+    &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf}\\
+	&   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\ 
+	&   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
+	&   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\ 
+	&   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
+	&   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
+    &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
+   	% &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
+   	% TODO@dimitro: discuss this with Panos?
 	\hline
 	\hline  
         \multirow{12}{*}{Training}
-    &   {\it {\sc didafit}}~\cite{LLW02} & 85 & \xmark,\xmark & {\bf ?} & {\sc sql} injection \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & \tick,\tick & {\bf ?} & {\sc sql} injection \\ 
-	&   {\it Valeur et al.}~\cite{VMV05} & 226 & 0.37\%,{\bf ?} & 1{\it ms} & {\sc sql} injection \\
-	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & 243 & {\bf ?},{\bf ?} & 3\% & {\sc sql} injection \\
+    &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\bf ?} & {\sc sql} injection \\
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,0,0,0)\_a & {\bf ?} & {\sc sql} injection \\ 
+	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
+	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
 	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & \xmark,\xmark & {\bf ?} & {\sc sql} injection, {\sc xss} \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & \xmark,\xmark & {\bf ?} &  {\sc xss} \\
     & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & {\bf ?},\xmark & 5--24\% & {\sc xss} \\
@@ -260,6 +262,102 @@ application attacks, in terms of citations.
 \end{table}
 \end{landscape}
 
+\section{Analysis}
+
+{\sc na} means that a requirement is not even mentioned in the paper.
+{\sc nq} indicates that a requirement is mentioned in the publication
+but it is not quantified.
+
+Notes on taint tools:
+\begin{enumerate}
+\item The accuracy testing of {\sc csse}~\cite{PB05} was based on 
+defects found in the security mailing
+list: {\it Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}}.
+\item During their evaluation, the authors of~\cite{HCF05} have only performed
+two attacks in one synthetic benchmark ({\sc owasp}'s
+{\it WebGoat}\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project}}).
+\item The testing in~\cite{XBS06} was made based on
+defects with specific {\sc cve id}s.
+\item The authors of {\it {\sc wasc}}~\cite{NLC07}
+mention the vulnerabilities (specific {\sc cve id}s)
+exploited and the corresponding applications but they do not explicitly
+state how many attacks they launched (``{\it [...] launched a variety of
+attacks against it}").
+\item The authors of~\cite{VFJKKV07} do the same.
+However, even if they do not mention specific {\sc cve id}s,
+they browsed applications without performing attacks.
+\item Even if the authors of {\it Noxes}~\cite{KKVJ06,KJKV09} state in
+both papers that ``{\it [...] we are planning to make the tool available as
+a freeware utility}." the tool cannot be found anywhere on the Internet.
+The vulnerabilities exploited during testing were reported
+by {\it Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}}.
+\item {\it {\sc php} Aspis}~\cite{PMP11} was tested on only one
+application (Wordpress 2.9.2) with multiple vulnerabilities (specific {\sc cve id}s).
+\item During their initial tests, the authors of
+managed to bypass the browser-based {\sc xss} filters of the
+73\% of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
+Then they proposed an approach that detected all the attacks they
+found (1169). This is a complex paper --- we need to elaborate.
+\end{enumerate}
+
+Notes on {\sc isr} mechanisms:
+\begin{enumerate}
+\item {\it {\sc sql}rand}~\cite{BK04}: Both exploits from {\sc cve}.
+\item {\it Noncespaces}~\cite{GC09} was only tested on one
+known vulnerable application (TikiWiki). The authors mention that they performed
+a number of attacks but they do not state how many.
+\item The authors of {\it x{\sc js}}~\cite{APKLM10}, have tested
+their mechanisms based on real-world attacks coming from
+{\sc xss}ed.com.\footnote{www.xssed.com}
+\end{enumerate}
+
+Notes on policy enforcement tools:
+\begin{enumerate}
+\item Just like the authors of {\it x{\sc js}~\cite{APKLM10},
+the authors of {\sc dsi}}~\cite{NSS06}, have tested
+their mechanisms based on real-world attacks coming from
+{\sc xss}ed.com.\footnote{www.xssed.com}
+\item The testing of {\it BrowserShield}~\cite{RDWDE07}
+involved {\sc xss} vulnerabilities reported by Microsoft
+in 2005.\footnote{\url{https://technet.microsoft.com/en-us/security/bulletin}}
+The link currently shows defects for 2014.
+\item {\it CoreScript}~\cite{YCIS07} is more of a programming
+language\footnote{``[...] uses program instrumentation for
+JavaScript where untrusted JavaScript
+code goes through a rewriting process according to a security policy
+before executing them in the browser"~\cite{PSC09}.}
+than an {\sc IDS}.
+\item Surprisingly, {\sc met}~\cite{ELX07} was not tested at all.
+\item {\sc beep}~\cite{TNH07}'s test suite was based on 61 {\sc xss}
+attack vectors published by \url{ha.ckers.org}.
+\item {\sc soma}~\cite{OWVS08} --- all synthetics.
+\item The attacks used for the testing of {\it Blueprint}~\cite{LV09},
+came from \url{ha.ckers.org}.
+\item {\it Phung et al.}~\cite{PSC09} also utilized \url{ha.ckers.org}.
+\item {\it WebJail}~\cite{VDDPJ11} --- not tested at all.
+\item {\it ConScript}~\cite{ML10} --- not tested at all. A scheme
+similar to {\it CoreScript}~\cite{YCIS07}.
+\item {\it j{\sc csrf}}~\cite{PS11} --- based on {\sc csrf}
+defects with specific {\sc cve id}s.
+\item The authors of {\it TreeHouse}~\cite{IW12} have tested
+only the overhead and how easy is to incorporate the mechanism
+into an application.
+\end{enumerate}
+
+Notes on training-based mechanisms:
+\begin{enumerate}
+\item {\it {\sc didafit}}~\cite{LLW02} is one of
+the first {\sc ids}.
+\item {\sc amnesia}~\cite{HO05,HO06,HO05b} was tested
+on applications with known vulnerabilities taken
+from \url{http://gotocode.com} plus two synthetic benchmarks.
+Interestingly, in one of the papers~\cite{HO06},
+the authors mention that the tool can produce both {\sc fp} and
+{\sc fn}.
+\item {\it libAnomaly}~\cite{VMV05} --- one application tested ({\sc php}-Nuke).
+\item {\sc sqlg}uard~\cite{BWS05} --- no testing at all.
+\end{enumerate}
+
 \begin{table*}
 \centering
     \begin{threeparttable}
@@ -269,59 +367,71 @@ application attacks, in terms of citations.
     \hline
     \bf{Approach}
 	& \bf{Mechanism}
-    & \multicolumn{3}{|c|}{Availability} \\
+    & \multicolumn{3}{|c|}{Availability\tnote{1}} \\
 	&& \bf{Source Code}
 	& \bf{Executable}
 	& \bf{Testbed} \\
     \hline
 	\multirow{9}{*}{Runtime Tainting}
-	&  	{\sc csse}~\cite{PB05} & \xmark & \xmark & \xmark \\
-	&  	{\it Haldar et al.}~\cite{HCF05}  & - & - & - \\ 
-	&  	{\it SecuriFly}~\cite{MLL05}  & - & - & - \\
-	&  	{\it Xu et al.}~\cite{XBS06}  & - & - & - \\
-    &  	{\it {\sc wasc}}~\cite{NLC07} & - & - & - \\
-	&  	{\it Vogt et al.}~\cite{VFJKKV07}  & - & - & - \\
-	&   {\it Noxes}~\cite{KKVJ06,KJKV09}  & - & - & - \\
-	&  	{\it {\sc php} Aspis}~\cite{PMP11} & - & - & - \\
-	& 	{\it Stock et al.}~\cite{SLMS14} & - & - & - \\
+	&  	{\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
+	&  	{\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
+	% &  	{\it SecuriFly}~\cite{MLL05}  & - & - & - \\
+	&  	{\it Xu et al.}~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
+    &  	{\it {\sc wasc}}~\cite{NLC07} & {\sc na} & {\sc na} & {\sc na} \\
+	&  	{\it Vogt et al.}~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
+	&   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & {\sc ao} & {\sc na} & {\sc ao} \\
+	& 	{\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
 	\hline      
 	\multirow{3}{*}{{\sc isr}}
-	&   {\it {\sc sql}rand}~\cite{BK04} & - & - & - \\
-	&   {\it Noncespaces}~\cite{GC09} & - & - & - \\ 
-    &   {\it x{\sc js}}~\cite{APKLM10} & - & - & - \\
+	&   {\it {\sc sql}rand}~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
+	&   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
+    &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
 	\hline    
-	\multirow{13}{*}{Policy Enforcement}
-	&   {\it {\sc dsi}}~\cite{NSS06} & - & - & - \\ 
-	&   {\it BrowserShield}~\cite{RDWDE07} & - & - & - \\
-	&   {\it CoreScript}~\cite{YCIS07} & - & - & - \\
-	&   {\it {\sc met}}~\cite{ELX07} & - & - & - \\ 
-    &   {\it {\sc beep}}~\cite{TNH07} & - & - & - \\
-    &   {\it {\sc soma}}~\cite{OWVS08} & - & - & - \\
-	&   {\it Blueprint}~\cite{LV09} & - & - & - \\
-	&   {\it Phung et al.}~\cite{PSC09} & - & - & - \\
-	&   {\it WebJail}~\cite{VDDPJ11} & - & - & - \\
-	&   {\it ConScript}~\cite{ML10} & - & - & - \\
-	&   {\it j{\sc csrf}}~\cite{PS11} & - & - & - \\
-    &   {\it TreeHouse}~\cite{IW12} & - & - & - \\
-   	&   {\it {\sc js}and}~\cite{AVBPDP12} & - & - & - \\
+	\multirow{12}{*}{Policy Enforcement}
+	&   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
+	&   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
+	&   {\it CoreScript}~\cite{YCIS07} & {\sc ao} & {\sc na} & {\sc na} \\
+	&   {\it {\sc met}}~\cite{ELX07} & {\sc na} & {\sc na} & {\sc na} \\
+    &   {\it {\sc beep}}~\cite{TNH07} & \tick & \tick & \tick \\
+    &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
+	&   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
+	&   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
+	&   {\it WebJail}~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
+	&   {\it ConScript}~\cite{ML10} & {\sc ao} & {\sc na} & {\sc na} \\
+	&   {\it j{\sc csrf}}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
+    &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
+   	% &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
 	\hline  
         \multirow{12}{*}{Training}
-    &   {\it {\sc didafit}}~\cite{LLW02} & - & - & - \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & - & - & - \\ 
-	&   {\it Valeur et al.}~\cite{VMV05} & - & - & - \\
-	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & - & - & - \\
+    &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\sc ao} & {\sc na} \\
+	&   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
+	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & {\sc ao} & {\sc ao} & {\sc na} \\
 	& 	{\it {\sc sm}ask}~\cite{JB07} & - & - & - \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & - & - & - \\
     & 	{\it {\sc xss-guard}}~\cite{BV08} & - & - & - \\
     & 	{\it {\sc swap}}~\cite{WPLKK09} & - & - & - \\
-	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & - & - & - \\
+	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
 	& 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & - & - & - \\
 	& 	{\it Diglossia}~\cite{SMS13} & - & - & - \\
 	\hline
     \end{tabular}}
+        \begin{tablenotes}
+	\begin{footnotesize}
+       \item[1] The check mark (\tick) indicates that some point within
+       the publication there is a homepage where the reader can refer to, to
+       download the corresponding software. {\sc ao} (Available On-line) suggests
+       that the software is available on-line but the
+       address was not mentioned in the paper, which probably indicates that
+       the authors made it available after the publication. The question ({\bf ?})
+       mark, indicates that the a homepage for the software was included
+       in the publication but now it is not available.
+	\end{footnotesize}
+    \end{tablenotes}
     \caption{Availability of the corresponding mechanisms.}
     \label{tab:comp2}
     \end{small}
