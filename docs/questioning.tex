@@ -49,7 +49,7 @@ Athens University of Economics and Business\\
 louridas@aueb.gr
 }}
 
-\title{Questioning how Researchers Develop and Present Intrusion Detection Systems}
+\title{Questioning how Researchers Present Intrusion Detection Systems}
 
 \maketitle
 \begin{abstract}
@@ -193,10 +193,10 @@ application attacks, in terms of citations.
     \bf{Approach}
 	& \bf{Mechanism}
 	& \bf{\# of Citations}
-    & \multicolumn{2}{|c|}{Requirements}
+    & \multicolumn{2}{|c|}{Requirements\tnote{1}}
 	& \bf{Attack} \\
 	&&& \bf{TP,TN,FP,FN}
-	& \bf{Computational Overhead}\tnote{4} & \\
+	& \bf{Computational Overhead} & \\
     \hline
 	\multirow{9}{*}{Runtime Tainting}
 	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection \\
@@ -234,12 +234,12 @@ application attacks, in terms of citations.
 	\hline
 	\hline  
         \multirow{11}{*}{Training}
-    &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\bf ?} & {\sc sql} injection \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\bf ?} & {\sc sql} injection \\ 
+    &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} & {\sc sql} injection \\ 
 	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
 	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
-	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\bf ?} & {\sc sql} injection, {\sc xss} \\
-	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\bf ?} &  {\sc xss} \\
+	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
+	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} &  {\sc xss} \\
     & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
     & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% & {\sc xss} \\ 
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 20,8,5 & (241,{\sc nq},0,0)\_a & 39\% & {\sc sql} and {\sc xp}ath injection \\
@@ -249,10 +249,9 @@ application attacks, in terms of citations.
     \end{tabular}}
     \begin{tablenotes}
 	\begin{footnotesize}
-       \item[1] {\it Flexibility} indicates if the approach can be adjusted
-	in order to detect different {\sc cia} categories.
-       \item[4] {\it User Experience} is affected if the mechanism suffers
-	from runtime overhead.
+       \item[1] {\sc na} (Not Available) means that a requirement is not even mentioned in the paper.
+	{\sc nq} (Not Quantified) indicates that a requirement is mentioned in the publication
+	but it is not quantified.
 	\end{footnotesize}
     \end{tablenotes}
     \caption{Comparison summary of mechanisms developed to counter application attacks.}
@@ -263,10 +262,6 @@ application attacks, in terms of citations.
 \end{landscape}
 
 \section{Analysis}
-
-{\sc na} means that a requirement is not even mentioned in the paper.
-{\sc nq} indicates that a requirement is mentioned in the publication
-but it is not quantified.
 
 Notes on taint tools:
 \begin{enumerate}
