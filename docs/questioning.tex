@@ -233,7 +233,7 @@ application attacks, in terms of citations.
 	& \bf{\# of Citations}
     & \multicolumn{2}{|c|}{Requirements\tnote{1}}
 	& \bf{Attack} \\
-	&&& \bf{TP,TN,FP,FN}
+	&&& \bf{TP,TN,FP,FN}\tnote{2}
 	& \bf{Computational Overhead} & \\
     \hline
 	\multirow{9}{*}{Runtime Tainting}
@@ -287,9 +287,12 @@ application attacks, in terms of citations.
     \end{tabular}}
     \begin{tablenotes}
 	\begin{footnotesize}
-       \item[1] {\sc na} (Not Available) means that a requirement is not even mentioned in the paper.
+       	\item[1] {\sc na} (Not Available) means that a requirement is not even mentioned in the paper.
 	{\sc nq} (Not Quantified) indicates that a requirement is mentioned in the publication
 	but it is not quantified.
+		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
+	based on real-world applications known to be vulnerable ({\it r}), synthetic benchmarks ({\it s}) or both ({\it a}).
+	If no testing has taken place we add a question mark ({\bf ?}).
 	\end{footnotesize}
     \end{tablenotes}
     \caption{Comparison summary of mechanisms developed to counter application attacks.}
