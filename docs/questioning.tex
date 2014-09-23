@@ -94,7 +94,7 @@ applications~\cite{A01,A00}.
 As in medical diagnostic tests, application attack defense mechanisms
 must demonstrate the presence of an attack. This, however, does not
 make an application attack defense mechanism immediately useful. In
-order for a detection mechanism to be useful it must accurate, easy to
+order for a detection mechanism to be useful it must be accurate, easy to
 use, and economical. The accuracy of a detection mechanism is gauged
 with the following metrics:
 \begin{itemize}
@@ -102,13 +102,13 @@ with the following metrics:
   caught.
 \item {\bf Specificity}, the probability that a normal interaction
   will test negative.
-\item {\bf Positive Predictive Value} (PPV), the probability that a
+\item {\bf Positive Predictive Value} ({\sc ppv}), the probability that a
   reported attack is a real attack.
-\item {\bf Negative Predictive Value} (NPV), the probability that if
+\item {\bf Negative Predictive Value} ({\sc npv}), the probability that if
   nothing is reported no attack has taken place.
 \end{itemize}
 
-For example, a simple announcement that an attach defense mechanism
+For example, a simple announcement that an attack defense mechanism
 catches an attack says very little about the usability and
 applicability of the mechanism. There may be some value in indicating
 that detection \emph{per se} is possible, if that has been considered
@@ -123,35 +123,36 @@ previous metrics:
 \item How much at ease should we be if no alarm is raised?
 \end{itemize}
 
-Sensitivity, specificity, PPV, and NPV, are defined precisely by way
+Sensitivity, specificity, {\sc ppv}, and {\sc npv}, are defined precisely by way
 of the $2\times 2$ Table~\ref{tab:attacks-outcomes}. In the cells of
 the table we distinguish:
 \begin{itemize}
-\item True Positive (TP), a real attack that raises an alarm.
-\item False Positive (FP), an event that although it is not an attack
-  raises an alarm.
-\item True Negative (TN), an event that is not an attack and that does
+\item True Positive ({\sc tp}), a real attack that raises an alarm.
+\item True Negative ({\sc tn}), an event that is not an attack and that does
   not raise an alarm.
-\item False Negative (FN), an event that although is as attack does
+\item False Positive ({\sc fp}), an event that although it is not an attack
+  raises an alarm.
+\item False Negative ({\sc fn}), an event that although is as attack does
   not raise an alarm.
 \end{itemize}
 
+\noindent
 With these we can calculate:
 
 \begin{equation}
-\textrm{sensitivity} = \frac{\textrm{TP}}{\textrm{TP} + \textrm{TN}}
+\textrm{Sensitivity} = \frac{\textrm{{\sc tp}}}{\textrm{{\sc tp}} + \textrm{{\sc tn}}}
 \end{equation}
 
 \begin{equation}
-\textrm{specificity} = \frac{\textrm{TP}}{\textrm{TN} + \textrm{FP}}
+\textrm{Specificity} = \frac{\textrm{{\sc tp}}}{\textrm{{\sc tn}} + \textrm{{\sc fp}}}
 \end{equation}
 
 \begin{equation}
-\textrm{PPV} = \frac{\textrm{TP}}{\textrm{TP} + \textrm{FP}}
+\textrm{{\sc ppv}} = \frac{\textrm{{\sc tp}}}{\textrm{{\sc tp}} + \textrm{{\sc fp}}}
 \end{equation}
 
 \begin{equation}
-\textrm{NPV} = \frac{\textrm{TN}}{\textrm{TN} + \textrm{FN}}
+\textrm{{\sc npv}} = \frac{\textrm{{\sc tn}}}{\textrm{{\sc tn}} + \textrm{{\sc fn}}}
 \end{equation}
 
 \begin{table}[ht]
@@ -177,16 +178,16 @@ test on a controlled environment where we allow only innocuous events
 to reach the system. The ratio of non-reported events over all events
 will give us the specificity. 
 
-The calculation of PPV and NPV requires that we evaluate the attack
+The calculation of {\sc ppv} and {\sc npv} requires that we evaluate the attack
 defense mechanism on a real operational environment where the events
 are a mix of attacks and innocuous events and, moreover, the mix ratio
 is the ratio of attacks over harmless events that exists in actual
 operations. Too few or too many attacks will skew metrics calculations.
 
 The last requirement may seem cumbersome, but consider that, in actual
-operations, PPV is what would determine our actions. Administrators
+operations, {\sc ppv} is what would determine our actions. Administrators
 will limited resources need to allocate their attention judiciously.
-They may need to prioritize responses to emergency warnings; the PPV
+They may need to prioritize responses to emergency warnings; the {\sc ppv}
 value will indicate them what priority to give to a raised alarm.
 
 \section{Covered Area}
