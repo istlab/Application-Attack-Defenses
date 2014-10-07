@@ -341,12 +341,16 @@ have~\cite{linn2004,altman1994}:
 
 \begin{equation}
 \textrm{PPV} = \frac{\textrm{SE}\times \textrm{PR}}{
-\textrm{SE}\times \textrm{PR} + (1 - \textrm{SP})\times (1 - \textrm{PR})}
+\textrm{SE}\times \textrm{PR} + (1 - \textrm{SP})\times (1 -
+\textrm{PR})}
+\label{eq:ppv-se-sp}
 \end{equation}
 
 \begin{equation}
 \textrm{NPV} = \frac{\textrm{SP}\times (1 - \textrm{PR})}{
-(1 - \textrm{SE})\times \textrm{PR} + \textrm{SP}\times (1 - \textrm{PR})}
+(1 - \textrm{SE})\times \textrm{PR} + \textrm{SP}\times (1 -
+\textrm{PR})}
+\label{eq:npv-se-sp}
 \end{equation}
 
 The prevalence is the prior probability that an event is an attack,
@@ -361,13 +365,17 @@ positive test result indicates a real attack.
 In what follows we evaluate published research in attack detection
 mechanism based on the following:
 \begin{itemize}
-\item Reporting of values for True Positives ($a$), False Positives
-  ($b$), False Negatives ($c$), True Negatives ($d$), on test
-  environments.
-\item Reporting of values for True Positives ($A$), False Positives
-  ($B$), False Negatives ($C$), True Negatives ($D$), on the
-  performance of the mechanism on environments with real attack
-  profiles.
+\item \textbf{Sensitivity, Specificity}: Reporting of values for True
+  Positives ($a$), False Positives ($b$), False Negatives ($c$), True
+  Negatives ($d$), on test environments.
+\item \textbf{\textsc{ppv}, \textsc{npv}}: Reporting of values for True
+  Positives ($A$), False Positives ($B$), False Negatives ($C$), True
+  Negatives ($D$), on the performance of the mechanism on environments
+  with real attack profiles. Alternatively, since from
+  equations~\ref{eq:ppv-se-sp} and~\ref{eq:npv-se-sp} \textsc{ppv}
+  and \textsc{npv} can be calculated by the sensitity and specifity
+  given the prevalence, reporting of prevalance, sensitivity,
+  specificity.
 \end{itemize}
 
 \section{Covered Area}
