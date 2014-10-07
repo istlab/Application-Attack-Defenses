@@ -96,43 +96,33 @@ must demonstrate the presence of an attack. This, however, does not
 make an application attack defense mechanism immediately useful. In
 order for a detection mechanism to be useful it must be accurate, easy to
 use, and economical. The accuracy of a detection mechanism is gauged
-with the following metrics~\cite{GFDLS06,A00}:
+with the following metrics~\cite{TDR2013,GFDLS06,A00}:
 \begin{itemize}
 \item {\bf Sensitivity}, the probability that an attack will be
   caught.
 \item {\bf Specificity}, the probability that a normal interaction
   will test negative.
 \item {\bf Positive Predictive Value} ({\sc ppv}), the probability that a
-  reported attack is a real attack.
+  reported attack is a real attack. It is the conditional probability
+  that an event is an attack if the detection mechanism flags it as
+  such. 
 \item {\bf Negative Predictive Value} ({\sc npv}), the probability that if
-  nothing is reported no attack has taken place.
+  nothing is reported no attack has taken place. It is the conditional
+  probability that an event is not an attack given that the detection
+  mechanism flags it as normal.
 \end{itemize}
 
-For example, a simple announcement that an attack defense mechanism
-catches an attack says very little about the usability and
-applicability of the mechanism. There may be some value in indicating
-that detection \emph{per se} is possible, if that has been considered
-infeasible in the past. Most value, though, comes from knowing the
-answers to questions like the following, which correspond to the
-previous metrics:
-\begin{itemize}
-\item Does it catch all the attacks? If not, how many of them?
-\item Does it catch only attacks? If not, how many false alarms would
-  we expect?
-\item How much should we be worried if we do get an alarm?
-\item How much at ease should we be if no alarm is raised?
-\end{itemize}
-
-Sensitivity, specificity, {\sc ppv}, and {\sc npv}, are defined precisely by way
-of the $2\times 2$ Table~\ref{tab:attacks-outcomes}. In the cells of
+Sensitivity and specifity are defined by way of the $2\times 2$
+Table~\ref{tab:sensitivity-specificity}~\cite{linn2004}. 
+In the cells of
 the table we distinguish:
 \begin{itemize}
-\item True Positive ({\sc tp}), a real attack that raises an alarm.
-\item True Negative ({\sc tn}), an event that is not an attack and that does
+\item True Positive ($a$), a real attack that raises an alarm.
+\item True Negative ($d$), an event that is not an attack and that does
   not raise an alarm.
-\item False Positive ({\sc fp}), an event that although it is not an attack
+\item False Positive ($b$), an event that although it is not an attack
   raises an alarm.
-\item False Negative ({\sc fn}), an event that although is as attack does
+\item False Negative ($c$), an event that although is as attack does
   not raise an alarm.
 \end{itemize}
 
@@ -140,55 +130,107 @@ the table we distinguish:
 With these we can calculate:
 
 \begin{equation}
-\textrm{Sensitivity} = \frac{\textrm{{\sc tp}}}{\textrm{{\sc tp}} + \textrm{{\sc tn}}}
+\textrm{SE} = \textrm{Sensitivity} = \frac{a}{a + c}
 \end{equation}
 
 \begin{equation}
-\textrm{Specificity} = \frac{\textrm{{\sc tp}}}{\textrm{{\sc tn}} + \textrm{{\sc fp}}}
+\textrm{SP} = \textrm{Specificity} = \frac{d}{b + d}
 \end{equation}
 
-\begin{equation}
-\textrm{{\sc ppv}} = \frac{\textrm{{\sc tp}}}{\textrm{{\sc tp}} + \textrm{{\sc fp}}}
-\end{equation}
-
-\begin{equation}
-\textrm{{\sc npv}} = \frac{\textrm{{\sc tn}}}{\textrm{{\sc tn}} + \textrm{{\sc fn}}}
-\end{equation}
+Sensitivity and specificity can be calculated based on test
+data alone. To calculate the sensitivity, we run the test on a
+controlled environment where we allow only attack events to reach the
+system. The ratio of reported attacks over all attacks will give us
+the sensitivity. Similarly, to calculate the specificity we can run
+the test on a controlled environment where we allow only innocuous
+events to reach the system. The ratio of non-reported events over all
+events will give us the specificity. 
 
 \begin{table}[ht]
 
-\caption{Attacks and Test Outcomes}
-\label{tab:attacks-outcomes}
+\caption{Attacks and Test Outcomes in Test Environment}
+\label{tab:sensitivity-specificity}
 
 \begin{tabular}{l|l|c|c|}
 \multicolumn{2}{c}{} & \multicolumn{2}{c}{Attack} \\ \cline{3-4}
 \multicolumn{2}{c|}{} & Yes & No \\ \cline{2-4}
-\multirow{2}{*}{Result} &  Yes &  True Positive & False Positive \\
-& No & False Negative & True Negative \\ \cline{2-4}
+\multirow{2}{*}{Result} &  Yes &  $a = \textrm{True Positive}$ & 
+$b = \textrm{False Positive}$ \\
+& No & $c = \textrm{False Negative}$ & $d = \textrm{True Negative}$ \\ 
+\cline{2-4}
+\multicolumn{2}{r|}{Total} & $a + c$ & $b + d$ \\
+\cline{3-4}
 \end{tabular}
 
 \end{table}
 
-Sensitivity and specificity can be calculated based on test results
-alone. To calculate the sensitivity, we run the test on a controlled
-environment where we allow only attack events to reach the system. The
-ratio of reported attacks over all events will give us the
-sensitivity. Similarly, to calculate the specificity we can run the
-test on a controlled environment where we allow only innocuous events
-to reach the system. The ratio of non-reported events over all events
-will give us the specificity. 
+Note that the calculations are carried out vertically; the ratio of
+attack events to normal events does not enter into sensitivity and
+specificity. This is what allows us to derive them based on test data,
+without using data from a real production environment. At the same
+time, however, this is what limits their usefulness. When we obtain a
+test result in a production environment, be it negative or positive,
+we really want to know how much we should be worried. In other words,
+if an attack is detected in a production environment, how much should
+we be worried? If no attack is detected in a production environment,
+how relaxed should we be that no attack has indeed taken place?
 
-The calculation of {\sc ppv} and {\sc npv} requires that we evaluate the attack
-defense mechanism on a real operational environment where the events
-are a mix of attacks and innocuous events and, moreover, the mix ratio
-is the ratio of attacks over harmless events that exists in actual
-operations. Too few or too many attacks will skew metrics calculations.
+\begin{table}[ht]
 
-The last requirement may seem cumbersome, but consider that, in actual
-operations, {\sc ppv} is what would determine our actions. Administrators
-will limited resources need to allocate their attention judiciously.
-They may need to prioritize responses to emergency warnings; the {\sc ppv}
-value will indicate them what priority to give to a raised alarm.
+\caption{Attacks and Test Outcomes in Real Environment}
+\label{tab:ppv-npv}
+
+\begin{tabular}{l|l|c|c|c}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Attack} & \\ \cline{3-4}
+\multicolumn{2}{c|}{} & Yes & No & Total \\ \cline{2-5}
+\multirow{2}{*}{Result} &  Yes &  $A = \textrm{True Positive}$ & 
+$B = \textrm{False Positive}$ & \multicolumn{1}{c|}{$A + B$}\\
+& No & $C = \textrm{False Negative}$ & $D = \textrm{True Negative}$ &
+\multicolumn{1}{c|}{$C + D$}\\ 
+\cline{2-5}
+\end{tabular}
+
+\end{table}
+
+The answer to these questions is given by the \textsc{ppv} and the
+\textsc{npv}. These depend not only on the test results, but also on
+the \emph{prevalence} of attacks in real environments. In particular,
+we can calculate them using Table~\ref{tab:ppv-npv}, which tabulates
+results in a real environment, or in an environment where the
+prevalence of attacks is equal to what we expect in the real world. To
+indicate the difference with Table~\ref{tab:sensitivity-specificity}
+we use capital letters for the entries in the table~\cite{linn2004}.
+With this table, \textsc{ppv} and \textsc{npv} are given by the
+following equations:
+
+\begin{equation}
+\textrm{PPV} = \frac{A}{A + C}
+\end{equation}
+
+\begin{equation}
+\textrm{NPV} = \frac{D}{B + D}
+\end{equation}
+
+This time the ratios are taken horizontally; the ratio of attacks to
+innocuous events affects the calculations. In fact, if PR is the real
+probability that an attack happens, the prevalence, then we
+have~\cite{linn2004,altman1994}:
+
+\begin{equation}
+\textrm{PPV} = \frac{\textrm{SE}\times \textrm{PR}}{
+\textrm{SE}\times \textrm{PR} + (1 - \textrm{SP})\times (1 - \textrm{PR})}
+\end{equation}
+
+\begin{equation}
+\textrm{NPV} = \frac{\textrm{SP}\times (1 - \textrm{PR})}{
+(1 - \textrm{SE})\times \textrm{PR} + \textrm{SP}\times (1 - \textrm{PR})}
+\end{equation}
+
+The prevalence is the prior probability that an event is an attack,
+based on our understanding of the volume and frequency of attacks; the
+\textsc{ppv} and \textsc{npv} are the revised estimates of the
+probability based on the results of the detection
+mechanism~\cite{altman1994}.
 
 \section{Covered Area}
 
