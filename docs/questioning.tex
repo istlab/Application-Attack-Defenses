@@ -1,7 +1,7 @@
 \documentclass[conference]{IEEEtran}
 
 \usepackage{hyperref}
-%\usepackage{graphicx}
+\usepackage{graphicx}
 \usepackage{fancyhdr}
 %\usepackage{lastpage}
 \usepackage{amsmath}
@@ -49,7 +49,7 @@ Athens University of Economics and Business\\
 louridas@aueb.gr
 }}
 
-\title{SoK: Application Attack Defenses (in Question)}
+\title{SoK: Web Application Attack Defenses (in Question)}
 
 \maketitle
 \begin{abstract}
@@ -88,6 +88,128 @@ attacks made to to circumvent it.
 All the aforementioned requirements are considered critical
 when building security mechanisms that protect
 applications~\cite{A01,A00}.
+
+\section{Attacks}
+\label{sec:attacks}
+
+The basic problem behind web application attacks involves
+the absence of input validation. By taking advantage of
+this, attackers can inject either code into
+applications to perform malicious tasks. Such
+an exploit can have different forms depending on the
+execution context of the application and the location
+of the programming flaw that leads to the attack.
+
+Bratus et al.~\cite{BLSPS11} portray the issue in a generic fashion:
+{\it ``unexpected (and unexpectedly powerful) computational models
+inside targeted systems, which turn a part of the target into a
+so-called ``weird machine" programmable by the attacker via crafted inputs
+(a.k.a. ``exploits")"}.
+An example of the above definition is the
+following: The code fragment below, defines the operation of
+addition in the Scheme programming language~\cite{AS96,D09}:
+
+\begin{verbatim}
+(define (add x y) (+ x y))
+\end{verbatim}
+
+\noindent
+Consider the case where instead of a number, a function that leads to an
+endless loop is passed as an argument by the user. This will cause
+the interpreter to enter
+an endless loop and lead to a denial of service.
+% Keep in mind that a {\sc cia} does not require a programming
+% language with first-class functions.
+The intuition here is that {\it ``every application that copies
+untrusted input verbatim into an output
+program is vulnerable to code injection"}.
+Ray and Ligatti~\cite{RL12b} actually proved the above
+claim based on formal language theory.
+
+\begin{figure}
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.37]{attack-tree-uml.pdf}
+\end{center}
+\caption{\label{fig:taxonomy}A taxonomy of code injection attacks.
+In our research we have excluded the defenses that deal with
+the subcategories that are illustrated in grey color.}
+\end{figure}
+
+Figure \ref{fig:taxonomy} presents a taxonomy of code injection attacks divided
+into two categories. The first involves binary code and the second
+executable source code.
+
+\subsection{Binary Code Injection}
+
+Binary code injection attacks involve
+the insertion of binary code into an application
+to alter its execution flow and execute malicious
+compiled code. This category involves buffer-overflow
+attacks~\cite{CPMHWBBGWZ98,K11}, a staple of security problems.
+An extensive survey on binary code
+injection attacks can be found in reference~\cite{LC03}.
+Furthermore, specific advances in exploiting such vulnerabilities
+(i.e. ``heap smashing", ``arc injection" and others)
+have been presented in reference~\cite{PB04}.
+Finally, the countermeasures used to detect
+such defects have already been surveyed~\cite{YJP12}
+(many of them are also included in a book:~\cite{DKZ12}
+-- Section 13.8), thus we do not include them in our work.
+
+\subsection{Executable Source Code Injection}
+
+Code injection also includes the use of source code, either of a
+Domain Specific Language ({\sc dsl})
+or a Dynamic Language. Note that binary code injection
+attacks can only occur when the target system is implemented in
+languages lacking array bounds checking, like
+{\sc c} and {\sc c}++. Contrariwise, source code-driven
+injection attacks can target applications written in various
+programming languages with different features and characteristics.
+
+Application attacks that involve {\sc dsl}s,
+constitute an important subset of the code injection problem,
+as {\sc dsl}s like {\sc sql} and {\sc xml} play an
+significant role in the development of either web or mobile
+applications. For example, many applications have interfaces
+where a user enters input to interact with the
+application's data, thereby interacting with the
+underlying {\it Relational Database Management System}
+({\sc rdbms}).
+This input can become part of an
+{\sc sql} query and executed on the target {\sc rdbms}.
+A code injection attack that exploits the vulnerabilities of these
+interfaces by taking advantage of input validation issues like
+incorrectly passed parameters or incorrect type handling,
+is called an ``{\sc sql} injection
+attack''~\cite{CERT02,MS09,HVO06,SW06}.
+By using similar techniques malicious users
+can perform other exploits based on {\sc dsl}s,
+like {\sc xp}ath~\cite{SW06,CDL07,MKS09} and
+{\sc xml}~\cite{MSM13} injection attacks.
+
+A recent class of {\sc cia}s involve
+dynamic languages like Python, Perl, JavaScript, and {\sc php}~\cite{SFVM09,EWKK09,SMS13}.
+In particular, JavaScript injection attacks comprise a wide subset of dynamic
+language-driven attacks. Such attacks are manifested when a web application
+accepts and redisplays data of uncertain origin without appropriate validation
+and filtering. Based on this flaw, an attacker can
+manage to inject a script in the JavaScript engine of a browser and alter its
+execution flow~\cite{ELX07}. JavaScript injection attacks are considered as a
+critical issue in web application security mainly because they are
+associated with major vulnerabilities such as:
+{\sc xss} attacks~\cite{SG07},
+{\sc csrf} attacks~\cite{LZRL09}
+and ``Cross-Channel Scripting"
+({\sc xcs}) attacks~\cite{W10,BBB09}.
+
+\section{Defenses for Detecting Web Application Attacks}
+
+There are four main defensive approaches to counter
+web application attacks, namely: {\it tainting},
+{\it instruction set randomization} ({{\sc isr}}),
+{\it policy enforcement} and {\it training}. 
 
 \section{Methodological Background}
 
