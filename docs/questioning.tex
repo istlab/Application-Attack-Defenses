@@ -204,6 +204,8 @@ associated with major vulnerabilities such as:
 and ``Cross-Channel Scripting"
 ({\sc xcs}) attacks~\cite{W10,BBB09}.
 
+% {\sc html} injection --- such attacks pose no threat to cookies and session IDs.
+
 \section{Defenses for Detecting Web Application Attacks}
 
 There are four main defensive approaches to counter
@@ -424,15 +426,14 @@ application attacks, in terms of citations.
 	&&& \bf{TP,TN,FP,FN}\tnote{2}
 	& \bf{Computational Overhead} & \\
     \hline
-	\multirow{9}{*}{Runtime Tainting}
+	\multirow{8}{*}{Runtime Tainting}
   &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
 	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
 	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
 	&  	{\it Xu et al.}~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% & {\sc sql} injection, {\sc xss} \\ 
   &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% & {\sc sql} injection, {\sc xss} \\
 	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} & {\sc xss} \\
-	&   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
-	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (15,{\sc nq},{\sc nq},{\sc nq})\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
 	\hline
 	\hline      
@@ -442,8 +443,9 @@ application attacks, in terms of citations.
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
 	\hline
 	\hline    
-	\multirow{12}{*}{Policy Enforcement}
+	\multirow{13}{*}{Policy Enforcement}
 	&   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
+  &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
 	&   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
 	&   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\ 
 	&   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
