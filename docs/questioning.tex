@@ -36,7 +36,9 @@
 
 \author{
 \IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
-Panos Louridas,\IEEEauthorrefmark{2} and Angelos Keromytis\IEEEauthorrefmark{1}}
+Panos Louridas,\IEEEauthorrefmark{2},
+Michalis Polychronakis,\IEEEauthorrefmark{1}
+and Angelos Keromytis\IEEEauthorrefmark{1}}
 \IEEEauthorblockA{\IEEEauthorrefmark{1}
 Network Security Lab\\
 Department of Computer Scinence\\
@@ -443,30 +445,33 @@ application attacks, in terms of citations.
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
   \hline
   \hline
-  \multirow{3}{*}{Parse-Tree Validation}
+  \multirow{2}{*}{Parse-Tree Validation}
   &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
   &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
-  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
 	\hline
-	\hline    
-	\multirow{12}{*}{Policy Enforcement}
+	\hline   
+  \multirow{3}{*}{Code Rewriting}
+  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
+  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
+  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
+  \hline
+  \hline 
+	\multirow{10}{*}{Policy Enforcement}
+  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
   &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
-	&   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
-	&   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\ 
 	&   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
   &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% & {\sc xss} \\
   &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf}\\
 	&   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\ 
-	&   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
 	&   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\ 
 	&   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
 	&   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
   &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
-   	% &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
-   	% TODO@dimitro: discuss this with Panos?
+  % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
+  % TODO@dimitro: discuss this with Panos?
 	\hline
 	\hline  
-        \multirow{10}{*}{Training}
+  \multirow{10}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} & {\sc sql} injection \\ 
 	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
@@ -619,14 +624,13 @@ with exploits from {\sc cve}.
 	& \bf{Executable}
 	& \bf{Testbed} \\
     \hline
-	\multirow{9}{*}{Runtime Tainting}
+	\multirow{8}{*}{Runtime Tainting}
 	&  	{\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
 	% &  	{\it SecuriFly}~\cite{MLL05}  & - & - & - \\
 	&  	{\it Xu et al.}~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
     &  	{\it {\sc wasc}}~\cite{NLC07} & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it Vogt et al.}~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
-	&   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & {\sc ao} & {\sc na} & {\sc ao} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
@@ -636,16 +640,25 @@ with exploits from {\sc cve}.
 	&   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
     &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
-	\hline    
-	\multirow{12}{*}{Policy Enforcement}
+	\hline
+  \multirow{2}{*}{Parse-Tree Validation}
+  &   {\it {\sc sqlc}heck}~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\sc ao} & {\sc ao} & {\sc na} \\
+  \hline  
+  \hline 
+  \hline
+  \multirow{3}{*}{Code Rewriting}
+  &   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it CoreScript}~\cite{YCIS07} & {\sc ao} & {\sc na} & {\sc na} \\
+  &   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
+  \hline 
+	\multirow{10}{*}{Policy Enforcement}
 	&   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
-	&   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
-	&   {\it CoreScript}~\cite{YCIS07} & {\sc ao} & {\sc na} & {\sc na} \\
+  &   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
 	&   {\it {\sc met}}~\cite{ELX07} & {\sc na} & {\sc na} & {\sc na} \\
-    &   {\it {\sc beep}}~\cite{TNH07} & \tick & \tick & \tick \\
-    &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc beep}}~\cite{TNH07} & \tick & \tick & \tick \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
 	&   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
-	&   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
 	&   {\it WebJail}~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
 	&   {\it ConScript}~\cite{ML10} & {\sc ao} & {\sc na} & {\sc na} \\
 	&   {\it j{\sc csrf}}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
@@ -653,11 +666,10 @@ with exploits from {\sc cve}.
    	% &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
 	\hline  
-        \multirow{11}{*}{Training}
+        \multirow{10}{*}{Training}
     &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\sc ao} & {\sc na} \\
 	&   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
-	& 	{\it {\sc sqlg}uard}~\cite{BWS05} & {\sc ao} & {\sc ao} & {\sc na} \\
 	& 	{\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
     & 	{\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
