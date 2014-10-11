@@ -428,7 +428,7 @@ application attacks, in terms of citations.
 	&&& \bf{TP,TN,FP,FN}\tnote{2}
 	& \bf{Computational Overhead} & \\
     \hline
-	\multirow{8}{*}{Runtime Tainting}
+	\multirow{9}{*}{Runtime Tainting}
   &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
 	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
 	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
@@ -437,6 +437,7 @@ application attacks, in terms of citations.
 	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} & {\sc xss} \\
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
+  &   {\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
 	\hline
 	\hline      
 	\multirow{3}{*}{{\sc isr}}
@@ -476,7 +477,7 @@ application attacks, in terms of citations.
   % TODO@dimitro: discuss this with Panos?
 	\hline
 	\hline  
-  \multirow{10}{*}{Training}
+  \multirow{9}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} & {\sc sql} injection \\ 
 	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
@@ -486,7 +487,6 @@ application attacks, in terms of citations.
   & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% & {\sc xss} \\ 
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% & {\sc sql} and {\sc xp}ath injection \\
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
-	& 	{\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
@@ -629,7 +629,7 @@ with exploits from {\sc cve}.
 	& \bf{Executable}
 	& \bf{Testbed} \\
     \hline
-	\multirow{8}{*}{Runtime Tainting}
+	\multirow{9}{*}{Runtime Tainting}
 	&  	{\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
 	% &  	{\it SecuriFly}~\cite{MLL05}  & - & - & - \\
@@ -638,6 +638,7 @@ with exploits from {\sc cve}.
 	&  	{\it Vogt et al.}~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & {\sc ao} & {\sc na} & {\sc ao} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
 	\hline      
 	\multirow{3}{*}{{\sc isr}}
@@ -677,7 +678,7 @@ with exploits from {\sc cve}.
    	% &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
 	\hline  
-        \multirow{10}{*}{Training}
+        \multirow{9}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\sc ao} & {\sc na} \\
 	&   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
@@ -687,7 +688,6 @@ with exploits from {\sc cve}.
   & 	{\it {\sc swap}}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & {\bf ?} & {\bf ?} & {\bf ?} \\
-	& 	{\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
