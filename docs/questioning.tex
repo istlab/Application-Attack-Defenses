@@ -51,7 +51,7 @@ Athens University of Economics and Business\\
 louridas@aueb.gr
 }}
 
-\title{SoK: Web Application Attack Defenses (in Question)}
+\title{SoK: The Evolution of Web Application Attack Defenses}
 
 \maketitle
 \begin{abstract}
@@ -80,7 +80,7 @@ Security and Protection, Application Security, Code injection Attacks, Cyber Sec
 
 \IEEEpeerreviewmaketitle
 
-\section{Introduction}
+\section{Introduction Remarks}
 
 % Notes
 The attacks we examine include
@@ -131,7 +131,7 @@ All the aforementioned requirements are considered critical
 when building security mechanisms that protect
 applications~\cite{A01,A00}.
 
-\section{Attacks}
+\section{Attacks and Background}
 \label{sec:attacks}
 
 The basic problem behind the most dangerous
@@ -254,23 +254,51 @@ and ``Cross-Channel Scripting"
 \leavevmode
 \includegraphics[scale=0.57]{attacks-steps.pdf}
 \end{center}
-\caption{\label{fig:taxonomy}Attack model demonstrating web
+\caption{\label{fig:attacks}Attack model demonstrating web
 application attacks that involve code injection ({\sc draft}).}
 \end{figure*}
 
-\section{Defenses for Detecting Web Application Attacks}
+\section{Web Application Attacks Defenses}
+\label{sec:defs}
 
-There are four main defensive approaches to counter
-web application attacks, namely: {\it tainting},
-{\it instruction set randomization} ({{\sc isr}}),
-{\it policy enforcement} and {\it training}. 
+Figure~\ref{fig:defenses} presents a taxonomy of the
+approaches that counter web application attacks based on
+code injection vulnerabilities.
+We can identify two main approaches, namely:
+{\it protection} and {\it detection}.
+The former involves mechanisms that make applications
+immune to different attack vectors by design~\cite{JL75,L81}.
+The latter incorporates a variety of methods and
+schemes that inspect the behavior of applications
+and detect attacks based on specific criteria~\cite{D76,A00}.
+
+\subsection{Protection}
+\label{sec:prot}
+
+Here we analyze the three different protection approaches.
+
+\subsubsection{Parse-Tree Validation}
+
+\subsubsection{Securing Mashups}
+
+\subsubsection{Instruction Set Randomization --- ISR}
+
+{\sc isr} is a method that contrary to the previous
+two approaches, has been applied to counter
+different kinds of application attacks~\cite{K09b,KKP03}.
+
+\subsection{Detection}
+
+% {\it tainting},
+% {\it instruction set randomization} ({{\sc isr}}),
+% {\it policy enforcement} and {\it training}. 
 
 \begin{figure*}
 \begin{center}
 \leavevmode
 \includegraphics[scale=0.57]{defenses.pdf}
 \end{center}
-\caption{\label{fig:taxonomy}The basic categories of web application
+\caption{\label{fig:defenses}The basic categories of web application
 attack countermeasures ({\sc draft}).}
 \end{figure*}
 
@@ -459,6 +487,27 @@ mechanism based on the following:
 	&&& \bf{TP,TN,FP,FN}\tnote{2}
 	& \bf{Computational Overhead} & \\
     \hline
+  \multirow{2}{*}{Parse-Tree Validation}
+  &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
+  &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
+  \hline
+  \hline
+  \multirow{5}{*}{Securing Mashups}
+  &   {\it {\sc om}ash}~\cite{CHC08} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} & {\sc csrf} \\
+  &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
+  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
+  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
+  &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
+  \hline
+  \hline
+  \multirow{3}{*}{{\sc isr}}
+  &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & +6.5{\it ms} & {\sc sql} injection \\ 
+  &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
+  &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
+  \hline
+  \hline
+  \hline
+  \hline
 	\multirow{9}{*}{Runtime Tainting}
   &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
 	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
@@ -470,30 +519,11 @@ mechanism based on the following:
 	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
   &   {\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
 	\hline
-	\hline      
-	\multirow{3}{*}{{\sc isr}}
-	&   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & +6.5{\it ms} & {\sc sql} injection \\ 
-	&   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
-  &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
-  \hline
-  \hline
-  \multirow{2}{*}{Parse-Tree Validation}
-  &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
-  &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
-	\hline
-	\hline   
+	\hline         
   \multirow{3}{*}{Code Rewriting}
   &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
   &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
   &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
-  \hline
-  \hline 
-  \multirow{5}{*}{Securing Mashups}
-  &   {\it {\sc om}ash}~\cite{CHC08} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} & {\sc csrf} \\
-  &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
-  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
-  &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   \hline
   \hline 
 	\multirow{7}{*}{Policy Enforcement}
