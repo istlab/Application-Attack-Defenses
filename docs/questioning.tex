@@ -284,8 +284,30 @@ Here we analyze the three different protection approaches.
 \subsubsection{Instruction Set Randomization --- ISR}
 
 {\sc isr} is a method that contrary to the previous
-two approaches, has been applied to counter
+two, has been applied to counter
 different kinds of application attacks~\cite{K09b,KKP03}.
+The main idea behind the method, is to
+separate code from data by randomizing the legitimate code's 
+execution environment. In this way, the malicious code
+injected by the attackers who do not know the randomization
+algorithm, will not get executed.
+
+{\it {\sc sql}rand}~\cite{BK04} is based on {\sc isr}
+to detect {\sc sql} injections in the following manner:
+initially, it allows programmers to create {\sc sql} statements
+using randomized instructions instead of standard keywords.
+The modified queries are either reconstructed at runtime using
+the same key that is inaccessible to the malicious user,
+or the user input is tagged with delimiters that allow
+an augmented {\sc sql} grammar to detect the
+attack.
+
+In the case of {\sc xss} attacks that are based on JavaScript,
+consider a {\sc xor} function that encodes all JavaScript source of a web
+page on the server-side and then, on the client-side, the web browser decodes the
+source by applying the same function again.
+Variations of this approach include:
+{\it Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}.
 
 \subsection{Detection}
 
