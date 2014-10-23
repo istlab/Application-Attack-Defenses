@@ -106,24 +106,30 @@ Security and Protection, Application Security, Code injection Attacks.
 
 \section{Introduction Remarks}
 
-% Notes
-The attacks we examine include
-{\sc sql} injection
-attacks~\cite{RL12b}, cross-site scripting ({\sc xss})
-attacks~\cite{SG07}, cross-site request forgery ({\sc csrf})
-attacks~\cite{LZRL09} and others.
-Such attacks top the vulnerability lists of numerous bulletin providers for several
-years.\footnote{\url{http://www.sans.org/top-cyber-security-risks/}, \url{http://cwe.mitre.org/top25/}}
-Consider the {\sc owasp}\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project}}
-(Open Web Application Security Project)
-Top Ten project whose main goal is to raise awareness about
-web application security by identifying some of the most critical risks facing
-organizations which is referenced by numerous researchers.
-In its three consecutive Top Ten lists (2007, 2010, 2013), different
-source code-driven injection attacks dominate the top five positions.
-This indicates that
-apart from the fact that malicious users find new ways to bypass
-defense mechanisms by using a variety of techniques despite the numerous
+Web application attacks may involve security misconfigurations,
+broken authentication and session management, and other issues.
+Some of the most dangerous web application attacks though
+are associated with the processing of external input data
+that may contain malicious code, a vulnerability known as
+code injection.
+
+Such attacks include Cross-Site Scripting ({\sc xss})
+attacks~\cite{SG07}, {\sc sql} injection attacks~\cite{RL12b},
+Cross-Site Request Forgery ({\sc csrf}) attacks~\cite{LZRL09}
+and others. Attacks like these top the vulnerability
+lists of numerous bulletin providers like
+the Open Web Application Security
+Project\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project}}
+({\sc owasp}) and {\sc mitre}\footnote{\url{http://cwe.mitre.org/top25/}}
+for several years. Consider the case of {\sc owasp}'s Top
+Ten project whose main goal is to raise awareness about
+web application security by identifying some of the most
+critical risks facing organizations which is referenced by
+numerous researchers. In its three consecutive Top Ten lists
+(2007, 2010, 2013), different source code-driven injection attacks
+dominate the top five positions. This indicates that apart from
+the fact that malicious users find new ways to bypass defense
+mechanisms by using a variety of techniques despite the numerous
 countermeasures that are being introduced.
 Note that the number of systems developed to counter {\sc sql}
 injection attacks until 2006 was more than twenty~\cite{HVO06}.
