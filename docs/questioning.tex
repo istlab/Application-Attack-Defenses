@@ -224,7 +224,7 @@ In this paper, we focus on the defenses that protect
 applications against application attacks based on
 the executable source code injection category.
 
-\subsection{Executable Source Code Injection}
+\subsection{Executable Source Code Injection Vulnerabilities}
 
 Figure~\ref{fig:taxonomy} presents a taxonomy of executable source
 code injection attacks. Such attacks may involve source code, either of a
@@ -278,7 +278,23 @@ and Cross-Channel Scripting
 \subsection{Exploitation Model}
 
 In this section we provide a step-by-step exploitation
-model
+model to understand the process of carrying out
+application attacks based on executable source code injection
+vulnerabilities. Figure~\ref{fig:attacks} presents the steps
+of different application attacks. For the most part,
+the steps are common for each attack. This is because
+they are based on similar attack vectors as we described in
+the previous section. We base the analysis of the
+existing defenses on this model. Figure~\ref{fig:attacks} also
+illustrates in which step the defenses detect corresponding
+attacks ({\sc todo}).
+
+An attack starts with the malicious user sending an
+request either to the server or to a web user.
+In the first case the attacker
+could upload data containing a specially crafted script
+(in a blog comment) or create a request with
+additional {\sc sql} code.
 
 \begin{figure*}
 \begin{center}
