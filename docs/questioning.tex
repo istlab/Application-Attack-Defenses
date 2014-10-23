@@ -51,7 +51,7 @@ Athens University of Economics and Business\\
 louridas@aueb.gr
 }}
 
-\title{SoK: The Evolution of Web Application Attack Defenses}
+\title{SoK: The Evolution of Defenses Against Web Application Attacks}
 
 \maketitle
 \begin{abstract}
@@ -72,7 +72,7 @@ over the past 15 years.
 In this paper we first systematize the existing knowledge
 regarding the various defense mechanisms by setting up
 a model for application attacks that are based on
-source code injection vulnerabilities. This model
+executable source code injection vulnerabilities. This model
 highlights the key weakness behind such attacks
 and helps us observe defenses from a common
 perspective.
@@ -126,9 +126,10 @@ Ten project whose main goal is to raise awareness about
 web application security by identifying some of the most
 critical risks facing organizations which is referenced by
 numerous researchers. In its three consecutive Top Ten lists
-(2007, 2010, 2013), different source code-driven injection attacks
-dominate the top five positions. This indicates that apart from
-the fact that malicious users find new ways to bypass defense
+(2007, 2010, 2013), different executable source code-driven
+injection attacks dominate the top five positions.
+This indicates that apart from the fact that malicious
+users find new ways to bypass defense
 mechanisms by using a variety of techniques despite the numerous
 countermeasures that are being introduced.
 Note that the number of systems developed to counter {\sc sql}
@@ -161,7 +162,7 @@ All the aforementioned requirements are considered critical
 when building security mechanisms that protect
 applications~\cite{A01,A00}.
 
-\section{Background}
+\section{Attacks}
 \label{sec:attacks}
 
 The basic problem behind the most dangerous
@@ -202,24 +203,14 @@ claim based on formal language theory.
 \begin{figure}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.37]{attack-tree-uml.pdf}
+\includegraphics[scale=0.47]{attack-tree-uml.pdf}
 \end{center}
-\caption{\label{fig:taxonomy}A taxonomy of code injection attacks.
-In our research we have excluded the defenses that deal with
-the subcategories that are illustrated in grey color.}
+\caption{\label{fig:taxonomy}A taxonomy of executable source
+code injection attacks.}
 \end{figure}
 
-Figure \ref{fig:taxonomy} presents a taxonomy of code injection attacks divided
-into two categories. The first involves binary code and the second
-executable source code.
-
-\subsection{Binary Code Injection}
-
-Binary code injection attacks involve
-the insertion of binary code into an application
-to alter its execution flow and execute malicious
-compiled code. This category involves buffer-overflow
-attacks~\cite{CPMHWBBGWZ98,K11}, a staple of security problems.
+Code injection attacks can be divided into two categories.
+The first involves binary code and the second executable source code.
 An extensive survey on binary code
 injection attacks can be found in reference~\cite{LC03}.
 Furthermore, specific advances in exploiting such vulnerabilities
@@ -229,10 +220,14 @@ Finally, the countermeasures used to detect
 such defects have already been surveyed~\cite{YJP12}
 (many of them are also included in a book:~\cite{DKZ12}
 -- Section 13.8), thus we do not include them in our work.
+In this paper, we focus on the defenses that protect
+applications against application attacks based on
+the executable source code injection category.
 
 \subsection{Executable Source Code Injection}
 
-Code injection also includes the use of source code, either of a
+Figure~\ref{fig:taxonomy} presents a taxonomy of executable source
+code injection attacks. Such attacks may involve source code, either of a
 Domain Specific Language ({\sc dsl})
 or a Dynamic Language. Note that binary code injection
 attacks can only occur when the target system is implemented in
@@ -255,16 +250,17 @@ This input can become part of an
 A code injection attack that exploits the vulnerabilities of these
 interfaces by taking advantage of input validation issues like
 incorrectly passed parameters or incorrect type handling,
-is called an ``{\sc sql} injection
-attack''~\cite{CERT02,MS09,HVO06,SW06}.
+is called an {\sc sql} injection attack~\cite{CERT02,MS09,HVO06,SW06}.
 By using similar techniques malicious users
 can perform other exploits based on {\sc dsl}s,
-like {\sc xp}ath~\cite{SW06,CDL07,MKS09} and
-{\sc xml}~\cite{MSM13}.
+like {\sc xp}ath~\cite{SW06,CDL07,MKS09} and {\sc xml}~\cite{MSM13}.
+With this kind of attacks, a malicious user can view sensitive
+information, destroy or modify protected data, or even crash the entire
+application.
 
 A recent class of {\sc cia}s involve
 dynamic languages like Python, Perl, JavaScript, and {\sc php}~\cite{SFVM09,EWKK09,SMS13}.
-In particular, JavaScript injection attacks comprise a wide subset of dynamic
+JavaScript injection attacks in particular, comprise a wide subset of dynamic
 language-driven attacks. Such attacks are manifested when a web application
 accepts and redisplays data of uncertain origin without appropriate validation
 and filtering. Based on this flaw, an attacker can
@@ -274,10 +270,25 @@ critical issue in web application security mainly because they are
 associated with major vulnerabilities such as:
 {\sc xss} attacks~\cite{SG07},
 {\sc csrf} attacks~\cite{LZRL09}
-and ``Cross-Channel Scripting"
+and Cross-Channel Scripting
 ({\sc xcs}) attacks~\cite{W10,BBB09}.
 
 % {\sc html} injection --- such attacks pose no threat to cookies and session IDs.
+
+\subsection{Exploitation Model}
+
+In this section we provide a step-by-step exploitation
+model
+
+\begin{figure*}
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.55]{attacks-steps.pdf}
+\end{center}
+\caption{\label{fig:attacks}Attack model demonstrating web
+application attacks based on executable source
+code injection vulnerabilities ({\sc draft}).}
+\end{figure*}
 
 \section{Dimensions of Study}
 
@@ -445,16 +456,6 @@ mechanism based on the following:
   given the prevalence, reporting of prevalance, sensitivity,
   specificity.
 \end{itemize}
-
-\begin{figure*}
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.53]{attacks-steps.pdf}
-\end{center}
-\caption{\label{fig:attacks}Attack model demonstrating web
-application attacks based on code injection vulnerabilities
-({\sc draft}).}
-\end{figure*}
 
 \section{Web Application Attacks Defenses}
 \label{sec:defs}

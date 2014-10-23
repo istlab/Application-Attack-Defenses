@@ -14,7 +14,7 @@
 	<key>BackgroundGraphic</key>
 	<dict>
 		<key>Bounds</key>
-		<string>{{0, 0}, {1117.9999465942383, 783}}</string>
+		<string>{{0, 0}, {1118, 783}}</string>
 		<key>Class</key>
 		<string>SolidGraphic</string>
 		<key>ID</key>
@@ -57,16 +57,81 @@
 			<key>Head</key>
 			<dict>
 				<key>ID</key>
-				<integer>98</integer>
+				<integer>170</integer>
 			</dict>
 			<key>ID</key>
-			<integer>166</integer>
+			<integer>182</integer>
 			<key>Points</key>
 			<array>
-				<string>{737.99996754783581, 470.36467273449762}</string>
-				<string>{770, 470}</string>
-				<string>{770, 236}</string>
-				<string>{590.99999944745389, 235.73794858646448}</string>
+				<string>{697.25, 505.8374137878418}</string>
+				<string>{831, 506}</string>
+				<string>{830.99333620769869, 467.50000762939453}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>SharpArrow</string>
+					<key>Legacy</key>
+					<true/>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>179</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>Head</key>
+			<dict>
+				<key>ID</key>
+				<integer>162</integer>
+			</dict>
+			<key>ID</key>
+			<integer>181</integer>
+			<key>Points</key>
+			<array>
+				<string>{682.25001525878906, 520.00001007388289}</string>
+				<string>{682.25001525878906, 547.63810729980469}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>SharpArrow</string>
+					<key>Legacy</key>
+					<true/>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>179</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>Head</key>
+			<dict>
+				<key>ID</key>
+				<integer>179</integer>
+			</dict>
+			<key>ID</key>
+			<integer>180</integer>
+			<key>Points</key>
+			<array>
+				<string>{681.75487189001035, 467.49990699700498}</string>
+				<string>{682.25, 492.17483139038086}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -87,19 +152,50 @@
 			</dict>
 		</dict>
 		<dict>
+			<key>Bounds</key>
+			<string>{{667.25, 492.17483139038086}, {30, 27.325164794921875}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>179</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{0, 1}</string>
+				<string>{0, -1}</string>
+				<string>{1, 0}</string>
+				<string>{-1, 0}</string>
+			</array>
+			<key>Shape</key>
+			<string>Diamond</string>
+			<key>Style</key>
+			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<dict>
 			<key>Class</key>
 			<string>LineGraphic</string>
 			<key>Head</key>
 			<dict>
 				<key>ID</key>
-				<integer>162</integer>
+				<integer>98</integer>
 			</dict>
 			<key>ID</key>
-			<integer>164</integer>
+			<integer>176</integer>
 			<key>Points</key>
 			<array>
-				<string>{682.25, 498.5}</string>
-				<string>{682.25, 533}</string>
+				<string>{830.98991316457568, 412.50000764773444}</string>
+				<string>{831, 205}</string>
+				<string>{588.21446995419012, 204.72149318085329}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -116,8 +212,81 @@
 			<key>Tail</key>
 			<dict>
 				<key>ID</key>
-				<integer>158</integer>
+				<integer>170</integer>
 			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{774.69163406398343, 413.00000762939453}, {112.59388458225666, 54}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>170</integer>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\b\fs22 \cf0 The malicious code is stored in the database.}</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{122, 318}, {59, 14}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>FitText</key>
+			<string>Vertical</string>
+			<key>Flow</key>
+			<string>Resize</string>
+			<key>ID</key>
+			<integer>168</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{0, 1}</string>
+				<string>{0, -1}</string>
+				<string>{1, 0}</string>
+				<string>{-1, 0}</string>
+			</array>
+			<key>Shape</key>
+			<string>Cylinder</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+
+\f0\b\fs24 \cf0 Client}</string>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+			<key>TextRelativeArea</key>
+			<string>{{0, 0}, {1, 1}}</string>
 		</dict>
 		<dict>
 			<key>Class</key>
@@ -131,8 +300,8 @@
 			<integer>163</integer>
 			<key>Points</key>
 			<array>
-				<string>{535.25, 498.5}</string>
-				<string>{535.25, 532.5}</string>
+				<string>{531.41752624511719, 467.50000762939453}</string>
+				<string>{531.41752624511719, 547.1381072998048}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -154,7 +323,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{627, 533}, {110.5, 54}}</string>
+			<string>{{627.00001525878906, 547.63810729980469}, {110.5, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -186,12 +355,12 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs20 \cf0 CSRF}</string>
+\f0\b\fs22 \cf0 CSRF}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -208,9 +377,9 @@
 			<integer>160</integer>
 			<key>Points</key>
 			<array>
-				<string>{667.25, 405.16259384155273}</string>
-				<string>{535, 405}</string>
-				<string>{535.14583334685653, 443.50000357013988}</string>
+				<string>{667.25, 374.16260147094727}</string>
+				<string>{531, 374.00000762939453}</string>
+				<string>{531.24355805940456, 412.50001765500042}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -242,8 +411,8 @@
 			<integer>159</integer>
 			<key>Points</key>
 			<array>
-				<string>{682.25, 418.82517623901367}</string>
-				<string>{682.25, 443.5}</string>
+				<string>{682.23996899746783, 388.32508323601866}</string>
+				<string>{681.75487189001035, 412.50010826178413}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -267,7 +436,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{627, 444}, {110.5, 54}}</string>
+			<string>{{624.90611541774319, 413.00000762939453}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -277,17 +446,17 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 ...injected dynamic language code }</string>
+\f0\b\fs22 \cf0 ...injected dynamic language code }</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{480, 444}, {110.5, 54}}</string>
+			<string>{{475.12058570198138, 413.00000762939453}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -297,12 +466,12 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 ...injected DSL code (SQL, XPath etc.)}</string>
+\f0\b\fs22 \cf0 ...injected DSL code (SQL, XPath etc.)}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -317,8 +486,8 @@
 			<integer>156</integer>
 			<key>Points</key>
 			<array>
-				<string>{682.25938778593979, 354.70848461712382}</string>
-				<string>{682.27177693283636, 391.00048588724042}</string>
+				<string>{681.65087478606085, 323.70842600136518}</string>
+				<string>{682.24185893098593, 360.00008535117388}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -340,7 +509,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{667.25, 391.5000114440918}, {30, 27.325164794921875}}</string>
+			<string>{{667.25, 360.50001907348633}, {30, 27.325164794921875}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -380,9 +549,9 @@
 			<integer>148</integer>
 			<key>Points</key>
 			<array>
-				<string>{385.17217892847572, 263.15632238111704}</string>
-				<string>{385, 324}</string>
-				<string>{268, 324}</string>
+				<string>{378.49072490683795, 232.15632966666502}</string>
+				<string>{378, 392}</string>
+				<string>{257.00001054526444, 391.65972937977136}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -404,7 +573,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{129, 498}, {59, 14}}</string>
+			<string>{{122, 513.9999885559082}, {59, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -443,7 +612,7 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
@@ -457,7 +626,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{310, 498}, {59, 14}}</string>
+			<string>{{299.12058258056641, 514.00000762939453}, {59, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -496,7 +665,7 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
@@ -520,8 +689,8 @@
 			<integer>126</integer>
 			<key>Points</key>
 			<array>
-				<string>{212.25, 351.43096161936268}</string>
-				<string>{212.25, 533.0000114440918}</string>
+				<string>{200.01913664821248, 418.93095800469467}</string>
+				<string>{199.15946526053932, 547.138129977483}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -543,7 +712,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{157, 297.06903839111328}, {110.5, 53.861923217773438}}</string>
+			<string>{{143.9061279296875, 364.56904602050781}, {112.59388458225666, 53.861923217773438}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -553,17 +722,17 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 The content reaches the user's browser}</string>
+\f0\b\fs22 \cf0 The content reaches the user's browser}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{157, 533.0000114440918}, {110.5, 54}}</string>
+			<string>{{143.90611267089844, 547.63811874389648}, {110.5, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -595,12 +764,12 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs20 \cf0 XSS}</string>
+\f0\b\fs22 \cf0 XSS}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -617,8 +786,8 @@
 			<integer>150</integer>
 			<key>Points</key>
 			<array>
-				<string>{479.5, 235.65633615506434}</string>
-				<string>{441, 235.65633615506434}</string>
+				<string>{474.6205857083898, 204.65634378445887}</string>
+				<string>{435.37209301684726, 204.65634378445887}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -640,7 +809,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{330, 208.65632438659668}, {110.5, 54}}</string>
+			<string>{{322.27820844099898, 177.65633201599121}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -650,17 +819,17 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 The malicious code becomes a part of the content sent to a web user}</string>
+\f0\b\fs20 \cf0 The malicious code becomes a part of the content sent to the client}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{480, 533}, {110.5, 54}}</string>
+			<string>{{476.16752624511719, 547.63810729980469}, {110.5, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -692,12 +861,12 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs20 \cf0 DSL code \
+\f0\b\fs22 \cf0 DSL code \
 injection Attack }</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
@@ -715,8 +884,8 @@ injection Attack }</string>
 			<integer>109</integer>
 			<key>Points</key>
 			<array>
-				<string>{590.99998441989317, 326.76864925946825}</string>
-				<string>{626.50004167872157, 326.4885596014978}</string>
+				<string>{588.21447026484634, 296.20850294766399}</string>
+				<string>{624.40611543713499, 296.20850294766399}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -738,7 +907,7 @@ injection Attack }</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{627, 300.2084846496582}, {110.5, 54}}</string>
+			<string>{{624.90611541774319, 269.20849227905273}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -748,12 +917,12 @@ injection Attack }</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 The database accepts and executes the query with...}</string>
+\f0\b\fs22 \cf0 The database accepts and executes the query with...}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -768,8 +937,8 @@ injection Attack }</string>
 			<integer>107</integer>
 			<key>Points</key>
 			<array>
-				<string>{535.24999081126089, 263.1563320413872}</string>
-				<string>{535.24999081126089, 299.70850751244581}</string>
+				<string>{531.41753832349661, 232.15633961998975}</string>
+				<string>{531.41753832349661, 268.70851519263232}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -791,7 +960,7 @@ injection Attack }</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{480, 300.2085075378418}, {110.5, 54}}</string>
+			<string>{{475.12058570198138, 269.20851516723633}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -801,12 +970,12 @@ injection Attack }</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 The malicious code becomes a part of a query which is sent to the database }</string>
+\f0\b\fs22 \cf0 The malicious code becomes a part of a query sent to the database }</string>
 			</dict>
 		</dict>
 		<dict>
@@ -821,8 +990,8 @@ injection Attack }</string>
 			<integer>105</integer>
 			<key>Points</key>
 			<array>
-				<string>{535.25000038411326, 153.77599178652588}</string>
-				<string>{535.25000038411326, 208.15633201914997}</string>
+				<string>{531.41754150390625, 140.60416409813919}</string>
+				<string>{531.41754150390625, 177.15633967078116}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -856,10 +1025,10 @@ injection Attack }</string>
 			<integer>102</integer>
 			<key>Points</key>
 			<array>
-				<string>{267.99998694440518, 235.2531367844222}</string>
-				<string>{303, 235}</string>
-				<string>{302, 140}</string>
-				<string>{519.8012041791078, 139.6608258767408}</string>
+				<string>{257.00000900459889, 204.86896537121444}</string>
+				<string>{292, 205}</string>
+				<string>{292, 127}</string>
+				<string>{515.98966126902872, 126.5083675469714}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -891,9 +1060,9 @@ injection Attack }</string>
 			<integer>101</integer>
 			<key>Points</key>
 			<array>
-				<string>{479.50000466869039, 61.157436110774881}</string>
-				<string>{212, 60}</string>
-				<string>{212.21086107912882, 208.15634776875748}</string>
+				<string>{474.6205865173381, 61.502025979513164}</string>
+				<string>{201, 62}</string>
+				<string>{200.35669511266201, 177.15633411080364}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -925,8 +1094,8 @@ injection Attack }</string>
 			<integer>100</integer>
 			<key>Points</key>
 			<array>
-				<string>{535.24998497189722, 88.898658747957782}</string>
-				<string>{535.24998497189722, 125.45081296120158}</string>
+				<string>{531.41754042407752, 88.898658771378678}</string>
+				<string>{531.41754042407752, 112.2789983257211}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -948,7 +1117,7 @@ injection Attack }</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{520.25, 125.95082664489746}, {30, 27.325164794921875}}</string>
+			<string>{{516.41754150390625, 112.77899932861328}, {30, 27.325164794921875}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -978,7 +1147,7 @@ injection Attack }</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{157, 208.65634727478027}, {110.5, 54}}</string>
+			<string>{{143.9061279296875, 177.65632629394531}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -988,17 +1157,17 @@ injection Attack }</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 Trick a user to follow the URL via phishing}</string>
+\f0\b\fs22 \cf0 Trick a user to follow the URL via phishing}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{480, 208.65633201599121}, {110.5, 54}}</string>
+			<string>{{475.12058570198138, 177.65633964538574}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1008,17 +1177,17 @@ injection Attack }</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 The malicious code is injected into the application program}</string>
+\f0\b\fs22 \cf0 The malicious code is injected into the application}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{480, 34.398658752441406}, {110.5, 54}}</string>
+			<string>{{475.12058570198138, 34.398658752441406}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1028,17 +1197,71 @@ injection Attack }</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs20 \cf0 Include malicious code into an HTTP/HTTPS request}</string>
+\f0\b\fs22 \cf0 Include malicious code into an HTTP/HTTPS request}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{314, 186.00000762939453}, {467, 326}}</string>
+			<string>{{129, 155.00001525878906}, {152, 180.99998474121094}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>32</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{1, 0.5}</string>
+				<string>{1, -0.5}</string>
+				<string>{-1, 0.5}</string>
+				<string>{-1, -0.5}</string>
+				<string>{0.5, 1}</string>
+				<string>{-0.5, 1}</string>
+				<string>{0.5, -1}</string>
+				<string>{-0.5, -1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Cap</key>
+					<integer>0</integer>
+					<key>CornerRadius</key>
+					<real>5</real>
+					<key>Join</key>
+					<integer>0</integer>
+					<key>Pattern</key>
+					<integer>1</integer>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Align</key>
+				<integer>0</integer>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+			<key>TextPlacement</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{304.00000000000011, 155.00001525878906}, {600, 373}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1086,11 +1309,11 @@ injection Attack }</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{138, 186}, {152, 326}}</string>
+			<string>{{129, 349}, {152, 179.00001525878906}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
-			<integer>130</integer>
+			<integer>169</integer>
 			<key>Magnets</key>
 			<array>
 				<string>{1, 0.5}</string>
@@ -1118,8 +1341,14 @@ injection Attack }</string>
 				</dict>
 				<key>stroke</key>
 				<dict>
+					<key>Cap</key>
+					<integer>0</integer>
 					<key>CornerRadius</key>
 					<real>5</real>
+					<key>Join</key>
+					<integer>0</integer>
+					<key>Pattern</key>
+					<integer>1</integer>
 				</dict>
 			</dict>
 			<key>Text</key>
@@ -1182,7 +1411,7 @@ injection Attack }</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-10-12 17:15:00 +0000</string>
+	<string>2014-10-23 22:26:40 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
@@ -1213,7 +1442,7 @@ injection Attack }</string>
 		<key>NSPaperSize</key>
 		<array>
 			<string>size</string>
-			<string>{594.99997329711914, 842}</string>
+			<string>{595, 842}</string>
 		</array>
 		<key>NSPrintReverseOrientation</key>
 		<array>
@@ -1263,7 +1492,7 @@ injection Attack }</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{288, 49}, {861, 829}}</string>
+		<string>{{272, 29}, {861, 829}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -1277,7 +1506,7 @@ injection Attack }</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{100, 17}, {712, 675}}</string>
+		<string>{{110, 33}, {726, 687}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>
