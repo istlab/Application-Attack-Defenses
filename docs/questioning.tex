@@ -55,41 +55,31 @@ louridas@aueb.gr
 
 \maketitle
 \begin{abstract}
-Web application attacks, can have different forms depending on the
-execution context of the application and the location
-of the programming flaw that leads to the attack.
-Some of the most dangerous web application attacks,
-like Cross-Site Scripting and {\sc sql} injection,
-involve the exploitation of the following weakness:
-programmers tend to develop applications that may
-accept and process data of uncertain origin without
-appropriate validation and / or filtering.
-Such attacks have been constantly topping the lists
-of the various security bulletin providers despite
-the numerous countermeasures that have been proposed
-over the past 15 years.
 
-In this paper we first systematize the existing knowledge
-regarding the various defense mechanisms by setting up
-a model for application attacks that are based on
-executable source code injection vulnerabilities. This model
-highlights the key weakness behind such attacks
-and helps us observe defenses from a common
-perspective.
+  Some of the most dangerous web application attacks, like Cross-Site
+  Scripting and {\sc sql} injection, exploit the oversight of
+  programmers that develop applications which may accept and process
+  data of uncertain origin without appropriate validation and / or
+  filtering. Such attacks, relying on source code injection
+  vulnerabilities, have been constantly topping the lists of the
+  various security bulletin providers despite the numerous
+  countermeasures that have been proposed over the past 15 years.
 
-We then categorize and analyze the various
-defense mechanisms that have been developed.
-Our analysis is based on dimensions such as accuracy,
-performance, deployment and security.
-Especially notable for a key category is accuracy,
-as our findings show that there are many
-defense mechanisms that are tested in a poor manner.
+  In this paper we systematize the existing knowledge regarding
+  various defense mechanisms against source code injection by setting
+  up a model that highlights the key weaknesses behind such attacks and
+  helps us observe defenses from a common perspective.
 
-By comparing the existing defenses and identifying their
-common characteristics, we help: a) researchers
-and practitioners to choose or modify a mechanism
-according to their needs, and b) designers of
-new approaches in developing more efficient mechanisms.
+  We then categorize and analyze the various defense mechanisms that
+  have been developed. Our analysis is based on dimensions such as
+  accuracy, performance, deployment and security. Especially notable
+  for a key category is accuracy, as our findings show that there are
+  many defense mechanisms that are tested in a poor manner.
+
+  By comparing the existing defenses and identifying their common
+  characteristics, we help: a) researchers and practitioners to choose
+  or modify a mechanism according to their needs, and b) designers of
+  new approaches in developing more efficient mechanisms.
 % @dimitro: change the above accordingly.
 
 
@@ -107,36 +97,33 @@ Security and Protection, Application Security, Code injection Attacks.
 \section{Introduction Remarks}
 
 Web application attacks may involve security misconfigurations,
-broken authentication and session management, and other issues.
-Some of the most dangerous web application attacks though
+broken authentication and session management, or other issues.
+Some of the most dangerous web application attacks, though,
 are associated with the processing of external input data
 that may contain malicious code, a vulnerability known as
 code injection.
 
 Such attacks include Cross-Site Scripting ({\sc xss})
 attacks~\cite{SG07}, {\sc sql} injection attacks~\cite{RL12b},
-Cross-Site Request Forgery ({\sc csrf}) attacks~\cite{LZRL09}
-and others. Attacks like these top the vulnerability
-lists of numerous bulletin providers like
-the Open Web Application Security
+Cross-Site Request Forgery ({\sc csrf}) attacks~\cite{LZRL09}, and
+others. Attacks like these have been topping the vulnerability lists
+of numerous bulletin providers like the Open Web Application Security
 Project\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project}}
-({\sc owasp}) and {\sc mitre}\footnote{\url{http://cwe.mitre.org/top25/}}
-for several years. Consider the case of {\sc owasp}'s Top
-Ten project whose main goal is to raise awareness about
-web application security by identifying some of the most
-critical risks facing organizations which is referenced by
-numerous researchers. In its three consecutive Top Ten lists
-(2007, 2010, 2013), different executable source code-driven
-injection attacks dominate the top five positions.
-This indicates that apart from the fact that malicious
-users find new ways to bypass defense
-mechanisms by using a variety of techniques despite the numerous
-countermeasures that are being introduced.
-Note that the number of systems developed to counter {\sc sql}
-injection attacks until 2006 was more than twenty~\cite{HVO06}.
-Since then the number has doubled.
-In our research we focus on the top {\sc tba} systems that counter
-application attacks, in terms of citations.
+({\sc owasp}) and {\sc
+  mitre}\footnote{\url{http://cwe.mitre.org/top25/}} for several
+years. Consider the case of {\sc owasp}'s Top Ten project whose main
+goal is to raise awareness about web application security by
+identifying some of the most critical risks facing organizations which
+is referenced by numerous researchers. In its three consecutive Top
+Ten lists (2007, 2010, 2013), different executable source code-driven
+injection attacks dominate the top five positions. Malicious users
+find new ways to bypass defense mechanisms by using a variety of
+techniques despite the numerous countermeasures that are being
+introduced. Note that the number of systems developed to counter {\sc
+  sql} injection attacks until 2006 was more than twenty~\cite{HVO06}.
+Since then the number has doubled. In our research we focus on the top
+{\sc tba} systems that counter application attacks, in terms of
+citations.
 % TODO@dimitro: explain why you leave out {\it SecuriFly}~\cite{MLL05}.
 
 Introduction~\cite{I05}. Also see~\cite{A00}.
@@ -177,10 +164,10 @@ of the programming flaw that leads to the attack.
 Bratus et al.~\cite{BLSPS11} portray the issue in a generic fashion:
 {\it ``unexpected (and unexpectedly powerful) computational models
 inside targeted systems, which turn a part of the target into a
-so-called ``weird machine" programmable by the attacker via crafted inputs
-(a.k.a. ``exploits")"}.
+so-called `weird machine' programmable by the attacker via crafted inputs
+(a.k.a. `exploits')''}.
 An example of the above definition is the
-following: The code fragment below, defines the operation of
+following: The code fragment below defines the operation of
 addition in the Scheme programming language~\cite{AS96,D09}:
 
 \begin{verbatim}
@@ -196,7 +183,7 @@ an endless loop and lead to a denial of service.
 % language with first-class functions.
 The intuition here is that {\it ``every application that copies
 untrusted input verbatim into an output
-program is vulnerable to code injection"}.
+program is vulnerable to code injection''}.
 Ray and Ligatti~\cite{RL12b} actually proved the above
 claim based on formal language theory.
 
@@ -209,92 +196,74 @@ claim based on formal language theory.
 code injection attacks.}
 \end{figure}
 
-Code injection attacks can be divided into two categories.
-The first involves binary code and the second executable source code.
-An extensive survey on binary code
-injection attacks can be found in reference~\cite{LC03}.
-Furthermore, specific advances in exploiting such vulnerabilities
-(i.e. ``heap smashing", ``arc injection" and others)
-have been presented in reference~\cite{PB04}.
-Finally, the countermeasures used to detect
-such defects have already been surveyed~\cite{YJP12}
-(many of them are also included in a book:~\cite{DKZ12}
--- Section 13.8), thus we do not include them in our work.
-In this paper, we focus on the defenses that protect
-applications against application attacks based on
-the executable source code injection category.
+Code injection attacks can be divided into two categories. The first
+involves binary code and the second executable source code. An
+extensive survey on binary code injection attacks can be found
+in~\cite{LC03}. Specific advances in exploiting such vulnerabilities
+(i.e. ``heap smashing", ``arc injection" and others) have been
+presented in~\cite{PB04}. The countermeasures used to detect such
+defects have already been surveyed~\cite{YJP12} (many of them are also
+included in a book:~\cite{DKZ12} -- Section 13.8). In the present work
+we do not include binary code injection, focusing instead on defenses
+that protect applications against application attacks based on the
+executable source code injection category.
 
 \subsection{Executable Source Code Injection Vulnerabilities}
 
 Figure~\ref{fig:taxonomy} presents a taxonomy of executable source
 code injection attacks. Such attacks may involve source code, either of a
 Domain Specific Language ({\sc dsl})
-or a Dynamic Language. Note that binary code injection
-attacks can only occur when the target system is implemented in
-languages lacking array bounds checking, like
-{\sc c} and {\sc c}++. Contrariwise, source code-driven
-injection attacks can target applications written in various
-programming languages with different features and characteristics.
+or a Dynamic Language. 
 
-Application attacks that involve {\sc dsl}s,
-constitute an important subset of the code injection problem,
-as {\sc dsl}s like {\sc sql} and {\sc xml} play an
-significant role in the development of either web or mobile
-applications. For example, many applications have interfaces
-where a user enters input to interact with the
-application's data, thereby interacting with the
-underlying {\it Relational Database Management System}
-({\sc rdbms}).
-This input can become part of an
-{\sc sql} query and executed on the target {\sc rdbms}.
-A code injection attack that exploits the vulnerabilities of these
-interfaces by taking advantage of input validation issues like
-incorrectly passed parameters or incorrect type handling,
-is called an {\sc sql} injection attack~\cite{CERT02,MS09,HVO06,SW06}.
-By using similar techniques malicious users
-can perform other exploits based on {\sc dsl}s,
-like {\sc xp}ath~\cite{SW06,CDL07,MKS09} and {\sc xml}~\cite{MSM13}.
-With this kind of attacks, a malicious user can view sensitive
-information, destroy or modify protected data, or even crash the entire
+Application attacks that involve {\sc dsl}s constitute an important
+subset of the code injection problem, as {\sc dsl}s like {\sc sql} and
+{\sc xml} play an significant role in the development of either web or
+mobile applications. For example, many applications have interfaces
+where a user enters input to interact with the application's data,
+thereby interacting with the underlying Relational Database Management
+System ({\sc rdbms}). This input can become part of an {\sc sql} query
+and executed on the target {\sc rdbms}. A code injection attack that
+exploits the vulnerabilities of these interfaces by taking advantage
+of input validation issues like incorrectly passed parameters or
+incorrect type handling, is called an {\sc sql} injection
+attack~\cite{CERT02,MS09,HVO06,SW06}. By using similar techniques
+malicious users can perform other exploits based on {\sc dsl}s, like
+{\sc xp}ath~\cite{SW06,CDL07,MKS09} and {\sc xml}~\cite{MSM13}. With
+this kind of attacks, a malicious user can view sensitive information,
+destroy or modify protected data, or even crash the entire
 application.
 
-A recent class of {\sc cia}s involve
-dynamic languages like Python, Perl, JavaScript, and {\sc php}~\cite{SFVM09,EWKK09,SMS13}.
-JavaScript injection attacks in particular, comprise a wide subset of dynamic
-language-driven attacks. Such attacks are manifested when a web application
-accepts and redisplays data of uncertain origin without appropriate validation
-and filtering. Based on this flaw, an attacker can
-manage to inject a script in the JavaScript engine of a browser and alter its
-execution flow~\cite{ELX07}. JavaScript injection attacks are considered as a
-critical issue in web application security mainly because they are
-associated with major vulnerabilities such as:
-{\sc xss} attacks~\cite{SG07},
-{\sc csrf} attacks~\cite{LZRL09}
-and Cross-Channel Scripting
-({\sc xcs}) attacks~\cite{W10,BBB09}.
+A recent class of {\sc cia}s involve dynamic languages like Python,
+Perl, JavaScript, and {\sc php}~\cite{SFVM09,EWKK09,SMS13}. JavaScript
+injection attacks, in particular, make up a large subset of dynamic
+language-driven attacks. Such attacks are manifested when a web
+application accepts and redisplays data of uncertain origin without
+appropriate validation and filtering. Based on this flaw, an attacker
+can manage to inject a script in the JavaScript engine of a browser
+and alter its execution flow~\cite{ELX07}. JavaScript injection
+attacks are considered as a critical issue in web application security
+mainly because they are associated with major vulnerabilities such as:
+{\sc xss} attacks~\cite{SG07}, {\sc csrf} attacks~\cite{LZRL09} and
+Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}.
 
 % {\sc html} injection --- such attacks pose no threat to cookies and session IDs.
 
 \subsection{Exploitation Model}
 
-In this section we provide a step-by-step exploitation
-model to understand the process of carrying out
-application attacks based on executable source code injection
-vulnerabilities. Figure~\ref{fig:attacks} presents the steps
-of different application attacks. For the most part,
-the steps are common for each attack. This is because
-they are based on similar attack vectors as we described in
-the previous section. We base the analysis of the
-existing defenses on this model. Figure~\ref{fig:attacks} also
-illustrates in which step the defenses detect corresponding
-attacks ({\sc todo}).
+In this section we provide a step-by-step exploitation model to
+understand the process of carrying out application attacks based on
+executable source code injection vulnerabilities.
+Figure~\ref{fig:attacks} presents the steps of different application
+attacks. For the most part, the steps are common in all attacks. This
+is because they are based on similar attack vectors as we described in
+the previous section. We base the analysis of the existing defenses on
+this model. Figure~\ref{fig:attacks} also illustrates in which step
+the defenses detect corresponding attacks ({\sc todo}).
 
-An attack starts with the malicious user sending an
-request either to the server or to a web user.
-In the first case the attacker
-could upload data containing a specially crafted script
-(in a blog comment) or create a request with
-additional {\sc sql} code.
+An attack starts with the malicious user sending an request either to
+the server or to a web user. In the first case the attacker could
+upload data containing a specially crafted script (for example, in a
+blog comment) or create a request with additional {\sc sql} code.
 
 \begin{figure*}
 \begin{center}
