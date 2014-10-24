@@ -275,7 +275,239 @@ application attacks based on executable source
 code injection vulnerabilities ({\sc draft}).}
 \end{figure*}
 
-\section{Dimensions of Study}
+\section{Web Application Attacks Defenses}
+\label{sec:defs}
+
+Figure~\ref{fig:defenses} presents a taxonomy of the
+approaches that protect web applications against attacks based on
+code injection vulnerabilities.
+We can identify two main approaches, namely:
+{\it design-based} and {\it behavior-based}.
+The former involves mechanisms that make applications
+immune to different attack vectors by design~\cite{JL75,L81}.
+The latter incorporates a variety of methods and
+schemes that inspect the behavior of applications
+and detect attacks based on specific criteria~\cite{D76,A00}.
+
+\subsection{Design-Based}
+\label{sec:prot}
+
+Here we analyze the three different protection approaches.
+
+\subsubsection{Parse-Tree Validation}
+
+The mechanism based on this method compare the parse tree of a
+query before the inclusion of user input with the one resulting after
+the inclusion of user input. If the trees diverge, the application
+is probably under attack.
+
+\subsubsection{Securing Mashups}
+
+\subsubsection{Code Rewriting}
+
+\subsubsection{Instruction Set Randomization --- ISR}
+
+{\sc isr} is a method that contrary to the previous
+three, has been applied to counter
+different kinds of application attacks~\cite{K09b,KKP03}.
+The main idea behind the method, is to
+separate code from data by randomizing the legitimate code's 
+execution environment. In this way, the malicious code
+injected by the attackers who do not know the randomization
+algorithm, will not get executed.
+
+{\it {\sc sql}rand}~\cite{BK04} is based on {\sc isr}
+to detect {\sc sql} injections in the following manner:
+initially, it allows programmers to create {\sc sql} statements
+using randomized instructions instead of standard keywords.
+The modified queries are either reconstructed at runtime using
+the same key that is inaccessible to the malicious user,
+or the user input is tagged with delimiters that allow
+an augmented {\sc sql} grammar to detect the
+attack.
+
+In the case of {\sc xss} attacks that are based on JavaScript,
+consider a {\sc xor} function that encodes all JavaScript source of a web
+page on the server-side and then, on the client-side, the web browser decodes the
+source by applying the same function again.
+Variations of this approach include:
+{\it Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}.
+
+\subsection{Behavior-Based}
+
+\subsubsection{Runtime Tainting}
+
+Runtime tainting is based on data-flow analysis.
+In practice, it enforces security policies by marking untrusted
+(``tainted") data and tracing its flow through the program.
+Since information flow in a system cannot be verified by examining
+a single execution trace of the system, the results of taint
+analysis will necessarily reflect approximate information regarding
+the information flow characteristics of the system to which it is applied.
+
+\subsubsection{Policy Enforcement}
+
+In this method, developers must define
+specific security policies on the server side.
+Then the policies are enforced either in the user's
+browser at runtime or in a server-side proxy that
+intercepts server responses.
+
+\subsubsection{Training}
+
+Training techniques are based on the ideas of Denning's original
+intrusion detection framework~\cite{Den87}. In particular, a training
+mechanism registers all valid legitimate code statements during a
+training phase, most of the time in the form of signatures. This can
+be done in various ways according to the implementation. Then, only
+those will be accepted, approved or recognized during production.
+
+Training methods that detect JavaScript-driven {\sc xss} attacks
+generate and store valid JavaScript code in various
+forms, and detect attacks as outliers from the set of valid code statements.
+{\it {\sc swap}}~\cite{WPLKK09} encodes all the legitimate scripts that exist in the
+original application. Then, a JavaScript detection component placed in a web proxy
+searches for injected scripts in the server's responses. If no injected scripts
+are found, the proxy decodes the legitimate scripts and sends them to the
+client.
+% dimitro: more mechanisms TBA.
+
+In the case of {\sc dsl}-driven injection attacks
+the various countermeasures follow a similar pattern.
+An early approach, {\it {\sc didafit}}~\cite{LLW02} detects
+{\sc sql} injection attacks by recording all database transactions.
+Subsequent refinements by Valeur et al.~\cite{VMV05}
+tagged each transaction with the corresponding application
+as an extension of their anomaly detection framework called
+{\it libAnomaly}\footnote[6]{\url{http://seclab.cs.ucsb.edu/academic/projects/projects/libanomaly/}}.
+Furthermore, {\sc amnesia}~\cite{HO05,HO06} is a tool that also detects {\sc sql}
+injection attacks by associating a query model with the location of every
+{\sc sql} statement within the application. Then at runtime,
+monitors the application's execution to detect when {\sc sql} statements
+diverge from the expected model.
+{\it {\sc sd}river}~\cite{MS09,MKS09} is a signature-based
+mechanism that prevents
+{\sc sql} and {\sc xp}ath injection attacks against web applications. 
+The signatures generated during a training phase,
+are based on features that can depend either on the
+code statement or on its execution environment (i.e. the stack trace).
+Then, at runtime, the mechanism checks all statements for compliance
+and can block code statements containing injected elements.
+By associating a complete stack trace with the root of an {\sc sql} statement, 
+the mechanism can correlate {\sc sql} statements with their call sites.  
+This increases the specificity of the stored signatures and 
+avoids false alarms. 
+% dimitro: more mechanisms TBA.
+
+\begin{figure*}
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.57]{defenses.pdf}
+\end{center}
+\caption{\label{fig:defenses}The basic categories of web application
+attack countermeasures ({\sc draft}).}
+\end{figure*}
+
+\begin{landscape}
+\begin{table}
+\centering
+    \begin{threeparttable}
+    \begin{small}
+\scalebox{0.99}{
+    \begin{tabular}{l|c|c|cc|c}
+    \hline
+    \bf{Approach}
+	& \bf{Mechanism}
+	& \bf{\# of Citations}
+  & \multicolumn{2}{|c|}{Requirements\tnote{1}}
+	& \bf{Attack} \\
+	&&& \bf{TP,TN,FP,FN}\tnote{2}
+	& \bf{Computational Overhead} & \\
+    \hline
+  \multirow{2}{*}{Parse-Tree Validation}
+  &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
+  &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
+  \hline
+  \hline
+  \multirow{5}{*}{Securing Mashups}
+  &   {\it {\sc om}ash}~\cite{CHC08} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} & {\sc csrf} \\
+  &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
+  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
+  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
+  &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
+  \hline
+  \hline
+  \multirow{3}{*}{{\sc isr}}
+  &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & +6.5{\it ms} & {\sc sql} injection \\ 
+  &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
+  &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
+  \hline
+  \hline         
+  \multirow{3}{*}{Code Rewriting}
+  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
+  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
+  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
+  \hline
+  \hline
+  \hline
+  \hline
+	\multirow{8}{*}{Runtime Tainting}
+  &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
+	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
+	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
+	&  	{\it Xu et al.}~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% & {\sc sql} injection, {\sc xss} \\ 
+  &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% & {\sc sql} injection, {\sc xss} \\
+	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} & {\sc xss} \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
+	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
+  &   {\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
+  \hline
+  \hline 
+	\multirow{7}{*}{Policy Enforcement}
+  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
+  &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
+	&   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
+  &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% & {\sc xss} \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf}\\
+	&   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\ 
+	&   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
+  % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
+  % TODO@dimitro: discuss this with Panos?
+	\hline
+	\hline  
+  \multirow{9}{*}{Training}
+  &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} & {\sc sql} injection \\ 
+	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
+	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
+	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} &  {\sc xss} \\
+  & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
+  & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% & {\sc xss} \\ 
+	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% & {\sc sql} and {\sc xp}ath injection \\
+	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
+	\hline
+    \end{tabular}}
+    \begin{tablenotes}
+	\begin{footnotesize}
+       	\item[1] {\sc na} (Not Available) means that a requirement is not even mentioned in the paper.
+	{\sc nq} (Not Quantified) indicates that a requirement is mentioned in the publication
+	but it is not quantified.
+		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
+	based on real-world applications known to be vulnerable ({\it r}), synthetic benchmarks ({\it s}) or both ({\it a}).
+	If no testing has taken place we add a question mark ({\bf ?}).
+	\end{footnotesize}
+    \end{tablenotes}
+    \caption{Comparison summary of mechanisms developed to counter application attacks.}
+    \label{tab:comp2}
+    \end{small}
+    \end{threeparttable}
+\end{table}
+\end{landscape}
+
+
+\section{Analysis Dimensions}
+
+\subsection{Diagnostic Performance}
 
 As in medical diagnostic tests, application attack defense mechanisms
 must demonstrate the presence of an attack. This, however, does not
@@ -426,252 +658,33 @@ the more confident we can be that a negative test result indicates
 that no attack has taken place and the less sure we can be that a
 positive test result indicates a real attack. 
 
-In what follows we evaluate published research in attack detection
-mechanism based on the following:
+If published research does not include figures for Sensitivity and
+Specificity or values for ($a$)--($d$), on test environments, then it
+is not possible to judge the accuracy of the research at all. Even if
+we do have such figures, a good research tool is not necessarily a
+good practical tool. Even if a research tool scores well on
+Sensitivity and Specificity, it may not be very useful in the real
+world if the prevalence of the caught attacks is so low that a
+positive test result is not likely to indicate a real attack.
+
+To sum up, we evaluate diagnostic performance on two criteria:
+
 \begin{itemize}
-\item \textbf{Sensitivity, Specificity}: Reporting of values for True
-  Positives ($a$), False Positives ($b$), False Negatives ($c$), True
-  Negatives ($d$), on test environments.
-\item \textbf{\textsc{ppv}, \textsc{npv}}: Reporting of values for True
-  Positives ($A$), False Positives ($B$), False Negatives ($C$), True
-  Negatives ($D$), on the performance of the mechanism on environments
-  with real attack profiles. Alternatively, since from
-  equations~\ref{eq:ppv-se-sp} and~\ref{eq:npv-se-sp} \textsc{ppv}
-  and \textsc{npv} can be calculated by the sensitity and specifity
-  given the prevalence, reporting of prevalance, sensitivity,
-  specificity.
+\item Reporting of Sensitivity and Specifity, either directly, or
+  indirectly from published values of $a$--$d$.
+\item Reporting of \textsc{ppv} and \textsc{npv}. This can be direct
+  reporting of their values, or indirect from published values of
+  $A$--$D$. Also, since from equations~\ref{eq:ppv-se-sp}
+  and~\ref{eq:npv-se-sp} \textsc{ppv} and \textsc{npv} can be
+  calculated by the sensitity and specifity given the prevalence, it
+  can be via reporting prevalance, sensitivity, specificity.
 \end{itemize}
+ 
+\subsection{Computational Performance}
 
-\section{Web Application Attacks Defenses}
-\label{sec:defs}
+\subsection{Ease of Use}
 
-Figure~\ref{fig:defenses} presents a taxonomy of the
-approaches that protect web applications against attacks based on
-code injection vulnerabilities.
-We can identify two main approaches, namely:
-{\it design-based} and {\it behavior-based}.
-The former involves mechanisms that make applications
-immune to different attack vectors by design~\cite{JL75,L81}.
-The latter incorporates a variety of methods and
-schemes that inspect the behavior of applications
-and detect attacks based on specific criteria~\cite{D76,A00}.
-
-\subsection{Design-Based}
-\label{sec:prot}
-
-Here we analyze the three different protection approaches.
-
-\subsubsection{Parse-Tree Validation}
-
-The mechanism based on this method compare the parse tree of a
-query before the inclusion of user input with the one resulting after
-the inclusion of user input. If the trees diverge, the application
-is probably under attack.
-
-\subsubsection{Securing Mashups}
-
-\subsubsection{Code Rewriting}
-
-\subsubsection{Instruction Set Randomization --- ISR}
-
-{\sc isr} is a method that contrary to the previous
-three, has been applied to counter
-different kinds of application attacks~\cite{K09b,KKP03}.
-The main idea behind the method, is to
-separate code from data by randomizing the legitimate code's 
-execution environment. In this way, the malicious code
-injected by the attackers who do not know the randomization
-algorithm, will not get executed.
-
-{\it {\sc sql}rand}~\cite{BK04} is based on {\sc isr}
-to detect {\sc sql} injections in the following manner:
-initially, it allows programmers to create {\sc sql} statements
-using randomized instructions instead of standard keywords.
-The modified queries are either reconstructed at runtime using
-the same key that is inaccessible to the malicious user,
-or the user input is tagged with delimiters that allow
-an augmented {\sc sql} grammar to detect the
-attack.
-
-In the case of {\sc xss} attacks that are based on JavaScript,
-consider a {\sc xor} function that encodes all JavaScript source of a web
-page on the server-side and then, on the client-side, the web browser decodes the
-source by applying the same function again.
-Variations of this approach include:
-{\it Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}.
-
-\subsection{Behavior-Based}
-
-\subsubsection{Runtime Tainting}
-
-Runtime tainting is based on data-flow analysis.
-In practice, it enforces security policies by marking untrusted
-(``tainted") data and tracing its flow through the program.
-Since information flow in a system cannot be verified by examining
-a single execution trace of the system, the results of taint
-analysis will necessarily reflect approximate information regarding
-the information flow characteristics of the system to which it is applied.
-
-\subsubsection{Policy Enforcement}
-
-In this method, developers must define
-specific security policies on the server side.
-Then the policies are enforced either in the user's
-browser at runtime or in a server-side proxy that
-intercepts server responses.
-
-\subsubsection{Training}
-
-Training techniques are based on the ideas of Denning's original
-intrusion detection framework~\cite{Den87}.
-In particular, a training mechanism,
-registers all valid legitimate code statements
-during a training phase, most of the time in the form of signatures.
-This can be done in various ways according to the implementation.
-Then, only those will be accepted, approved or recognized during
-production.
-
-Training methods that detect JavaScript-driven {\sc xss} attacks
-generate and store valid JavaScript code in various
-forms, and detect attacks as outliers from the set of valid code statements.
-{\it {\sc swap}}~\cite{WPLKK09} encodes all the legitimate scripts that exist in the
-original application. Then, a JavaScript detection component placed in a web proxy
-searches for injected scripts in the server's responses. If no injected scripts
-are found, the proxy decodes the legitimate scripts and sends them to the
-client.
-% dimitro: more mechanisms TBA.
-
-In the case of {\sc dsl}-driven injection attacks
-the various countermeasures follow a similar pattern.
-An early approach, {\it {\sc didafit}}~\cite{LLW02} detects
-{\sc sql} injection attacks by recording all database transactions.
-Subsequent refinements by Valeur et al.~\cite{VMV05}
-tagged each transaction with the corresponding application
-as an extension of their anomaly detection framework called
-{\it libAnomaly}\footnote[6]{\url{http://seclab.cs.ucsb.edu/academic/projects/projects/libanomaly/}}.
-Furthermore, {\sc amnesia}~\cite{HO05,HO06} is a tool that also detects {\sc sql}
-injection attacks by associating a query model with the location of every
-{\sc sql} statement within the application. Then at runtime,
-monitors the application's execution to detect when {\sc sql} statements
-diverge from the expected model.
-{\it {\sc sd}river}~\cite{MS09,MKS09} is a signature-based
-mechanism that prevents
-{\sc sql} and {\sc xp}ath injection attacks against web applications. 
-The signatures generated during a training phase,
-are based on features that can depend either on the
-code statement or on its execution environment (i.e. the stack trace).
-Then, at runtime, the mechanism checks all statements for compliance
-and can block code statements containing injected elements.
-By associating a complete stack trace with the root of an {\sc sql} statement, 
-the mechanism can correlate {\sc sql} statements with their call sites.  
-This increases the specificity of the stored signatures and 
-avoids false alarms. 
-% dimitro: more mechanisms TBA.
-
-\begin{figure*}
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.57]{defenses.pdf}
-\end{center}
-\caption{\label{fig:defenses}The basic categories of web application
-attack countermeasures ({\sc draft}).}
-\end{figure*}
-
-\begin{landscape}
-\begin{table}
-\centering
-    \begin{threeparttable}
-    \begin{small}
-\scalebox{0.99}{
-    \begin{tabular}{l|c|c|cc|c}
-    \hline
-    \bf{Approach}
-	& \bf{Mechanism}
-	& \bf{\# of Citations}
-  & \multicolumn{2}{|c|}{Requirements\tnote{1}}
-	& \bf{Attack} \\
-	&&& \bf{TP,TN,FP,FN}\tnote{2}
-	& \bf{Computational Overhead} & \\
-    \hline
-  \multirow{2}{*}{Parse-Tree Validation}
-  &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
-  &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
-  \hline
-  \hline
-  \multirow{5}{*}{Securing Mashups}
-  &   {\it {\sc om}ash}~\cite{CHC08} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} & {\sc csrf} \\
-  &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
-  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
-  &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
-  \hline
-  \hline
-  \multirow{3}{*}{{\sc isr}}
-  &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & +6.5{\it ms} & {\sc sql} injection \\ 
-  &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
-  &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
-  \hline
-  \hline         
-  \multirow{3}{*}{Code Rewriting}
-  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
-  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
-  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
-  \hline
-  \hline
-  \hline
-  \hline
-	\multirow{8}{*}{Runtime Tainting}
-  &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
-	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
-	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
-	&  	{\it Xu et al.}~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% & {\sc sql} injection, {\sc xss} \\ 
-  &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% & {\sc sql} injection, {\sc xss} \\
-	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} & {\sc xss} \\
-	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
-	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
-  &   {\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
-  \hline
-  \hline 
-	\multirow{7}{*}{Policy Enforcement}
-  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
-  &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
-	&   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
-  &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% & {\sc xss} \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf}\\
-	&   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\ 
-	&   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
-  % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
-  % TODO@dimitro: discuss this with Panos?
-	\hline
-	\hline  
-  \multirow{9}{*}{Training}
-  &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} & {\sc sql} injection \\ 
-	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
-	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
-	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} &  {\sc xss} \\
-  & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
-  & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% & {\sc xss} \\ 
-	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% & {\sc sql} and {\sc xp}ath injection \\
-	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
-	\hline
-    \end{tabular}}
-    \begin{tablenotes}
-	\begin{footnotesize}
-       	\item[1] {\sc na} (Not Available) means that a requirement is not even mentioned in the paper.
-	{\sc nq} (Not Quantified) indicates that a requirement is mentioned in the publication
-	but it is not quantified.
-		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
-	based on real-world applications known to be vulnerable ({\it r}), synthetic benchmarks ({\it s}) or both ({\it a}).
-	If no testing has taken place we add a question mark ({\bf ?}).
-	\end{footnotesize}
-    \end{tablenotes}
-    \caption{Comparison summary of mechanisms developed to counter application attacks.}
-    \label{tab:comp2}
-    \end{small}
-    \end{threeparttable}
-\end{table}
-\end{landscape}
+\subsection{Availability}
 
 \section{Analysis}
 
