@@ -477,17 +477,17 @@ mechanism based on the following:
 \label{sec:defs}
 
 Figure~\ref{fig:defenses} presents a taxonomy of the
-approaches that counter web application attacks based on
+approaches that protect web applications against attacks based on
 code injection vulnerabilities.
 We can identify two main approaches, namely:
-{\it protection} and {\it detection}.
+{\it design-based} and {\it behavior-based}.
 The former involves mechanisms that make applications
 immune to different attack vectors by design~\cite{JL75,L81}.
 The latter incorporates a variety of methods and
 schemes that inspect the behavior of applications
 and detect attacks based on specific criteria~\cite{D76,A00}.
 
-\subsection{Protection}
+\subsection{Design-Based}
 \label{sec:prot}
 
 Here we analyze the three different protection approaches.
@@ -501,10 +501,12 @@ is probably under attack.
 
 \subsubsection{Securing Mashups}
 
+\subsubsection{Code Rewriting}
+
 \subsubsection{Instruction Set Randomization --- ISR}
 
 {\sc isr} is a method that contrary to the previous
-two, has been applied to counter
+three, has been applied to counter
 different kinds of application attacks~\cite{K09b,KKP03}.
 The main idea behind the method, is to
 separate code from data by randomizing the legitimate code's 
@@ -529,7 +531,7 @@ source by applying the same function again.
 Variations of this approach include:
 {\it Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}.
 
-\subsection{Detection}
+\subsection{Behavior-Based}
 
 \subsubsection{Runtime Tainting}
 
@@ -548,8 +550,6 @@ specific security policies on the server side.
 Then the policies are enforced either in the user's
 browser at runtime or in a server-side proxy that
 intercepts server responses.
-
-\subsubsection{Code Rewriting}
 
 \subsubsection{Training}
 
@@ -642,10 +642,16 @@ attack countermeasures ({\sc draft}).}
   &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
   \hline
+  \hline         
+  \multirow{3}{*}{Code Rewriting}
+  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
+  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
+  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
   \hline
   \hline
   \hline
-	\multirow{9}{*}{Runtime Tainting}
+  \hline
+	\multirow{8}{*}{Runtime Tainting}
   &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
 	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
 	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
@@ -655,12 +661,6 @@ attack countermeasures ({\sc draft}).}
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
   &   {\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
-	\hline
-	\hline         
-  \multirow{3}{*}{Code Rewriting}
-  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
-  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
-  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
   \hline
   \hline 
 	\multirow{7}{*}{Policy Enforcement}
