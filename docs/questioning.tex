@@ -279,15 +279,15 @@ an unauthorized command is transmitted from a user to a
 website where a user is considered as legitimate.
 
 Then, the injected code reaches the vulnerable
-application where it probably becomes a part of a value
+application where it becomes a part of a value
 represented by a program variable.
-In the next step, the code becomes a part of a query which
+In the next step, the code becomes a part of a query that
 finally reaches the database where it is executed.
 Attacks like {\sc sql} injection and {\sc csrf}
 end right there.
 
 Before we proceed with the {\sc xss} attack path,
-we should mention here that there are two basic
+we should mention that there are two basic
 {\sc xss} attack categories, namely:
 {\it non-persistent} and {\it persistent}.
 Non-persistent {\sc xss} attacks take place when the data provided
@@ -297,13 +297,14 @@ properly sanitizing the request. In the case of a
 persistent {\sc xss} attack, malicious code
 is saved by the server, and then permanently
 displayed on the web site's pages that are displayed
-to other users.
-
-% A {\sc persistent} {\sc xss} attack though would
-% continue
-% An {\sc xss} attack that belongs to the {\it non-persistent}
-% {\sc xss} category could have followed a different path.
-% This is because
+to other users. Thus, in a non-persistent {\sc xss}
+attack the injected code never reaches the database
+and immediately becomes a part of the content that is
+sent back to a web user. In the case of a persistent
+{\sc xss}, the injected code that is stored on the server-side
+re-enters the application's execution flow and afterwards it
+becomes a part of the content that is actually sent back to
+the user.
 
 \begin{figure*}
 \begin{center}
@@ -729,7 +730,6 @@ attack countermeasures ({\sc draft}).}
 \end{table}
 \end{landscape}
 
-
 \section{Analysis}
 
 Notes on taint tools:
@@ -931,6 +931,10 @@ with exploits from {\sc cve}.
     \end{small}
     \end{threeparttable}
 \end{table*}
+
+\section{Conclusions}
+
+% Cite~\cite{HNSHS12}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
