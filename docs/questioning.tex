@@ -119,9 +119,13 @@ Ten lists (2007, 2010, 2013), different executable source code-driven
 injection attacks dominate the top five positions. Malicious users
 find new ways to bypass defense mechanisms by using a variety of
 techniques despite the numerous countermeasures that are being
-introduced. Note that the number of systems developed to counter {\sc
-  sql} injection attacks until 2006 was more than twenty~\cite{HVO06}.
-Since then the number has doubled. In our research we focus on the top
+introduced. Note that the number of systems developed to counter
+{\sc sql} injection attacks until 2006 was more than twenty~\cite{HVO06}.
+Since then the number has doubled.
+Researchers have also indicated that the number of such attacks
+is steadily increasing in recent years~\cite{SSL12}.
+
+In our research we focus on the top
 {\sc tba} systems that counter application attacks, in terms of
 citations.
 % TODO@dimitro: explain why you leave out {\it SecuriFly}~\cite{MLL05}.
@@ -213,8 +217,7 @@ executable source code injection category.
 
 Figure~\ref{fig:taxonomy} presents a taxonomy of executable source
 code injection attacks. Such attacks may involve source code, either of a
-Domain Specific Language ({\sc dsl})
-or a Dynamic Language. 
+Domain Specific Language ({\sc dsl}) or a Dynamic Language. 
 
 Application attacks that involve {\sc dsl}s constitute an important
 subset of the code injection problem, as {\sc dsl}s like {\sc sql} and
@@ -232,10 +235,16 @@ malicious users can perform other exploits based on {\sc dsl}s, like
 {\sc xp}ath~\cite{SW06,CDL07,MKS09} and {\sc xml}~\cite{MSM13}. With
 this kind of attacks, a malicious user can view sensitive information,
 destroy or modify protected data, or even crash the entire
-application.
+application. {\sc html} is another {\sc dsl} that can be used
+for malicious purposes when an application does not properly
+handle user supplied data. Based on this vulnerability
+an attacker can supply valid {\sc html},
+typically via a parameter value, and inject their own
+content into the page. {\sc html} injection is mainly associated
+with {\sc xss} defects.
 
-A recent class of {\sc cia}s involve dynamic languages like Python,
-Perl, JavaScript, and {\sc php}~\cite{SFVM09,EWKK09,SMS13}. JavaScript
+A recent class of {\sc cia}s involve dynamic languages like
+JavaScript and {\sc php}~\cite{SFVM09,EWKK09,SMS13}. JavaScript
 injection attacks, in particular, make up a large subset of dynamic
 language-driven attacks. Such attacks are manifested when a web
 application accepts and redisplays data of uncertain origin without
@@ -246,6 +255,8 @@ attacks are considered as a critical issue in web application security
 mainly because they are associated with major vulnerabilities such as:
 {\sc xss} attacks~\cite{SG07}, {\sc csrf} attacks~\cite{LZRL09} and
 Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}.
+In many cases {\sc xss} attacks involve the injection of
+both {\sc html} and JavaScript code.
 
 % {\sc html} injection --- such attacks pose no threat to cookies and session IDs.
 
