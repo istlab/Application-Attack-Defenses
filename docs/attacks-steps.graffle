@@ -53,7 +53,7 @@
 	<array>
 		<dict>
 			<key>Bounds</key>
-			<string>{{397, 246}, {49, 12}}</string>
+			<string>{{397, 238}, {49, 12}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -119,8 +119,8 @@
 			<real>-1</real>
 			<key>Points</key>
 			<array>
-				<string>{367, 258}</string>
-				<string>{447, 258}</string>
+				<string>{367, 250}</string>
+				<string>{447, 250}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -143,7 +143,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{217, 432}, {51, 12}}</string>
+			<string>{{217, 424}, {51, 12}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -209,8 +209,8 @@
 			<real>-1</real>
 			<key>Points</key>
 			<array>
-				<string>{188, 444}</string>
-				<string>{268, 444}</string>
+				<string>{188, 436}</string>
+				<string>{268, 436}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1771,7 +1771,7 @@ injection Attack }</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-10-26 00:56:46 +0000</string>
+	<string>2014-10-26 04:09:08 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
@@ -1864,7 +1864,7 @@ injection Attack }</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{80, 1}, {727, 717}}</string>
+		<string>{{101, 1}, {727, 717}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

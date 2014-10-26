@@ -109,8 +109,8 @@ Cross-Site Request Forgery ({\sc csrf}) attacks~\cite{LZRL09}, and
 others. Attacks like these have been topping the vulnerability lists
 of numerous bulletin providers like the Open Web Application Security
 Project\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project}}
-({\sc owasp}) and {\sc
-  mitre}\footnote{\url{http://cwe.mitre.org/top25/}} for several
+({\sc owasp}) and
+{\sc mitre}\footnote{\url{http://cwe.mitre.org/top25/}} for several
 years. Consider the case of {\sc owasp}'s Top Ten project whose main
 goal is to raise awareness about web application security by
 identifying some of the most critical risks facing organizations which
@@ -141,8 +141,8 @@ the number of countermeasures that detect {\sc sql}
 injection attacks alone, has been drastically increased
 as we mentioned in the previous paragraph.
 In our research we focus on the top
-{\sc tba} systems that counter application attacks, in terms of
-citations.
+{\sc tba} systems that counter application attacks,
+in terms of citations.
 
 % TODO@dimitro: explain why you leave out {\it SecuriFly}~\cite{MLL05}.
 
@@ -150,25 +150,26 @@ Introduction~\cite{I05}. Also see~\cite{A00}.
 
 Requirements:
 \begin{itemize}
-\item {\bf Flexibility} We check if an approach
-can be adjusted in order to detect different {\sc cia} categories.
-\item {\bf Ease of use} We examine if the mechanism that
-implements an approach is practical and can be easily adopted
-by security experts.
-\item {\bf Effectiveness} As long as we examine security
-mechanisms that detect either attacks or defects,
-the non-existence of false positive and negative alarms
-is a reasonable requirement.
-\item {\bf Efficiency} Finally, we examine
-the computational overhead of the mechanisms that affect the experience of
-a web user who actually uses the protected application.
-\item {\bf Security} How resilient is the system to
-attacks made to to circumvent it.
+\item {\it Diagnostic Performance} As long
+as we examine protection mechanisms that detect
+attacks, the non-existence of false positive and
+negative alarms is a reasonable requirement.
+\item {\it Computational Performance} We examine
+the overhead of the mechanisms
+that affect the experience of a web user who actually
+uses the protected application.
+\item {\it Ease of use} We examine if the protection
+mechanism is practical in terms of deployment
+and can be easily adopted by security experts.
+\item {\it Security} How resilient is the system to
+attackers that know how it works and wants to circumvent it.
+\item {\it Detection Locus}
+\item {\it Availability}
 \end{itemize}
+
 All the aforementioned requirements are considered critical
 when building security mechanisms that protect
 applications~\cite{A01,A00}.
-
 
 \section{Attacks}
 \label{sec:attacks}
@@ -344,6 +345,7 @@ code injection vulnerabilities ({\sc draft}).}
 \end{figure*}
 
 \section{Analysis Dimensions}
+\label{sec:dimensions}
 
 \subsection{Diagnostic Performance}
 
@@ -522,11 +524,11 @@ To sum up, we evaluate diagnostic performance on two criteria:
 
 \subsection{Ease of Use}
 
-\subsection{Availability}
+\subsection{Security}
 
 \subsection{Detection Locus}
 
-\subsection{Detection Circumvention}
+\subsection{Availability}
 
 \section{Web Application Attacks Defenses}
 \label{sec:defs}
@@ -541,6 +543,11 @@ immune to different attack vectors by design~\cite{JL75,L81}.
 The latter incorporates a variety of methods and
 schemes that inspect the behavior of applications
 and detect attacks based on specific criteria~\cite{D76,A00}.
+
+Both categories involve more than one subcategories.
+For every subcategory we provide elements regarding
+every dimension we described in
+Section~\ref{sec:dimensions}.
 
 \subsection{Design-Based}
 \label{sec:prot}
@@ -702,8 +709,6 @@ attack countermeasures ({\sc draft}).}
   &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
   \hline
   \hline
-  \hline
-  \hline
 	\multirow{8}{*}{Runtime Tainting}
   &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
 	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
@@ -746,7 +751,7 @@ attack countermeasures ({\sc draft}).}
 	{\sc nq} (Not Quantified) indicates that a requirement is mentioned in the publication
 	but it is not quantified.
 		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
-	based on real-world applications known to be vulnerable ({\it r}), synthetic benchmarks ({\it s}) or both ({\it a}).
+	based on: a) real-world applications known to be vulnerable ({\it r}), b) synthetic benchmarks ({\it s}), c) both ({\it a}).
 	If no testing has taken place we add a question mark ({\bf ?}).
 	\end{footnotesize}
     \end{tablenotes}
