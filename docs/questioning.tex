@@ -125,9 +125,25 @@ Since then the number has doubled.
 Researchers have also indicated that the number of such attacks
 is steadily increasing in recent years~\cite{SSL12}.
 
+There is already a survey on mitigating
+software vulnerabilities in general~\cite{SZ12}.
+The scope of that research is pretty wide and leaves
+out many approaches and mechanisms that we report here.
+This is mainly because this work includes countermeasures
+that detect such vulnerabilities via program analysis
+(which is done during development or testing), while
+we include protection mechanisms that counter
+such attacks when they take place.
+Also, countermeasures that prevent {\sc sql}
+injection attacks~\cite{HVO06}, have already been surveyed.
+However, this survey is quite old and since then
+the number of countermeasures that detect {\sc sql}
+injection attacks alone, has been drastically increased
+as we mentioned in the previous paragraph.
 In our research we focus on the top
 {\sc tba} systems that counter application attacks, in terms of
 citations.
+
 % TODO@dimitro: explain why you leave out {\it SecuriFly}~\cite{MLL05}.
 
 Introduction~\cite{I05}. Also see~\cite{A00}.
@@ -529,7 +545,7 @@ and detect attacks based on specific criteria~\cite{D76,A00}.
 \subsection{Design-Based}
 \label{sec:prot}
 
-Here we analyze the three different protection approaches.
+Here we analyze the {\sc tba} different protection approaches.
 
 \subsubsection{Parse-Tree Validation}
 
