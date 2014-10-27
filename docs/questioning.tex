@@ -284,7 +284,9 @@ In this section we provide a step-by-step exploitation model to
 understand the process of carrying out application attacks based on
 executable source code injection vulnerabilities.
 Figure~\ref{fig:attacks} presents the steps of different application
-attacks. For the most part, the steps are common in all attacks. This
+attacks. For every arrow there is a
+corresponding tuple that includes the step number for
+every attack. For the most part, the steps are common in all attacks. This
 is because they are based on similar attack vectors as we mentioned in
 the previous section. Most importantly,
 Figure~\ref{fig:attacks} also illustrates in which step
@@ -330,7 +332,14 @@ actually sent back afterwards to the user.
 \end{center}
 \caption{\label{fig:attacks}Attack model demonstrating web
 application attacks based on executable source
-code injection vulnerabilities ({\sc draft}).}
+code injection vulnerabilities. For every arrow there is a
+corresponding tuple that includes the step number for
+every attack. {\sc p-xss} stands for a persistent {\sc xss}
+attack and {\sc n-xss} stands for a non persistent {\sc xss}
+attack. Note that {\sc xss} attacks can also involve
+{\it phishing}. Every {\it locus} indicates a step where mechanisms
+detect attacks. For every locus we provide the corresponding
+references: ({\sc draft}).}
 \end{figure*}
 
 \section{Analysis Dimensions}
