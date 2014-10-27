@@ -290,49 +290,38 @@ the previous section. Most importantly,
 Figure~\ref{fig:attacks} also illustrates in which step
 the defenses detect corresponding attacks ({\sc todo}).
 
-An attack starts with the malicious user sending an request either to
-the server or to a web user.
-In the first case 
-consider a web application that accepts and redisplays data of
-uncertain origin without appropriate validation and / or filtering.
-An attacker could upload data containing a specially
-crafted script (for example, in a blog comment)
-to steal the cookies of the visiting users
-or embed malicious {\sc sql} code to retrieve all
-the password entries from a database.
-In the second case, the attacker crafts a malicious script
-into a {\sc url} and then tricks an end user to click on it
-via social engineering (i.e. phishing). In this way
-an unauthorized command is transmitted from a user to a
-website where a user is considered as legitimate.
+A malicious user can initiate the attack through two different routes.
+The attacker may use the browser of an innocent user as an attack
+vehicle, through which the code will be injected in the application.
+For example, the attacker could craft a malicious script into a {\sc url}
+and then trick an end user to click on it via social engineering
+(i.e., phishing). Alternatively, the attacker may be able to inject
+directly the malicious code in the application. For example, consider
+a web application that accepts and redisplays data of uncertain origin
+without appropriate validation or filtering. An attacker could
+upload data containing a specially crafted script (for example, in a
+blog comment) to steal the cookies of the visiting users or embed
+malicious {\sc sql} code to retrieve all the password entries from a
+database. 
 
-Then, the injected code reaches the vulnerable
-application where it becomes a part of a value
-represented by a program variable.
-In the next step, the code becomes a part of a query that
-finally reaches the database where it is executed.
-Attacks like {\sc sql} injection and {\sc csrf}
-end right there.
+Once the injected code reaches the vulnerable application, it becomes
+a part of a value represented by a program variable. The target of the
+attack determines the route from now on. In {\sc sql} injection and
+{\sc csrf} attacks the injected code becomes part of a query that
+finally reaches the database where it is executed. 
 
-Before we proceed with the {\sc xss} attack path,
-we should mention that there are two basic
-{\sc xss} attack categories, namely:
-{\it non-persistent} and {\it persistent}.
-Non-persistent {\sc xss} attacks take place when the data provided
-by a user, is used immediately by server-side scripts to parse
-and display a page of results for and to that user, without
-properly sanitizing the request. In the case of a
-persistent {\sc xss} attack, malicious code
-is saved by the server, and then permanently
-displayed on the web site's pages that are displayed
-to other users. Thus, in a non-persistent {\sc xss}
-attack the injected code never reaches the database
-and immediately becomes a part of the content that is
-sent back to a web user. In the case of a persistent
-{\sc xss}, the injected code that is stored on the server-side
-re-enters the application's execution flow and afterwards it
-becomes a part of the content that is actually sent back to
-the user.
+{\sc xss} attacks fall ino two categories, {\it non-persistent} and
+{\it persistent}. Non-persistent {\sc xss} attacks take place when the
+data provided by a user is used immediately by server-side scripts to
+parse and display a page of results, without properly sanitizing the
+request. Thus, in a non-persistent {\sc xss} attack the injected code
+never reaches the database and immediately becomes a part of the
+content that is sent back to a web user.
+
+In persistent {\sc xss} attacks malicious code is saved by the server.
+The injected code that is stored on the server-side re-enters the
+application's execution flow and becomes part of the content that is
+actually sent back afterwards to the user.
 
 \begin{figure*}
 \begin{center}
