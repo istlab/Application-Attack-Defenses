@@ -541,11 +541,52 @@ immune to different attack vectors by design~\cite{JL75,L81}.
 The latter incorporates a variety of methods and
 schemes that inspect the behavior of applications
 and detect attacks based on specific criteria~\cite{D76,A00}.
-
 Both categories involve more than one subcategories.
 For every subcategory we provide elements regarding
-every dimension we described in
-Section~\ref{sec:dimensions}.
+every dimension described in Section~\ref{sec:dimensions}.
+
+Table~\ref{tab:comp} groups the various subcategories
+and for every mechanism provides the following:
+
+\begin{enumerate}
+\item The number of citations of the publication(s) where
+the mechanism was presented.
+\item Quadruples that show the values of true
+positives ({\sc tp}), true negatives ({\sc tn}),
+false positives ({\sc fp}), and false negatives
+({\sc tn}). For every quadruple there is a corresponding
+suffix that indicates whether the testbed was based
+on: real-world applications known to be vulnerable
+(r), synthetic benchmarks (s), both (a).
+If no testing has taken place we add a question
+mark (?).
+\item The computational overhead of the
+mechanism as stated in the publication.
+\item The attacks that the mechanism detects.
+\end{enumerate}
+
+\noindent
+{\sc na} (Not Available) means that a requirement is not
+mentioned in the paper. {\sc nq} (Not Quantified)
+indicates that a requirement is mentioned in the publication
+but it is not quantified.
+
+Table~\ref{tab:avail} presents
+our findings regarding the availability of the mechanism
+in terms of: source code and corresponding executables.
+We also examined the availability of the testbeds mentioned in the paper.
+The check mark (\tick) indicates that at some point within the publication,
+there is a homepage where the reader can refer to, to download the
+corresponding software. {\sc ao} (Available On-line) suggests that
+the software is available on-line but the address was not mentioned
+in the paper, which probably indicates that the authors made
+it available after the publication. The question mark (?),
+indicates that the a homepage for the software was included
+in the publication but now it is not available.
+
+Finally, as we mentioned in Subsection~\ref{sec:model},
+Figure~\ref{fig:attacks} illustrates in which step
+the mechanisms detect corresponding attacks.
 
 \subsection{Design-Based}
 \label{sec:prot}
@@ -660,7 +701,7 @@ avoids false alarms.
 \begin{figure*}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.57]{defenses.pdf}
+\includegraphics[scale=0.52]{defenses.pdf}
 \end{center}
 \caption{\label{fig:defenses}The basic categories of web application
 attack countermeasures ({\sc draft}).}
@@ -668,6 +709,8 @@ attack countermeasures ({\sc draft}).}
 
 \begin{landscape}
 \begin{table}
+    \caption{Comparison summary of mechanisms developed to counter application attacks.}
+    \label{tab:comp}
 \centering
     \begin{threeparttable}
     \begin{small}
@@ -745,7 +788,7 @@ attack countermeasures ({\sc draft}).}
     \end{tabular}}
     \begin{tablenotes}
 	\begin{footnotesize}
-       	\item[1] {\sc na} (Not Available) means that a requirement is not even mentioned in the paper.
+       	\item[1] {\sc na} (Not Available) means that a requirement is not mentioned in the paper.
 	{\sc nq} (Not Quantified) indicates that a requirement is mentioned in the publication
 	but it is not quantified.
 		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
@@ -753,8 +796,6 @@ attack countermeasures ({\sc draft}).}
 	If no testing has taken place we add a question mark ({\bf ?}).
 	\end{footnotesize}
     \end{tablenotes}
-    \caption{Comparison summary of mechanisms developed to counter application attacks.}
-    \label{tab:comp2}
     \end{small}
     \end{threeparttable}
 \end{table}
@@ -870,6 +911,8 @@ with exploits from {\sc cve}.
 \end{enumerate}
 
 \begin{table*}
+\caption{Availability of the corresponding mechanisms.}
+    \label{tab:avail}
 \centering
     \begin{threeparttable}
     \begin{small}
@@ -946,8 +989,8 @@ with exploits from {\sc cve}.
     \end{tabular}}
     \begin{tablenotes}
 	\begin{footnotesize}
-       \item[1] The check mark (\tick) indicates that some point within
-       the publication there is a homepage where the reader can refer to, to
+       \item[1] The check mark (\tick) indicates that the publication
+       includes a homepage where the reader can refer to, to
        download the corresponding software. {\sc ao} (Available On-line) suggests
        that the software is available on-line but the
        address was not mentioned in the paper, which probably indicates that
@@ -956,8 +999,6 @@ with exploits from {\sc cve}.
        in the publication but now it is not available.
 	\end{footnotesize}
     \end{tablenotes}
-    \caption{Availability of the corresponding mechanisms.}
-    \label{tab:comp2}
     \end{small}
     \end{threeparttable}
 \end{table*}
