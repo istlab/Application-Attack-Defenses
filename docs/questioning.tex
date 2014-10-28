@@ -332,7 +332,7 @@ actually sent back afterwards to the user.
 \begin{figure*}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.55]{attacks-steps.pdf}
+\includegraphics[scale=0.57]{attacks-steps.pdf}
 \end{center}
 \caption{\label{fig:attacks}Attack model demonstrating web
 application attacks based on executable source
@@ -693,41 +693,43 @@ training phase, most of the time in the form of signatures. This can
 be done in various ways according to the implementation. Then, only
 those will be accepted, approved or recognized during production.
 
-Training methods that detect JavaScript-driven {\sc xss} attacks
-generate and store valid JavaScript code in various
-forms, and detect attacks as outliers from the set of valid code statements.
-{\it {\sc swap}}~\cite{WPLKK09} encodes all the legitimate scripts that exist in the
-original application. Then, a JavaScript detection component placed in a web proxy
-searches for injected scripts in the server's responses. If no injected scripts
-are found, the proxy decodes the legitimate scripts and sends them to the
-client.
-% dimitro: more mechanisms TBA.
-
-In the case of {\sc dsl}-driven injection attacks
-the various countermeasures follow a similar pattern.
+Training methods that detect {\sc dsl}-driven injection attacks
+generate and store valid code statements (i.e. {\sc sql}
+or {\sc xp}ath queries) in various forms, and detect attacks
+as outliers from the set of valid code statements.
 An early approach, {\it {\sc didafit}}~\cite{LLW02} detects
 {\sc sql} injection attacks by recording all database transactions.
 Subsequent refinements by Valeur et al.~\cite{VMV05}
 tagged each transaction with the corresponding application
 as an extension of their anomaly detection framework called
-{\it libAnomaly}\footnote[6]{\url{http://seclab.cs.ucsb.edu/academic/projects/projects/libanomaly/}}.
+{\it libAnomaly}. {\it {\sc sd}river}~\cite{MS09,MKS09} is
+a signature-based mechanism that prevents {\sc sql} and
+{\sc xp}ath injection attacks. The signatures generated
+during a training phase, are based on features that can
+depend either on the code statement or on its execution
+environment (i.e. the stack trace).
+Then, at runtime, the mechanism checks all statements for compliance
+and can block code statements containing injected elements (locus {\sc z}).
+% By associating a complete stack trace with the root of an {\sc sql} statement, 
+% the mechanism can correlate {\sc sql} statements with their call sites.  
+% This increases the specificity of the stored signatures and avoids false alarms.
 Furthermore, {\sc amnesia}~\cite{HO05,HO06} is a tool that also detects {\sc sql}
 injection attacks by associating a query model with the location of every
 {\sc sql} statement within the application. Then at runtime,
 monitors the application's execution to detect when {\sc sql} statements
 diverge from the expected model.
-{\it {\sc sd}river}~\cite{MS09,MKS09} is a signature-based
-mechanism that prevents
-{\sc sql} and {\sc xp}ath injection attacks against web applications. 
-The signatures generated during a training phase,
-are based on features that can depend either on the
-code statement or on its execution environment (i.e. the stack trace).
-Then, at runtime, the mechanism checks all statements for compliance
-and can block code statements containing injected elements.
-By associating a complete stack trace with the root of an {\sc sql} statement, 
-the mechanism can correlate {\sc sql} statements with their call sites.  
-This increases the specificity of the stored signatures and 
-avoids false alarms. 
+% dimitro: more mechanisms TBA.
+
+In the case of JavaScript-driven {\sc xss} attacks
+the various countermeasures follow a similar pattern.
+{\it {\sc swap}}~\cite{WPLKK09} follows a similar approach
+with {\sc didafit} and creates a unique identifier
+({\it script {\sc id}}) for every legitimate script on the server.
+Then, a JavaScript detection component placed in a
+web proxy (locus {\sc y}) searches for injected scripts
+with no corresponding {\sc id} in the server's responses.
+If no injected scripts are found, the proxy forwards the
+request to the client.
 % dimitro: more mechanisms TBA.
 
 \begin{figure*}
