@@ -296,8 +296,8 @@ A malicious user can initiate the attack through two different routes.
 The attacker may use the browser of an innocent user as an attack
 vehicle, through which the code will be injected in the application.
 For example, the attacker could craft a malicious script into a {\sc url}
-and then trick an end user to click on it via social engineering (i.e., phishing).
-({\sc step}: {\sc p-xss}' 1 \text{\textbar} {\sc n-xss}' 1 \text{\textbar} {\sc csrf} 1).
+and then trick an end user to click on it via social engineering (i.e., phishing ---
+{\sc step}: {\sc p-xss}' 1 \text{\textbar} {\sc n-xss}' 1 \text{\textbar} {\sc csrf} 1).
 Alternatively, the attacker may be able to inject
 directly the malicious code in the application. For example, consider
 a web application that accepts and redisplays user input
@@ -575,7 +575,7 @@ but it is not quantified.
 
 Table~\ref{tab:avail} presents
 our findings regarding the availability of the mechanism
-in terms of: source code and corresponding executables.
+in terms of source code and corresponding executables.
 We also examined the availability of the testbeds mentioned in the paper.
 The check mark (\tick) indicates that at some point within the publication,
 there is a homepage where the reader can refer to, to download the
@@ -587,8 +587,8 @@ indicates that the a homepage for the software was included
 in the publication but now it is not available.
 
 Finally, as we mentioned in Subsection~\ref{sec:model},
-Figure~\ref{fig:attacks} illustrates in which step
-of out attack model the mechanisms detect attacks.
+Figure~\ref{fig:attacks} illustrates the point where
+mechanisms detect attacks.
 
 \subsection{Design-Based}
 \label{sec:prot}
@@ -645,7 +645,7 @@ to detect different attacks in an efficient manner.
 However, Sovarel et al.~\cite{SEP05}
 have investigated thoroughly the effectiveness
 of {\sc isr} and showed that a malicious user
-may be able to circumvent {\sc isr} by determining
+may be able to circumvent it by determining
 the randomization key and their results
 indicate that doing {\sc isr} in a way that
 provides a certain degree of security against a motivated
