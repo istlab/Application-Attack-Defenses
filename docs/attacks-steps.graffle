@@ -1014,7 +1014,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{338, 364.71764373779297}, {49, 12}}</string>
+			<string>{{336, 364.71764373779297}, {49, 12}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1058,7 +1058,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs20 \cf0 Locus Z}</string>
+\f0\b\fs20 \cf0 Locus \uc0\u933 }</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -1104,7 +1104,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{169.70306396484375, 440.46820068359375}, {51, 12}}</string>
+			<string>{{170.70306396484375, 439.46820068359375}, {49, 12}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1148,7 +1148,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs20 \cf0 Locus \uc0\u937 }</string>
+\f0\b\fs20 \cf0 Locus \uc0\u935 }</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -1238,7 +1238,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs20 \cf0 Locus Y}</string>
+\f0\b\fs20 \cf0 Locus \uc0\u918 }</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -1284,7 +1284,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{650.25874952896265, 402.58293151855469}, {49, 12}}</string>
+			<string>{{651.25874952896265, 402.58293151855469}, {51, 12}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1328,7 +1328,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs20 \cf0 Locus X}</string>
+\f0\b\fs20 \cf0 Locus \uc0\u937 }</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -1739,8 +1739,8 @@ injection Attack / CSRF}</string>
 			<integer>126</integer>
 			<key>Points</key>
 			<array>
-				<string>{156.15612792968753, 425.41506958007812}</string>
-				<string>{156.15612792968753, 494.21727752685541}</string>
+				<string>{156.15612792968753, 425.41506958007818}</string>
+				<string>{156.15612792968753, 494.21727752685547}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1889,8 +1889,8 @@ injection Attack / CSRF}</string>
 			<integer>109</integer>
 			<key>Points</key>
 			<array>
-				<string>{578.21447015369904, 374.02314629091586}</string>
-				<string>{702.2854903127635, 374.10846585982347}</string>
+				<string>{578.21447015369904, 374.02314519337017}</string>
+				<string>{702.2854903127635, 374.10846236472588}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -2416,7 +2416,7 @@ injection Attack / CSRF}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-10-28 02:36:02 +0000</string>
+	<string>2014-10-28 04:18:45 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>

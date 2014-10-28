@@ -594,6 +594,8 @@ of out attack model the mechanisms detect attacks.
 \label{sec:prot}
 
 Here we analyze the {\sc tba} different protection approaches.
+Note that most mechanisms that belong to this category have
+not been extensively tested in terms of diagnostic performance.
 
 \subsubsection{Parse-Tree Validation}
 
@@ -625,14 +627,43 @@ The modified queries are either reconstructed at runtime using
 the same key that is inaccessible to the malicious user,
 or the user input is tagged with delimiters that allow
 an augmented {\sc sql} grammar to detect the
-attack.
+attack. {\sc sql}rand is one of the few mechanisms that
+detect {\sc sql} injection attacks on the database
+level (locus $\Omega$).
 
-In the case of {\sc xss} attacks that are based on JavaScript,
-consider a {\sc xor} function that encodes all JavaScript source of a web
+In the case of {\sc xss} attacks that are based on JavaScript
+or {\sc html}, consider a {\sc xor} function that encodes all source of a web
 page on the server-side and then, on the client-side, the web browser decodes the
-source by applying the same function again.
+source by applying the same function again (locus {\sc x}).
 Variations of this approach include:
-{\it Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}.
+{\it Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}
+which randomize the instruction set of {\sc html} and
+JavaScript respectively.
+
+{\sc isr} is a deterministic approach that can be applied
+to detect different attacks in an efficient manner.
+However, Sovarel et al.~\cite{SEP05}
+have investigated thoroughly the effectiveness
+of {\sc isr} and showed that a malicious user
+may be able to circumvent {\sc isr} by determining
+the randomization key and their results
+indicate that doing {\sc isr} in a way that
+provides a certain degree of security against a motivated
+attacker is more difficult than previously thought.
+
+In the case of Noncespaces, administrators must set
+specific policies in a manner similar to a firewall
+configuration language. This brings up questions
+concerning the diagnostic performance of the mechanism
+since the corresponding testing is insufficient
+(see Table~\ref{tab:comp}).
+
+Even though the above implementations impose a low
+computational overhead, they impose an infrastructure
+overhead. In particular, in the case of {\sc sql}rand
+the integration of a proxy within the database server
+is required while Noncespaces and x{\sc js} require
+modifications on both the server and the client.
 
 \subsection{Behavior-Based}
 
