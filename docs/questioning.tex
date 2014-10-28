@@ -720,11 +720,10 @@ monitors the application's execution to detect when {\sc sql} statements
 diverge from the expected model.
 % dimitro: more mechanisms TBA.
 
-In the case of JavaScript-driven {\sc xss} attacks
-the various countermeasures follow a similar pattern.
-{\it {\sc swap}}~\cite{WPLKK09} follows a similar approach
-with {\sc didafit} and creates a unique identifier
-({\it script {\sc id}}) for every legitimate script on the server.
+In the case of {\sc xss} attacks the various countermeasures
+follow a similar pattern. {\it {\sc swap}}~\cite{WPLKK09}
+creates a unique identifier ({\it script {\sc id}}) for
+every legitimate script on the server.
 Then, a JavaScript detection component placed in a
 web proxy (locus {\sc y}) searches for injected scripts
 with no corresponding {\sc id} in the server's responses.
