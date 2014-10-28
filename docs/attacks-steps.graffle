@@ -223,7 +223,7 @@
 			<key>Points</key>
 			<array>
 				<string>{775.49999998170608, 266.25095572795436}</string>
-				<string>{578.21447030253205, 266.25095572795436}</string>
+				<string>{578.21447030253194, 266.25095572795436}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -794,7 +794,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{172.70306396484375, 440.46820068359375}, {51, 12}}</string>
+			<string>{{169.70306396484375, 440.46820068359375}, {51, 12}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -860,8 +860,8 @@
 			<real>-1</real>
 			<key>Points</key>
 			<array>
-				<string>{142.70306396484375, 452.46820068359375}</string>
-				<string>{222.70306396484375, 452.46820068359375}</string>
+				<string>{150.70306396484375, 452.46820068359375}</string>
+				<string>{217.70306396484375, 452.46820068359375}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1181,7 +1181,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{71, 324.59463500976562}, {59, 14}}</string>
+			<string>{{79, 324.59463500976562}, {59, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1289,9 +1289,9 @@ injection Attack / CSRF}</string>
 			<integer>148</integer>
 			<key>Points</key>
 			<array>
-				<string>{307.73130902779997, 293.75096576025214}</string>
-				<string>{307.49634552001953, 398}</string>
-				<string>{204.95306123132747, 397.98977269668251}</string>
+				<string>{307.9400391717075, 293.75095989713407}</string>
+				<string>{308.49634552001953, 398}</string>
+				<string>{212.95306123229892, 397.99003298957655}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1313,7 +1313,7 @@ injection Attack / CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{71, 462.93637847900391}, {59, 14}}</string>
+			<string>{{79, 462.93637847900391}, {59, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1366,7 +1366,7 @@ injection Attack / CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{241.24116516113281, 463.00000762939453}, {59, 14}}</string>
+			<string>{{237.24116516113281, 463.00000762939453}, {59, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1429,8 +1429,8 @@ injection Attack / CSRF}</string>
 			<integer>126</integer>
 			<key>Points</key>
 			<array>
-				<string>{148.15612792968753, 425.41506958007818}</string>
-				<string>{148.15612792968753, 494.21727752685547}</string>
+				<string>{156.15612792968753, 425.41506958007812}</string>
+				<string>{156.15612792968753, 494.21727752685541}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1452,7 +1452,7 @@ injection Attack / CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{91.859176635742188, 371.05314636230469}, {112.59388458225666, 53.861923217773438}}</string>
+			<string>{{99.859176635742188, 371.05314636230469}, {112.59388458225666, 53.861923217773438}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1472,7 +1472,7 @@ injection Attack / CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{92.906127929687528, 494.71727752685547}, {110.5, 54}}</string>
+			<string>{{100.90612792968753, 494.71727752685547}, {110.5, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1527,7 +1527,7 @@ injection Attack / CSRF}</string>
 			<key>Points</key>
 			<array>
 				<string>{464.62058568565539, 266.25097879422447}</string>
-				<string>{364.59023268801838, 266.25097879422447}</string>
+				<string>{364.59023268801832, 266.25097879422447}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1579,8 +1579,8 @@ injection Attack / CSRF}</string>
 			<integer>109</integer>
 			<key>Points</key>
 			<array>
-				<string>{578.21447015357478, 374.02441485963953}</string>
-				<string>{702.28549028176985, 374.11250557446584}</string>
+				<string>{578.21447015369904, 374.023270288562}</string>
+				<string>{702.28549031276293, 374.10886072617973}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1632,8 +1632,8 @@ injection Attack / CSRF}</string>
 			<integer>107</integer>
 			<key>Points</key>
 			<array>
-				<string>{521.41798541602725, 293.75097463740303}</string>
-				<string>{521.41886255548184, 346.48408891545631}</string>
+				<string>{521.41758173043024, 293.75097463740303}</string>
+				<string>{521.41768477538517, 346.48408891545336}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1720,10 +1720,10 @@ injection Attack / CSRF}</string>
 			<integer>102</integer>
 			<key>Points</key>
 			<array>
-				<string>{205.99989972325682, 260.457648407308}</string>
-				<string>{238, 261.13751220703125}</string>
-				<string>{238, 176.92144775390625}</string>
-				<string>{505.97904926422518, 176.41998796241998}</string>
+				<string>{213.9998655756595, 260.62826559947825}</string>
+				<string>{235, 261.13751220703125}</string>
+				<string>{235, 176.92144775390625}</string>
+				<string>{505.97843832201966, 176.41942218816152}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1755,9 +1755,9 @@ injection Attack / CSRF}</string>
 			<integer>101</integer>
 			<key>Points</key>
 			<array>
-				<string>{464.62058616619709, 101.43761226345151}</string>
-				<string>{148, 101}</string>
-				<string>{148.9940072654492, 231.7509757772373}</string>
+				<string>{464.62058612884903, 101.59132392039112}</string>
+				<string>{156, 102}</string>
+				<string>{156.99267778072308, 231.75097594692551}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1789,8 +1789,8 @@ injection Attack / CSRF}</string>
 			<integer>100</integer>
 			<key>Points</key>
 			<array>
-				<string>{521.41754042407752, 129.01611326686393}</string>
-				<string>{521.41754042407752, 162.20044611334905}</string>
+				<string>{521.41754042407752, 129.01611326686401}</string>
+				<string>{521.41754042407752, 162.20044611335555}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1842,7 +1842,7 @@ injection Attack / CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{92.9061279296875, 232.25096130371094}, {112.59388458225666, 54}}</string>
+			<string>{{100.9061279296875, 232.25096130371094}, {112.59388458225666, 54}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1902,7 +1902,7 @@ injection Attack / CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{79, 216.59465026855469}, {152, 121.99998474121094}}</string>
+			<string>{{86, 216.59465026855469}, {139.70306396484375, 121.99998474121094}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1956,7 +1956,7 @@ injection Attack / CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{246.00001525878906, 216.59465026855469}, {649, 260.40533447265625}}</string>
+			<string>{{243.00001525878906, 216.59465026855469}, {654, 260.40533447265625}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -2004,7 +2004,7 @@ injection Attack / CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{79, 356.06362915039062}, {152, 120.93637847900391}}</string>
+			<string>{{86, 356.06362915039062}, {139.70306396484375, 120.93637847900391}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -2106,7 +2106,7 @@ injection Attack / CSRF}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-10-27 23:21:22 +0000</string>
+	<string>2014-10-28 02:01:34 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
@@ -2187,7 +2187,7 @@ injection Attack / CSRF}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{-1243, 317}, {1236, 873}}</string>
+		<string>{{102, 4}, {1236, 873}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -2199,7 +2199,7 @@ injection Attack / CSRF}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{1, 1}, {1116, 776}}</string>
+		<string>{{1, 1}, {1102, 761}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

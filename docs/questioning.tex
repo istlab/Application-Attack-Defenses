@@ -234,7 +234,7 @@ executable source code injection category.
 
 Figure~\ref{fig:taxonomy} presents a taxonomy of executable source
 code injection attacks. Such attacks may involve source code, either of a
-Domain Specific Language ({\sc dsl}) or a Dynamic Language. 
+{\it Domain Specific Language} ({\sc dsl}) or a {\it Dynamic Language}.
 
 Application attacks that involve {\sc dsl}s constitute an important
 subset of the code injection problem, as {\sc dsl}s like {\sc sql} and
@@ -296,15 +296,18 @@ A malicious user can initiate the attack through two different routes.
 The attacker may use the browser of an innocent user as an attack
 vehicle, through which the code will be injected in the application.
 For example, the attacker could craft a malicious script into a {\sc url}
-and then trick an end user to click on it via social engineering
-(i.e., phishing). Alternatively, the attacker may be able to inject
+and then trick an end user to click on it via social engineering (i.e., phishing).
+({\sc step}: {\sc csrf} 1 \text{\textbar} {\sc p-xss}' 1 \text{\textbar} {\sc n-xss}' 1).
+Alternatively, the attacker may be able to inject
 directly the malicious code in the application. For example, consider
-a web application that accepts and redisplays data of uncertain origin
-without appropriate validation or filtering. An attacker could
+a web application that accepts and redisplays user input
+without appropriate validation. An attacker could
 upload data containing a specially crafted script (for example, in a
 blog comment) to steal the cookies of the visiting users or embed
 malicious {\sc sql} code to retrieve all the password entries from a
-database. 
+database ({\sc step}: {\sc dsl} 1 \text{\textbar}
+{\sc p-xss} 1 \text{\textbar} {\sc n-xss} 1).
+Note that an {\sc xss} attack can start from both routes.
 
 Once the injected code reaches the vulnerable application, it becomes
 a part of a value represented by a program variable. The target of the
@@ -316,7 +319,8 @@ finally reaches the database where it is executed.
 {\it persistent}. Non-persistent {\sc xss} attacks take place when the
 data provided by a user is used immediately by server-side scripts to
 parse and display a page of results, without properly sanitizing the
-request. Thus, in a non-persistent {\sc xss} attack the injected code
+request ({\sc step}: {\sc p-xss} 8 \text{\textbar} {\sc n-xss} 3).
+Thus, in a non-persistent {\sc xss} attack the injected code
 never reaches the database and immediately becomes a part of the
 content that is sent back to a web user.
 
@@ -559,7 +563,7 @@ suffix that indicates whether the testbed was based
 on: real-world applications known to be vulnerable
 (r), synthetic benchmarks (s), both (a).
 If no testing has taken place we add a question
-mark (?).
+mark ({\bf ?}).
 \item The computational overhead of the
 mechanism as stated in the publication.
 \item The attacks that the mechanism detects.
@@ -580,13 +584,13 @@ there is a homepage where the reader can refer to, to download the
 corresponding software. {\sc ao} (Available On-line) suggests that
 the software is available on-line but the address was not mentioned
 in the paper, which probably indicates that the authors made
-it available after the publication. The question mark (?),
+it available after the publication. The question mark ({\bf ?}),
 indicates that the a homepage for the software was included
 in the publication but now it is not available.
 
 Finally, as we mentioned in Subsection~\ref{sec:model},
 Figure~\ref{fig:attacks} illustrates in which step
-the mechanisms detect corresponding attacks.
+of out attack model the mechanisms detect attacks.
 
 \subsection{Design-Based}
 \label{sec:prot}
