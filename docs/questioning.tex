@@ -297,7 +297,7 @@ The attacker may use the browser of an innocent user as an attack
 vehicle, through which the code will be injected in the application.
 For example, the attacker could craft a malicious script into a {\sc url}
 and then trick an end user to click on it via social engineering (i.e., phishing).
-({\sc step}: {\sc csrf} 1 \text{\textbar} {\sc p-xss}' 1 \text{\textbar} {\sc n-xss}' 1).
+({\sc step}: {\sc p-xss}' 1 \text{\textbar} {\sc n-xss}' 1 \text{\textbar} {\sc csrf} 1).
 Alternatively, the attacker may be able to inject
 directly the malicious code in the application. For example, consider
 a web application that accepts and redisplays user input
@@ -338,9 +338,7 @@ actually sent back afterwards to the user.
 application attacks based on executable source
 code injection vulnerabilities. For every arrow there is a
 corresponding tuple that includes the step number for
-every attack. {\sc p-xss} stands for a persistent {\sc xss}
-attack and {\sc n-xss} stands for a non persistent {\sc xss}
-attack. Note that {\sc xss} attacks can also involve
+every attack. Note that {\sc xss} attacks can also involve
 {\it phishing}. Every {\it locus} indicates a step where mechanisms
 detect attacks. For every locus we provide the corresponding
 references: ({\sc draft}).}
@@ -532,11 +530,11 @@ To sum up, we evaluate diagnostic performance on two criteria:
 
 \subsection{Availability}
 
-\section{Approaches}
+\section{Defenses}
 \label{sec:defs}
 
 Figure~\ref{fig:defenses} presents a taxonomy of the
-approaches that protect web applications against attacks based on
+defenses that protect web applications against attacks based on
 code injection vulnerabilities.
 We can identify two main approaches, namely:
 {\it design-based} and {\it behavior-based}.
