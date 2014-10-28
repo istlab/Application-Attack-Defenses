@@ -639,6 +639,12 @@ Variations of this approach include:
 {\it Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}
 which randomize the instruction set of {\sc html} and
 JavaScript respectively.
+Contrary to x{\sc js}, in Noncespaces administrators must set
+specific policies in a manner similar to a firewall
+configuration language. This brings up questions
+concerning the diagnostic performance of the mechanism
+since the corresponding testing is insufficient
+(see Table~\ref{tab:comp}).
 
 {\sc isr} is a deterministic approach that can be applied
 to detect different attacks in an efficient manner.
@@ -650,13 +656,6 @@ the randomization key and their results
 indicate that doing {\sc isr} in a way that
 provides a certain degree of security against a motivated
 attacker is more difficult than previously thought.
-
-In the case of Noncespaces, administrators must set
-specific policies in a manner similar to a firewall
-configuration language. This brings up questions
-concerning the diagnostic performance of the mechanism
-since the corresponding testing is insufficient
-(see Table~\ref{tab:comp}).
 
 Even though the above implementations impose a low
 computational overhead, they impose an infrastructure
