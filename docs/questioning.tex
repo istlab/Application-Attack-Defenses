@@ -26,6 +26,7 @@
 \usepackage{subfigure}
 
 \usepackage[numbers,sort]{natbib}
+\lstset{columns=flexible,showstringspaces=false}
 
 \renewcommand{\algorithmiccomment}[1]{\hfill {\tt //} #1}
 \newcommand{\tick}{\ding{52}}
@@ -598,6 +599,7 @@ Note that most mechanisms that belong to this category have
 not been extensively tested in terms of diagnostic performance.
 
 \subsubsection{Parse-Tree Validation}
+\label{sec:tree}
 
 The mechanism based on this method compare the parse tree of a
 query before the inclusion of user input with the one resulting after
@@ -606,14 +608,11 @@ is probably under attack.
 
 \subsubsection{Securing Mashups}
 
-\subsubsection{Code Rewriting}
-
 \subsubsection{Instruction Set Randomization --- ISR}
 
-{\sc isr} is a method that contrary to the previous
-three, has been applied to counter
+{\sc isr} is a method that has been applied to counter
 different kinds of application attacks~\cite{K09b,KKP03}.
-The main idea behind the method, is to
+The main idea behind the it, is to
 separate code from data by randomizing the legitimate code's 
 execution environment. In this way, the malicious code
 injected by the attackers who do not know the randomization
@@ -664,6 +663,16 @@ the integration of a proxy within the database server
 is required while Noncespaces and x{\sc js} require
 modifications on both the server and the client.
 
+\subsubsection{Code Rewriting}
+
+{\it {\sc sm}ask}~\cite{JB07} is a mechanism that detects
+both {\sc sql} injection attacks and {\sc xss} attacks.
+To do this, it identifies malicious
+code by automatically separating user input from legitimate code.
+This is done by introducing specific syntactic constructs
+that handle server-side languages used for data management
+separately.
+
 \subsection{Behavior-Based}
 
 \subsubsection{Runtime Tainting}
@@ -698,7 +707,7 @@ generate and store valid code statements (i.e. {\sc sql}
 or {\sc xp}ath queries) in various forms, and detect attacks
 as outliers from the set of valid code statements.
 An early approach, {\it {\sc didafit}}~\cite{LLW02} detects
-{\sc sql} injection attacks by recording all database transactions.
+{\sc sql} injection (locus $\Omega$) attacks by recording all database transactions.
 Subsequent refinements by Valeur et al.~\cite{VMV05}
 tagged each transaction with the corresponding application
 as an extension of their anomaly detection framework called
@@ -710,15 +719,12 @@ depend either on the code statement or on its execution
 environment (i.e. the stack trace).
 Then, at runtime, the mechanism checks all statements for compliance
 and can block code statements containing injected elements (locus {\sc z}).
-% By associating a complete stack trace with the root of an {\sc sql} statement, 
-% the mechanism can correlate {\sc sql} statements with their call sites.  
-% This increases the specificity of the stored signatures and avoids false alarms.
-Furthermore, {\sc amnesia}~\cite{HO05,HO06} is a tool that also detects {\sc sql}
-injection attacks by associating a query model with the location of every
-{\sc sql} statement within the application. Then at runtime,
-monitors the application's execution to detect when {\sc sql} statements
-diverge from the expected model.
-% dimitro: more mechanisms TBA.
+Furthermore, {\sc amnesia}~\cite{HO05,HO06,HO05b} is a tool
+that also detects {\sc sql} injection attacks (locus {\sc z})
+by associating a query model with the location of every
+{\sc sql} statement within the application.
+Then at runtime, monitors the application's execution to
+detect when {\sc sql} statements diverge from the expected model.
 
 In the case of {\sc xss} attacks the various countermeasures
 follow a similar pattern. {\it {\sc swap}}~\cite{WPLKK09}
@@ -728,8 +734,88 @@ Then, a JavaScript detection component placed in a
 web proxy (locus {\sc y}) searches for injected scripts
 with no corresponding {\sc id} in the server's responses.
 If no injected scripts are found, the proxy forwards the
-request to the client.
-% dimitro: more mechanisms TBA.
+request to the client. This mechanism is relatively
+inflexible since it does not support dynamic scripts.
+In addition it imposes a significant overhead (see Table~\ref{tab:comp}).
+The authors of {\it {\sc xssds}}~\cite{JEP08}
+have implemented a similar mechanism that also supports
+dynamic and external scripts. Specifically,
+during training phase they build a list of all benign scripts.
+In the case of external scripts they keep a white list
+of all the valid domain names that contain scripts
+used by the application.
+
+The training subcategory, includes some mechanisms
+that can be easily circumvented. For example,
+consider an application that will send the password 
+for a forgetful user via email by executing
+the following query:
+\bgroup
+\lstset{language=SQL}
+\begin{small}
+\begin{lstlisting}
+SELECT password from userdata WHERE id = 'Alice'
+\end{lstlisting}
+\end{small}
+\egroup
+\noindent
+This same application could allow users to lock their terminal,
+but allow the unlocking either with the user's password or with
+the administrator password (the 4.3 {\sc bsd} {\em lock} command
+behaved in this peculiar way).
+The corresponding query to verify the password on the locked
+workstation would be as follows:
+\bgroup
+\lstset{language=SQL}
+\begin{small}
+\begin{lstlisting}
+SELECT password from userdata WHERE id = 'Alice' OR
+id = 'admin'
+\end{lstlisting}
+\end{small}
+\egroup
+\noindent
+A traditional {\sc sql} injection attack protection system like {\sc didafit},
+could be easily escaped since a malicious user, could obtain the
+administrator's password by email by entering on the password retrieval form
+as his user identifier the following:
+\bgroup
+\lstset{language=SQL}
+\begin{small}
+\begin{lstlisting}
+nosuchuser' OR id = 'admin
+\end{lstlisting}
+\end{small}
+\egroup
+\noindent
+However, mechanisms that create signatures that involve
+elements not only associated with the code statements
+(i.e. {\sc amnesia} and {\sc sd}river)
+could detect such attacks. Specifically,
+{\sc sd}river associates a complete stack trace with the
+root of an {\sc sql} statement, thus it can correlate
+queries with their call sites and detect attacks
+like the aforementioned one.
+In a similar manner, training tools that detect
+{\sc xss} attacks based on JavaScript injection
+would fail to detect a mimicry attack like the
+one mentioned in Subsubsection~\ref{sec:tree}.
+
+In general, the detection accuracy of training approaches is
+heavily based on the coverage that is achieved during the
+training phase. If the coverage is insufficient the
+production of false alarms is very likely.
+In addition, when a code statement is altered, a new
+training phase is necessary.
+
+All the above mechanisms are relatively easy to deploy.
+{\sc dsl} injection attack countermeasures
+can be retrofitted to a system typically by changing
+some configuration files. This does not apply
+to {\sc amnesia} though, since significant source code
+modifications are required for every query that exists
+in the application. Finally, {\sc swap} and {\sc xssds}
+are implemented within a proxy on the server-side.
 
 \begin{figure*}
 \begin{center}
@@ -742,7 +828,7 @@ attack countermeasures ({\sc draft}).}
 
 \begin{landscape}
 \begin{table}
-    \caption{Comparison summary of mechanisms developed to counter application attacks.}
+    \caption{Comparison summary of mechanisms developed to counter application attacks based on executable source code injection.}
     \label{tab:comp}
 \centering
     \begin{threeparttable}
@@ -758,9 +844,10 @@ attack countermeasures ({\sc draft}).}
 	&&& \bf{TP,TN,FP,FN}\tnote{2}
 	& \bf{Computational Overhead} & \\
     \hline
-  \multirow{2}{*}{Parse-Tree Validation}
+  \multirow{3}{*}{Parse-Tree Validation}
   &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
   &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
+  &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
   \hline
   \hline
   \multirow{5}{*}{Securing Mashups}
@@ -777,9 +864,10 @@ attack countermeasures ({\sc draft}).}
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
   \hline
   \hline         
-  \multirow{3}{*}{Code Rewriting}
+  \multirow{4}{*}{Code Rewriting}
   &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
   &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
+  &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
   &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
   \hline
   \hline
@@ -807,13 +895,11 @@ attack countermeasures ({\sc draft}).}
   % TODO@dimitro: discuss this with Panos?
 	\hline
 	\hline  
-  \multirow{9}{*}{Training}
+  \multirow{7}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} & {\sc sql} injection \\ 
 	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
-	& 	{\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} &  {\sc xss} \\
-  & 	{\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
   & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% & {\sc xss} \\ 
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% & {\sc sql} and {\sc xp}ath injection \\
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
@@ -980,12 +1066,14 @@ with exploits from {\sc cve}.
   \multirow{2}{*}{Parse-Tree Validation}
   &   {\it {\sc sqlc}heck}~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\sc ao} & {\sc ao} & {\sc na} \\
+  &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
   \hline  
   \hline 
   \hline
-  \multirow{3}{*}{Code Rewriting}
+  \multirow{4}{*}{Code Rewriting}
   &   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it CoreScript}~\cite{YCIS07} & {\sc ao} & {\sc na} & {\sc na} \\
+  &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
   \hline
   \hline 
@@ -1008,13 +1096,11 @@ with exploits from {\sc cve}.
    	% &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
 	\hline  
-        \multirow{9}{*}{Training}
+        \multirow{7}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\sc ao} & {\sc na} \\
 	&   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
-	& 	{\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
-  & 	{\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
   & 	{\it {\sc swap}}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & {\bf ?} & {\bf ?} & {\bf ?} \\
