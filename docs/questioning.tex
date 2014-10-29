@@ -534,17 +534,28 @@ To sum up, we evaluate diagnostic performance on two criteria:
 \section{Defenses}
 \label{sec:defs}
 
+\begin{figure*} [ht]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.62]{defenses.pdf}
+\end{center}
+\caption{\label{fig:defenses}The basic categories of web application
+attack countermeasures ({\sc draft}).}
+\end{figure*}
+
 Figure~\ref{fig:defenses} presents a taxonomy of the
 defenses that protect web applications against attacks based on
 code injection vulnerabilities.
-We can identify two main approaches, namely:
-{\it design-based} and {\it behavior-based}.
-The former involves mechanisms that make applications
+We can identify three main approaches, namely:
+{\it design-based}, {\it behavior-based}
+and {\it hybrid}.
+The design-based category involves mechanisms that make applications
 immune to different attack vectors by design~\cite{JL75,L81}.
-The latter incorporates a variety of methods and
+The behavior-based incorporates a variety of methods and
 schemes that inspect the behavior of applications
 and detect attacks based on specific criteria~\cite{D76,A00}.
 Both categories involve more than one subcategories.
+The hybrid category borrows elements from more than one subcategories.
 For every subcategory we provide elements regarding
 every dimension described in Section~\ref{sec:dimensions}.
 
@@ -603,13 +614,31 @@ not been extensively tested in terms of diagnostic performance.
 
 The key idea behind this approach, is to compare
 the tree representation of the abstract syntactic
-structure of the executable source code that is
-about to be executed with the one hat was originally intended.
-If the trees diverge, the application is probably under attack.
+structure of the executable source code
+with the one that was originally intended.
+If the trees diverge, the application is probably
+under attack.
 
 In the case of {\sc dsl} injection attacks, mechanisms check 
 the query before the inclusion of user input with the one
 resulting after the inclusion of user input.
+Both mechanisms that implement this approach,
+{\sc sqlg}uard~\cite{BWS05} and
+{\sc sql}check~\cite{SW06} are pretty similar
+and detect the attack before a query reaches the
+database (locus {\sc z}).
+Contrary to {\sc sqlg}uard~\cite{BWS05} (and many other
+mechanisms), {\sc sql}check~\cite{SW06} has been
+extensively tested in terms of diagnostic performance
+as seen in Table~\ref{tab:comp}. A disadvantage of
+those mechanisms is that the application must be modified
+every time a query is about to be sent to a database
+for execution.
+
+As we will see in Subsection~\ref{sec:hybrid},
+there are mechanisms that borrow elements from
+this approach and examine the syntax trees
+of scripts to detect JavaScript-driven {\sc xss}.
 
 \subsubsection{Securing Mashups}
 
@@ -627,11 +656,9 @@ algorithm, will not get executed.
 to detect {\sc sql} injections in the following manner:
 initially, it allows programmers to create {\sc sql} statements
 using randomized instructions instead of standard keywords.
-The modified queries are either reconstructed at runtime using
-the same key that is inaccessible to the malicious user,
-or the user input is tagged with delimiters that allow
-an augmented {\sc sql} grammar to detect the
-attack. {\sc sql}rand is one of the few mechanisms that
+The modified queries are reconstructed at runtime using
+the same key that is inaccessible to the malicious user.
+{\sc sql}rand is one of the few mechanisms that
 detect {\sc sql} injection attacks on the database
 level (locus $\Omega$).
 
@@ -660,6 +687,11 @@ the randomization key and their results
 indicate that doing {\sc isr} in a way that
 provides a certain degree of security against a motivated
 attacker is more difficult than previously thought.
+Furthermore, developers who wish to use
+such mechanisms must follow good coding practices
+and never show a randomized code statement in any case
+(i.e. an exception error) because in this way
+they will reveal the encoding key.
 
 Even though the above implementations impose a low
 computational overhead, they impose an infrastructure
@@ -822,14 +854,11 @@ modifications are required for every query that exists
 in the application. Finally, {\sc swap} and {\sc xssds}
 are implemented within a proxy on the server-side.
 
-\begin{figure*}
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.52]{defenses.pdf}
-\end{center}
-\caption{\label{fig:defenses}The basic categories of web application
-attack countermeasures ({\sc draft}).}
-\end{figure*}
+\subsection{Hybrid}
+\label{sec:hybrid}
+
+{\sc xss-guard}~\cite{BV08}
+maps legitimate scripts to {\sc http} responses.
 
 \begin{landscape}
 \begin{table}
@@ -864,7 +893,7 @@ attack countermeasures ({\sc draft}).}
   \hline
   \hline
   \multirow{3}{*}{{\sc isr}}
-  &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & +6.5{\it ms} & {\sc sql} injection \\ 
+  &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} & {\sc sql} injection \\ 
   &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
   \hline
@@ -908,6 +937,10 @@ attack countermeasures ({\sc draft}).}
   & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% & {\sc xss} \\ 
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% & {\sc sql} and {\sc xp}ath injection \\
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
+  \hline
+  \hline
+  \multirow{1}{*}{Hybrid}
+  &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
