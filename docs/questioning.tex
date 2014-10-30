@@ -249,9 +249,10 @@ exploits the vulnerabilities of these interfaces by taking advantage
 of input validation issues like incorrectly passed parameters or
 incorrect type handling, is called an {\sc sql} injection
 attack~\cite{CERT02,MS09,HVO06,SW06}. By using similar techniques
-malicious users can perform other exploits based on {\sc dsl}s, like
-{\sc xp}ath~\cite{SW06,CDL07,MKS09} and {\sc xml}~\cite{MSM13}. With
-this kind of attacks, a malicious user can view sensitive information,
+malicious users can perform other exploits based on {\sc dsl}s,
+like {\sc xp}ath~\cite{SW06,CDL07,MKS09}, {\sc xml}~\cite{MSM13}
+and No{\sc sql}~\cite{SMS13}. With this kind of attacks,
+a malicious user can view sensitive information,
 destroy or modify protected data, or even crash the entire
 application. {\sc html} is another {\sc dsl} that can be used
 for malicious purposes when an application does not properly
@@ -634,7 +635,7 @@ for execution.
 As we will see in Subsection~\ref{sec:hybrid},
 there are mechanisms that borrow elements from
 this approach and examine the syntax trees
-of scripts to detect JavaScript-driven {\sc xss}.
+of scripts to detect JavaScript-driven {\sc xss} attacks.
 
 \subsubsection{Policy Enforcement}
 
@@ -657,21 +658,62 @@ The web browser (locus {\sc x}), parses the
 {\sc dom} tree and executes scripts only when they
 are contained in such elements. All other scripts
 are treated according to the policies defined
-on the server. Frameworks that support the
-above functionality are {\sc beep}~\cite{TNH07}
-and {\sc dsi}~\cite{NSS06}.
-The main problem with the above mechanisms is
-that they are vulnerable to non-persistent {\sc xss}
-attacks that alter the {\sc dom} of an already rendered
+on the server. Frameworks that support this
+functionality are {\sc beep}~\cite{TNH07}
+and {\sc dsi}~\cite{NSS06}. The main problem with
+the above mechanisms is that they are vulnerable
+to non-persistent {\sc xss} attacks that alter
+the {\sc dom} of an already rendered
 page\footnote{\url{https://www.owasp.org/index.php/DOM_Based_XSS}}
 ~\cite{APKLM10}.
 
 Another policy enforcement approach introduces
-policies directly in the scripts to confine their behavior.
-{\sc met}~\cite{ELX07}, {\it BrowserShield}~\cite{RDWDE07},
-{\it CoreScript}~\cite{YCIS07}, and the
-scheme of {\it Phung et al.}~\cite{PSC09} are representative
-examples.
+policies directly either in {\sc html} or JavaScript code
+to confine their behavior. {\it BrowserShield}~\cite{RDWDE07}
+acts as a proxy on the server side (locus {\sc y}) to
+parse the {\sc html} of server responses and identifies
+scripts. Then, it rewrites them into safe equivalents
+and protect the web user from exploitations
+that are based on reported browser vulnerabilities.
+{\it ConScript}~\cite{ML10}, {\it CoreScript}~\cite{YCIS07}
+and the framework by {\it Phung et al.}~\cite{PSC09}
+extend JavaScript with new primitive functions to
+provide safe methods to protect potentially vulnerable
+JavaScript functions. In both cases, policy enforcement takes
+place on the JavaScript engine of the browser (locus {\sc x}).
+In this way, {\sc xxs} attacks that take advantage
+functions like {\tt eval} and {\tt write} that are
+used to assemble innocuous-looking parts into harmful
+strings would fail. A critical issue regarding
+the above frameworks is that they cannot
+define policies that restrict the behavior of third-party
+scripts introduced by script inclusion and {\tt iframe}
+tags. For instance, consider a web page ({\tt foo.net})
+that prints the value of the a query parameter ({\tt query})
+from the page's {\sc url} in the web page's content
+without escaping the value. A malicious user
+can take advantage of this and inject JavaScript code
+into the page to steal the user's cookie for this particular
+page and send it via an image request to a web site
+that he or she controls ({\tt malicious.com}).
+This could be achieved by including the following
+code fragment to the malicious web site:
+
+\lstset{language=VBScript, basicstyle=\footnotesize\ttfamily,}
+\begin{lstlisting}
+<iframe style="position:absolute;top:-9999px"
+    src="http://foo.net/vulnerable.html?query=
+    <script>document.write(
+    '<img src=\"http://malicious.com/?c=
+    '+encodeURIComponent(document.cookie)+'\">')
+    </script>"></iframe>
+\end{lstlisting}
+
+\noindent
+By using the {\tt iframe} tag, the web user will not
+realise the redirection. 
+This problem is actually solved by the architectures
+presented in Subsubsection~~\ref{sec:mashups}.
 
 %{\it j{\sc csrf}}~\cite{PS11}.
 
@@ -679,6 +721,10 @@ examples.
 % and Noxes~\cite{KKVJ06,KJKV09} (the client defines policies).
 
 \subsubsection{Securing Mashups}
+\label{sec:mashups}
+
+{\it WebJail}~\cite{VDDPJ11}, overcomes this issue
+by containing the functionality of third-party scripts.
 
 \subsubsection{Instruction Set Randomization (ISR)}
 
@@ -913,12 +959,25 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
   \hline
   \hline
-  \multirow{5}{*}{Securing Mashups}
+  \multirow{9}{*}{Policy Enforcement}
+  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
+  &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
+  % &   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
+  &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% & {\sc xss} \\
+  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
+  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf}\\
+  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
+  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
+  &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
+  % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
+  % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
+  \hline
+  \hline 
+  \multirow{3}{*}{Securing Mashups}
   &   {\it {\sc om}ash}~\cite{CHC08} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} & {\sc csrf} \\
   &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
-  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
   &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
-  &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   \hline
   \hline
   \multirow{3}{*}{{\sc isr}}
@@ -937,23 +996,9 @@ maps legitimate scripts to {\sc http} responses.
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
   &   {\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
-  \hline
-  \hline 
-	\multirow{9}{*}{Policy Enforcement}
-  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
-  &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
-	&   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
-  &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% & {\sc xss} \\
-  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
-  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf}\\
-  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
-	&   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
-  % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
-  % TODO@dimitro: discuss this with Panos?
 	\hline
 	\hline  
-  \multirow{7}{*}{Training}
+  \multirow{6}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} & {\sc sql} injection \\ 
 	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
