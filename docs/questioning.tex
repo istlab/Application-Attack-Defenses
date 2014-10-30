@@ -692,28 +692,31 @@ tags. For instance, consider a web page ({\tt foo.net})
 that prints the value of the a query parameter ({\tt query})
 from the page's {\sc url} in the web page's content
 without escaping the value. A malicious user
-can take advantage of this and inject JavaScript code
-into the page to steal the user's cookie for this particular
-page and send it via an image request to a web site
+can take advantage of this and inject an {\tt iframe}
+into the page to steal the user's cookie and
+send it via an image request to a web site
 that he or she controls ({\tt malicious.com}).
 This could be achieved by including the following
-code fragment to the malicious web site:
+link to the malicious web site (or send it via phishing)
+and induce the user to click on it:
 
 \lstset{language=VBScript, basicstyle=\footnotesize\ttfamily,}
 \begin{lstlisting}
-<iframe style="position:absolute;top:-9999px"
-    src="http://foo.net/vulnerable.html?query=
-    <script>document.write(
-    '<img src=\"http://malicious.com/?c=
-    '+encodeURIComponent(document.cookie)+'\">')
-    </script>"></iframe>
+http://foo.net/vulnerable.html?query=
+<iframe src="javascript:document.body.innerHTML=+
+'<img src=\"http://malicious.com/?c=
+'+encodeURIComponent(document.cookie)+'\">'">
+</iframe>
 \end{lstlisting}
 
 \noindent
-By using the {\tt iframe} tag, the web user will not
-realise the redirection. 
-This problem is actually solved by the architectures
-presented in Subsubsection~~\ref{sec:mashups}.
+{\sc soma}~\cite{OWVS08} is a policy enforcement framework that
+can actually detect such an attack (along with some architectures
+presented in Subsubsection~~\ref{sec:mashups}).
+To achieve this, {\sc soma} requires site administrators
+to specify legitimate, external domains for sending
+or receiving information in order to approve interactions
+between them and the protected web site.
 
 %{\it j{\sc csrf}}~\cite{PS11}.
 
