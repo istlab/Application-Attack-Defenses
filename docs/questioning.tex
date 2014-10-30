@@ -636,15 +636,43 @@ there are mechanisms that borrow elements from
 this approach and examine the syntax trees
 of scripts to detect JavaScript-driven {\sc xss}.
 
-\subsubsection{Securing Mashups}
-
 \subsubsection{Policy Enforcement}
 
-In this method, developers must define
+This approach is used to detect attacks that target web users.
+When using a framework that implements
+this approach, developers must define
 specific security policies on the server side.
 Then the policies are enforced either in the user's
-browser at runtime or in a server-side proxy that
-intercepts server responses.
+browser at runtime or in a server-side proxy that intercepts
+server responses. Policy enforcement is one of the two
+approaches (the other is Securing Mashups) that is
+used to prevent {\sc csrf} attacks.
+
+A number of the frameworks define policies
+based on information and features provided by
+the Document Object Model ({\sc dom}) of a web page.
+Specifically, developers must place all legitimate
+scripts inside {\sc html} elements like {\tt div}.
+The web browser (locus {\sc x}), parses the
+{\sc dom} tree and executes scripts only when they
+are contained in such elements. All other scripts
+are treated according to the policies defined
+on the server. Frameworks that support the
+above functionality are {\sc beep}~\cite{TNH07}
+and {\sc dsi}~\cite{NSS06}.
+The main problem with the above mechanisms is
+that they are vulnerable to non-persistent {\sc xss}
+attacks that alter the {\sc dom} of an already rendered
+page\footnote{\url{https://www.owasp.org/index.php/DOM_Based_XSS}}
+~\cite{APKLM10}.
+
+% There are also frameworks that introduce
+% policies directly in the scripts that exist in the server.
+
+% controlling information flows: {\sc soma}~\cite{OWVS08}
+% and Noxes~\cite{KKVJ06,KJKV09} (the client defines policies).
+
+\subsubsection{Securing Mashups}
 
 \subsubsection{Instruction Set Randomization (ISR)}
 
@@ -854,6 +882,8 @@ separately.
 {\sc xss-guard}~\cite{BV08}
 maps legitimate scripts to {\sc http} responses.
 
+{\it Blueprint}~\cite{LV09}.
+
 \begin{landscape}
 \begin{table}
     \caption{Comparison summary of mechanisms developed to counter application attacks based on executable source code injection.}
@@ -885,9 +915,8 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   \hline
   \hline
-  \multirow{4}{*}{{\sc isr}}
+  \multirow{3}{*}{{\sc isr}}
   &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} & {\sc sql} injection \\
-  &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
   &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
   \hline
@@ -904,7 +933,7 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
   \hline
   \hline 
-	\multirow{10}{*}{Policy Enforcement}
+	\multirow{9}{*}{Policy Enforcement}
   &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
   &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
 	&   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
@@ -912,7 +941,6 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
   &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
   &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf}\\
-	&   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\
   &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
 	&   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
@@ -929,8 +957,10 @@ maps legitimate scripts to {\sc http} responses.
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
   \hline
   \hline
-  \multirow{1}{*}{Hybrid}
+  \multirow{3}{*}{Hybrid}
+  &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
   &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
+  &   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
