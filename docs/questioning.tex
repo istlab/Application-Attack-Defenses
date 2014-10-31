@@ -141,9 +141,15 @@ However, this survey is quite old and since then
 the number of countermeasures that detect {\sc sql}
 injection attacks alone, has been drastically increased
 as we mentioned in the previous paragraph.
+
 In our research we focus on the top
-{\sc tba} systems that counter application attacks,
-in terms of citations.
+{\sc tba} systems that and are presented
+in publications cited more than twenty times.
+For the sake of our study, we choose
+to make some exceptions and include some latest mechanisms
+that were presented in top security conferences even if
+the corresponding publications have been cited less than
+twenty times.
 
 % TODO@dimitro: explain why you leave out {\it SecuriFly}~\cite{MLL05}.
 
@@ -272,7 +278,7 @@ can manage to inject a script in the JavaScript engine of a browser
 and alter its execution flow~\cite{ELX07}. JavaScript injection
 attacks are considered as a critical issue in web application security
 mainly because they are associated with major vulnerabilities such as:
-{\sc xss} attacks~\cite{SG07}, {\sc csrf} attacks~\cite{LZRL09} and
+{\sc xss} attacks~\cite{SG07}, {\sc csrf} attacks~\cite{BJM08,LZRL09} and
 Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}.
 In many cases {\sc xss} attacks involve the injection of
 both {\sc html} and JavaScript code.
@@ -538,7 +544,7 @@ To sum up, we evaluate diagnostic performance on two criteria:
 \begin{figure*} [ht]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.62]{defenses.pdf}
+\includegraphics[scale=0.65]{defenses.pdf}
 \end{center}
 \caption{\label{fig:defenses}The basic categories of web application
 attack countermeasures ({\sc draft}).}
@@ -733,10 +739,37 @@ or receiving information in order to approve interactions
 between them and the protected web site. As a result,
 {\sc soma} can also detect {\sc csrf} attacks.
 
-%{\it j{\sc csrf}}~\cite{PS11}.
+Policy enforcement mechanisms that detect {\sc csrf}
+attacks are usually implemented in the form of a
+server-side proxy (locus {\sc y})
+interposing on the client-server communication, and modifying
+it. {\it NoForge}~\cite{JKK06a}
+parses the {\sc html} server responses
+and adds a token to every {\sc url} referring to this
+server. Then it associates the token with the cookie
+representing the session {\sc id} for the application.
+When a request is received, the mechanism checks
+if the request contains the token related
+to the session {\sc id}. A disadvantage of NoForge
+is that {\sc html} that is dynamically created within
+the browser will not include the token.
+Thus, sites that create their {\sc html} on the client
+will remain vulnerable. In addition, it does not
+support cross-origin requests.
+{\it j{\sc csrf}}~\cite{PS11}
+has a very similar functionality and meanwhile
+addresses the above problems.
+Finally, {\it CsFire}~\cite{DDHPJ10}
+examines cross-domain interactions,
+to design a cross-domain policy.
+The policy is based on the concept of a relaxed
+same-origin policy that allows communication between
+sub-domains of the same registered domain.
 
-% controlling information flows: {\sc soma}~\cite{OWVS08}
-% and Noxes~\cite{KKVJ06,KJKV09} (the client defines policies).
+Most of the aforementioned frameworks, involve
+several deployment issues since they
+require significant source modifications by the web
+developers in order to introduce their policies.
 
 \subsubsection{Securing Mashups}
 \label{sec:mashups}
@@ -977,7 +1010,7 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
   \hline
   \hline
-  \multirow{12}{*}{Policy Enforcement}
+  \multirow{11}{*}{Policy Enforcement}
   &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
   &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\bf ?} & {\sc csrf} \\
   &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
@@ -986,7 +1019,7 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
   &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
   &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf} \\
-  &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
+  % &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
   &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
   &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
   &   {\it CsFire}~\cite{DDHPJ10} & & & {\bf ?} & {\sc csrf} \\
@@ -1159,6 +1192,11 @@ with exploits from {\sc cve} --- though this is not mentioned in the publication
 with exploits from {\sc cve}.
 \end{enumerate}
 
+ We need to mention that there are mechanisms that
+ do not need to be established purely through testing
+ Since they provide systematic arguments as to why
+ the design is secure against attacks.
+
 \begin{table*}
 \caption{Availability of the corresponding mechanisms.}
     \label{tab:avail}
@@ -1180,7 +1218,7 @@ with exploits from {\sc cve}.
   &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
   \hline  
   \hline
-  \multirow{12}{*}{Policy Enforcement}
+  \multirow{11}{*}{Policy Enforcement}
   &   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it NoForge}~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
   &   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
@@ -1189,7 +1227,7 @@ with exploits from {\sc cve}.
   &   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it CoreScript}~\cite{YCIS07} & {\bf AO} & {\sc na} & {\sc na} \\
   &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Barth et al.}~\cite{BJM08} & {\sc na} & {\sc na} & {\sc na} \\
+  % &   {\it Barth et al.}~\cite{BJM08} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
   &   {\it ConScript}~\cite{ML10} & {\bf AO} & {\sc na} & {\sc na} \\
   &   {\it CsFire}~\cite{DDHPJ10} & \tick & {\sc na} & {\sc na} \\
