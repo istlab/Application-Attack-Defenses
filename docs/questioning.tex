@@ -646,8 +646,22 @@ specific security policies on the server side.
 Then the policies are enforced either in the user's
 browser at runtime or in a server-side proxy that intercepts
 server responses. Policy enforcement is one of the two
-approaches (the other is Securing Mashups) that is
+approaches (the other is Securing Mashups --- see
+Subsubsection~\ref{sec:mashups}) that is
 used to prevent {\sc csrf} attacks.
+
+{\it Noxes}~\cite{KKVJ06,KJKV09} is the only
+framework that partially allows the web
+user to specify policies to prevent {\sc xss} attacks.
+The key idea behind Noxes is to parse
+the {\sc html} that reaches the browser to
+find static {\sc url} references. Then, based on
+a set of policies it allows or blocks
+the request (locus {\sc x}). Such policies
+are provided either by the user or by
+the framework itself. Noxes does not
+deal with JavaScript-driven {\sc xss}
+attacks and it is a rather simplistic approach.
 
 A number of the frameworks define policies
 based on information and features provided by
@@ -697,8 +711,8 @@ into the page to steal the user's cookie and
 send it via an image request to a web site
 that he or she controls ({\tt malicious.com}).
 This could be achieved by including the following
-link to the malicious web site (or send it via phishing)
-and induce the user to click on it:
+link to the malicious web site (or send it via phishing
+email) and induce the user to click on it:
 
 \lstset{language=VBScript, basicstyle=\footnotesize\ttfamily,}
 \begin{lstlisting}
@@ -727,8 +741,8 @@ between them and the protected web site. As a result,
 \subsubsection{Securing Mashups}
 \label{sec:mashups}
 
-{\it WebJail}~\cite{VDDPJ11}, overcomes this issue
-by containing the functionality of third-party scripts.
+% {\it WebJail}~\cite{VDDPJ11}, overcomes this issue
+% by containing the functionality of third-party scripts.
 
 \subsubsection{Instruction Set Randomization (ISR)}
 
@@ -1002,7 +1016,7 @@ maps legitimate scripts to {\sc http} responses.
 	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} & {\sc xss} \\
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
-  &   {\it Diglossia}~\cite{SMS13} & 3 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
+  &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
 	\hline
 	\hline  
   \multirow{6}{*}{Training}
