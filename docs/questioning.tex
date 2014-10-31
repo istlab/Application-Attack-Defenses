@@ -588,7 +588,7 @@ in terms of source code and corresponding executables.
 We also examined the availability of the testbeds mentioned in the paper.
 The check mark (\tick) indicates that at some point within the publication,
 there is a homepage where the reader can refer to, to download the
-corresponding software. {\sc ao} (Available On-line) suggests that
+corresponding software. {\bf AO} (Available On-line) suggests that
 the software is available on-line but the address was not mentioned
 in the paper, which probably indicates that the authors made
 it available after the publication. The question mark ({\bf ?}),
@@ -965,17 +965,17 @@ maps legitimate scripts to {\sc http} responses.
   \hline
   \multirow{12}{*}{Policy Enforcement}
   &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
-  &   {\it NoForge}~\cite{JKK06a} & 35 & & & \\
+  &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\bf ?} & {\sc csrf} \\
   &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
   % &   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
   &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% & {\sc xss} \\
   &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
   &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf}\\
-  &   {\it Barth et al.}~\cite{BJM08} & 271 & & & \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf} \\
+  &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
   &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
   &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
-  &   {\it CsFire}~\cite{DDHPJ10} & & & & \\
+  &   {\it CsFire}~\cite{DDHPJ10} & & & {\bf ?} & {\sc csrf} \\
   &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
@@ -1161,72 +1161,72 @@ with exploits from {\sc cve}.
 	& \bf{Executable}
 	& \bf{Testbed} \\
     \hline
-	\multirow{9}{*}{Runtime Tainting}
-	&  	{\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
+  \multirow{2}{*}{Parse-Tree Validation}
+  &   {\it {\sc sqlc}heck}~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
+  \hline  
+  \hline
+  \multirow{12}{*}{Policy Enforcement}
+  &   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it NoForge}~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
+  &   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
+  % &   {\it {\sc met}}~\cite{ELX07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc beep}}~\cite{TNH07} & \tick & \tick & \tick \\
+  &   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it CoreScript}~\cite{YCIS07} & {\bf AO} & {\sc na} & {\sc na} \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Barth et al.}~\cite{BJM08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
+  &   {\it ConScript}~\cite{ML10} & {\bf AO} & {\sc na} & {\sc na} \\
+  &   {\it CsFire}~\cite{DDHPJ10} & \tick & {\sc na} & {\sc na} \\
+  &   {\it j{\sc csrf}}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
+    % &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
+  \hline
+  \hline 
+  \multirow{3}{*}{Securing Mashups}
+  &   {\it {\sc om}ash}~\cite{CHC08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Mashup{\sc os}}~\cite{WFHJ07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it WebJail}~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
+  % &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
+  \hline
+  \hline
+  \multirow{3}{*}{{\sc isr}}
+  &   {\it {\sc sql}rand}~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
+  \hline
+  \hline 
+	\multirow{8}{*}{Runtime Tainting}
 	&  	{\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
-	% &  	{\it SecuriFly}~\cite{MLL05}  & - & - & - \\
+  &   {\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it Xu et al.}~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
   &  	{\it {\sc wasc}}~\cite{NLC07} & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it Vogt et al.}~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
-	&  	{\it {\sc php} Aspis}~\cite{PMP11} & {\sc ao} & {\sc na} & {\sc ao} \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & {\bf AO} & {\sc na} & {\bf AO} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
-	\hline
-	\hline      
-	\multirow{3}{*}{{\sc isr}}
-	&   {\it {\sc sql}rand}~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
-	&   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
-	\hline
-	\hline
-  \multirow{2}{*}{Parse-Tree Validation}
-  &   {\it {\sc sqlc}heck}~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\sc ao} & {\sc ao} & {\sc na} \\
-  &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
-  \hline  
-  \hline 
-  \hline
-  \multirow{4}{*}{Code Rewriting}
-  &   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it CoreScript}~\cite{YCIS07} & {\sc ao} & {\sc na} & {\sc na} \\
-  &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
   \hline
   \hline 
-  \multirow{5}{*}{Securing Mashups}
-  &   {\it {\sc om}ash}~\cite{CHC08} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Mashup{\sc os}}~\cite{WFHJ07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it ConScript}~\cite{ML10} & {\sc ao} & {\sc na} & {\sc na} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
-  \hline
-  \hline
-	\multirow{7}{*}{Policy Enforcement}
-	&   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
-	&   {\it {\sc met}}~\cite{ELX07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc beep}}~\cite{TNH07} & \tick & \tick & \tick \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
-	&   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
-	&   {\it j{\sc csrf}}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
-   	% &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
-	\hline
-	\hline  
-        \multirow{7}{*}{Training}
+  \multirow{6}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\sc ao} & {\sc na} \\
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\bf AO} & {\sc na} \\
 	&   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
   & 	{\it {\sc swap}}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
-	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & {\bf ?} & {\bf ?} & {\bf ?} \\
+  \hline
+  \hline
+  \multirow{3}{*}{Hybrid}
+  &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
 	\begin{footnotesize}
        \item[1] The check mark (\tick) indicates that the publication
        includes a homepage where the reader can refer to, to
-       download the corresponding software. {\sc ao} (Available On-line) suggests
+       download the corresponding software. {\bf AO} (Available On-line) suggests
        that the software is available on-line but the
        address was not mentioned in the paper, which probably indicates that
        the authors made it available after the publication. The question ({\bf ?})
