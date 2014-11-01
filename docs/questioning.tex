@@ -608,9 +608,9 @@ mechanisms detect attacks.
 \subsection{Design-Based}
 \label{sec:prot}
 
-Here we analyze the {\sc tba} different protection approaches.
-Note that most mechanisms that belong to this category have
-not been extensively tested in terms of diagnostic performance.
+Here we analyze the three basic design-based approaches
+used to protect web applications from the attacks we
+discussed in Section~\ref{sec:attacks}.
 
 \subsubsection{Parse-Tree Validation}
 \label{sec:tree}
@@ -651,10 +651,7 @@ this approach, developers must define
 specific security policies on the server side.
 Then the policies are enforced either in the user's
 browser at runtime or in a server-side proxy that intercepts
-server responses. Policy enforcement is one of the two
-approaches (the other is Securing Mashups --- see
-Subsubsection~\ref{sec:mashups}) that is
-used to prevent {\sc csrf} attacks.
+server responses.
 
 {\it Noxes}~\cite{KKVJ06,KJKV09} is the only
 framework that partially allows the web
@@ -684,8 +681,7 @@ and {\sc dsi}~\cite{NSS06}. The main problem with
 the above mechanisms is that they are vulnerable
 to non-persistent {\sc xss} attacks that alter
 the {\sc dom} of an already rendered
-page\footnote{\url{https://www.owasp.org/index.php/DOM_Based_XSS}}
-~\cite{APKLM10}.
+page~\cite{APKLM10}.
 
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
@@ -730,14 +726,19 @@ http://foo.net/vulnerable.html?query=
 \end{lstlisting}
 
 \noindent
-{\sc soma}~\cite{OWVS08} is a policy enforcement framework that
-can actually detect such an attack (along with some architectures
-presented in Subsubsection~~\ref{sec:mashups}).
+{\it WebJail}~\cite{VDDPJ11}, and
+{\sc soma}~\cite{OWVS08} are two frameworks that
+can actually detect such an attack (locus {\sc x}).
 To achieve this, {\sc soma} requires site administrators
 to specify legitimate, external domains for sending
 or receiving information in order to approve interactions
 between them and the protected web site. As a result,
 {\sc soma} can also detect {\sc csrf} attacks.
+WebJail contains the functionality of third-party scripts
+by introducing a web component integrator that restricts
+the access that these scripts may have to either the data
+or the functionality of other components.
+
 
 Policy enforcement mechanisms that detect {\sc csrf}
 attacks are usually implemented in the form of a
@@ -770,12 +771,6 @@ Most of the aforementioned frameworks, involve
 several deployment issues since they
 require significant source modifications by the web
 developers in order to introduce their policies.
-
-\subsubsection{Securing Mashups}
-\label{sec:mashups}
-
-% {\it WebJail}~\cite{VDDPJ11}, overcomes this issue
-% by containing the functionality of third-party scripts.
 
 \subsubsection{Instruction Set Randomization (ISR)}
 
@@ -1010,7 +1005,7 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
   \hline
   \hline
-  \multirow{11}{*}{Policy Enforcement}
+  \multirow{12}{*}{Policy Enforcement}
   &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
   &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\bf ?} & {\sc csrf} \\
   &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
@@ -1024,14 +1019,14 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
   &   {\it CsFire}~\cite{DDHPJ10} & & & {\bf ?} & {\sc csrf} \\
   &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
+  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
-  \hline
-  \hline 
-  \multirow{3}{*}{Securing Mashups}
-  &   {\it {\sc om}ash}~\cite{CHC08} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} & {\sc csrf} \\
-  &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
+  % \hline
+  % \hline 
+  % \multirow{3}{*}{Securing Mashups}
+  % &   {\it {\sc om}ash}~\cite{CHC08} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} & {\sc csrf} \\
+  % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
   \hline
   \hline
   \multirow{3}{*}{{\sc isr}}
@@ -1192,10 +1187,20 @@ with exploits from {\sc cve} --- though this is not mentioned in the publication
 with exploits from {\sc cve}.
 \end{enumerate}
 
- We need to mention that there are mechanisms that
- do not need to be established purely through testing
- Since they provide systematic arguments as to why
- the design is secure against attacks.
+Notes:
+\begin{enumerate}
+\item Note that most mechanisms that implement design-based
+approaches have not been extensively tested in terms of
+diagnostic performance.
+\item We need to mention that there are mechanisms that
+do not need to be established purely through testing
+Since they provide systematic arguments as to why
+the design is secure against attacks.
+\item Policy enforcement is the
+only approach that is
+used to prevent {\sc csrf} attacks.
+\item See j{\sc csrf} for {\sc soma}'s drawbacks.
+\end{enumerate}
 
 \begin{table*}
 \caption{Availability of the corresponding mechanisms.}
@@ -1218,7 +1223,7 @@ with exploits from {\sc cve}.
   &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
   \hline  
   \hline
-  \multirow{11}{*}{Policy Enforcement}
+  \multirow{12}{*}{Policy Enforcement}
   &   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it NoForge}~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
   &   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
@@ -1232,13 +1237,13 @@ with exploits from {\sc cve}.
   &   {\it ConScript}~\cite{ML10} & {\bf AO} & {\sc na} & {\sc na} \\
   &   {\it CsFire}~\cite{DDHPJ10} & \tick & {\sc na} & {\sc na} \\
   &   {\it j{\sc csrf}}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
-    % &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
-  \hline
-  \hline 
-  \multirow{3}{*}{Securing Mashups}
-  &   {\it {\sc om}ash}~\cite{CHC08} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Mashup{\sc os}}~\cite{WFHJ07} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it WebJail}~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
+    % &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
+  % \hline
+  % \hline 
+  % \multirow{3}{*}{Securing Mashups}
+  % &   {\it {\sc om}ash}~\cite{CHC08} & {\sc na} & {\sc na} & {\sc na} \\
+  % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & {\sc na} & {\sc na} & {\sc na} \\
   % &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
   \hline
