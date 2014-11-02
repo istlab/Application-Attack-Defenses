@@ -769,7 +769,7 @@ sub-domains of the same registered domain.
 Most of the aforementioned frameworks, involve
 several deployment issues since they
 require significant source modifications by the web
-developers in order to introduce their policies.
+developers in order to introduce policies.
 
 \subsubsection{Instruction Set Randomization (ISR)}
 
@@ -858,18 +858,30 @@ where they instrument various classes. When a
 tainted string is used as an argument to a sink method
 then an exception is raised (locus {\sc z}). However, this is a simplistic
 approach that may lead to many false positives.
-{\sc csse}~\cite{PB05} and the scheme by {\it Xu et al.}~\cite{XBS06}
+{\sc csse}~\cite{PB05} and the system by {\it Xu et al.}~\cite{XBS06}
 apply further checks when they identify that tainted data
-have reached a sink. In particular, {\sc csse} associates
+have reached a sink. In particular, {\it Xu et al.}~\cite{XBS06}
+tracks taint information at the level of bytes in memory.
+To distinguish between legitimate and malicious uses
+of untrusted data that reach a sink,
+they search the data for suspicious symbols by using
+regular expressions. {\sc csse} associates
 tainted data with specific metadata. Such metadata include
 the origins of tainted data, its propagation within the application
 and other. When tainted data reaches a sink {\sc csse} performs
 syntactic checks it based on the aforementioned metadata
-(locus {\sc z}).
+(locus {\sc z}). {\it Xu et al.}~\cite{XBS06}
+have proposed a 
+In the case of {\sc dsl}-driven injection attacks,
+the above implementations can be efficient. However, this
+does not apply in the case of JavaScript injection.
+Currently, with the wide use of JavaScript these mechanisms
+would produce numerous false alarms because instead
+of checking for tainted variables ``in" scripts,
+they look inside {\sc html} responses ``for" scripts.
 
 % As the author of {\sc csse} state~\cite{PB05}, the prevention
 % of {\sc xss} attack requires a more complex analysis.
-
 
 \subsubsection{Training}
 
