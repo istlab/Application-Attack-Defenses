@@ -739,7 +739,6 @@ by introducing a web component integrator that restricts
 the access that these scripts may have to either the data
 or the functionality of other components.
 
-
 Policy enforcement mechanisms that detect {\sc csrf}
 attacks are usually implemented in the form of a
 server-side proxy (locus {\sc y})
@@ -834,13 +833,43 @@ modifications on both the server and the client.
 
 \subsubsection{Runtime Tainting}
 
-Runtime tainting is based on data-flow analysis.
-In practice, it enforces security policies by marking untrusted
-(``tainted") data and tracing its flow through the program.
-Since information flow in a system cannot be verified by examining
-a single execution trace of the system, the results of taint
-analysis will necessarily reflect approximate information regarding
-the information flow characteristics of the system to which it is applied.
+A runtime tainting scheme marks untrusted
+(``tainted") data (for instance, a variable set
+by a field in a web form) and traces its flow through
+the program. If the variable is used in an expression
+that sets another variable, that variable is also
+marked as untrusted and so on. If any of these variables
+is used to execute a potentially risky command (``sink") the
+scheme may act accordingly.
+
+Runtime tainting is provided as a feature in some
+programming languages, such as Perl and Ruby.
+By enabling the feature, Perl would refuse to run code
+vulnerable to an {\sc sql} injection attack
+(consider a tainted variable being used in a query)
+and exit with an error message.
+
+There are different implementations of these approach
+in terms of how the tainted data is marked and observed,
+and how attacks are detected.
+For example, {\it Haldar et al.}~\cite{HCF05} have implemented
+their scheme for the Java Virtual Machine ({\sc jvm})
+where they instrument various classes. When a
+tainted string is used as an argument to a sink method
+then an exception is raised (locus {\sc z}). However, this is a simplistic
+approach that may lead to many false positives.
+{\sc csse}~\cite{PB05} and the scheme by {\it Xu et al.}~\cite{XBS06}
+apply further checks when they identify that tainted data
+have reached a sink. In particular, {\sc csse} associates
+tainted data with specific metadata. Such metadata include
+the origins of tainted data, its propagation within the application
+and other. When tainted data reaches a sink {\sc csse} performs
+syntactic checks it based on the aforementioned metadata
+(locus {\sc z}).
+
+% As the author of {\sc csse} state~\cite{PB05}, the prevention
+% of {\sc xss} attack requires a more complex analysis.
+
 
 \subsubsection{Training}
 
