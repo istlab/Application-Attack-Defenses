@@ -700,7 +700,9 @@ place on the JavaScript engine of the browser (locus {\sc x}).
 In this way, {\sc xxs} attacks that take advantage
 functions like {\tt eval} and {\tt write} that are
 used to assemble innocuous-looking parts into harmful
-strings would fail. A critical issue regarding
+strings would fail.
+
+A critical issue regarding
 the above frameworks is that they cannot
 define policies that restrict the behavior of third-party
 scripts introduced by script inclusion and {\tt iframe}
@@ -856,30 +858,73 @@ For example, {\it Haldar et al.}~\cite{HCF05} have implemented
 their scheme for the Java Virtual Machine ({\sc jvm})
 where they instrument various classes. When a
 tainted string is used as an argument to a sink method
-then an exception is raised (locus {\sc z}). However, this is a simplistic
-approach that may lead to many false positives.
-{\sc csse}~\cite{PB05} and the system by {\it Xu et al.}~\cite{XBS06}
-apply further checks when they identify that tainted data
-have reached a sink. In particular, {\it Xu et al.}~\cite{XBS06}
+then an exception is raised (locus {\sc z}).
+However, this is a simplistic approach that may
+lead to many false positives.
+
+The following schemes apply further checks when
+they identify that tainted data have reached a sink.
+In particular, {\it Xu et al.}~\cite{XBS06}
 tracks taint information at the level of bytes in memory.
 To distinguish between legitimate and malicious uses
 of untrusted data that reach a sink,
 they search the data for suspicious symbols by using
-regular expressions. {\sc csse} associates
+regular expressions. {\sc csse}~\cite{PB05} associates
 tainted data with specific metadata. Such metadata include
 the origins of tainted data, its propagation within the application
 and other. When tainted data reaches a sink {\sc csse} performs
 syntactic checks it based on the aforementioned metadata
-(locus {\sc z}). {\it Xu et al.}~\cite{XBS06}
-have proposed a 
-In the case of {\sc dsl}-driven injection attacks,
-the above implementations can be efficient. However, this
-does not apply in the case of JavaScript injection.
-Currently, with the wide use of JavaScript these mechanisms
-would produce numerous false alarms because instead
-of checking for tainted variables ``in" scripts,
-they look inside {\sc html} responses ``for" scripts.
+(locus {\sc z}). {\it {\sc php} Aspis}~\cite{PMP11} works
+in a similar way. To obtain metadata, it takes advantage
+of specific features provided by {\sc php}.
+Note that the above schemes detect potential attacks
+in locus {\sc z}. This automatically means that they
+cannot detect non-persistent JavaScript-driven
+{\sc xss} attacks. {\sc wasc}~\cite{NLC07} 
+though, can deal with such attacks because it
+analyzes {\sc html} responses to check
+if there are tainted data that contain scripts (locus {\sc y}).
+A recent study showed that there are ways to circumvent
+the majority of the above schemes~\cite{NBR14}.
+Furthermore, most of them are hard to deploy since
+the majority of input vectors, string operations
+and output vectors must be instrumented.
 
+{\it Vogt et al.}~\cite{VFJKKV07}
+have developed a tainting scheme that follows a different
+approach. Contrary to the aforementioned schemes that
+operate on the server side, they track taint sensitive
+information on the client side (locus {\sc x}).
+This is a form of positive taint tracking, where
+taint data is considered to be legitimate.
+In essence, they detect JavaScript-driven {\sc xss}
+attacks by ensuring that a script can send sensitive
+user data only to the site from which it came from.
+This though, may lead to false alarms.
+{\it Stock et al.}~\cite{SLMS14} propose a scheme
+that also operates in the browser (locus {\sc x}).
+The scheme focuses on the detection of
+{\sc dom}-based {\sc xss} attacks.
+In such an attack, the malicious payload is
+executed as a result of the modification of the
+{\sc dom} environment so that the client-side
+code runs in an unanticipated manner even if the
+{\sc http} response that triggers the injection seems legitimate.
+The scheme is different to the previous one because it
+marks and observes data that are considered harmful.
+Specifically, it employs a taint-enhanced JavaScript
+engine that tracks the flow of attacker-controlled data.
+To detect potential attacks the scheme utilizes
+{\sc html} and JavaScript parsers that can
+identify the generation of code coming from
+tainted data.
+
+% @dimitro: move this to the analysis Section:
+% This scheme is an efficient scheme that focuses
+% on a specific category of {\sc xss} attacks and
+% takes into consideration many attack vectors
+% that many of the previous schemes do not.
+% Also: 
 % As the author of {\sc csse} state~\cite{PB05}, the prevention
 % of {\sc xss} attack requires a more complex analysis.
 
@@ -986,10 +1031,6 @@ could detect such attacks. Specifically,
 root of an {\sc sql} statement, thus it can correlate
 queries with their call sites and detect attacks
 like the aforementioned one.
-In a similar manner, training tools that detect
-{\sc xss} attacks based on JavaScript injection
-would fail to detect a mimicry attack like the
-one mentioned in Subsubsection {\sc tba}.
 
 In general, the detection accuracy of training approaches is
 heavily based on the coverage that is achieved during the
@@ -1022,6 +1063,9 @@ separately.
 maps legitimate scripts to {\sc http} responses.
 
 {\it Blueprint}~\cite{LV09}.
+
+{\it Diglossia}~\cite{SMS13} performs positive taint tracking and
+parse-tree validation.
 
 \begin{landscape}
 \begin{table}
@@ -1058,7 +1102,7 @@ maps legitimate scripts to {\sc http} responses.
   % &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
   &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
   &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
-  &   {\it CsFire}~\cite{DDHPJ10} & & & {\bf ?} & {\sc csrf} \\
+  &   {\it CsFire}~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{3} & {\bf ?} & {\sc csrf} \\
   &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
   &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
@@ -1076,7 +1120,7 @@ maps legitimate scripts to {\sc http} responses.
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
   \hline
   \hline
-	\multirow{8}{*}{Runtime Tainting}
+	\multirow{7}{*}{Runtime Tainting}
   &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
 	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
 	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
@@ -1085,7 +1129,6 @@ maps legitimate scripts to {\sc http} responses.
 	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} & {\sc xss} \\
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
-  &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
 	\hline
 	\hline  
   \multirow{6}{*}{Training}
@@ -1098,10 +1141,11 @@ maps legitimate scripts to {\sc http} responses.
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
   \hline
   \hline
-  \multirow{3}{*}{Hybrid}
+  \multirow{4}{*}{Hybrid}
   &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
   &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
   &   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\
+  &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
@@ -1112,6 +1156,7 @@ maps legitimate scripts to {\sc http} responses.
 		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
 	based on: a) real-world applications known to be vulnerable ({\it r}), b) synthetic benchmarks ({\it s}), c) both ({\it a}).
 	If no testing has taken place we add a question mark ({\bf ?}).
+    \item[3] The number involve requests.
 	\end{footnotesize}
     \end{tablenotes}
     \end{small}
@@ -1294,7 +1339,7 @@ used to prevent {\sc csrf} attacks.
   &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
   \hline 
-	\multirow{8}{*}{Runtime Tainting}
+	\multirow{7}{*}{Runtime Tainting}
 	&  	{\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it Xu et al.}~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
@@ -1302,7 +1347,6 @@ used to prevent {\sc csrf} attacks.
 	&  	{\it Vogt et al.}~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & {\bf AO} & {\sc na} & {\bf AO} \\
 	& 	{\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
   \hline 
   \multirow{6}{*}{Training}
@@ -1314,10 +1358,11 @@ used to prevent {\sc csrf} attacks.
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
   \hline
   \hline
-  \multirow{3}{*}{Hybrid}
+  \multirow{4}{*}{Hybrid}
   &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
+  &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
