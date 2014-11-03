@@ -685,7 +685,7 @@ the {\sc dom} of an already rendered
 page~\cite{APKLM10}.
 In addition, a recent variation of JavaScript
 injection attacks known as return-to-JavaScript
-attack~\cite{APKLM10} can be use to bypass
+attack~\cite{APKLM10} can be used to bypass
 the above mechanisms. Such attacks share
 many similarities with the {\it return-to-lib}
 attack~\cite{SPPGMMB04}. When performing an
@@ -863,9 +863,10 @@ modifications on both the server and the client.
 In this section we examine the two main behavior-based
 approaches.
 
-\subsubsection{Runtime Tainting}
+\subsubsection{Taint Tracking}
+\label{sec:taint}
 
-A runtime tainting scheme marks untrusted
+A taint tracking scheme marks untrusted
 (``tainted") data (for instance, a variable set
 by a field in a web form) and traces its flow through
 the program. If the variable is used in an expression
@@ -874,7 +875,7 @@ marked as untrusted and so on. If any of these variables
 is used to execute a potentially risky command (``sink") the
 scheme may act accordingly.
 
-Runtime tainting is provided as a feature in some
+Taint tracking is provided as a feature in some
 programming languages, such as Perl and Ruby.
 By enabling the feature, Perl would refuse to run code
 vulnerable to an {\sc sql} injection attack
@@ -909,7 +910,8 @@ of specific features provided by {\sc php}.
 Note that the above schemes detect potential attacks
 in locus {\sc z}. This automatically means that they
 cannot detect non-persistent JavaScript-driven
-{\sc xss} attacks. {\sc wasc}~\cite{NLC07} 
+{\sc xss} attacks. Although they can be
+modified to do so. {\sc wasc}~\cite{NLC07} 
 though, can deal with such attacks because it
 analyzes {\sc html} responses to check
 if there are tainted data that contain scripts (locus {\sc y}).
@@ -1086,6 +1088,9 @@ are implemented within a proxy on the server-side.
 
 This category includes mechanisms that borrow
 characteristics from more than one of the above categories.
+Two of them focus on the detection of {\sc xss}
+attacks and one of them focuses on {\sc dsl} code
+injection attacks.
 
 {\sc xss-guard}~\cite{BV08} is a training scheme
 that also employs parse-tree validation.
@@ -1094,7 +1099,7 @@ to {\sc http} responses. During production
 {\sc xss-guard} retrieves for every script included
 in a response its parse-tree and checks if it
 is one of those previously mapped to this response.
-Apart from the  comparison of the parsed-trees, {\sc xss-guard}
+Apart from the comparison of the parsed-trees, {\sc xss-guard}
 checks also for an exact match of lexical entities.
 To achieve this, the scheme utilizes that data structures
 of Firefox's JavaScript engine (locus {\sc x}).
@@ -1117,10 +1122,38 @@ to retrieve the {\sc ip} addresses of the
 users that visit the vulnerable site.
 
 {\it Blueprint}~\cite{LV09} is a policy
-enforcement mechanism that also utilizes parsed-trees.
+enforcement framework that also utilizes parsed-trees
+to detect {\sc xss} attacks. To guarantee
+that untrusted content is not executed, Blueprint generates
+on the server-side a parse-tree from untrusted {\sc html}
+to ensure that it does not contain any dynamic content.
+Then the parsed-tree is transfered to the document
+generator of the browser (locus {\sc x}) where untrusted
+browser parsing behavior is ruled out.
+Blueprint is an efficient countermeasure but it
+imposes a significant overhead due to its
+extensive parsing (see Table~\ref{tab:comp}).
 
-{\it Diglossia}~\cite{SMS13} performs positive taint tracking and
-parse-tree validation.
+{\it Diglossia}~\cite{SMS13} combines positive taint tracking
+(see Subsubsection~\ref{sec:taint}) together with
+parse-tree validation. Diglossia was based on the
+theory of Ray and Ligatti~\cite{RL12b} (also see
+Section~\ref{sec:attacks}) to detect {\sc dsl}
+code injection attacks. In addition, it is actually
+the first, and so far the only framework that detects
+No{\sc sql} injection attacks.
+When an application computes an output string (query),
+Diglossia computes a ``shadow" of this string.
+Specifically, it maps all characters introduced by
+the application to a shadow character set.
+This set does not contain any characters coming
+from the tainted input. Then, the scheme
+creates the parse-tree of the query that
+is about to be executed with the parse-tree
+of the ``shadow" and compares them (locus {\sc z}).
+If the trees are not equal the application is probably
+under attacks. Diglossia can be bypassed in the same
+way as other taint tracking approaches~\cite{NBR14}.
 
 \begin{landscape}
 \begin{table}
@@ -1176,7 +1209,7 @@ parse-tree validation.
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
   \hline
   \hline
-	\multirow{7}{*}{Runtime Tainting}
+	\multirow{7}{*}{Taint Tracking}
   &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
 	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
 	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
@@ -1395,7 +1428,7 @@ used to prevent {\sc csrf} attacks.
   &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
   \hline 
-	\multirow{7}{*}{Runtime Tainting}
+	\multirow{7}{*}{Taint Tracking}
 	&  	{\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
 	&  	{\it Xu et al.}~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
