@@ -644,6 +644,7 @@ this approach and examine the syntax trees
 of scripts to detect JavaScript-driven {\sc xss} attacks.
 
 \subsubsection{Policy Enforcement}
+\label{sec:policy}
 
 This approach is used to detect attacks that target web users.
 When using a framework that implements
@@ -682,6 +683,15 @@ the above mechanisms is that they are vulnerable
 to non-persistent {\sc xss} attacks that alter
 the {\sc dom} of an already rendered
 page~\cite{APKLM10}.
+In addition, a recent variation of JavaScript
+injection attacks known as return-to-JavaScript
+attack~\cite{APKLM10} can be use to bypass
+the above mechanisms. Such attacks share
+many similarities with the {\it return-to-lib}
+attack~\cite{SPPGMMB04}. When performing an
+attack like this the malicious user transfers the
+execution to points that contain script
+code which in turn is used to perform the attack.
 
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
@@ -832,6 +842,9 @@ is required while Noncespaces and x{\sc js} require
 modifications on both the server and the client.
 
 \subsection{Behavior-Based}
+
+In this section we examine the two main behavior-based
+approaches.
 
 \subsubsection{Runtime Tainting}
 
@@ -1031,6 +1044,10 @@ could detect such attacks. Specifically,
 root of an {\sc sql} statement, thus it can correlate
 queries with their call sites and detect attacks
 like the aforementioned one.
+Furthermore, training tools that detect
+{\sc xss} attacks based on JavaScript injection
+would fail to detect a return-to-JavaScript attack
+like the one mentioned in Subsubsection~\ref{sec:policy}.
 
 In general, the detection accuracy of training approaches is
 heavily based on the coverage that is achieved during the
