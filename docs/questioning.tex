@@ -817,6 +817,23 @@ configuration language. This brings up questions
 concerning the diagnostic performance of the mechanism
 since the corresponding testing is insufficient
 (see Table~\ref{tab:comp}).
+{\it {\sc sm}ask}~\cite{JB07} is another framework
+that was inspired by {\sc isr}. To detect {\sc xss}
+attacks it searches for {\sc html} and JavaScript
+keywords within the application's legitimate code.
+This is done before the processing of an {\sc http}
+request. When it finds one it adds a token to it.
+This results to a ``code mask". Then,
+before sending the resulting {\sc html} data to the
+web user, the framework searches the data for
+illegal code by using the same keywords.
+Since all legitimate code has been ``masked",
+the injected code can be identified.
+The pre- and post-processing of the code though,
+may add a significant overhead to the application.
+Unfortunately, the authors of {\sc sm}ask
+did not provide measurements regarding the
+computational performance of the tool (see Table~\ref{tab:comp}).
 
 {\sc isr} is a deterministic approach that can be applied
 to detect different attacks in an efficient manner.
@@ -874,7 +891,6 @@ tainted string is used as an argument to a sink method
 then an exception is raised (locus {\sc z}).
 However, this is a simplistic approach that may
 lead to many false positives.
-
 The following schemes apply further checks when
 they identify that tainted data have reached a sink.
 In particular, {\it Xu et al.}~\cite{XBS06}
@@ -910,7 +926,7 @@ operate on the server side, they track taint sensitive
 information on the client side (locus {\sc x}).
 This is a form of positive taint tracking, where
 taint data is considered to be legitimate.
-In essence, they detect JavaScript-driven {\sc xss}
+Their scheme detects JavaScript-driven {\sc xss}
 attacks by ensuring that a script can send sensitive
 user data only to the site from which it came from.
 This though, may lead to false alarms.
@@ -1068,14 +1084,6 @@ are implemented within a proxy on the server-side.
 \subsection{Hybrid}
 \label{sec:hybrid}
 
-{\it {\sc sm}ask}~\cite{JB07} is a mechanism that detects
-both {\sc sql} injection attacks and {\sc xss} attacks.
-To do this, it identifies malicious
-code by automatically separating user input from legitimate code.
-This is done by introducing specific syntactic constructs
-that handle server-side languages used for data management
-separately.
-
 {\sc xss-guard}~\cite{BV08}
 maps legitimate scripts to {\sc http} responses.
 
@@ -1131,8 +1139,9 @@ parse-tree validation.
   % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
   \hline
   \hline
-  \multirow{3}{*}{{\sc isr}}
+  \multirow{4}{*}{{\sc isr}}
   &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} & {\sc sql} injection \\
+  &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
   &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
   \hline
@@ -1158,8 +1167,7 @@ parse-tree validation.
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
   \hline
   \hline
-  \multirow{4}{*}{Hybrid}
-  &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
+  \multirow{3}{*}{Hybrid}
   &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
   &   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\
   &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
@@ -1350,8 +1358,9 @@ used to prevent {\sc csrf} attacks.
   % &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
   \hline
-  \multirow{3}{*}{{\sc isr}}
+  \multirow{4}{*}{{\sc isr}}
   &   {\it {\sc sql}rand}~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
@@ -1375,8 +1384,7 @@ used to prevent {\sc csrf} attacks.
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
   \hline
   \hline
-  \multirow{4}{*}{Hybrid}
-  &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
+  \multirow{3}{*}{Hybrid}
   &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
   &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
