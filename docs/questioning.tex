@@ -826,7 +826,7 @@ request. When it finds one it adds a token to it.
 This results to a ``code mask". Then,
 before sending the resulting {\sc html} data to the
 web user, the framework searches the data for
-illegal code by using the same keywords.
+illegal code by using the same keywords (locus {\sc y}).
 Since all legitimate code has been ``masked",
 the injected code can be identified.
 The pre- and post-processing of the code though,
@@ -1084,10 +1084,40 @@ are implemented within a proxy on the server-side.
 \subsection{Hybrid}
 \label{sec:hybrid}
 
-{\sc xss-guard}~\cite{BV08}
-maps legitimate scripts to {\sc http} responses.
+This category includes mechanisms that borrow
+characteristics from more than one of the above categories.
 
-{\it Blueprint}~\cite{LV09}.
+{\sc xss-guard}~\cite{BV08} is a training scheme
+that also employs parse-tree validation.
+During training, the scheme maps legitimate scripts
+to {\sc http} responses. During production
+{\sc xss-guard} retrieves for every script included
+in a response its parse-tree and checks if it
+is one of those previously mapped to this response.
+Apart from the  comparison of the parsed-trees, {\sc xss-guard}
+checks also for an exact match of lexical entities.
+To achieve this, the scheme utilizes that data structures
+of Firefox's JavaScript engine (locus {\sc x}).
+However, string literals are not compared literally
+thus, a possible false negative result could occur if an
+adversary performed a mimicry attack~\cite{WS02}.
+For example, consider a banner rotator that
+every time it runs, it creates a value that depends on
+the current date and the length of the array that
+contains the references of the various images to be displayed.
+Then, based on this value it shows a specific
+image to a user. In a vulnerable web site that allows
+users to post data and contains this banner
+rotator, a malicious user could create and store a script
+that has the same code structure, with the same JavaScript
+keywords like the above. In this script the
+attacker could also include references to tiny
+images hosted on a web server that is maintained by him in order
+to retrieve the {\sc ip} addresses of the
+users that visit the vulnerable site.
+
+{\it Blueprint}~\cite{LV09} is a policy
+enforcement mechanism that also utilizes parsed-trees.
 
 {\it Diglossia}~\cite{SMS13} performs positive taint tracking and
 parse-tree validation.
