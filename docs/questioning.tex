@@ -602,10 +602,9 @@ Figure~\ref{fig:defenses} presents a taxonomy of the
 defenses that protect web applications against attacks based on
 code injection vulnerabilities.
 We can identify three main approaches, namely:
-{\it design-based}, {\it behavior-based}
-and {\it hybrid}.
+{\it design-based}, {\it behavior-based} and {\it hybrid}.
 The design-based category involves mechanisms that make applications
-immune to different attack vectors by design~\cite{JL75,L81}.
+immune to different attack vectors by design~\cite{JL75,L81}. 
 The behavior-based incorporates a variety of methods and
 schemes that inspect the behavior of applications
 and detect attacks based on specific criteria~\cite{D76,A00}.
@@ -1407,7 +1406,7 @@ authors reffered to, to find vulnerabilities to test
 their mechanims. We also provide which source was used
 by which publication:
 {\it Bugtraq}~\cite{PB05,KKVJ06,KJKV09,JEP08},
-{\sc cve}~\cite{XBS06,NLC07,VFJKKV07,PMP11,BK04,JB07,SMS13,WPLKK09},
+{\sc cve}~\cite{XBS06,NLC07,VFJKKV07,PMP11,BK04,JB07,SMS13,WPLKK09,JKK06a},
 {\sc xss}ed.com~\cite{NSS06,APKLM10},
 ha.ckers.org~\cite{TNH07,PSC09,LV09},
 Microsoft~\cite{RDWDE07}.}
@@ -1430,9 +1429,17 @@ security bulletin provider. Figure~\ref{fig:defect_sources}
 presents how many (in terms of percentages) and which
 (in the figure's caption) authors referred to which source.
 In numerous occassions authors performed tests based
-on the same applications. For instance, 12 mechanisms
+on the same applications. For example, 12 mechanisms
 were tested on a vulnerable version of
 {\sc phpbb}.\footnote{https://www.phpbb.com/}
+
+There are also authors that took a different approach.
+For instance, during their initial tests,
+Stock et al.~\cite{SLMS14} managed to bypass
+the browser-based {\sc xss} filters of the
+73\% of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
+These vulnerabilities were actually found during
+their previous research~\cite{LSJ13}.
 
 \subsection{Trade-offs}
 
