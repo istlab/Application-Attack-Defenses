@@ -1440,6 +1440,29 @@ the browser-based {\sc xss} filters of the
 73\% of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
 These vulnerabilities were actually found during
 their previous research~\cite{LSJ13}.
+Furthermore, in the publications that
+{\sc amnesia}~\cite{HO05,HO06,HO05b}
+and {\sc sd}river~\cite{MS09,MKS09,MKLS11} were presented,
+authors managed to break existing application suites
+and then test the diagnostic performance of their tools on them.
+
+% Comment: The above are some extra findings that
+% indicate that there is no standard way to
+% test such mechanisms. Perhaps, forming a
+% standard way to test such tools in terms
+% of diagnostic and computational performance
+% would be one of the reasons of adopting them.
+
+\subsection{Ease of Use}
+
+Consider the majority of mechanisms coming from
+the policy enforcement category. In most cases
+developers should modify multiple components
+to use each mechanism. Specifically, mechanisms like
+BrowserShield, and {\sc beep} require modifications
+both on the server and the client side.
+Thus, it would be difficult for them to be adopted by
+both browser vendors and application developers.
 
 \subsection{Trade-offs}
 
