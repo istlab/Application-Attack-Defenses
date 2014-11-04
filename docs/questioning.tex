@@ -103,12 +103,11 @@ Security and Protection, Application Security, Code injection Attacks.
 
 %Introduction~\cite{I05}. Also see~\cite{A00}.
 
-Web application attacks may involve security misconfigurations,
-broken authentication and session management, or other issues.
-Some of the most dangerous web application attacks, though,
-are associated with the processing of external input data
-that may contain malicious code, a vulnerability known as
-code injection.
+Web application attacks may involve security misconfigurations, broken
+authentication and session management, or other issues. Some of the
+most dangerous web application attacks are associated with the
+processing of external input data that can contain malicious code, a
+vulnerability known as code injection.
 
 Such attacks include Cross-Site Scripting ({\sc xss})
 attacks~\cite{SG07}, {\sc sql} injection attacks~\cite{RL12b},
@@ -116,46 +115,42 @@ Cross-Site Request Forgery ({\sc csrf}) attacks~\cite{LZRL09}, and
 others. Attacks like these have been topping the vulnerability lists
 of numerous bulletin providers like the Open Web Application Security
 Project\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project}}
-({\sc owasp}) and
-{\sc mitre}\footnote{\url{http://cwe.mitre.org/top25/}} for several
+({\sc owasp}) and {\sc
+  mitre}\footnote{\url{http://cwe.mitre.org/top25/}} for several
 years. Consider the case of {\sc owasp}'s Top Ten project whose main
 goal is to raise awareness about web application security by
-identifying some of the most critical risks facing organizations which
-is referenced by numerous researchers. In its three consecutive Top
-Ten lists (2007, 2010, 2013), different executable source code-driven
-injection attacks dominate the top five positions. Malicious users
-find new ways to bypass defense mechanisms by using a variety of
-techniques despite the numerous countermeasures that are being
-introduced. Note that the number of systems developed to counter
-{\sc sql} injection attacks until 2006 was more than twenty~\cite{HVO06}.
-Since then the number has doubled.
-Researchers have also indicated that the number of such attacks
-is steadily increasing in recent years~\cite{SSL12}.
+identifying some of the most critical risks facing organizations. The
+Top Ten project is popular, referenced by numerous researchers. In its
+three consecutive Top Ten lists (2007, 2010, 2013), different
+executable source code-driven injection attacks dominate the top five
+positions. Malicious users find new ways to bypass defense mechanisms
+by using a variety of techniques despite the numerous countermeasures
+that are being introduced. Note that the number of systems developed
+to counter {\sc sql} injection attacks until 2006 was more than
+twenty~\cite{HVO06}. Since then the number has doubled. Researchers
+have also indicated that the number of such attacks is steadily
+increasing in recent years~\cite{SSL12}.
 
 In this paper we initially show how the above attacks can be seen from
-a {\it common perspective}. We achieve this by providing
-an exploitation model that highlights the following fact:
-the majority of the steps needed to perform application attacks
-based on executable source code injection are
-common.\footnote{Note that we leave out attacks that are based on
-binary code injection (i.e. buffer
-overflows --- see Section~\ref{sec:attacks}).}
-This is validated by the fact that there are
-protection mechanisms that can detect more than
-one of these attacks. Then, we {\it categorize}
-the top 34 protection mechanisms that detect such attacks and
-are presented in publications cited more than twenty times.
-For the sake of our study, we choose
-to make some exceptions and include some of the
-latest mechanisms that were presented in top security
-conferences even if the corresponding publications have
-been cited less than twenty times. Finally, we {\it analyze}
-each mechanism based on the following dimensions:
+a {\it common perspective}. We achieve this by providing an
+exploitation model that highlights the following fact: the majority of
+the steps needed to perform application attacks based on executable
+source code injection are common.\footnote{Note that we leave out
+  attacks that are based on binary code injection (i.e. buffer
+  overflows --- see Section~\ref{sec:attacks}).} This is validated by
+the fact that there are protection mechanisms that can detect more
+than one of these attacks. Then, we {\it categorize} a selection of
+these protection mechanisms. The selection comprises protection
+mechanisms that detect such attacks and are presented in publications
+cited more than twenty times, and some of the latest mechanisms that
+have been presented in top security conferences that have been cited
+less than twenty times. We included the second group so that we would
+not penalize recent research. Finally, we {\it analyze} each mechanism based
+on the following dimensions:
 \begin{itemize}
-\item {\it Diagnostic Performance} As long
-as we examine protection mechanisms that detect
-attacks, the non-existence of false positive and
-negative alarms is a reasonable requirement.
+\item {\it Diagnostic Performance} Protection mechanisms are as good
+  as their detection capability; this requires low false positive and
+  false negative rates.
 \item {\it Computational Performance} We examine
 the overhead of the mechanisms
 that affect the experience of a web user who actually
@@ -177,14 +172,7 @@ we can identify the advantages and disadvantages of the
 various mechanisms and enumerate some of their common
 characteristics. We can also draw useful conclusions
 about the various categories and see how they compare
-to each other. A worrying observation is that sometimes,
-researchers test the diagnostic performance of their
-mechanisms in a poor manner. This turns out as very
-critical because some of these mechanisms can actually
-be bypassed. In addition, researchers do
-not make their mechanisms available to the community,
-thus no one can either use their mechanism,
-or replicate their experiments.
+to each other.
 
 There is already a survey on mitigating software vulnerabilities
 in general~\cite{SZ12}. The scope of that
@@ -205,18 +193,23 @@ as we mentioned in the previous paragraph.
 The main contributions of this paper are the following:
 
 \begin{enumerate}
-\item We provide an exploitation model that puts
-application attacks based on executable source code injection
-under a common perspective.
-\item We categorize and analyze previously proposed
-defenses based on criteria that are considered critical
-when building protection mechanisms.
-\item We discuss some serious issues raised from our
-findings. Such can be the main reasons why
-the mechanisms are not adopted in practice.
-\item We discuss what are the necessary criteria
-for new mechanisms and how our work can help
-researchers to design new countermeasures.
+\item We provide an exploitation model that puts application attacks
+  based on executable source code injection under a common
+  perspective.
+\item We categorize and analyze previously proposed defenses based on
+  criteria that are considered critical when building protection
+  mechanisms.
+\item A worrying observation is that sometimes researchers test the
+  diagnostic performance of their mechanisms in a poor manner. This
+  turns out as very critical because some of these mechanisms can
+  actually be bypassed.
+\item Also worrying is that researchers do not make their mechanisms
+  available to the community, thus no one can either use their
+  mechanism, or replicate their experiments.
+\item We discuss how our observations may be the main reasons why the
+  mechanisms are not adopted in practice.
+\item We discuss what are the necessary criteria for new mechanisms
+  and how our work can help researchers to design new countermeasures.
 \end{enumerate}
 
 The rest of the paper is organized as follows. {\sc tba}.
@@ -251,29 +244,13 @@ of the programming flaw that leads to the attack.
 
 Bratus et al.~\cite{BLSPS11} portray the issue in a generic fashion:
 {\it ``unexpected (and unexpectedly powerful) computational models
-inside targeted systems, which turn a part of the target into a
-so-called `weird machine' programmable by the attacker via crafted inputs
-(a.k.a. `exploits')''}.
-An example of the above definition is the
-following: The code fragment below defines the operation of
-addition in the Scheme programming language~\cite{AS96,D09}:
-
-\begin{verbatim}
-(define (add x y) (+ x y))
-\end{verbatim}
-
-\noindent
-Consider the case where instead of a number, a function that leads to an
-endless loop is passed as an argument by the user. This will cause
-the interpreter to enter
-an endless loop and lead to a denial of service.
-% Keep in mind that a {\sc cia} does not require a programming
-% language with first-class functions.
-The intuition here is that {\it ``every application that copies
-untrusted input verbatim into an output
-program is vulnerable to code injection''}.
-Ray and Ligatti~\cite{RL12b} actually proved the above
-claim based on formal language theory.
+  inside targeted systems, which turn a part of the target into a
+  so-called `weird machine' programmable by the attacker via crafted
+  inputs (a.k.a. `exploits')''}. In particular, {\it ``every
+  application that copies untrusted input verbatim into an output
+  program is vulnerable to code injection''}. Ray and
+Ligatti~\cite{RL12b} actually proved the above claim based on formal
+language theory.
 
 \begin{figure}
 \begin{center}
@@ -388,7 +365,7 @@ data provided by a user is used immediately by server-side scripts to
 parse and display a page of results, without properly sanitizing the
 request ({\sc step}: {\sc p-xss} 8 \text{\textbar} {\sc n-xss} 3).
 Thus, in a non-persistent {\sc xss} attack the injected code
-never reaches the database and immediately becomes a part of the
+is never saved on the server and immediately becomes part of the
 content that is sent back to a web user.
 
 In persistent {\sc xss} attacks malicious code is saved by the server.
