@@ -74,8 +74,12 @@ louridas@aueb.gr
   We then categorize and analyze the various defense mechanisms that
   have been developed. Our analysis is based on dimensions such as
   accuracy, performance, deployment and security. Especially notable
-  for a key category is accuracy, as our findings show that there are
+  is accuracy, as our findings show that there are
   many defense mechanisms that are tested in a poor manner.
+  In addition, we observe that there are many protection mechanisms
+  that can be bypassed by attackers that know how the mechanisms
+  work. Finally, we see that researchers tend to not make
+  their mechanisms available to the community.
 
   By comparing the existing defenses and identifying their common
   characteristics, we help: a) researchers and practitioners to choose
@@ -96,6 +100,8 @@ Security and Protection, Application Security, Code injection Attacks.
 \IEEEpeerreviewmaketitle
 
 \section{Introduction Remarks}
+
+%Introduction~\cite{I05}. Also see~\cite{A00}.
 
 Web application attacks may involve security misconfigurations,
 broken authentication and session management, or other issues.
@@ -126,36 +132,25 @@ Since then the number has doubled.
 Researchers have also indicated that the number of such attacks
 is steadily increasing in recent years~\cite{SSL12}.
 
-There is already a survey on mitigating
-software vulnerabilities in general~\cite{SZ12}.
-The scope of that research is pretty wide and leaves
-out many approaches and mechanisms that we report here.
-This is mainly because this work includes countermeasures
-that detect such vulnerabilities via program analysis
-(which is done during development or testing), while
-we include protection mechanisms that counter
-such attacks when they take place.
-Also, countermeasures that prevent {\sc sql}
-injection attacks~\cite{HVO06}, have already been surveyed.
-However, this survey is quite old and since then
-the number of countermeasures that detect {\sc sql}
-injection attacks alone, has been drastically increased
-as we mentioned in the previous paragraph.
-
-In our research we focus on the top
-{\sc tba} systems that and are presented
-in publications cited more than twenty times.
+In this paper we initially show how the above attacks can be seen from
+a {\it common perspective}. We achieve this by providing
+an exploitation model that highlights the following fact:
+the majority of the steps needed to perform application attacks
+based on executable source code injection are
+common.\footnote{Note that we leave out attacks that are based on
+binary code injection (i.e. buffer
+overflows --- see Section~\ref{sec:attacks}).}
+This is validated by the fact that there are
+protection mechanisms that can detect more than
+one of these attacks. Then, we {\it categorize}
+the top 34 protection mechanisms that detect such attacks and
+are presented in publications cited more than twenty times.
 For the sake of our study, we choose
-to make some exceptions and include some latest mechanisms
-that were presented in top security conferences even if
-the corresponding publications have been cited less than
-twenty times.
-
-% TODO@dimitro: explain why you leave out {\it SecuriFly}~\cite{MLL05}.
-
-Introduction~\cite{I05}. Also see~\cite{A00}.
-
-Requirements:
+to make some exceptions and include some of the
+latest mechanisms that were presented in top security
+conferences even if the corresponding publications have
+been cited less than twenty times. Finally, we {\it analyze}
+each mechanism based on the following dimensions:
 \begin{itemize}
 \item {\it Diagnostic Performance} As long
 as we examine protection mechanisms that detect
@@ -174,9 +169,73 @@ attackers that know how it works and wants to circumvent it.
 \item {\it Availability}
 \end{itemize}
 
+\noindent
 All the aforementioned requirements are considered critical
 when building security mechanisms that protect
-applications~\cite{A01,A00}.
+applications~\cite{A01,A00}. Based on this analysis
+we can identify the advantages and disadvantages of the
+various mechanisms and enumerate some of their common
+characteristics. We can also draw useful conclusions
+about the various categories and see how they compare
+to each other. A worrying observation is that sometimes,
+researchers test the diagnostic performance of their
+mechanisms in a poor manner. This turns out as very
+critical because some of these mechanisms can actually
+be bypassed. In addition, researchers do
+not make their mechanisms available to the community,
+thus no one can either use their mechanism,
+or replicate their experiments.
+
+There is already a survey on mitigating software vulnerabilities
+in general~\cite{SZ12}. The scope of that
+research is pretty wide and leaves out the majority of the
+approaches and mechanisms that we report here.
+This is mainly because this work includes countermeasures
+that detect such vulnerabilities via program analysis
+(which is done during development or testing), while
+we include protection mechanisms that counter
+such attacks when they take place.
+Also, countermeasures that prevent {\sc sql}
+injection attacks~\cite{HVO06}, have already been surveyed.
+However, this survey is quite old and since then
+the number of countermeasures that detect {\sc sql}
+injection attacks alone, has been drastically increased
+as we mentioned in the previous paragraph.
+
+The main contributions of this paper are the following:
+
+\begin{enumerate}
+\item We provide an exploitation model that puts
+application attacks based on executable source code injection
+under a common perspective.
+\item We categorize and analyze previously proposed
+defenses based on criteria that are considered critical
+when building protection mechanisms.
+\item We discuss some serious issues raised from our
+findings. Such can be the main reasons why
+the mechanisms are not adopted in practice.
+\item We discuss what are the necessary criteria
+for new mechanisms and how our work can help
+researchers to design new countermeasures.
+\end{enumerate}
+
+The rest of the paper is organized as follows. {\sc tba}.
+
+% In the last 15 years there are numerous mechanisms that have
+% been developed to detect one or more of the attacks mentioned
+% above. However, the majority of them are not used in practice.
+% This is due to the following reasons:
+% a) the mechanisms have not been extensively tested in terms
+% of accuracy,
+% b) are hard to deploy because they require many modifications
+% either on the client-side, the server-side, or both,
+% c) they add significant overhead, and
+% d) can be bypassed by attackers that know how they work.
+% The motivation behind this research is to systematize
+% and analyze previously proposed protection mechanisms.
+% In this way we can highlight the advantages
+% and disadvantages of each mechanism, enlist them
+% into different categories, and see how they compare to each other.
 
 \section{Attacks}
 \label{sec:attacks}
