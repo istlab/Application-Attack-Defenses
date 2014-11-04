@@ -349,7 +349,11 @@ corresponding tuple that includes the step number for
 every attack. Note that {\sc xss} attacks can also involve
 {\it phishing}. Every {\it locus} indicates a step where mechanisms
 detect attacks. For every locus we provide the corresponding
-references: ({\sc draft}).}
+references:
+locus {\sc x}~\cite{KKVJ06,KJKV09,TNH07,NSS06,APKLM10,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,APKLM10,VFJKKV07,SLMS14},
+locus {\sc y}~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08},
+locus {\sc z}~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,MKS09,HO05,HO06,HO05b,SMS13},
+locus $\Omega$~\cite{BK04,LLW02}.}
 \end{figure*}
 
 \section{Analysis Dimensions}
@@ -546,8 +550,16 @@ To sum up, we evaluate diagnostic performance on two criteria:
 \leavevmode
 \includegraphics[scale=0.65]{defenses.pdf}
 \end{center}
-\caption{\label{fig:defenses}The basic categories of web application
-attack countermeasures ({\sc draft}).}
+\caption{\label{fig:defenses}The basic categories of countermeasures
+against web application
+attacks, based on executable source code injectiion. For each approach
+we provide the references that present corresponding mechanisms:
+{\bf 1}~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,LV09},
+{\bf 2}~\cite{BK04,JB07,GC09,APKLM10},
+{\bf 3}~\cite{BWS05,SW06},
+{\bf 4}~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
+{\bf 5}~\cite{LLW02,HO05,HO06,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
+{\bf 6}~\cite{BV08,LV09,SMS13}.}
 \end{figure*}
 
 Figure~\ref{fig:defenses} presents a taxonomy of the
@@ -772,8 +784,8 @@ support cross-origin requests.
 has a very similar functionality and meanwhile
 addresses the above problems.
 Finally, {\it CsFire}~\cite{DDHPJ10}
-examines cross-domain interactions,
-to design a cross-domain policy.
+examines cross-domain interactions, to design a
+cross-domain policy on the client's side (locus {\sc x}).
 The policy is based on the concept of a relaxed
 same-origin policy that allows communication between
 sub-domains of the same registered domain.
@@ -893,7 +905,8 @@ then an exception is raised (locus {\sc z}).
 However, this is a simplistic approach that may
 lead to many false positives.
 The following schemes apply further checks when
-they identify that tainted data have reached a sink.
+they identify that tainted data have reached a sink
+(locus {\sc z}).
 In particular, {\it Xu et al.}~\cite{XBS06}
 tracks taint information at the level of bytes in memory.
 To distinguish between legitimate and malicious uses
@@ -907,13 +920,12 @@ syntactic checks it based on the aforementioned metadata
 (locus {\sc z}). {\it {\sc php} Aspis}~\cite{PMP11} works
 in a similar way. To obtain metadata, it takes advantage
 of specific features provided by {\sc php}.
-Note that the above schemes detect potential attacks
-in locus {\sc z}. This automatically means that they
-cannot detect non-persistent JavaScript-driven
-{\sc xss} attacks. Although they can be
-modified to do so. {\sc wasc}~\cite{NLC07} 
-though, can deal with such attacks because it
-analyzes {\sc html} responses to check
+% Note that the above schemes detect potential attacks
+% in locus {\sc z}. This automatically means that they
+% cannot detect non-persistent JavaScript-driven
+% {\sc xss} attacks. Although they can be
+% modified to do so.
+{\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
 if there are tainted data that contain scripts (locus {\sc y}).
 A recent study showed that there are ways to circumvent
 the majority of the above schemes~\cite{NBR14}.
