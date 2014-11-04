@@ -386,9 +386,9 @@ every attack. Note that {\sc xss} attacks can also involve
 {\it phishing}. Every {\it locus} indicates a step where mechanisms
 detect attacks. For every locus we provide the corresponding
 references:
-locus {\sc x}~\cite{KKVJ06,KJKV09,TNH07,NSS06,APKLM10,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,APKLM10,VFJKKV07,SLMS14},
+locus {\sc x}~\cite{KJKV09,TNH07,NSS06,APKLM10,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,APKLM10,VFJKKV07,SLMS14},
 locus {\sc y}~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08},
-locus {\sc z}~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,MKS09,HO05,HO06,HO05b,SMS13},
+locus {\sc z}~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,HO05,HO06,HO05b,SMS13},
 locus $\Omega$~\cite{BK04,LLW02}.}
 \end{figure*}
 
@@ -587,9 +587,9 @@ To sum up, we evaluate diagnostic performance on two criteria:
 \includegraphics[scale=0.65]{defenses.pdf}
 \end{center}
 \caption{\label{fig:defenses}The basic categories of countermeasures
-against web application
-attacks, based on executable source code injectiion. For each approach
-we provide the references that present corresponding mechanisms:
+against web application attacks, based on executable source code
+injectiion. For each approach we provide the references
+that present corresponding mechanisms:
 {\bf 1}~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,LV09},
 {\bf 2}~\cite{BK04,JB07,GC09,APKLM10},
 {\bf 3}~\cite{BWS05,SW06},
@@ -1025,7 +1025,7 @@ An early approach, {\it {\sc didafit}}~\cite{LLW02} detects
 Subsequent refinements by Valeur et al.~\cite{VMV05}
 tagged each transaction with the corresponding application
 as an extension of their anomaly detection framework called
-{\it libAnomaly}. {\it {\sc sd}river}~\cite{MS09,MKS09} is
+{\it libAnomaly}. {\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} is
 a signature-based mechanism that prevents {\sc sql} and
 {\sc xp}ath injection attacks. The signatures generated
 during a training phase, are based on features that can
@@ -1300,7 +1300,143 @@ way as other taint tracking approaches~\cite{NBR14}.
 \end{table}
 \end{landscape}
 
+\begin{table*}
+\caption{Availability of the corresponding mechanisms.}
+    \label{tab:avail}
+\centering
+    \begin{threeparttable}
+    \begin{small}
+\scalebox{0.99}{
+    \begin{tabular}{l|c|ccc}
+    \hline
+    \bf{Approach}
+  & \bf{Mechanism}
+  & \multicolumn{3}{|c|}{Availability\tnote{1}} \\
+  && \bf{Source Code}
+  & \bf{Executable}
+  & \bf{Testbed} \\
+    \hline
+  \multirow{2}{*}{Parse-Tree Validation}
+  &   {\it {\sc sqlc}heck}~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
+  \hline  
+  \hline
+  \multirow{12}{*}{Policy Enforcement}
+  &   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it NoForge}~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
+  &   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
+  % &   {\it {\sc met}}~\cite{ELX07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc beep}}~\cite{TNH07} & \tick & \tick & \tick \\
+  &   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it CoreScript}~\cite{YCIS07} & {\bf AO} & {\sc na} & {\sc na} \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
+  % &   {\it Barth et al.}~\cite{BJM08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
+  &   {\it ConScript}~\cite{ML10} & {\bf AO} & {\sc na} & {\sc na} \\
+  &   {\it CsFire}~\cite{DDHPJ10} & \tick & {\sc na} & {\sc na} \\
+  &   {\it j{\sc csrf}}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it WebJail}~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
+    % &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
+  % \hline
+  % \hline 
+  % \multirow{3}{*}{Securing Mashups}
+  % &   {\it {\sc om}ash}~\cite{CHC08} & {\sc na} & {\sc na} & {\sc na} \\
+  % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & {\sc na} & {\sc na} & {\sc na} \\
+  % &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
+  \hline
+  \hline
+  \multirow{4}{*}{{\sc isr}}
+  &   {\it {\sc sql}rand}~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
+  \hline
+  \hline 
+  \multirow{7}{*}{Taint Tracking}
+  &   {\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Xu et al.}~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc wasc}}~\cite{NLC07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Vogt et al.}~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc php} Aspis}~\cite{PMP11} & {\bf AO} & {\sc na} & {\bf AO} \\
+  &   {\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
+  \hline
+  \hline 
+  \multirow{6}{*}{Training}
+  &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\bf AO} & {\sc na} \\
+  &   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
+  &   {\it {\sc xssds}}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc swap}}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
+  \hline
+  \hline
+  \multirow{3}{*}{Hybrid}
+  &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
+  &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
+  \hline
+    \end{tabular}}
+    \begin{tablenotes}
+  \begin{footnotesize}
+       \item[1] The check mark (\tick) indicates that the publication
+       includes a homepage where the reader can refer to, to
+       download the corresponding software. {\bf AO} (Available On-line) suggests
+       that the software is available on-line but the
+       address was not mentioned in the paper, which probably indicates that
+       the authors made it available after the publication. The question ({\bf ?})
+       mark, indicates that the a homepage for the software was included
+       in the publication but now it is not available.
+  \end{footnotesize}
+    \end{tablenotes}
+    \end{small}
+    \end{threeparttable}
+\end{table*}
+
 \section{Analysis}
+
+\subsection{Testing}
+
+\begin{figure}
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.47]{defect-percentages.png}
+\end{center}
+\caption{\label{fig:defect_sources}A pie showing where the
+authors reffered to, to find vulnerabilities to test
+their mechanims. We also provide which source was used
+by which publication:
+{\it Bugtraq}~\cite{PB05,KKVJ06,KJKV09,JEP08},
+{\sc cve}~\cite{XBS06,NLC07,VFJKKV07,PMP11,BK04,JB07,SMS13,WPLKK09},
+{\sc xss}ed.com~\cite{NSS06,APKLM10},
+ha.ckers.org~\cite{TNH07,PSC09,LV09},
+Microsoft~\cite{RDWDE07}.}
+\end{figure}
+
+Table~\ref{tab:comp} indicates that 27 out of
+34 mechanisms were tested on real-world applications
+known to be vulnerable. The vulnerabilities
+associated with these applications are enlisted
+in the following providers: the Common Vulnerabilities
+and Exposures ({\sc cve})
+database,\footnote{\url{https://cve.mitre.org/}}
+the {\it Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}}
+security mailing list, the
+{\sc xss}ed.com\footnote{\url{www.xssed.com}}
+security bulletin provider, Microsoft's security
+bulletin\footnote{\url{https://technet.microsoft.com/en-us/security/bulletin}}
+and the ha.ckers.org\footnote{\url{www.xssed.com}}
+security bulletin provider. Figure~\ref{fig:defect_sources}
+presents how many (in terms of percentages) and which
+(in the figure's caption) authors referred to which source.
+In numerous occassions authors performed tests based
+on the same applications. For instance, 12 mechanisms
+were tested on a vulnerable version of
+{\sc phpbb}.\footnote{https://www.phpbb.com/}
+
+\subsection{Trade-offs}
+
+\subsection{Designing New Mechanisms}
 
 Notes on taint tools:
 \begin{enumerate}
@@ -1423,99 +1559,6 @@ only approach that is
 used to prevent {\sc csrf} attacks.
 \item See j{\sc csrf} for {\sc soma}'s drawbacks.
 \end{enumerate}
-
-\begin{table*}
-\caption{Availability of the corresponding mechanisms.}
-    \label{tab:avail}
-\centering
-    \begin{threeparttable}
-    \begin{small}
-\scalebox{0.99}{
-    \begin{tabular}{l|c|ccc}
-    \hline
-    \bf{Approach}
-	& \bf{Mechanism}
-  & \multicolumn{3}{|c|}{Availability\tnote{1}} \\
-	&& \bf{Source Code}
-	& \bf{Executable}
-	& \bf{Testbed} \\
-    \hline
-  \multirow{2}{*}{Parse-Tree Validation}
-  &   {\it {\sc sqlc}heck}~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
-  \hline  
-  \hline
-  \multirow{12}{*}{Policy Enforcement}
-  &   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it NoForge}~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
-  &   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
-  % &   {\it {\sc met}}~\cite{ELX07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc beep}}~\cite{TNH07} & \tick & \tick & \tick \\
-  &   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it CoreScript}~\cite{YCIS07} & {\bf AO} & {\sc na} & {\sc na} \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
-  % &   {\it Barth et al.}~\cite{BJM08} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
-  &   {\it ConScript}~\cite{ML10} & {\bf AO} & {\sc na} & {\sc na} \\
-  &   {\it CsFire}~\cite{DDHPJ10} & \tick & {\sc na} & {\sc na} \\
-  &   {\it j{\sc csrf}}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
-    % &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
-  % \hline
-  % \hline 
-  % \multirow{3}{*}{Securing Mashups}
-  % &   {\it {\sc om}ash}~\cite{CHC08} & {\sc na} & {\sc na} & {\sc na} \\
-  % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & {\sc na} & {\sc na} & {\sc na} \\
-  % &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
-  \hline
-  \hline
-  \multirow{4}{*}{{\sc isr}}
-  &   {\it {\sc sql}rand}~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
-  \hline
-  \hline 
-	\multirow{7}{*}{Taint Tracking}
-	&  	{\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
-	&  	{\it Xu et al.}~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
-  &  	{\it {\sc wasc}}~\cite{NLC07} & {\sc na} & {\sc na} & {\sc na} \\
-	&  	{\it Vogt et al.}~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
-	&  	{\it {\sc php} Aspis}~\cite{PMP11} & {\bf AO} & {\sc na} & {\bf AO} \\
-	& 	{\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
-  \hline
-  \hline 
-  \multirow{6}{*}{Training}
-  &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\bf AO} & {\sc na} \\
-	&   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
-	& 	{\it {\sc xssds}}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
-  & 	{\it {\sc swap}}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
-	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
-  \hline
-  \hline
-  \multirow{3}{*}{Hybrid}
-  &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
-  &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
-	\hline
-    \end{tabular}}
-    \begin{tablenotes}
-	\begin{footnotesize}
-       \item[1] The check mark (\tick) indicates that the publication
-       includes a homepage where the reader can refer to, to
-       download the corresponding software. {\bf AO} (Available On-line) suggests
-       that the software is available on-line but the
-       address was not mentioned in the paper, which probably indicates that
-       the authors made it available after the publication. The question ({\bf ?})
-       mark, indicates that the a homepage for the software was included
-       in the publication but now it is not available.
-	\end{footnotesize}
-    \end{tablenotes}
-    \end{small}
-    \end{threeparttable}
-\end{table*}
 
 \section{Conclusions}
 
