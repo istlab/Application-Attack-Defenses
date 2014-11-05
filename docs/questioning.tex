@@ -601,6 +601,15 @@ that present corresponding mechanisms:
 {\bf 6}~\cite{BV08,LV09,SMS13}.}
 \end{figure*}
 
+In this section we categorize and describe the various mechanisms
+developed to detect the attacks described earlier in
+Section~\ref{sec:attacks}. We accompany our descriptions
+with comments related to the following dimensions:
+a) diagnostic performance, b) security, c) ease of use
+and d) detection locus. Regarding the other two
+dimensions we provide general remarks in our upcoming
+``Analysis" section (\ref{sec:analysis}).
+
 Figure~\ref{fig:defenses} presents a taxonomy of the
 defenses that protect web applications against attacks based on
 code injection vulnerabilities.
@@ -682,7 +691,7 @@ Both mechanisms that implement this approach,
 and detect the attack before a query reaches the
 database (locus {\sc z}).
 Contrary to {\sc sqlg}uard (and other
-mechanisms as we sill observe), {\sc sql}check has been
+mechanisms as we will observe), {\sc sql}check has been
 extensively tested in terms of diagnostic performance
 as it can be seen in Table~\ref{tab:comp}.
 A disadvantage of those mechanisms is that the
@@ -723,9 +732,10 @@ a set of policies Noxes allows or blocks
 the request (locus {\sc x}). Such policies
 can be also provided by the server (i.e. ``never
 follow a link that leads to the malicious.com
-web site"). Noxes does not deal with
-JavaScript-driven {\sc xss} attacks and it is a rather
-simplistic approach.
+web site"). The main issue with Noxes is that
+it does not deal with JavaScript-driven {\sc xss}
+attacks which is currently the most popular
+{\sc xss} attack vector.
 
 A number of the frameworks define policies
 based on information and features provided by
@@ -1411,6 +1421,7 @@ way as other taint tracking approaches~\cite{NBR14}.
 \end{table*}
 
 \section{Analysis}
+\label{sec:analysis}
 
 \subsection{Testing}
 
