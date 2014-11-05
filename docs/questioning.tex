@@ -389,10 +389,10 @@ every attack. Note that {\sc xss} attacks can also involve
 {\it phishing}. Every {\it locus} indicates a step where mechanisms
 detect attacks. For every locus we provide the corresponding
 references:
-locus {\sc x}~\cite{KJKV09,TNH07,NSS06,APKLM10,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,APKLM10,VFJKKV07,SLMS14},
+locus {\sc x}~\cite{KJKV09,TNH07,NSS06,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
 locus {\sc y}~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08},
-locus {\sc z}~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,HO05,HO06,HO05b,SMS13},
-locus $\Omega$~\cite{BK04,LLW02}.}
+locus {\sc z}~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
+locus $\Omega$~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
 
 \section{Analysis Dimensions}
@@ -1246,28 +1246,28 @@ way as other taint tracking approaches~\cite{NBR14}.
   & \multicolumn{2}{|c|}{Requirements\tnote{1}}
 	& \bf{Attack} \\
 	&&& \bf{TP,TN,FP,FN}\tnote{2}
-	& \bf{Computational Overhead} & \\
+	& \bf{Computational Overhead}\tnote{3} & \\
     \hline
   \multirow{2}{*}{Parse-Tree Validation}
-  &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% & {\sc sql} injection \\
-  &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query & {\sc sql} injection \\
+  &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql} injection \\
+  &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql} injection \\
   \hline
   \hline
   \multirow{12}{*}{Policy Enforcement}
-  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% & {\sc xss} \\ 
-  &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\bf ?} & {\sc csrf} \\
-  &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} & {\sc xss} \\
+  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
+  &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} & {\sc csrf} \\
+  &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
   % &   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
-  &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% & {\sc xss} \\
-  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% & {\sc xss} \\ 
-  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} & {\sc xss} \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% & {\sc xss}, {\sc csrf} \\
+  &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% ({\sc c}) & {\sc xss} \\
+  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% ({\sc s}) & {\sc xss} \\ 
+  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} ({\sc c}) & {\sc xss} \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% ({\sc c}) & {\sc xss}, {\sc csrf} \\
   % &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
-  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% & {\sc xss} \\
-  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% & {\sc xss} \\
-  &   {\it CsFire}~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{3} & {\bf ?} & {\sc csrf} \\
-  &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms & {\sc csrf} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms & {\sc xss} \\
+  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
+  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
+  &   {\it CsFire}~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{4} & {\sc na} & {\sc csrf} \\
+  &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
+  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms ({\sc c}) & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
   % \hline
@@ -1278,37 +1278,37 @@ way as other taint tracking approaches~\cite{NBR14}.
   \hline
   \hline
   \multirow{4}{*}{{\sc isr}}
-  &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} & {\sc sql} injection \\
-  &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} & {\sc sql} injection, {\sc xss} \\
-  &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% & {\sc xss} \\ 
-  &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} & {\sc xss} \\
+  &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql} injection \\
+  &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql} injection, {\sc xss} \\
+  &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% ({\sc c}) & {\sc xss} \\ 
+  &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} ({\sc c}) & {\sc xss} \\
   \hline
   \hline
 	\multirow{7}{*}{Taint Tracking}
-  &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} & {\sc sql} injection, {\sc xss} \\ 
-	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
+  &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} ({\sc s}) & {\sc sql} injection, {\sc xss} \\ 
+	&  	{\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% ({\sc s}) & {\sc sql} injection, {\sc xp}ath, {\sc xss} \\
 	% &  	{\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
-	&  	{\it Xu et al.}~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% & {\sc sql} injection, {\sc xss} \\ 
-  &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% & {\sc sql} injection, {\sc xss} \\
-	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} & {\sc xss} \\
-	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ & {\sc sql} and {\sc php} injection, {\sc xss} \\
-	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% & {\sc dom}-based {\sc xss} \\
+	&  	{\it Xu et al.}~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% ({\sc s}) & {\sc sql} injection, {\sc xss} \\ 
+  &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql} injection, {\sc xss} \\
+	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
+	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql} and {\sc php} injection, {\sc xss} \\
+	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc s}) & {\sc dom}-based {\sc xss} \\
 	\hline
 	\hline  
   \multirow{6}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
-	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} & {\sc sql} injection \\ 
-	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} & {\sc sql} injection \\
-	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} &  {\sc xss} \\
-  & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% & {\sc xss} \\ 
-	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% & {\sc sql} and {\sc xp}ath injection \\
+	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql} injection \\ 
+	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & +1{\it ms} ({\sc s}) & {\sc sql} injection \\
+	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
+  & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & $\sim$180\% ({\sc s}) & {\sc xss} \\ 
+	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql} and {\sc xp}ath injection \\
 	% & 	{\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
   \hline
   \hline
   \multirow{3}{*}{Hybrid}
-  &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% & {\sc xss} \\
-  &   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% & {\sc xss} \\
-  &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% & {\sc sql} and No{\sc sql} injection \\
+  &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
+  &   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
+  &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql} and No{\sc sql} injection \\
 	\hline
     \end{tabular}}
     \begin{tablenotes}
@@ -1319,7 +1319,8 @@ way as other taint tracking approaches~\cite{NBR14}.
 		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
 	based on: a) real-world applications known to be vulnerable ({\it r}), b) synthetic benchmarks ({\it s}), c) both ({\it a}).
 	If no testing has taken place we add a question mark ({\bf ?}).
-    \item[3] The numbers of this quadruple involve requests.
+    \item[3] For every overhead we show if the overhead is applied to the server ({\sc s}) or the client ({\sc c}). 
+    \item[4] The numbers of this quadruple involve requests.
 	\end{footnotesize}
     \end{tablenotes}
     \end{small}
