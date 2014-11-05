@@ -270,7 +270,7 @@ presented in~\cite{PB04}. The countermeasures used to detect such
 defects have already been surveyed~\cite{YJP12} (many of them are also
 included in a book:~\cite{DKZ12} -- Section 13.8). In the present work
 we do not include binary code injection, focusing instead on defenses
-that protect applications against application attacks based on the
+that protect applications against attacks based on the
 executable source code injection category.
 
 \subsection{Executable Source Code Injection Vulnerabilities}
@@ -601,11 +601,11 @@ that present corresponding mechanisms:
 Figure~\ref{fig:defenses} presents a taxonomy of the
 defenses that protect web applications against attacks based on
 code injection vulnerabilities.
-We can identify three main approaches, namely:
+We can identify three approaches, namely:
 {\it design-based}, {\it behavior-based} and {\it hybrid}.
 The design-based category involves mechanisms that make applications
 immune to different attack vectors by design~\cite{JL75,L81}. 
-The behavior-based incorporates a variety of methods and
+The behavior-based category incorporates a variety of
 schemes that inspect the behavior of applications
 and detect attacks based on specific criteria~\cite{D76,A00}.
 Hybrid mechanisms borrow characteristics from both categories.
@@ -649,8 +649,9 @@ indicates that the a homepage for the software was included
 in the publication but now it is not available.
 
 Finally, as we mentioned in Subsection~\ref{sec:model},
-Figure~\ref{fig:attacks} illustrates the point where
-mechanisms detect attacks.
+Figure~\ref{fig:attacks} illustrates for each mechanism
+(found in the figure's caption), the point where
+it detects attacks.
 
 \subsection{Design-Based}
 \label{sec:prot}
@@ -664,8 +665,8 @@ discussed in Section~\ref{sec:attacks}.
 
 The key idea behind this approach, is to compare
 the tree representation of the abstract syntactic
-structure of the executable source code
-with the one that was originally intended.
+structure of the source code that is about to be
+executed with the one that was originally intended.
 If the trees diverge, the application is probably
 under attack.
 
@@ -677,18 +678,26 @@ Both mechanisms that implement this approach,
 {\sc sql}check~\cite{SW06} are pretty similar
 and detect the attack before a query reaches the
 database (locus {\sc z}).
-Contrary to {\sc sqlg}uard~\cite{BWS05} (and many other
-mechanisms), {\sc sql}check~\cite{SW06} has been
+Contrary to {\sc sqlg}uard (and other
+mechanisms as we sill observe), {\sc sql}check has been
 extensively tested in terms of diagnostic performance
-as seen in Table~\ref{tab:comp}. A disadvantage of
-those mechanisms is that the application must be modified
-every time a query is about to be sent to a database
-for execution.
+as it can be seen in Table~\ref{tab:comp}.
+A disadvantage of those mechanisms is that the
+application must be modified in every code fragment
+that sends an {\sc sql} query to the database for execution.
 
 As we will see in Subsection~\ref{sec:hybrid},
 there are mechanisms that borrow elements from
 this approach and examine the syntax trees
 of scripts to detect JavaScript-driven {\sc xss} attacks.
+
+Parse-tree validation seems to be an efficient approach
+to detect {\sc dsl} code injection attack,
+especially in the case of the {\sc sql}check
+implementation. This however does not apply in
+the case of the mechanisms that utilize
+this approach to detect JavaScript-driven {\sc xss} attacks
+as we will see in Subsection~\ref{sec:hybrid}.
 
 \subsubsection{Policy Enforcement}
 \label{sec:policy}
@@ -707,12 +716,13 @@ user to specify policies to prevent {\sc xss} attacks.
 The key idea behind Noxes is to parse
 the {\sc html} that reaches the browser to
 find static {\sc url} references. Then, based on
-a set of policies it allows or blocks
+a set of policies Noxes allows or blocks
 the request (locus {\sc x}). Such policies
-are provided either by the user or by
-the framework itself. Noxes does not
-deal with JavaScript-driven {\sc xss}
-attacks and it is a rather simplistic approach.
+can be also provided by the server (i.e. ``never
+follow a link that leads to the malicious.com
+web site"). Noxes does not deal with
+JavaScript-driven {\sc xss} attacks and it is a rather
+simplistic approach.
 
 A number of the frameworks define policies
 based on information and features provided by
@@ -750,27 +760,30 @@ and protect the web user from exploitations
 that are based on reported browser vulnerabilities.
 {\it ConScript}~\cite{ML10}, {\it CoreScript}~\cite{YCIS07}
 and the framework by {\it Phung et al.}~\cite{PSC09}
-extend JavaScript with new primitive functions to
+extend JavaScript with new primitive functions that
 provide safe methods to protect potentially vulnerable
 JavaScript functions. In both cases, policy enforcement takes
 place on the JavaScript engine of the browser (locus {\sc x}).
 In this way, {\sc xxs} attacks that take advantage
-functions like {\tt eval} and {\tt write} that are
+functions like {\tt write} and {\tt eval}, which are
 used to assemble innocuous-looking parts into harmful
-strings would fail.
+strings,\footnote{The infamous Sammy worm that
+infected MySpace in 2005~\cite{SP07,ELX07}
+utilized the {\tt eval} function to assemble a
+script with malicious behavior.} would fail.
 
 A critical issue regarding
 the above frameworks is that they cannot
 define policies that restrict the behavior of third-party
 scripts introduced by script inclusion and {\tt iframe}
-tags. For instance, consider a web page ({\tt foo.net})
-that prints the value of the a query parameter ({\tt query})
+tags. For instance, consider a web page (foo.net)
+that prints the value of a query parameter ({\tt query})
 from the page's {\sc url} in the web page's content
 without escaping the value. A malicious user
 can take advantage of this and inject an {\tt iframe}
 into the page to steal the user's cookie and
 send it via an image request to a web site
-that he or she controls ({\tt malicious.com}).
+that he or she controls (malicious.com).
 This could be achieved by including the following
 link to the malicious web site (or send it via phishing
 email) and induce the user to click on it:
@@ -827,21 +840,22 @@ sub-domains of the same registered domain.
 
 Most of the aforementioned frameworks, involve
 several deployment issues since they
-require significant source modifications by the web
-developers in order to introduce policies.
+require significant source modifications by the
+developers on the server-side, in order to
+introduce the policies.
 
 \subsubsection{Instruction Set Randomization (ISR)}
 
 {\sc isr} is a method that has been applied to counter
 different kinds of application attacks~\cite{K09b,KKP03}.
-The main idea behind the it, is to
-separate code from data by randomizing the legitimate code's 
+The main idea behind it, is to separate code from
+data by randomizing the legitimate code's 
 execution environment. In this way, the malicious code
 injected by the attackers who do not know the randomization
 algorithm, will not get executed.
 
-{\it {\sc sql}rand}~\cite{BK04} is based on {\sc isr}
-to detect {\sc sql} injections in the following manner:
+{\it {\sc sql}rand}~\cite{BK04} implements {\sc isr}
+to detect {\sc sql} injection attacks. It works in the following manner:
 initially, it allows programmers to create {\sc sql} statements
 using randomized instructions instead of standard keywords.
 The modified queries are reconstructed at runtime using
@@ -860,10 +874,9 @@ which randomize the instruction set of {\sc html} and
 JavaScript respectively.
 Contrary to x{\sc js}, in Noncespaces administrators must set
 specific policies in a manner similar to a firewall
-configuration language. This brings up questions
-concerning the diagnostic performance of the mechanism
-since the corresponding testing is insufficient
-(see Table~\ref{tab:comp}).
+configuration language. This fact, together with the
+insufficient testing of the mechanism (see Table~\ref{tab:comp})
+brings up questions concerning its diagnostic performance.
 {\it {\sc sm}ask}~\cite{JB07} is another framework
 that was inspired by {\sc isr}. To detect {\sc xss}
 attacks it searches for {\sc html} and JavaScript
@@ -929,7 +942,7 @@ vulnerable to an {\sc sql} injection attack
 (consider a tainted variable being used in a query)
 and exit with an error message.
 
-There are different implementations of these approach
+There are different implementations of this approach
 in terms of how the tainted data is marked and observed,
 and how attacks are detected.
 For example, {\it Haldar et al.}~\cite{HCF05} have implemented
@@ -939,6 +952,7 @@ tainted string is used as an argument to a sink method
 then an exception is raised (locus {\sc z}).
 However, this is a simplistic approach that may
 lead to many false positives.
+
 The following schemes apply further checks when
 they identify that tainted data have reached a sink
 (locus {\sc z}).
@@ -950,8 +964,8 @@ they search the data for suspicious symbols by using
 regular expressions. {\sc csse}~\cite{PB05} associates
 tainted data with specific metadata. Such metadata include
 the origins of tainted data, its propagation within the application
-and other. When tainted data reaches a sink {\sc csse} performs
-syntactic checks it based on the aforementioned metadata
+and others. When tainted data reaches a sink {\sc csse} performs
+syntactic checks based on the aforementioned metadata
 (locus {\sc z}). {\it {\sc php} Aspis}~\cite{PMP11} works
 in a similar way. To obtain metadata, it takes advantage
 of specific features provided by {\sc php}.
@@ -960,18 +974,18 @@ of specific features provided by {\sc php}.
 % cannot detect non-persistent JavaScript-driven
 % {\sc xss} attacks. Although they can be
 % modified to do so.
-{\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
+Finally, {\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
 if there are tainted data that contain scripts (locus {\sc y}).
 A recent study showed that there are ways to circumvent
 the majority of the above schemes~\cite{NBR14}.
-Furthermore, most of them are hard to deploy since
+Furthermore, most of them are not easy to deploy since
 the majority of input vectors, string operations
-and output vectors must be instrumented.
+and output vectors of the application must be instrumented.
 
 {\it Vogt et al.}~\cite{VFJKKV07}
 have developed a tainting scheme that follows a different
 approach. Contrary to the aforementioned schemes that
-operate on the server side, they track taint sensitive
+operate on the server side, they track sensitive
 information on the client side (locus {\sc x}).
 This is a form of positive taint tracking, where
 taint data is considered to be legitimate.
@@ -988,7 +1002,7 @@ executed as a result of the modification of the
 {\sc dom} environment so that the client-side
 code runs in an unanticipated manner even if the
 {\sc http} response that triggers the injection seems legitimate.
-The scheme is different to the previous one because it
+The scheme is different from the previous one because it
 marks and observes data that are considered harmful.
 Specifically, it employs a taint-enhanced JavaScript
 engine that tracks the flow of attacker-controlled data.
@@ -1011,9 +1025,10 @@ tainted data.
 Training techniques are based on the ideas of Denning's original
 intrusion detection framework~\cite{Den87}. In particular, a training
 mechanism registers all valid legitimate code statements during a
-training phase, most of the time in the form of signatures. This can
+training phase (mostly in the form of signatures). This can
 be done in various ways according to the implementation. Then, only
-those will be accepted, approved or recognized during production.
+those will be recognized and approved for execution
+during production.
 
 Training methods that detect {\sc dsl}-driven injection attacks
 generate and store valid code statements (i.e. {\sc sql}
@@ -1144,15 +1159,15 @@ that also employs parse-tree validation.
 During training, the scheme maps legitimate scripts
 to {\sc http} responses. During production
 {\sc xss-guard} retrieves for every script included
-in a response its parse-tree and checks if it
+in a response its parsed tree and checks if it
 is one of those previously mapped to this response.
-Apart from the comparison of the parsed-trees, {\sc xss-guard}
+Apart from the comparison of the parsed trees, {\sc xss-guard}
 checks also for an exact match of lexical entities.
 To achieve this, the scheme utilizes that data structures
 of Firefox's JavaScript engine (locus {\sc x}).
 However, string literals are not compared literally
 thus, a possible false negative result could occur if an
-adversary performed a mimicry attack~\cite{WS02}.
+adversary performs a mimicry attack~\cite{WS02}.
 For example, consider a banner rotator that
 every time it runs, it creates a value that depends on
 the current date and the length of the array that
@@ -1169,12 +1184,12 @@ to retrieve the {\sc ip} addresses of the
 users that visit the vulnerable site.
 
 {\it Blueprint}~\cite{LV09} is a policy
-enforcement framework that also utilizes parsed-trees
+enforcement framework that also utilizes parsed trees
 to detect {\sc xss} attacks. To guarantee
 that untrusted content is not executed, Blueprint generates
-on the server-side a parse-tree from untrusted {\sc html}
+on the server-side a parsed tree from untrusted {\sc html}
 to ensure that it does not contain any dynamic content.
-Then the parsed-tree is transfered to the document
+Then the parsed tree is transfered to the document
 generator of the browser (locus {\sc x}) where untrusted
 browser parsing behavior is ruled out.
 Blueprint is an efficient countermeasure but it
@@ -1195,11 +1210,11 @@ Specifically, it maps all characters introduced by
 the application to a shadow character set.
 This set does not contain any characters coming
 from the tainted input. Then, the scheme
-creates the parse-tree of the query that
-is about to be executed with the parse-tree
-of the ``shadow" and compares them (locus {\sc z}).
+creates the tree of the query that
+is about to be executed and compares it with the parsed tree
+of the ``shadow" (locus {\sc z}).
 If the trees are not equal the application is probably
-under attacks. Diglossia can be bypassed in the same
+under attack. Note that, Diglossia can be bypassed in the same
 way as other taint tracking approaches~\cite{NBR14}.
 
 \begin{landscape}
@@ -1446,7 +1461,16 @@ and {\sc sd}river~\cite{MS09,MKS09,MKLS11} were presented,
 authors managed to break existing application suites
 and then test the diagnostic performance of their tools on them.
 
-% Comment: The above are some extra findings that
+% Comment 1: Regarding the frameworks that were
+% not tested in terms of diagnostic performance
+% at all, we see that they are mostly coming from
+% the design-based category.
+
+% Comment 2: Note though that implementations
+% of design-based mechanisms can actually
+% be bypassed.
+
+% Comment 3: The above are some extra findings that
 % indicate that there is no standard way to
 % test such mechanisms. Perhaps, forming a
 % standard way to test such tools in terms
@@ -1588,6 +1612,8 @@ the design is secure against attacks.
 only approach that is
 used to prevent {\sc csrf} attacks.
 \item See j{\sc csrf} for {\sc soma}'s drawbacks.
+\item Discuss about how tools can be easily modified
+to detect other attacks ({\sc sql}rand).
 \end{enumerate}
 
 \section{Conclusions}
