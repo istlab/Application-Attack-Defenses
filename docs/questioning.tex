@@ -152,22 +152,25 @@ on the following dimensions:
   as their detection capability; this requires low false positive and
   false negative rates.
 \item {\it Computational Performance} We examine
-the overhead of the mechanisms
-that affect the experience of a web user who actually
-uses the protected application.
+  the overhead of the mechanisms
+  that affect the experience of a web user who actually
+  uses the protected application.
 \item {\it Ease of use} We examine if the protection
-mechanism is practical in terms of deployment
-and can be easily adopted by security experts.
-\item {\it Security} How resilient is the system to
-attackers that know how it works and wants to circumvent it.
-\item {\it Detection Locus}
-\item {\it Availability}
+  mechanism is practical in terms of deployment
+  and can be easily adopted by security experts.
+\item {\it Security} We examine how resilient is the system to
+  attackers that know how it works and wants to circumvent it.
+\item {\it Detection Locus} Based on our exploitation model
+  we examine the location where a mechanism detects an attack.
+\item {\it Availability} We check if the mechanism and its
+  testbed are available on-line.
+available 
 \end{itemize}
 
 \noindent
 All the aforementioned requirements are considered critical
 when building security mechanisms that protect
-applications~\cite{A01,A00}. Based on this analysis
+applications~\cite{A01,A00,SPWS13}. Based on this analysis
 we can identify the advantages and disadvantages of the
 various mechanisms and enumerate some of their common
 characteristics. We can also draw useful conclusions
@@ -334,7 +337,7 @@ every attack. For the most part, the steps are common in all attacks. This
 is because they are based on similar attack vectors as we mentioned in
 the previous section. Most importantly,
 Figure~\ref{fig:attacks} also illustrates in which step
-the defenses detect corresponding attacks ({\sc todo}).
+the defenses detect corresponding attacks.
 
 A malicious user can initiate the attack through two different routes.
 The attacker may use the browser of an innocent user as an attack
@@ -1306,7 +1309,7 @@ way as other taint tracking approaches~\cite{NBR14}.
 		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
 	based on: a) real-world applications known to be vulnerable ({\it r}), b) synthetic benchmarks ({\it s}), c) both ({\it a}).
 	If no testing has taken place we add a question mark ({\bf ?}).
-    \item[3] The number involve requests.
+    \item[3] The numbers of this quadruple involve requests.
 	\end{footnotesize}
     \end{tablenotes}
     \end{small}
@@ -1416,12 +1419,12 @@ way as other taint tracking approaches~\cite{NBR14}.
 \leavevmode
 \includegraphics[scale=0.47]{defect-percentages.png}
 \end{center}
-\caption{\label{fig:defect_sources}A pie showing where the
-authors reffered to, to find vulnerabilities to test
-their mechanims. We also provide which source was used
-by which publication:
-{\it Bugtraq}~\cite{PB05,KKVJ06,KJKV09,JEP08},
+\caption{\label{fig:defect_sources}A pie showing the sources
+where the authors reffered to, to find vulnerabilities to test
+their mechanisms. We also provide which source was used
+in which publication:
 {\sc cve}~\cite{XBS06,NLC07,VFJKKV07,PMP11,BK04,JB07,SMS13,WPLKK09,JKK06a},
+{\it Bugtraq}~\cite{PB05,KKVJ06,KJKV09,JEP08},
 {\sc xss}ed.com~\cite{NSS06,APKLM10},
 ha.ckers.org~\cite{TNH07,PSC09,LV09},
 Microsoft~\cite{RDWDE07}.}
