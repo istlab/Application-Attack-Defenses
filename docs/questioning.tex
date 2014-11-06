@@ -1503,9 +1503,11 @@ Given the fact that the final steps of
 {\sc dsl} injection and {\sc csrf} attacks take place
 on the server-side, all the mechanisms that detect
 such attacks are placed in some point within the server.
-From these mechanisms, 3 out of 13 ({\bf 23\%})
-detect {\sc sql} injection attacks at the level
-of the {\sc rdbms}.
+From the mechanisms that detect {\sc dsl} code injection
+attacks, 3 out of 13 ({\bf 23\%}) do so at the level
+of the {\sc rdbms} --- locus $\Omega$.
+The other 11 wrap {\sc api} calls related to output
+vectors --- locus {\sc z}.
 
 However, in the case of frameworks that deal
 with JavaScript-driven {\sc xss} attacks
@@ -1524,7 +1526,7 @@ on the client side. In particular, 11 out of
 {\sc xss} attacks at the client's side.
 Note that the majority of the mechanisms that
 detect such attacks on the server-side, can also
-detect 
+detect {\sc dsl} code injection attacks (7 out of 8). 
 
 \subsection{Ease of Use}
 
@@ -1539,7 +1541,7 @@ both browser vendors and application developers.
 
 \subsection{Availability}
 
-\subsection{Designing New Mechanisms}
+\section{Discussion}
 
 Notes on taint tools:
 \begin{enumerate}
