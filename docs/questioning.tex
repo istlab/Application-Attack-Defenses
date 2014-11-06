@@ -1293,7 +1293,7 @@ way as other taint tracking approaches~\cite{NBR14}.
   &  	{\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql} injection, {\sc xss} \\
 	&  	{\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
 	&  	{\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql} and {\sc php} injection, {\sc xss} \\
-	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc s}) & {\sc dom}-based {\sc xss} \\
+	& 	{\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
 	\hline
 	\hline  
   \multirow{6}{*}{Training}
@@ -1504,10 +1504,24 @@ Given the fact that the final steps of
 on the server-side, all the mechanisms that detect
 such attacks are placed in some point within the server.
 
-However, in this case of mechanisms that deal
+However, in the case of frameworks that deal
 with JavaScript-driven {\sc xss} attacks
 we observe that attack detection may take place
-either on the server-side or on the client-side. 
+either on the server-side or on the client-side.
+In the first case, a proxy is placed on the server
+to examine the server's responses before they
+reach the user's web browser. In the second
+case a modified browser or a library that
+is securely downloaded from the server,
+checks the responses for potential attacks.
+Our findings indicate that the tendency so far,
+is to create frameworks that perform detection
+on the client side. In particular, 11 out of
+19 frameworks ({\bf 57,8\%}) detect JavaScript-driven
+{\sc xss} attacks at the client's side.
+Note that the majority of the mechanisms that
+detect such attacks on the server-side, can also
+detect 
 
 \subsection{Ease of Use}
 
