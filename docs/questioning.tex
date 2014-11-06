@@ -94,7 +94,8 @@ louridas@aueb.gr
 \end{abstract}
 
 \begin{IEEEkeywords}
-Security and Protection, Application Security, Code injection Attacks.
+Security and Protection, Application Security, Code injection Attacks,
+Testing, Cross-Site Scripting.
 \end{IEEEkeywords}
 
 \IEEEpeerreviewmaketitle
@@ -191,7 +192,7 @@ injection attacks~\cite{HVO06}, have already been surveyed.
 However, this survey is quite old and since then
 the number of countermeasures that detect {\sc sql}
 injection attacks alone, has been drastically increased
-as we mentioned in the previous paragraph.
+as we mentioned earlier.
 
 The main contributions of this paper are the following:
 
@@ -602,7 +603,7 @@ that present corresponding mechanisms:
 \end{figure*}
 
 In this section we categorize and describe the various mechanisms
-developed to detect the attacks described earlier in
+developed to detect the attacks described in
 Section~\ref{sec:attacks}. We accompany our descriptions
 with comments related to the following dimensions:
 a) diagnostic performance, b) security, c) ease of use
@@ -1426,6 +1427,8 @@ way as other taint tracking approaches~\cite{NBR14}.
 
 \subsection{Testing}
 
+\subsubsection{Diagnostic Performance}
+
 \begin{figure}
 \begin{center}
 \leavevmode
@@ -1492,6 +1495,20 @@ and then test the diagnostic performance of their tools on them.
 % of diagnostic and computational performance
 % would be one of the reasons of adopting them.
 
+\subsubsection{Computational Performance}
+
+\subsection{Detection Locus}
+
+Given the fact that the final steps of
+{\sc dsl} injection and {\sc csrf} attacks take place
+on the server-side, all the mechanisms that detect
+such attacks are placed in some point within the server.
+
+However, in this case of mechanisms that deal
+with JavaScript-driven {\sc xss} attacks
+we observe that attack detection may take place
+either on the server-side or on the client-side. 
+
 \subsection{Ease of Use}
 
 Consider the majority of mechanisms coming from
@@ -1503,7 +1520,7 @@ both on the server and the client side.
 Thus, it would be difficult for them to be adopted by
 both browser vendors and application developers.
 
-\subsection{Trade-offs}
+\subsection{Availability}
 
 \subsection{Designing New Mechanisms}
 
