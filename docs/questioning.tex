@@ -187,7 +187,10 @@ This is mainly because this work includes countermeasures
 that detect such vulnerabilities via program analysis
 (which is done during development or testing), while
 we include protection mechanisms that counter
-such attacks when they take place.
+such attacks when they take place. Static or
+dynamic analyzers that examine applications to
+identify vulnerabilities that may lead to the attacks
+that we described earlier are out of the scope of this paper.
 Also, countermeasures that prevent {\sc sql}
 injection attacks~\cite{HVO06}, have already been surveyed.
 However, this survey is quite old and since then
@@ -1073,7 +1076,9 @@ transactions without tagging each transaction with the
 corresponding call-site. In this case a false negative result
 is prominent. For instance, consider an application that will send the
 password for a forgetful user via email by executing the following
-query: \bgroup \lstset{language=SQL}
+query:
+\bgroup
+\lstset{language=SQL}
 \begin{small}
 \begin{lstlisting}
 SELECT password from userdata WHERE id = 'Alice'
@@ -1270,7 +1275,7 @@ tracking approaches as described in reference~\cite{NBR14}.
   \multirow{6}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql} injection \\ 
-	&   {\it libAnomaly}~\cite{VMV05} & 226 & (344,15646,60,0)\_r & 1{\it ms} ({\sc s}) & {\sc sql} injection \\
+	&   {\it libAnomaly}~\cite{VMV05} & 226 & (9,15987,60,0)\_r & 0.20--1{\it ms} per query ({\sc s}) & {\sc sql} injection \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
   & 	{\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261 {\it ms} ({\sc s}) & {\sc xss} \\ 
 	& 	{\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql} and {\sc xp}ath injection \\
