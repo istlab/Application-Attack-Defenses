@@ -306,7 +306,7 @@ handle user supplied data. Based on this vulnerability
 an attacker can supply valid {\sc html},
 typically via a parameter value, and inject their own
 content into the page. {\sc html} injection is mainly associated
-with {\sc xss} defects.
+with {\sc xss} defects~\cite{HNSHS12}.
 
 A recent class of {\sc cia}s involve dynamic languages like
 JavaScript and {\sc php}~\cite{SFVM09,EWKK09,SMS13}. JavaScript
@@ -1019,7 +1019,8 @@ generate and store valid code statements (i.e. {\sc sql} or {\sc
   xp}ath queries) in various forms, and detect attacks as outliers
 from the set of valid code statements. An early approach, {\it {\sc
     didafit}}~\cite{LLW02} detects {\sc sql} injection (Locus
-$\Omega$) attacks by recording all database transactions. Subsequent
+$\Omega$) attacks by recording all database transactions
+(stripped from user input). Subsequent
 refinements by Valeur et al.~\cite{VMV05} tagged each transaction with
 the corresponding application as an extension of their anomaly
 detection framework called {\it libAnomaly}. {\it {\sc
@@ -1055,7 +1056,7 @@ Defenses based on training include some mechanisms that can be easily
 circumvented. For example, {\sc didafit} records all database
 transactions without tagging each transaction with the
 corresponding call-site. In this case a false negative result
-is prominent. In particular, consider an application that will send the
+is prominent. For instance, consider an application that will send the
 password for a forgetful user via email by executing the following
 query: \bgroup \lstset{language=SQL}
 \begin{small}
@@ -1081,9 +1082,9 @@ id = 'admin'
 \end{small}
 \egroup
 \noindent
-A traditional {\sc sql} injection attack protection system like {\sc didafit},
-could be easily escaped since a malicious user, could obtain the
-administrator's password by email by entering on the password retrieval form
+In this case {\sc didafit}, could be easily escaped
+since a malicious user, could obtain the administrator's password
+by email by entering on the password retrieval form
 as his user identifier the following:
 \bgroup
 \lstset{language=SQL}
@@ -1107,7 +1108,7 @@ like the aforementioned one.
 Furthermore, training tools that detect
 {\sc xss} attacks based on JavaScript injection
 would fail to detect a return-to-JavaScript
-attack~\ref{sec:policy}.
+attack~\ref{APKLM10}.
 %% PL Like the return-to-lib attack?
 
 In general, the detection accuracy of training approaches is
@@ -1185,7 +1186,6 @@ the trees are not equal the application is probably under attack. Note
 that Diglossia can be bypassed in the same way as other taint
 tracking approaches and is described in reference~\cite{NBR14}.
 %% PL which way is this exactly?
-
 
 \begin{landscape}
 \begin{table}
@@ -1276,7 +1276,7 @@ tracking approaches and is described in reference~\cite{NBR14}.
 		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
 	based on: a) real-world applications known to be vulnerable ({\it r}), b) synthetic benchmarks ({\it s}), c) both ({\it a}).
 	If no testing has taken place we add a question mark ({\bf ?}).
-    \item[3] For every overhead we show if the overhead is applied to the server ({\sc s}) or the client ({\sc c}). 
+    \item[3] Regarding the computational overhead we show if it is applied to the server ({\sc s}) or the client ({\sc c}). 
     \item[4] The numbers of this quadruple involve requests.
 	\end{footnotesize}
     \end{tablenotes}
@@ -1636,8 +1636,6 @@ to detect other attacks ({\sc sql}rand).
 \end{enumerate}
 
 \section{Conclusions}
-
-% Cite~\cite{HNSHS12}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
