@@ -1071,9 +1071,9 @@ external scripts they keep a white list of all the valid domain names
 that contain scripts used by the application.
 
 Defenses based on training include some mechanisms that can be easily
-circumvented. For example, {\sc didafit} records all database
-transactions without tagging each transaction with the
-corresponding call-site. In this case a false negative result
+circumvented. For example, {\sc didafit} and {\it libAnomaly}
+do not tag transactions with their corresponding call-sites.
+In this case a false negative result
 is prominent. For instance, consider an application that will send the
 password for a forgetful user via email by executing the following
 query:
@@ -1102,7 +1102,7 @@ id = 'admin'
 \end{small}
 \egroup
 \noindent
-In this case {\sc didafit}, could be easily escaped
+In this case {\sc didafit} and {\it libAnomaly}, could be easily escaped
 since a malicious user, could obtain the administrator's password
 by email by entering on the password retrieval form
 as his user identifier the following:
@@ -1201,7 +1201,7 @@ application computes an output string (query), Diglossia computes a
 introduced by the application to a shadow character set. This set does
 not contain any characters coming from the tainted input. Then, the
 scheme creates the tree of the query that is about to be executed and
-compares it with the parsed tree of the ``shadow" (locus {\sc z}). If
+compares it with the parsed tree of the ``shadow" (Locus {\sc z}). If
 the trees are not equal the application is probably under attack. Note
 that Diglossia can be bypassed in the same way as other taint
 tracking approaches as described in reference~\cite{NBR14}.
@@ -1426,16 +1426,16 @@ Microsoft~\cite{RDWDE07}.}
 \end{figure}
 
 Table~\ref{tab:comp} indicates that the authors of 3 out of 34
-({\bf 8.8\%}) publications, provided complete quadruples.
+(8.8\%) publications, provided complete quadruples.
 On the other hand, we see that 4 out of
-34 ({\bf 11.7\%}) were not tested at all.
+34 (11.7\%) were not tested at all.
 In this cases, all the four elements of the
 quadruples are not available ({\sc na}).
 % Maybe we should comment on the fact that these are
 % frameworks coming from the etiological category
 % and detect the attacks ``by design".
 An interesting observation is that 10 out of 34
-({\bf 29.41\%}) of the authors performed only attacks
+(29.41\%) of the authors performed only attacks
 during their tests and did not test their mechanisms
 to see if they produce any false alarms. The corresponding
 quadruples in this case, are the ones that contain {\sc tp} and
@@ -1480,7 +1480,7 @@ the browser-based {\sc xss} filters of the
 73\% of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
 These vulnerabilities were actually found during
 their previous research~\cite{LSJ13}.
-Furthermore, in the publications that
+Finally, in the publications that
 {\sc amnesia}~\cite{HO05,HO06,HO05b}
 and {\sc sd}river~\cite{MS09,MKS09,MKLS11} were presented,
 authors managed to break existing application suites
@@ -1511,7 +1511,7 @@ Given the fact that the final steps of
 on the server-side, all the mechanisms that detect
 such attacks are placed in some point within the server.
 From the mechanisms that detect {\sc dsl} code injection
-attacks, 3 out of 13 ({\bf 23\%}) do so at the level
+attacks, 3 out of 13 (23\%) do so at the level
 of the {\sc rdbms} --- locus $\Omega$.
 The other 11 wrap {\sc api} calls related to output
 vectors --- locus {\sc z}.
@@ -1529,7 +1529,7 @@ checks the responses for potential attacks.
 Our findings indicate that the tendency so far,
 is to create frameworks that perform detection
 on the client side. In particular, 11 out of
-19 frameworks ({\bf 57,8\%}) detect JavaScript-driven
+19 frameworks (57,8\%) detect JavaScript-driven
 {\sc xss} attacks at the client's side.
 Note that the majority of the mechanisms that
 detect such attacks on the server-side, can also
@@ -1561,13 +1561,13 @@ the authors made it available after the publication. The question mark
 in the publication but now it is not available.
 
 Our first observation indicates that only 6
-out of 34 ({\bf 17.6\%}) of the authors provided a homepage for
+out of 34 (17.6\%) of the authors provided a homepage for
 their mechanism through their publication.
 2 from these 6 homepages are currently not available.
 Also, in 5 cases, authors made either the source code
 or their executables available after their paper
 got published. Finally, we observe that only 3
-out of 34 ({\bf 8.8\%}) authors have currently
+out of 34 (8.8\%) authors have currently
 their testbeds available on-line.
 
 \section{Lessons Learned}
@@ -1596,6 +1596,13 @@ purely through testing since they provide systematic
 arguments as to why their design is secure against attacks.
 However, implementations are not always efficient
 and as we observed they can be circumvented.
+
+We believe that our research may facilitate researchers
+or practitioners who would like to use one of the
+aforementioned mechanisms and researchers who would like
+to build new ones. Especially in the second case,
+researchers can utilize our exploitation model as a
+starting point to develop their approach.
 
 Notes on taint tools:
 \begin{enumerate}
