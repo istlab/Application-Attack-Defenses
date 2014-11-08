@@ -626,7 +626,7 @@ Section~\ref{sec:attacks}. We accompany our descriptions with comments
 related to the following dimensions: a) diagnostic performance, b)
 computational performance, c) security, d) ease of use, and e)
 detection locus. We treat f) availability separately in the
-``Analysis" section (\ref{sec:analysis}).
+``Discussion" section (\ref{sec:discussion}).
 
 Figure~\ref{fig:defenses} presents a taxonomy of the
 defenses that protect web applications against attacks based on
@@ -1398,8 +1398,8 @@ tracking approaches as described in reference~\cite{NBR14}.
     \end{threeparttable}
 \end{table*}
 
-\section{Analysis}
-\label{sec:analysis}
+\section{Discussion}
+\label{sec:discussion}
 
 \subsection{Testing}
 
@@ -1428,10 +1428,9 @@ Microsoft~\cite{RDWDE07}.}
 Table~\ref{tab:comp} indicates that the authors of 3 out of 34
 ({\bf 8.8\%}) publications, provided complete quadruples.
 On the other hand, we see that 4 out of
-34 ({\bf 11.7\%}) were not tested at all
-in terms of diagnostic performance. In this cases,
-all the four elements of the quadruples are not
-available ({\sc na}).
+34 ({\bf 11.7\%}) were not tested at all.
+In this cases, all the four elements of the
+quadruples are not available ({\sc na}).
 % Maybe we should comment on the fact that these are
 % frameworks coming from the etiological category
 % and detect the attacks ``by design".
@@ -1442,13 +1441,13 @@ to see if they produce any false alarms. The corresponding
 quadruples in this case, are the ones that contain {\sc tp} and
 {\sc fn} results but {\sc tn} and {\sc fp} results are not
 available ({\sc na}). This stresses the fact that authors
-of these mechanisms were more interested to make sure that
-their mechanisms can detect known attacks than to see how
+maybe more interested into making sure that
+their mechanisms can detect known attacks than seeing how
 they respond under normal conditions.
 In some occasions (where the number of {\sc tp} results
 are not quantified), authors did not mention how many or
 which attacks they performed.
-Moreover, we observe in some cases, that even if
+Also, in some cases, we observe that even if
 the authors report the existence of possible
 false positive and negative results, they have not
 quantified them ({\sc nq}).
@@ -1571,20 +1570,31 @@ got published. Finally, we observe that only 3
 out of 34 ({\bf 8.8\%}) authors have currently
 their testbeds available on-line.
 
-\section{Discussion and Lessons Learned}
+\section{Lessons Learned}
 
-Our findings indicate that currently, the testing of
-the diagnostic performance of
+In this section we point out our key findings and
+discuss the lessons derived from our research.
+We also argue that some of our observations may be
+good reasons why the mechanisms are not adopted in practice.
+
+One of our key findings indicate that currently,
+the testing of the diagnostic performance of
 mechanisms that detect top web application attacks
 has not a standard form. In addition,
-there are many mechanisms that are tested in a poor manner.
+there are many mechanisms that are tested in a poor
+manner. In many cases researchers tend not to
+provide the false positive and negative results
+that their tools may produce. Discussing
+about the existence of such results and not
+quantifying them may be a good reason to not use
+such a mechanism.
 
 A reasonable argument would be that many
 mechanisms (especially the ones coming from the
 etiological category), do not need to be established
 purely through testing since they provide systematic
 arguments as to why their design is secure against attacks.
-However, their implementations are not always efficient
+However, implementations are not always efficient
 and as we observed they can be circumvented.
 
 Notes on taint tools:
