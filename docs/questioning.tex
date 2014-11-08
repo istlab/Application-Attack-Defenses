@@ -1280,7 +1280,7 @@ tracking approaches as described in reference~\cite{NBR14}.
   \hline
   \multirow{12}{*}{Policy Enforcement}
   &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
-  &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} & {\sc csrf} \\
+  &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
   &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
   % &   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
   &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% ({\sc c}) & {\sc xss} \\
@@ -1290,7 +1290,7 @@ tracking approaches as described in reference~\cite{NBR14}.
   % &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
   &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
   &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
-  &   {\it CsFire}~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{4} & {\sc na} & {\sc csrf} \\
+  &   {\it CsFire}~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{4} & {\sc na} ({\sc c}) & {\sc csrf} \\
   &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
   &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms ({\sc c}) & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
@@ -1321,7 +1321,7 @@ tracking approaches as described in reference~\cite{NBR14}.
 	\hline
 	\hline  
   \multirow{6}{*}{Training}
-  &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc sql} injection \\
+  &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql} injection \\
 	&   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql} injection \\ 
 	&   {\it libAnomaly}~\cite{VMV05} & 226 & (9,15987,60,0)\_r & 0.20--1{\it ms} per query ({\sc s}) & {\sc sql} injection \\
 	& 	{\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
@@ -1529,8 +1529,7 @@ the browser-based {\sc xss} filters of the
 These vulnerabilities were actually found during
 their previous research~\cite{LSJ13}.
 Finally, in the publications that
-{\sc amnesia}~\cite{HO05,HO06,HO05b}
-and {\sc sd}river~\cite{MS09,MKS09,MKLS11} were presented,
+{\sc amnesia} and {\sc sd}river were presented,
 authors managed to break existing application suites
 and then test the diagnostic performance of their tools on them.
 
@@ -1551,6 +1550,23 @@ and then test the diagnostic performance of their tools on them.
 % would be one of the reasons of adopting them.
 
 \subsubsection{Computational Performance}
+
+Table~\ref{tab:comp} shows for every mechanism its
+corresponding overhead. In addition, it indicates
+if the overhead is applied to the server-side ({\sc s}),
+or the client-side ({\sc c}).
+Our first observation, is that there is a differential
+in the way in which the computational overhead of the
+mechanisms is measured. In many cases, 16 out of
+34 (47.05\%), the overhead is provided as a percentage
+while in other cases, 7 our of 34 (20.5\%),
+the authors provide the time (in terms of ms) that
+their mechanisms add to the normal execution time of
+the protecting entity. Surprisingly, in 10 cases (29,4\%),
+the overhead was either not available ({\sc na}) or
+not quantified ({\sc nq}). In the case of {\sc php aspis},
+its authors indicate that with their mechanism,
+the execution time is doubled.
 
 \subsection{Detection Locus}
 
