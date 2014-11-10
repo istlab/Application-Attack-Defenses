@@ -85,7 +85,7 @@ louridas@aueb.gr
   accuracy, performance, deployment, security and availability.
   Especially notable is accuracy, as our findings show that there are
   many defense mechanisms that are tested in a poor manner.
-  In addition, we observe that there are protection mechanisms
+  In addition, we observe that there are mechanisms
   that can be bypassed by attackers that know how the mechanisms
   work.
 
@@ -336,11 +336,11 @@ understand the process of carrying out application attacks based on
 source code injection vulnerabilities.
 Figure~\ref{fig:attacks} presents the steps of different application
 attacks. For every arrow there is a
-corresponding tuple that includes the step number for
+corresponding tuple that includes the transition number for
 every attack. For the most part, the steps are common in all attacks. This
 is because they are based on similar attack vectors as we mentioned in
 the previous section. Most importantly,
-Figure~\ref{fig:attacks} also illustrates in which step
+Figure~\ref{fig:attacks} also illustrates in which transitions
 the defenses detect corresponding attacks.
 
 A malicious user can initiate the attack through two different routes.
@@ -348,7 +348,7 @@ The attacker may use the browser of an innocent user as an attack
 vehicle, through which the code will be injected in the application.
 For example, the attacker could craft a malicious script into a {\sc url}
 and then trick an end user to click on it via social engineering (i.e., phishing ---
-{\sc step}: {\sc p-xss}' 1 \text{\textbar} {\sc n-xss}' 1 \text{\textbar} {\sc csrf} 1).
+{\it transition}: {\sc p-xss}' 1 \text{\textbar} {\sc n-xss}' 1 \text{\textbar} {\sc csrf} 1).
 Alternatively, the attacker may be able to inject
 directly the malicious code in the application. For example, consider
 a web application that accepts and redisplays user input
@@ -356,7 +356,7 @@ without appropriate validation. An attacker could
 upload data containing a specially crafted script (for example, in a
 blog comment) to steal the cookies of the visiting users or embed
 malicious {\sc sql} code to retrieve all the password entries from a
-database ({\sc step}: {\sc dsl} 1 \text{\textbar}
+database ({\it transition}: {\sc dsl} 1 \text{\textbar}
 {\sc p-xss} 1 \text{\textbar} {\sc n-xss} 1).
 Note that an {\sc xss} attack can start from both routes.
 
@@ -370,7 +370,7 @@ finally reaches the database where it is executed.
 {\it persistent}. Non-persistent {\sc xss} attacks take place when the
 data provided by a user is used immediately by server-side scripts to
 parse and display a page of results, without properly sanitizing the
-request ({\sc step}: {\sc p-xss} 8 \text{\textbar} {\sc n-xss} 3).
+request ({\sc transition}: {\sc p-xss} 8 \text{\textbar} {\sc n-xss} 3).
 Thus, in a non-persistent {\sc xss} attack the injected code
 is never saved on the server and immediately becomes part of the
 content that is sent back to a web user.
@@ -388,9 +388,9 @@ actually sent back afterwards to the user.
 \caption{\label{fig:attacks}Attack model demonstrating web
 application attacks based on source
 code injection vulnerabilities. For every arrow there is a
-corresponding tuple that includes the step number for
+corresponding tuple that includes a transition number for
 every attack. Note that {\sc xss} attacks can also involve
-{\it phishing}. Every {\it point} indicates a step where mechanisms
+phishing. Every {\it point} indicates a transition where mechanisms
 detect attacks. For every point we provide the corresponding
 references:
 Point {\sc ub}~\cite{KJKV09,TNH07,NSS06,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
@@ -928,8 +928,6 @@ tainted string is used as an argument to a sink method
 then an exception is raised (Point {\sc eq}).
 % However, this is a simplistic approach that may
 % lead to many false positives.
-%% PL better to avoid characterisations and mention only the facts
-%% (that it leads to many false positives, as shown by ...
 
 It is possible to apply further checks when it is established that
 tainted data have reached a sink (Point {\sc eq}). {\it Xu et
@@ -943,7 +941,6 @@ and others. When tainted data reaches a sink, {\sc csse} performs
 syntactic checks based on the aforementioned metadata (Point {\sc eq}).
 {\it {\sc php} Aspis}~\cite{PMP11} works in a similar way. To obtain
 metadata, it takes advantage of {\sc php} arrays data structure.
-%% PL Like what?
 % Note that the above schemes detect potential attacks
 % in locus {\sc z}. This automatically means that they
 % cannot detect non-persistent JavaScript-driven
@@ -965,8 +962,6 @@ positive taint tracking, where taint data is considered to be
 legitimate. Their scheme detects JavaScript-driven {\sc xss} attacks
 by ensuring that a script can send sensitive user data only to the
 site from which it came from.
-% This though, may lead to false alarms.
-%% PL You mean a lot of false alarms?
 {\it Stock et al.}~\cite{SLMS14} propose a scheme that also operates
 in the browser (Point {\sc ub}). The scheme focuses on the detection of
 {\sc dom}-based {\sc xss} attacks. In such an attack, the malicious
@@ -979,15 +974,6 @@ Specifically, it employs a taint-enhanced JavaScript engine that
 tracks the flow of attacker-controlled data. To detect potential
 attacks the scheme utilizes {\sc html} and JavaScript parsers that can
 identify the generation of code coming from tainted data.
-
-% @dimitro: move this to the analysis Section:
-% This scheme is an efficient scheme that focuses
-% on a specific category of {\sc xss} attacks and
-% takes into consideration many attack vectors
-% that many of the previous schemes do not.
-% Also: 
-% As the author of {\sc csse} state~\cite{PB05}, the prevention
-% of {\sc xss} attack requires a more complex analysis.
 
 \subsubsection{Training}
 
@@ -1538,6 +1524,15 @@ injection attacks (7 out of 8).
 
 \section{Lessons Learned}
 \label{sec:lessons-learned}
+
+% @dimitro: move this to the analysis Section:
+% This scheme is an efficient scheme that focuses
+% on a specific category of {\sc xss} attacks and
+% takes into consideration many attack vectors
+% that many of the previous schemes do not.
+% Also: 
+% As the author of {\sc csse} state~\cite{PB05}, the prevention
+% of {\sc xss} attack requires a more complex analysis.
 
 One of our key findings indicate that many detect mechanisms are
 tested in a poor manner. In many cases researchers tend not to provide
