@@ -431,6 +431,7 @@ The first two criteria are \emph{Diagnostic Performance} and
 \emph{Detection Locus}.
 
 \subsection{Diagnostic Performance}
+\label{ssec:diagnostic-performance}
 
 As in medical diagnostic tests, application attack defense mechanisms
 must demonstrate the presence of an attack. This, however, does not
@@ -453,17 +454,16 @@ metrics~\cite{TDR2013,GFDLS06,A00}:
   mechanism flags it as normal.
 \end{itemize}
 
-Sensitivity and specifity are defined by way of the $2\times 2$
-Table~\ref{tab:sensitivity-specificity}~\cite{linn2004}. 
-In the cells of
-the table we distinguish:
+We will focus on sensitivity and specificity; we will come back to
+\textsc{ppv} and \textsc{npv} in Section~\ref{sec:lessons-learned}.
+Sensitivity and specifity are defined using the following~\cite{linn2004}:
 \begin{itemize}
-\item True Positive ($a$), a real attack that raises an alarm.
-\item True Negative ($d$), an event that is not an attack and that does
+\item True Positive (\textsc{tp}), an attack that raises an alarm.
+\item True Negative (\textsc{tn}), an event that is not an attack and that does
   not raise an alarm.
-\item False Positive ($b$), an event that although it is not an attack
+\item False Positive (\textsc{fp}), an event that although it is not an attack
   raises an alarm.
-\item False Negative ($c$), an event that although is as attack does
+\item False Negative (\textsc{fn}), an event that although is as attack does
   not raise an alarm.
 \end{itemize}
 
@@ -471,11 +471,15 @@ the table we distinguish:
 With these we can calculate:
 
 \begin{equation}
-\textrm{SE} = \textrm{Sensitivity} = \frac{a}{a + c}
+  \textsc{se} = \textrm{Sensitivity} = \frac{\textsc{tp}}{\textsc{tp}
+    + \textsc{fn}}
+\label{eq:sensitivity}
 \end{equation}
 
 \begin{equation}
-\textrm{SP} = \textrm{Specificity} = \frac{d}{b + d}
+  \textsc{sp} = \textrm{Specificity} = \frac{\textsc{tn}}{\textsc{fp}
+    + \textsc{tn}}
+\label{eq:specificity}
 \end{equation}
 
 Sensitivity and specificity can be calculated based on test
@@ -486,122 +490,6 @@ the sensitivity. Similarly, to calculate the specificity we can run
 the test on a controlled environment where we allow only innocuous
 events to reach the system. The ratio of non-reported events over all
 events will give us the specificity. 
-
-\begin{table}[ht]
-
-\caption{Attacks and Test Outcomes in Test Environment}
-\label{tab:sensitivity-specificity}
-
-\begin{tabular}{l|l|c|c|}
-\multicolumn{2}{c}{} & \multicolumn{2}{c}{Attack} \\ \cline{3-4}
-\multicolumn{2}{c|}{} & Yes & No \\ \cline{2-4}
-\multirow{2}{*}{Result} &  Yes &  $a = \textrm{True Positive}$ & 
-$b = \textrm{False Positive}$ \\
-& No & $c = \textrm{False Negative}$ & $d = \textrm{True Negative}$ \\ 
-\cline{2-4}
-\multicolumn{2}{r|}{Total} & $a + c$ & $b + d$ \\
-\cline{3-4}
-\end{tabular}
-
-\end{table}
-
-Note that the calculations are carried out vertically in
-Table~\ref{tab:sensitivity-specificity}; the ratio of attack events to
-normal events does not enter into sensitivity and specificity. This is
-what allows us to derive them based on test data, without using data
-from a real production environment. At the same time, this is what
-limits their usefulness. When we obtain a test result in a production
-environment, be it negative or positive, we really want to know how
-much we should be worried, or relaxed. In other words, if an attack is
-detected in a production environment, how much should we be worried?
-If no attack is detected in a production environment, how relaxed
-should we be that no attack has indeed taken place?
-
-\begin{table}[ht]
-
-\caption{Attacks and Test Outcomes in Real Environment}
-\label{tab:ppv-npv}
-
-\begin{tabular}{l|l|c|c|c}
-\multicolumn{2}{c}{} & \multicolumn{2}{c}{Attack} & \\ \cline{3-4}
-\multicolumn{2}{c|}{} & Yes & No & Total \\ \cline{2-5}
-\multirow{2}{*}{Result} &  Yes &  $A = \textrm{True Positive}$ & 
-$B = \textrm{False Positive}$ & \multicolumn{1}{c|}{$A + B$}\\
-& No & $C = \textrm{False Negative}$ & $D = \textrm{True Negative}$ &
-\multicolumn{1}{c|}{$C + D$}\\ 
-\cline{2-5}
-\end{tabular}
-
-\end{table}
-
-The answer to these questions is given by the \textsc{ppv} and the
-\textsc{npv}. These depend not only on the test results, but also on
-the \emph{prevalence} of attacks in real environments. In particular,
-we can calculate them using Table~\ref{tab:ppv-npv}, which tabulates
-results in a real environment, or in an environment where the
-prevalence of attacks is equal to what we expect in the real world. To
-indicate the difference with Table~\ref{tab:sensitivity-specificity}
-we use capital letters for the entries in the table~\cite{linn2004}.
-With this table, \textsc{ppv} and \textsc{npv} are given by the
-following equations:
-
-\begin{equation}
-\textrm{PPV} = \frac{A}{A + C}
-\end{equation}
-
-\begin{equation}
-\textrm{NPV} = \frac{D}{B + D}
-\end{equation}
-
-This time the ratios are taken horizontally; the ratio of attacks to
-innocuous events affects the calculations. In fact, if PR is the
-probability of attacks in the real world, the prevalence, then we
-have~\cite{linn2004,altman1994}:
-
-\begin{equation}
-\textrm{PPV} = \frac{\textrm{SE}\times \textrm{PR}}{
-\textrm{SE}\times \textrm{PR} + (1 - \textrm{SP})\times (1 -
-\textrm{PR})}
-\label{eq:ppv-se-sp}
-\end{equation}
-
-\begin{equation}
-\textrm{NPV} = \frac{\textrm{SP}\times (1 - \textrm{PR})}{
-(1 - \textrm{SE})\times \textrm{PR} + \textrm{SP}\times (1 -
-\textrm{PR})}
-\label{eq:npv-se-sp}
-\end{equation}
-
-The prevalence is the prior probability that an event is an attack,
-based on our understanding of the volume and frequency of attacks; the
-\textsc{ppv} and \textsc{npv} are the revised estimates of the
-probability based on the results of the detection
-mechanism~\cite{altman1994}. The lower the prevalence of an attack,
-the more confident we can be that a negative test result indicates
-that no attack has taken place and the less sure we can be that a
-positive test result indicates a real attack. 
-
-If published research does not include figures for Sensitivity and
-Specificity or values for ($a$)--($d$), on test environments, then it
-is not possible to judge the accuracy of the research at all. Even if
-we do have such figures, a good research tool is not necessarily a
-good practical tool. Even if a research tool scores well on
-Sensitivity and Specificity, it may not be very useful in the real
-world if the prevalence of the caught attacks is so low that a
-positive test result is not likely to indicate a real attack.
-
-To sum up, we evaluate diagnostic performance on two criteria:
-
-\begin{itemize}
-\item Reporting of Sensitivity and Specifity, either directly, or
-  indirectly from published values of $a$--$d$.
-\item Reporting of \textsc{ppv} and \textsc{npv}. This can be direct
-  reporting of their values, or indirect from published values of
-  $A$--$D$. Also, since from equations~\ref{eq:ppv-se-sp}
-  and~\ref{eq:npv-se-sp} \textsc{ppv} and \textsc{npv} can be
-  calculated by the sensitity and specifity given the prevalence, it
-  can be via reporting prevalance, sensitivity, specificity.
-\end{itemize}
 
 \subsection{Availability}
 
@@ -1649,31 +1537,94 @@ such attacks on the server-side can also detect {\sc dsl} code
 injection attacks (7 out of 8).
 
 \section{Lessons Learned}
+\label{sec:lessons-learned}
 
-In this section we point out our key findings and
-discuss the lessons derived from our research.
-We also argue that some of our observations may be
-good reasons why the mechanisms are not adopted in practice.
+One of our key findings indicate that many detect mechanisms are
+tested in a poor manner. In many cases researchers tend not to provide
+the false positive and negative results that their tools may produce.
+Discussing about the existence of such results and not quantifying
+them also blurs the picture.
 
-One of our key findings indicate that currently,
-the testing of the diagnostic performance of
-mechanisms that detect top web application attacks
-has not a standard form. In addition,
-there are many mechanisms that are tested in a poor
-manner. In many cases researchers tend not to
-provide the false positive and negative results
-that their tools may produce. Discussing
-about the existence of such results and not
-quantifying them may be a good reason to not use
-such a mechanism.
+A reasonable argument would be that many mechanisms (especially the
+ones coming from the etiological category), do not need to be
+established purely through testing since they provide systematic
+arguments as to why their design is secure against attacks. In order
+for this to hold, however, an implementation of a defense mechanism
+may be entirely correct in terms of its specification, which may not
+happen in practice. Moreover, even a mechanism that detects an attack
+based on its root cause, instead of observer behavior, may still be
+circumvented so that attacks will pass undetected.
 
-A reasonable argument would be that many
-mechanisms (especially the ones coming from the
-etiological category), do not need to be established
-purely through testing since they provide systematic
-arguments as to why their design is secure against attacks.
-However, implementations are not always efficient
-and as we observed they can be circumvented.
+When we introduced specicifity and sensitivity in
+Section~\ref{ssec:diagnostic-performance} we deferred discussion of
+\textsc{ppv} and \textsc{npv} to this point. These two relate to the
+performance of a detection mechanism in an actual production setting,
+instead of a testbed. If an attack is detected in a production
+environment, how much should we be worried? The answer is provided by
+\textsc{ppv}. If no attack is detected in a production environment,
+how relaxed should we be that no attack has indeed taken place? The
+answer is provided by \textsc{npv}. We can calculate \textsc{ppv} and
+\textsc{npv} with the following equations:
+
+\begin{equation}
+\textsc{ppv} = \frac{\textsc{tp}}{\textsc{tp} + \textsc{fp}}
+\end{equation}
+
+\begin{equation}
+\textsc{npv} = \frac{\textsc{tn}}{\textsc{fn} + \textsc{tn}}
+\end{equation}
+
+Equations~\ref{eq:ppv-se-sp} and~\ref{eq:npv-se-sp} use true and false
+positives and negatives, like equations~\ref{eq:sensitivity}
+and~\ref{eq:specificity}. However, \textsc{tp}, \textsc{tn},
+\textsc{fp}, and \textsc{fn} are not the same in the two cases:
+whereas sensitivity and specificity are measured on a test
+environment, \textsc{ppv} and \textsc{npv} are measured on the real,
+target environment. In fact, if \textsc{pr} is the probability of
+attacks in the real world, the prevalence, then we
+have~\cite{linn2004,altman1994}:
+
+\begin{equation}
+\textsc{ppv} = \frac{\textsc{se}\times \textsc{pr}}{
+\textsc{se}\times \textsc{pr} + (1 - \textsc{sp})\times (1 -
+\textsc{pr})}
+\label{eq:ppv-se-sp}
+\end{equation}
+
+\begin{equation}
+\textsc{npv} = \frac{\textsc{sp}\times (1 - \textsc{pr})}{
+(1 - \textsc{se})\times \textsc{pr} + \textsc{sp}\times (1 -
+\textsc{pr})}
+\label{eq:npv-se-sp}
+\end{equation}
+
+The prevalence is the prior probability that an event is an attack,
+based on our understanding of the volume and frequency of attacks; the
+\textsc{ppv} and \textsc{npv} are the revised estimates of the
+probability based on the results of the detection
+mechanism~\cite{altman1994}. The lower the prevalence of an attack,
+the more confident we can be that a negative test result indicates
+that no attack has taken place and the less sure we can be that a
+positive test result indicates a real attack. 
+
+Of course it is not easy, and it may not even be possible, to know how
+prevalent an attack is. Also, attacks on a system may depend on
+factors such as its visibility and popularity, so that the same piece
+of software may be subject to varying attack regimes depending on
+where it is actually deployed. With this in mind it may be unfair to
+ask of researchers to provide \textsc{ppv} and \textsc{npv} values for
+their mechanisms---in fact, we see that nobody does.
+
+That does not mean that deriving \textsc{ppv} and \textsc{npv} is
+altogether impossible. One could deploy a system, armoured with an
+attack detection mechanism, on a honeypot to study what happens over
+a length of time. This could give an indication of the performance of
+the mechanism out in the wild. Alternatively, one could deploy a
+target, unarmoured system, on a honeypot to study the prevalence of
+the class of attacks to be detected. Studying the prevalence of
+classes of attacks could be an interesting area of study on its own,
+which could feed directly on the evaluation of attack detection
+mechanisms as practical tools.
 
 We believe that our research may facilitate researchers
 or practitioners who would like to use one of the
