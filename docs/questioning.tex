@@ -93,12 +93,8 @@ louridas@aueb.gr
   characteristics, we help: a) researchers and practitioners to choose
   or modify a mechanism according to their needs, and b) designers of
   new approaches in developing more efficient mechanisms.
-% @dimitro: change the above accordingly.
+% dimitro@dimitro: change the above accordingly.
 
-
-%In this paper we examine how application attack defense
-%mechanism are developed and presented to
-%the research community.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -109,8 +105,6 @@ Testing, Cross-Site Scripting.
 \IEEEpeerreviewmaketitle
 
 \section{Introduction Remarks}
-
-%Introduction~\cite{I05}. Also see~\cite{A00}.
 
 Web application attacks may involve security misconfigurations, broken
 authentication and session management, or other issues. Some of the
@@ -169,7 +163,7 @@ on the following dimensions:
   and can be easily adopted by security experts.
 \item {\it Security} We examine how resilient is the system to
   attackers that know how it works and wants to circumvent it.
-\item {\it Detection Locus} Based on our exploitation model
+\item {\it Point of Detection} Based on our exploitation model
   we examine the location where a mechanism detects an attack.
 \item {\it Availability} We check if the mechanism and its
   testbed are available on-line.
@@ -396,13 +390,13 @@ application attacks based on source
 code injection vulnerabilities. For every arrow there is a
 corresponding tuple that includes the step number for
 every attack. Note that {\sc xss} attacks can also involve
-{\it phishing}. Every {\it locus} indicates a step where mechanisms
-detect attacks. For every locus we provide the corresponding
+{\it phishing}. Every {\it point} indicates a step where mechanisms
+detect attacks. For every point we provide the corresponding
 references:
-locus {\sc x}~\cite{KJKV09,TNH07,NSS06,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
-locus {\sc y}~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08},
-locus {\sc z}~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
-locus $\Omega$~\cite{BK04,LLW02,VMV05}.}
+Point {\sc ub}~\cite{KJKV09,TNH07,NSS06,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
+Point {\sc sb}~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08},
+Point {\sc eq}~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
+Point {\sc sdb}~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
 
 \section{Analysis Dimensions}
@@ -436,7 +430,7 @@ setting rests on a different set of criteria:
 The first two criteria are \emph{Accuracy} and
 \emph{Availability}. The other four criteria are \emph{Computational
   Performance}, \emph{Ease of Use}, \emph{Security}, and
-\emph{Detection Locus}.
+\emph{Point of Detection}.
 
 \subsection{Accuracy}
 \label{ssec:diagnostic-performance}
@@ -577,18 +571,19 @@ examine the various approaches on the knowledge we have to this date,
 that is, whether there are known ways to bypass the detection
 mechanism today.
 
-\subsection{Detection Locus}
+\subsection{Point of Detection}
 
 Detection mechanisms vary on the location where they detect an attack.
-There are five different loci where an attack can be caught, as seen
+There are four different points where an attack can be caught, as seen
 in Figure~\ref{fig:attacks}:
 \begin{itemize}
-\item At the user's browser (Locus X).
-\item En route from the server to the user's browser (Locus Y).
+\item At the user's browser (Point {\sc ub}).
+\item En route from the server to the user's browser --- in most cases
+within a proxy (Point {\sc sb}).
 \item Embedded in a query, but before it reaches the server's database
-  (Locus Z).
+  (Point {\sc eq}).
 \item After the malicious code has been executed on the server's
-  database (Locus $\Omega$).
+  database (Point {\sc sdb}).
 \end{itemize}
 
 \section{Defenses}
@@ -665,7 +660,7 @@ Both mechanisms that implement this approach,
 {\sc sqlg}uard~\cite{BWS05} and
 {\sc sql}check~\cite{SW06} are pretty similar
 and detect the attack before a query reaches the
-database (Locus {\sc z}).
+database (Point {\sc eq}).
 Contrary to {\sc sqlg}uard (and other
 mechanisms as we will observe), {\sc sql}check has been
 extensively tested in terms of accuracy
@@ -707,7 +702,7 @@ The key idea behind Noxes is to parse
 the {\sc html} that reaches the browser to
 find static {\sc url} references. Then, based on
 a set of policies Noxes allows or blocks
-the request (Locus {\sc x}). Such policies
+the request (Point {\sc ub}). Such policies
 can be also provided by the server (i.e. ``never
 follow a link that leads to the malicious.com
 web site"). The main issue with Noxes is that
@@ -720,7 +715,7 @@ based on information and features provided by
 the Document Object Model ({\sc dom}) of a web page.
 Specifically, developers must place all legitimate
 scripts inside {\sc html} elements like {\tt div}.
-The web browser (Locus {\sc x}), parses the
+The web browser (Point {\sc ub}), parses the
 {\sc dom} tree and executes scripts only when they
 are contained in such elements. All other scripts
 are treated according to the policies defined
@@ -747,7 +742,7 @@ as described extensively in reference~\cite{APKLM10}.
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
 to confine their behavior. {\it BrowserShield}~\cite{RDWDE07}
-acts as a proxy on the server side (Locus {\sc y}) to
+acts as a proxy on the server side (Point {\sc SB}) to
 parse the {\sc html} of server responses and identifies
 scripts. Then, it rewrites them into safe equivalents
 and protects the web user from exploits
@@ -757,7 +752,7 @@ and the framework by {\it Phung et al.}~\cite{PSC09}
 extend JavaScript with new primitive functions that
 provide safe methods to protect potentially vulnerable
 JavaScript functions. In both cases, policy enforcement takes
-place on the JavaScript engine of the browser (Locus {\sc x}).
+place on the JavaScript engine of the browser (Point {\sc ub}).
 %% PL In which way is this a kind of policy enforcement?
 In this way, {\sc xxs} attacks that take advantage
 functions like {\tt write} and {\tt eval}, which are
@@ -795,7 +790,7 @@ http://foo.net/vulnerable.html?query=
 \noindent
 {\it WebJail}~\cite{VDDPJ11}, and
 {\sc soma}~\cite{OWVS08} are two frameworks that
-can actually detect such an attack (Locus {\sc x}).
+can actually detect such an attack (Point {\sc ub}).
 To achieve this, {\sc soma} requires site administrators
 to specify legitimate, external domains for sending
 or receiving information in order to approve interactions
@@ -808,7 +803,7 @@ or the functionality of other components.
 
 Policy enforcement mechanisms that detect {\sc csrf}
 attacks are usually implemented in the form of a
-server-side proxy (Locus {\sc y})
+server-side proxy (Point {\sc SB})
 interposing on the client-server communication, and modifying
 it. {\it NoForge}~\cite{JKK06a}
 parses the {\sc html} server responses
@@ -828,7 +823,7 @@ has a very similar functionality and meanwhile
 addresses the above problems.
 Finally, {\it CsFire}~\cite{DDHPJ10}
 examines cross-domain interactions, to design a
-cross-domain policy on the client's side (Locus {\sc x}).
+cross-domain policy on the client's side (Point {\sc ub}).
 The policy is based on the concept of a relaxed
 same-origin policy that allows communication between
 sub-domains of the same registered domain.
@@ -854,13 +849,13 @@ statements using randomized instructions instead of standard keywords.
 The modified queries are reconstructed at runtime using the same key
 that is inaccessible to the malicious user. {\sc sql}rand is one of
 the few mechanisms that detect {\sc sql} injection attacks on the
-database level (Locus $\Omega$).
+database level (Point {\sc sdb}).
 
 In the case of {\sc xss} attacks that are based on JavaScript or {\sc
   html}, consider a {\sc xor} function that encodes all source of a
 web page on the server-side and then, on the client-side, the web
-browser decodes the source by applying the same function again (Locus
-{\sc x}). Variations of this approach include {\it
+browser decodes the source by applying the same function again (Point
+{\sc ub}). Variations of this approach include {\it
   Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}, which
 randomize the instruction set of {\sc html} and JavaScript
 respectively. Contrary to x{\sc js}, in Noncespaces administrators
@@ -874,8 +869,8 @@ JavaScript keywords within the application's legitimate code. This is
 done before the processing of an {\sc http} request. When it finds one
 it adds a token to it. This results to a ``code mask". Then, before
 sending the resulting {\sc html} data to the web user, the framework
-searches the data for illegal code by using the same keywords (Locus
-{\sc y}). Since all legitimate code has been ``masked", the injected
+searches the data for illegal code by using the same keywords (Point
+{\sc SB}). Since all legitimate code has been ``masked", the injected
 code can be identified. The pre- and post-processing of the code
 though, may add a significant overhead to the application.
 Unfortunately, the authors of {\sc sm}ask did not provide measurements
@@ -930,14 +925,14 @@ For example, {\it Haldar et al.}~\cite{HCF05} have implemented
 their scheme for the Java Virtual Machine ({\sc jvm})
 where they instrument various classes. When a
 tainted string is used as an argument to a sink method
-then an exception is raised (Locus {\sc z}).
+then an exception is raised (Point {\sc eq}).
 % However, this is a simplistic approach that may
 % lead to many false positives.
 %% PL better to avoid characterisations and mention only the facts
 %% (that it leads to many false positives, as shown by ...
 
 It is possible to apply further checks when it is established that
-tainted data have reached a sink (Locus {\sc z}). {\it Xu et
+tainted data have reached a sink (Point {\sc eq}). {\it Xu et
   al.}~\cite{XBS06} track taint information at the level of bytes in
 memory. To distinguish between legitimate and malicious uses of
 untrusted data that reach a sink, they search the data for suspicious
@@ -945,7 +940,7 @@ symbols by using regular expressions. {\sc csse}~\cite{PB05}
 associates tainted data with specific metadata. Such metadata include
 the origins of tainted data, its propagation within the application,
 and others. When tainted data reaches a sink, {\sc csse} performs
-syntactic checks based on the aforementioned metadata (Locus {\sc z}).
+syntactic checks based on the aforementioned metadata (Point {\sc eq}).
 {\it {\sc php} Aspis}~\cite{PMP11} works in a similar way. To obtain
 metadata, it takes advantage of {\sc php} arrays data structure.
 %% PL Like what?
@@ -955,7 +950,7 @@ metadata, it takes advantage of {\sc php} arrays data structure.
 % {\sc xss} attacks. Although they can be
 % modified to do so.
 Finally, {\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
-if there are tainted data that contain scripts (locus {\sc y}).
+if there are tainted data that contain scripts (Point {\sc sb}).
 
 A recent study~\cite{NBR14} showed that there are ways to circumvent
 the majority of the above schemes. Furthermore, most of them are not
@@ -965,7 +960,7 @@ and output vectors of the application must be instrumented.
 {\it Vogt et al.}~\cite{VFJKKV07} have developed a tainting scheme
 that follows a different approach. Contrary to the aforementioned
 schemes that operate on the server side, they track sensitive
-information on the client side (Locus {\sc x}). This is a form of
+information on the client side (Point {\sc ub}). This is a form of
 positive taint tracking, where taint data is considered to be
 legitimate. Their scheme detects JavaScript-driven {\sc xss} attacks
 by ensuring that a script can send sensitive user data only to the
@@ -973,7 +968,7 @@ site from which it came from.
 % This though, may lead to false alarms.
 %% PL You mean a lot of false alarms?
 {\it Stock et al.}~\cite{SLMS14} propose a scheme that also operates
-in the browser (Locus {\sc x}). The scheme focuses on the detection of
+in the browser (Point {\sc ub}). The scheme focuses on the detection of
 {\sc dom}-based {\sc xss} attacks. In such an attack, the malicious
 payload is executed as a result of the modification of the {\sc dom}
 environment so that the client-side code runs in an unanticipated
@@ -1008,8 +1003,8 @@ Training methods that detect {\sc dsl}-driven injection attacks
 generate and store valid code statements (i.e. {\sc sql} or {\sc
   xp}ath queries) in various forms, and detect attacks as outliers
 from the set of valid code statements. An early approach, {\it {\sc
-    didafit}}~\cite{LLW02} detects {\sc sql} injection (Locus
-$\Omega$) attacks by recording all database transactions
+    didafit}}~\cite{LLW02} detects {\sc sql} injection (Point
+sdb) attacks by recording all database transactions
 (stripped from user input). Subsequent
 refinements by Valeur et al.~\cite{VMV05} tagged each transaction with
 the corresponding application as an extension of their anomaly
@@ -1020,9 +1015,9 @@ signatures generated during a training phase are based on features
 that can depend either on the code statement or on its execution
 environment (i.e. the stack trace). Then, at runtime, the mechanism
 checks all statements for compliance and can block code statements
-containing injected elements (Locus {\sc z}). {\sc
+containing injected elements (Point {\sc eq}). {\sc
   amnesia}~\cite{HO05,HO06,HO05b} is a tool that also detects {\sc
-  sql} injection attacks (locus {\sc z}) by associating a query model
+  sql} injection attacks (Point {\sc eq}) by associating a query model
 with the location of every {\sc sql} statement within the application.
 Then, at runtime, it monitors the application's execution to detect
 when {\sc sql} statements diverge from the expected model.
@@ -1030,8 +1025,8 @@ when {\sc sql} statements diverge from the expected model.
 Various countermeasures against {\sc xss} attacks follow a similar
 pattern. {\it {\sc swap}}~\cite{WPLKK09} creates a unique identifier
 ({\it script {\sc id}}) for every legitimate script on the server.
-Then, a JavaScript detection component placed in a web proxy (Locus
-{\sc y}) searches for injected scripts with no corresponding {\sc id}
+Then, a JavaScript detection component placed in a web proxy (Point
+{\sc sb}) searches for injected scripts with no corresponding {\sc id}
 in the server's responses. If no injected scripts are found, the proxy
 forwards the request to the client. This mechanism is relatively
 inflexible since it does not support dynamic scripts. In addition it
@@ -1135,8 +1130,8 @@ retrieves for every script included in a response its parsed tree and
 checks if it is one of those previously mapped to this response. Apart
 from the comparison of the parsed trees, {\sc xss-guard} checks also
 for an exact match of lexical entities. To achieve this, the scheme
-utilizes that data structures of Firefox's JavaScript engine (Locus
-{\sc x}). However, string literals are not compared literally and
+utilizes that data structures of Firefox's JavaScript engine (Point
+{\sc ub}). However, string literals are not compared literally and
 therefore a false negative result could occur if an adversary performs
 a mimicry attack~\cite{WS02}. For example, consider a banner rotator
 that every time it runs, it creates a value that depends on the
@@ -1157,7 +1152,7 @@ also utilizes parsed trees to detect {\sc xss} attacks. To guarantee
 that untrusted content is not executed, Blueprint generates on the
 server-side a parsed tree from untrusted {\sc html} to ensure that it
 does not contain any dynamic content. Then the parsed tree is
-transfered to the document generator of the browser (Locus {\sc x})
+transfered to the document generator of the browser (Point {\sc ub})
 where untrusted browser parsing behavior is ruled out. Blueprint is an
 efficient countermeasure but it imposes a significant overhead due to
 its extensive parsing (see Table~\ref{tab:comp}).
@@ -1173,7 +1168,7 @@ application computes an output string (query), Diglossia computes a
 introduced by the application to a shadow character set. This set does
 not contain any characters coming from the tainted input. Then, the
 scheme creates the tree of the query that is about to be executed and
-compares it with the parsed tree of the ``shadow" (Locus {\sc z}). If
+compares it with the parsed tree of the ``shadow" (Point {\sc eq}). If
 the trees are not equal the application is probably under attack. Note
 that Diglossia can be bypassed in the same way as other taint
 tracking approaches as described in reference~\cite{NBR14}.
@@ -1516,7 +1511,7 @@ both browser vendors and application developers.
 
 \subsection{Security}
 
-\subsection{Detection Locus}
+\subsection{Point of Detection}
 
 Given the fact that the final steps of
 {\sc dsl} injection and {\sc csrf} attacks take place
@@ -1524,9 +1519,9 @@ on the server-side, all the mechanisms that detect
 such attacks are placed in some point within the server.
 From the mechanisms that detect {\sc dsl} code injection
 attacks, 3 out of 13 (23\%) do so at the level
-of the {\sc rdbms}---Locus $\Omega$.
+of the {\sc rdbms}---Point {\sc sdb}.
 The other 11 wrap {\sc api} calls related to output
-vectors---Locus {\sc z}.
+vectors---Point {\sc eq}.
 
 In frameworks that deal with JavaScript-driven {\sc xss} attacks we
 see that attack detection may take place either on the server-side or
