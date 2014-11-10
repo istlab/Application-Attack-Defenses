@@ -337,10 +337,12 @@ source code injection vulnerabilities.
 Figure~\ref{fig:attacks} presents the steps of different application
 attacks. For every arrow there is a
 corresponding tuple that includes the transition number for
-every attack. For the most part, the steps are common in all attacks. This
+every attack. Every number indicates the number of the
+steps taken until we reach this transition.
+For the most part, the steps are common in all attacks. This
 is because they are based on similar attack vectors as we mentioned in
 the previous section. Most importantly,
-Figure~\ref{fig:attacks} also illustrates in which transitions
+Figure~\ref{fig:attacks} illustrates in which transitions
 the defenses detect corresponding attacks.
 
 A malicious user can initiate the attack through two different routes.
@@ -370,7 +372,7 @@ finally reaches the database where it is executed.
 {\it persistent}. Non-persistent {\sc xss} attacks take place when the
 data provided by a user is used immediately by server-side scripts to
 parse and display a page of results, without properly sanitizing the
-request ({\sc transition}: {\sc p-xss} 8 \text{\textbar} {\sc n-xss} 3).
+request ({\it transition}: {\sc p-xss} 7 \text{\textbar} {\sc n-xss} 2).
 Thus, in a non-persistent {\sc xss} attack the injected code
 is never saved on the server and immediately becomes part of the
 content that is sent back to a web user.
@@ -629,7 +631,7 @@ for every mechanism provides the following:
 
 \begin{enumerate}
 \item The number of times the corresponding publication has been cited.
-\item Accuracy and Computational Overhead measurements.
+\item Accuracy and computational overhead measurements.
 \item The attacks that the mechanism detects.
 \end{enumerate}
 
@@ -1475,10 +1477,11 @@ Table~\ref{tab:comp} shows for every mechanism its corresponding
 overhead. In addition, it indicates if the overhead is applied to the
 server-side ({\sc s}), or the client-side ({\sc c}). In almost half of
 the approaches, 16 out of 34 (47.05\%), the overhead is provided as a
-percentage. while in other cases, 7 our of 34 (20.5\%), the authors
+percentage, while in other cases, 7 our of 34 (20.5\%), the authors
 provide the time (in terms of ms) that their mechanisms add to the
-normal execution time of the protecting entity. As they do not provide
-the times of normal executions, it not possible to move from absolute
+normal execution time of the protecting entity. Note that in some
+cases, the times of normal executions are not provided,
+so it is not possible to move from absolute
 time measurements to percentage overheads. In 10 cases (29,4\%), the
 overhead was either not available ({\sc na}) or not quantified ({\sc
   nq}). In the case of {\sc php aspis}, its authors indicate that with
