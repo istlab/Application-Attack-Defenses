@@ -82,13 +82,12 @@ louridas@aueb.gr
 
   We then categorize and analyze the various defense mechanisms that
   have been developed. Our analysis is based on dimensions such as
-  accuracy, performance, deployment and security. Especially notable
-  is accuracy, as our findings show that there are
+  accuracy, performance, deployment, security and availability.
+  Especially notable is accuracy, as our findings show that there are
   many defense mechanisms that are tested in a poor manner.
-  In addition, we observe that there are many protection mechanisms
+  In addition, we observe that there are protection mechanisms
   that can be bypassed by attackers that know how the mechanisms
-  work. Finally, we see that researchers tend to not make
-  their mechanisms available to the community.
+  work.
 
   By comparing the existing defenses and identifying their common
   characteristics, we help: a) researchers and practitioners to choose
@@ -158,7 +157,7 @@ less than twenty times. We included the second group so that we would
 not penalize recent research. Finally, we {\it analyze} each mechanism based
 on the following dimensions:
 \begin{itemize}
-\item {\it Diagnostic Performance} Protection mechanisms are as good
+\item {\it Accuracy} Protection mechanisms are as good
   as their detection capability; this requires low false positive and
   false negative rates.
 \item {\it Computational Performance} We examine
@@ -215,7 +214,7 @@ The main contributions of this paper are the following:
   perspective.
 \item We categorize and analyze proposed defenses using a set of
   criteria that are important for building protection mechanisms.
-\item We find that researchers often test the diagnostic performance
+\item We find that researchers often test the accuracy
   of their mechanisms poorly. 
 \item We also find that researchers do not often make their mechanisms
   available to the community, thus no one can either use their
@@ -434,12 +433,12 @@ setting rests on a different set of criteria:
 \item At which point of the computation flow does it detect an attack?
 \end{itemize}
 
-The first two criteria are \emph{Diagnostic Performance} and
+The first two criteria are \emph{Accuracy} and
 \emph{Availability}. The other four criteria are \emph{Computational
   Performance}, \emph{Ease of Use}, \emph{Security}, and
 \emph{Detection Locus}.
 
-\subsection{Diagnostic Performance}
+\subsection{Accuracy}
 \label{ssec:diagnostic-performance}
 
 As in medical diagnostic tests, application attack defense mechanisms
@@ -635,7 +634,7 @@ for every mechanism provides the following:
 
 \begin{enumerate}
 \item The number of times the corresponding publication has been cited.
-\item Diagnostic Performance and Computational Overhead measurements.
+\item Accuracy and Computational Overhead measurements.
 \item The attacks that the mechanism detects.
 \end{enumerate}
 
@@ -669,7 +668,7 @@ and detect the attack before a query reaches the
 database (Locus {\sc z}).
 Contrary to {\sc sqlg}uard (and other
 mechanisms as we will observe), {\sc sql}check has been
-extensively tested in terms of diagnostic performance
+extensively tested in terms of accuracy
 as it can be seen in Table~\ref{tab:comp}.
 A disadvantage of those mechanisms is that the
 application must be modified in every code fragment
@@ -868,7 +867,7 @@ respectively. Contrary to x{\sc js}, in Noncespaces administrators
 must set specific policies in a manner similar to a firewall
 configuration language. This fact, together with the insufficient
 testing of the mechanism (see Table~\ref{tab:comp}) brings up
-questions concerning its diagnostic performance. {\it {\sc
+questions concerning its accuracy. {\it {\sc
     sm}ask}~\cite{JB07} is another framework that was inspired by {\sc
   isr}. To detect {\sc xss} attacks it searches for {\sc html} and
 JavaScript keywords within the application's legitimate code. This is
@@ -1373,7 +1372,7 @@ tracking approaches as described in reference~\cite{NBR14}.
 \section{Discussion}
 \label{sec:discussion}
 
-\subsection{Diagnostic Performance}
+\subsection{Accuracy}
 
 \begin{figure}
 \begin{center}
@@ -1449,7 +1448,7 @@ their previous research~\cite{LSJ13}.
 Finally, in the publications that
 {\sc amnesia} and {\sc sd}river were presented,
 authors managed to break existing application suites
-and then test the diagnostic performance of their tools on them.
+and then test the accuracy of their tools on them.
 
 % Comment 1: Regarding the frameworks that were
 % not tested in terms of diagnostic performance
@@ -1750,7 +1749,7 @@ Notes:
 \begin{enumerate}
 \item Note that most mechanisms that implement etiological
 approaches have not been extensively tested in terms of
-diagnostic performance.
+accuracy.
 \item We need to mention that there are mechanisms that
 do not need to be established purely through testing
 Since they provide systematic arguments as to why
