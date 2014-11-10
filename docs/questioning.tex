@@ -694,25 +694,9 @@ for every mechanism provides the following:
 
 \begin{enumerate}
 \item The number of times the corresponding publication has been cited.
-\item Quadruples that show the values of true
-positives ({\sc tp}), true negatives ({\sc tn}),
-false positives ({\sc fp}), and false negatives
-({\sc tn}). For every quadruple there is a corresponding
-suffix that indicates whether the testbed was based
-on: real-world applications known to be vulnerable
-(r), synthetic benchmarks (s), both (a).
-If no testing has taken place we add a question
-mark ({\bf ?}).
-\item The computational overhead of the
-mechanism as stated in the publication.
+\item Diagnostic Performance and Computational Overhead measurements.
 \item The attacks that the mechanism detects.
 \end{enumerate}
-
-\noindent
-{\sc na} (Not Available) means that a requirement is not
-mentioned in the paper. {\sc nq} (Not Quantified)
-indicates that a requirement is mentioned in the publication
-but it is not quantified.
 
 Finally, as we mentioned in Subsection~\ref{sec:model},
 Figure~\ref{fig:attacks} illustrates for each mechanism (found in the
@@ -1341,7 +1325,9 @@ tracking approaches as described in reference~\cite{NBR14}.
        	\item[1] {\sc na} (Not Available) means that a requirement is not mentioned in the paper.
 	{\sc nq} (Not Quantified) indicates that a requirement is mentioned in the publication
 	but it is not quantified.
-		\item[2] For every quadruple there is a corresponding suffix that indicates whether the testbed was
+      \item[2] Quadruples contain numbers given for True Positives
+        ({\sc TP}), True Negatives ({\sc tn}), False Positives ({\sc
+          fp}) and False Negatives ({\sc fn}). For every quadruple there is a corresponding suffix that indicates whether the testbed was
 	based on: a) real-world applications known to be vulnerable ({\it r}), b) synthetic benchmarks ({\it s}), c) both ({\it a}).
 	If no testing has taken place we add a question mark ({\bf ?}).
     \item[3] Regarding the computational overhead we show if it is applied to the server ({\sc s}) or the client ({\sc c}). 
@@ -1449,13 +1435,7 @@ tracking approaches as described in reference~\cite{NBR14}.
 \section{Discussion}
 \label{sec:discussion}
 
-\subsection{Testing}
-
-Here we comment on how the mechanisms that we
-described earlier, were tested in terms of both
-diagnostic and computational performance.
-
-\subsubsection{Diagnostic Performance}
+\subsection{Diagnostic Performance}
 
 \begin{figure}
 \begin{center}
@@ -1549,55 +1529,42 @@ and then test the diagnostic performance of their tools on them.
 % of diagnostic and computational performance
 % would be one of the reasons of adopting them.
 
-\subsubsection{Computational Performance}
+\subsection{Availability}
 
-Table~\ref{tab:comp} shows for every mechanism its
-corresponding overhead. In addition, it indicates
-if the overhead is applied to the server-side ({\sc s}),
-or the client-side ({\sc c}).
-Our first observation, is that there is a differential
-in the way in which the computational overhead of the
-mechanisms is measured. In many cases, 16 out of
-34 (47.05\%), the overhead is provided as a percentage
-while in other cases, 7 our of 34 (20.5\%),
-the authors provide the time (in terms of ms) that
-their mechanisms add to the normal execution time of
-the protecting entity. Surprisingly, in 10 cases (29,4\%),
-the overhead was either not available ({\sc na}) or
-not quantified ({\sc nq}). In the case of {\sc php aspis},
-its authors indicate that with their mechanism,
-the execution time is doubled.
+Table~\ref{tab:avail} presents our findings regarding the availability
+of the mechanism in terms of source code and corresponding
+executables. We also examined the availability of the testbeds
+mentioned in the paper. The check mark (\tick) indicates that at some
+point in the publication there is a homepage where the reader can
+refer to, to download the corresponding software. {\bf AO} (Available
+On-line) suggests that the software is available on-line but the
+address was not mentioned in the paper, which probably indicates that
+the authors made it available after the publication. The question mark
+({\bf ?}), indicates that a homepage for the software was given in the
+publication but now it is not available.
 
-\subsection{Detection Locus}
+We see that only 6 out of 34 (17.6\%) of the authors provided a
+homepage for their mechanism through their publication and 2 from
+these 6 homepages are currently not available. In 5 cases authors made
+either the source code or their executables available after their
+paper got published. Regarding the availability of test materials, we
+see that only 3 out of 34 (8.8\%) authors have currently their
+testbeds available on-line.
 
-Given the fact that the final steps of
-{\sc dsl} injection and {\sc csrf} attacks take place
-on the server-side, all the mechanisms that detect
-such attacks are placed in some point within the server.
-From the mechanisms that detect {\sc dsl} code injection
-attacks, 3 out of 13 (23\%) do so at the level
-of the {\sc rdbms} --- locus $\Omega$.
-The other 11 wrap {\sc api} calls related to output
-vectors --- locus {\sc z}.
+\subsection{Computational Performance}
 
-However, in the case of frameworks that deal
-with JavaScript-driven {\sc xss} attacks
-we observe that attack detection may take place
-either on the server-side or on the client-side.
-In the first case, a proxy is placed on the server
-to examine the server's responses before they
-reach the user's web browser. In the second
-case a modified browser or a library that
-is securely downloaded from the server,
-checks the responses for potential attacks.
-Our findings indicate that the tendency so far,
-is to create frameworks that perform detection
-on the client side. In particular, 11 out of
-19 frameworks (57,8\%) detect JavaScript-driven
-{\sc xss} attacks at the client's side.
-Note that the majority of the mechanisms that
-detect such attacks on the server-side, can also
-detect {\sc dsl} code injection attacks (7 out of 8). 
+Table~\ref{tab:comp} shows for every mechanism its corresponding
+overhead. In addition, it indicates if the overhead is applied to the
+server-side ({\sc s}), or the client-side ({\sc c}). In almost half of
+the approaches, 16 out of 34 (47.05\%), the overhead is provided as a
+percentage. while in other cases, 7 our of 34 (20.5\%), the authors
+provide the time (in terms of ms) that their mechanisms add to the
+normal execution time of the protecting entity. As they do not provide
+the times of normal executions, it not possible to move from absolute
+time measurements to percentage overheads. In 10 cases (29,4\%), the
+overhead was either not available ({\sc na}) or not quantified ({\sc
+  nq}). In the case of {\sc php aspis}, its authors indicate that with
+their mechanism, the execution time is doubled.
 
 \subsection{Ease of Use}
 
@@ -1610,29 +1577,32 @@ both on the server and the client side.
 Thus, it would be difficult for them to be adopted by
 both browser vendors and application developers.
 
-\subsection{Availability}
+\subsection{Security}
 
-Table~\ref{tab:avail} presents our findings regarding the availability
-of the mechanism in terms of source code and corresponding
-executables. We also examined the availability of the testbeds
-mentioned in the paper. The check mark (\tick) indicates that at some
-point within the publication, there is a homepage where the reader can
-refer to, to download the corresponding software. {\bf AO} (Available
-On-line) suggests that the software is available on-line but the
-address was not mentioned in the paper, which probably indicates that
-the authors made it available after the publication. The question mark
-({\bf ?}), indicates that the a homepage for the software was included
-in the publication but now it is not available.
+\subsection{Detection Locus}
 
-Our first observation indicates that only 6
-out of 34 (17.6\%) of the authors provided a homepage for
-their mechanism through their publication.
-2 from these 6 homepages are currently not available.
-Also, in 5 cases, authors made either the source code
-or their executables available after their paper
-got published. Finally, we observe that only 3
-out of 34 (8.8\%) authors have currently
-their testbeds available on-line.
+Given the fact that the final steps of
+{\sc dsl} injection and {\sc csrf} attacks take place
+on the server-side, all the mechanisms that detect
+such attacks are placed in some point within the server.
+From the mechanisms that detect {\sc dsl} code injection
+attacks, 3 out of 13 (23\%) do so at the level
+of the {\sc rdbms}---Locus $\Omega$.
+The other 11 wrap {\sc api} calls related to output
+vectors---Locus {\sc z}.
+
+In frameworks that deal with JavaScript-driven {\sc xss} attacks we
+see that attack detection may take place either on the server-side or
+on the client-side. In the first case, a proxy is placed on the server
+to examine the server's responses before they reach the user's web
+browser. In the second case a modified browser or a library that is
+securely downloaded from the server checks the responses for potential
+attacks. We find that the tendency so far is to create frameworks that
+perform detection on the client side: in particular, 11 out of 19
+frameworks (57,8\%) detect JavaScript-driven {\sc xss} attacks at the
+client's side. Note that the majority of the mechanisms that detect
+such attacks on the server-side can also detect {\sc dsl} code
+injection attacks (7 out of 8).
 
 \section{Lessons Learned}
 
