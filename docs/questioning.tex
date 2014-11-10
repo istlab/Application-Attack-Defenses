@@ -683,6 +683,17 @@ mechanism today.
 
 \subsection{Detection Locus}
 
+Detection mechanisms vary on the location where they detect an attack.
+There are five different loci where an attack can be caught, as seen
+in Figure~\ref{fig:attacks}:
+\begin{itemize}
+\item At the user's browser (Locus X).
+\item En route from the server to the user's browser (Locus Y).
+\item Embedded in a query, but before it reaches the server's database
+  (Locus Z).
+\item After the malicious code has been executed on the server's
+  database (Locus $\Omega$).
+\end{itemize}
 
 \section{Defenses}
 \label{sec:defs}
