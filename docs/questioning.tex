@@ -93,7 +93,6 @@ louridas@aueb.gr
   characteristics, we help: a) researchers and practitioners to choose
   or modify a mechanism according to their needs, and b) designers of
   new approaches in developing more efficient mechanisms.
-% dimitro@dimitro: change the above accordingly.
 
 \end{abstract}
 
@@ -126,8 +125,7 @@ identifying some of the most critical risks facing organizations. The
 Top Ten project is popular, referenced by numerous researchers. In its
 three consecutive Top Ten lists (2007, 2010, 2013), different
 source code-driven injection attacks dominate the top five
-positions. Malicious users find new ways~\cite{HNSHS12,DKH14}
-to bypass defense mechanisms
+positions. Malicious users find new ways to bypass defense mechanisms
 by using a variety of techniques despite the numerous countermeasures
 that are being introduced. Note that the number of systems developed
 to counter {\sc sql} injection attacks until 2006 was more than
@@ -220,23 +218,17 @@ The main contributions of this paper are the following:
   and how our work can help researchers to design new countermeasures.
 \end{enumerate}
 
-The rest of the paper is organized as follows. {\sc tba}.
-
-% In the last 15 years there are numerous mechanisms that have
-% been developed to detect one or more of the attacks mentioned
-% above. However, the majority of them are not used in practice.
-% This is due to the following reasons:
-% a) the mechanisms have not been extensively tested in terms
-% of accuracy,
-% b) are hard to deploy because they require many modifications
-% either on the client-side, the server-side, or both,
-% c) they add significant overhead, and
-% d) can be bypassed by attackers that know how they work.
-% The motivation behind this research is to systematize
-% and analyze previously proposed protection mechanisms.
-% In this way we can highlight the advantages
-% and disadvantages of each mechanism, enlist them
-% into different categories, and see how they compare to each other.
+The rest of the paper is organized as follows.
+Section~\ref{sec:attacks} provides the exploitation model
+of application attacks based on source code injection.
+Section~\ref{sec:dimensions} introduces the dimensions
+on which we base the analysis of the various defenses.
+Our categorization and analysis is presented in
+Section~\ref{sec:defs} and a discussion is provided in
+Section~\ref{sec:discussion}. Finally,
+Section~\ref{sec:lessons-learned} highlights
+some lessons learned from our observations
+and Section~\ref{sec:conclusion} concludes the paper.
 
 \section{Attacks}
 \label{sec:attacks}
@@ -1715,9 +1707,26 @@ deployment challenges, and try to mitigate them.
 % discuss Availability. Finally, 
 
 \section{Conclusions}
+\label{sec:conclusion}
+
+% In the last 15 years there are numerous mechanisms that have
+% been developed to detect one or more of the attacks mentioned
+% above. However, the majority of them are not used in practice.
+% This is due to the following reasons:
+% a) the mechanisms have not been extensively tested in terms
+% of accuracy,
+% b) are hard to deploy because they require many modifications
+% either on the client-side, the server-side, or both,
+% c) they add significant overhead, and
+% d) can be bypassed by attackers that know how they work.
+% The motivation behind this research is to systematize
+% and analyze previously proposed protection mechanisms.
+% In this way we can highlight the advantages
+% and disadvantages of each mechanism, enlist them
+% into different categories, and see how they compare to each other.
 
 \begin{itemize}
-\item Cite~\cite{DKH14}.
+\item Cite~\cite{HNSHS12,DKH14}.
 \item We believe that our research may facilitate researchers
 or practitioners who would like to use one of the
 aforementioned mechanisms and researchers who would like
