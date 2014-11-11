@@ -622,8 +622,6 @@ We can identify three approaches:
 {\it etiological}, {\it symptomatic} and {\it hybrid}.
 The etiological category involves mechanisms designed to
 stop attacks based on their causes and origins~\cite{JL75,L81}. 
-%% PL:
-%% Explain what "by design" means.
 The symptomatic category incorporates a variety of schemes that
 inspect the behavior of applications and detect attacks based on
 their undesirable symptoms~\cite{D76,A00}.
@@ -681,20 +679,16 @@ the case of the mechanisms that borrow elements from
 this approach and examine the syntax trees
 of scripts to detect JavaScript-driven {\sc xss} attacks
 as we will see in Subsection~\ref{sec:hybrid}.
-%% PL This paragraph repeats the material of the previous one, doesn't
-%% it?
 
 \subsubsection{Policy Enforcement}
 \label{sec:policy}
 
 This approach is used to detect {\sc xss} and {\sc csrf} attacks.
-%% PL All of them more or less target web users, correct?
 When using a framework that implements
 this approach, developers must define
 specific security policies on the server side.
 Policies can be expressed through JavaScript extensions,
 pattern matching or syntax specific settings.
-%% PL What kind of policies are these? Syntax-based, pattern matching?
 Then the policies are enforced either in the user's
 browser at runtime or in a server-side proxy that intercepts
 server responses.
@@ -751,26 +745,11 @@ parse the {\sc html} of server responses and identifies
 scripts. Then, it rewrites them into safe equivalents
 and protects the web user from exploits
 that are based on reported browser vulnerabilities.
-{\it ConScript}~\cite{ML10}, {\it CoreScript}~\cite{YCIS07}
-and the framework by {\it Phung et al.}~\cite{PSC09}
-extend JavaScript with new primitive functions that
-provide safe methods to protect potentially vulnerable
-JavaScript functions. In both cases, policy enforcement takes
-place on the JavaScript engine of the browser (Point {\sc ub}).
-%% PL In which way is this a kind of policy enforcement?
-In this way, {\sc xxs} attacks that take advantage
-functions like {\tt write} and {\tt eval}, which are
-used to assemble innocuous-looking parts into harmful
-strings,\footnote{The infamous Sammy worm that
-infected MySpace in 2005~\cite{SP07,ELX07}
-utilized the {\tt eval} function to assemble a
-script with malicious behavior.} would fail.
-
-A critical issue regarding
-the above frameworks is that they cannot
-define policies that restrict the behavior of third-party
-scripts introduced by script inclusion and {\tt iframe}
-tags. For instance, consider a web page (foo.net)
+An issue regarding this framework (as well as {\sc beep}
+and {\sc dsi}) is that it cannot define policies that
+restrict the behavior of third-party scripts introduced
+by script inclusion and {\tt iframe} tags.
+For instance, consider a web page (foo.net)
 that prints the value of a query parameter ({\tt query})
 from the page's {\sc url} in the web page's content
 without escaping the value. A malicious user
@@ -792,18 +771,31 @@ http://foo.net/vulnerable.html?query=
 \end{lstlisting}
 
 \noindent
-{\it WebJail}~\cite{VDDPJ11}, and
-{\sc soma}~\cite{OWVS08} are two frameworks that
-can actually detect such an attack (Point {\sc ub}).
-To achieve this, {\sc soma} requires site administrators
+The following frameworks can actually detect such
+an attack (Point {\sc ub}).
+{\it ConScript}~\cite{ML10}, {\it CoreScript}~\cite{YCIS07}
+and the framework by {\it Phung et al.}~\cite{PSC09}
+extend JavaScript with new primitive functions that
+provide safe methods to protect potentially vulnerable
+JavaScript functions. In both cases, policy enforcement takes
+place on the JavaScript engine of the browser (Point {\sc ub}).
+In this way, {\sc xxs} attacks that take advantage
+functions like {\tt write} and {\tt eval}, which are
+used to assemble innocuous-looking parts into harmful
+strings,\footnote{The infamous Sammy worm that
+infected MySpace in 2005~\cite{SP07,ELX07}
+utilized the {\tt eval} function to assemble a
+script with malicious behavior.} would fail.
+{\it WebJail}~\cite{VDDPJ11}, is a framework similar to
+ConScript. WebJail, contains the functionality of
+third-party scripts by introducing a web component
+integrator that restricts the access that these scripts
+may have to either the data or the functionality of other components
+Finally, {\sc soma}~\cite{OWVS08} requires site administrators
 to specify legitimate, external domains for sending
 or receiving information in order to approve interactions
 between them and the protected web site. As a result,
 {\sc soma} can also detect {\sc csrf} attacks.
-WebJail contains the functionality of third-party scripts
-by introducing a web component integrator that restricts
-the access that these scripts may have to either the data
-or the functionality of other components.
 
 Policy enforcement mechanisms that detect {\sc csrf}
 attacks are usually implemented in the form of a
@@ -930,8 +922,6 @@ their scheme for the Java Virtual Machine ({\sc jvm})
 where they instrument various classes. When a
 tainted string is used as an argument to a sink method
 then an exception is raised (Point {\sc eq}).
-% However, this is a simplistic approach that may
-% lead to many false positives.
 
 It is possible to apply further checks when it is established that
 tainted data have reached a sink (Point {\sc eq}). {\it Xu et
@@ -945,11 +935,6 @@ and others. When tainted data reaches a sink, {\sc csse} performs
 syntactic checks based on the aforementioned metadata (Point {\sc eq}).
 {\it {\sc php} Aspis}~\cite{PMP11} works in a similar way. To obtain
 metadata, it takes advantage of {\sc php} arrays data structure.
-% Note that the above schemes detect potential attacks
-% in locus {\sc z}. This automatically means that they
-% cannot detect non-persistent JavaScript-driven
-% {\sc xss} attacks. Although they can be
-% modified to do so.
 Finally, {\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
 if there are tainted data that contain scripts (Point {\sc sb}).
 
@@ -980,6 +965,7 @@ attacks the scheme utilizes {\sc html} and JavaScript parsers that can
 identify the generation of code coming from tainted data.
 
 \subsubsection{Training}
+\label{sec:train}
 
 Training techniques are based on the ideas of Denning's original
 intrusion detection framework~\cite{Den87}. In particular, a training
@@ -1072,8 +1058,7 @@ nosuchuser' OR id = 'admin
 \end{small}
 \egroup
 \noindent
-%% PL I do not understand what is specific to training here; most
-%% classic SQL injection attacks work in this way.
+
 However, mechanisms that create signatures that involve
 elements not only associated with the code statements
 (i.e. {\sc amnesia} and {\sc sd}river)
@@ -1086,7 +1071,6 @@ Furthermore, training tools that detect
 {\sc xss} attacks based on JavaScript injection
 would fail to detect a return-to-JavaScript
 attack~\cite{APKLM10}.
-%% PL Like the return-to-lib attack?
 
 In general, the detection accuracy of training approaches is
 heavily based on the coverage that is achieved during the
@@ -1095,10 +1079,10 @@ production of false alarms is very likely.
 In addition, when a code statement is altered, a new
 training phase is necessary.
 
-All the above mechanisms are relatively easy to deploy.
+Most of the mechanisms above are relatively easy to deploy.
 {\sc dsl} injection attack countermeasures
 can be retrofitted to a system typically by changing
-some configuration files. This does not apply
+some configuration files (i.e. {\sc sd}river). This does not apply
 to {\sc amnesia} though, since significant source code
 modifications are required for every query that exists
 in the application. Finally, {\sc swap} and {\sc xssds}
@@ -1365,8 +1349,8 @@ tracking approaches as described in reference~\cite{NBR14}.
 where the authors reffered to, to find vulnerabilities to test
 their mechanisms. We also provide which source was used
 in which publication:
-{\sc cve}~\cite{XBS06,NLC07,VFJKKV07,PMP11,BK04,JB07,SMS13,WPLKK09,JKK06a},
-{\it Bugtraq}~\cite{PB05,KKVJ06,KJKV09,JEP08},
+{\sc cve}~\cite{XBS06,NLC07,VFJKKV07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
+{\it Bugtraq}~\cite{PB05,KKVJ06,JEP08},
 {\sc xss}ed.com~\cite{NSS06,APKLM10},
 ha.ckers.org~\cite{TNH07,PSC09,LV09},
 Microsoft~\cite{RDWDE07}.}
@@ -1484,8 +1468,9 @@ overhead was either not available ({\sc na}) or not quantified ({\sc
 their mechanism, the execution time is doubled.
 
 \subsection{Ease of Use}
+\label{sec:deploy2}
 
-As we mentioned in Subsection~\ref{sec:deployment},
+As we observed in Subsection~\ref{sec:deployment},
 there are various reasons why a mechanism could
 be difficult to deploy.
 
@@ -1498,34 +1483,54 @@ both on the server and the client side.
 Thus, it would be difficult for them to be adopted by
 both browser vendors and application developers.
 On the other hand, there are cases where the policies
-introduced in the server, are enforced on the client-side,
+introduced in the server are enforced on the client-side,
 via a library embedded in the server's response
 (i.e. Blueprint). Such an approach is really convenient
 since no modifications are needed on the client.
 
 Extensive modifications in the application's source
 code can also be a reason that can make a mechanism
-difficult to use. {\sc sql}rand, {\sc amnesia}
-and mechanisms coming from the taint tracking
+difficult to use. {\sc sql}rand, {\sc amnesia},
+mechanisms coming from the parse-tree validation
+subcategory and mechanisms coming from the taint tracking
 subcategory are such examples.
-In the first two cases, programmers should modify every
+In the first three cases, programmers should modify every
 code fragment that involves the execution of a query.
 In the latter case they should also change
 all the code fragments that involve user-input handling. 
 In addition, there are cases (i.e. ConScript and the system
 by Phung et al.) that require many modifications
 by the developers in order to introduce their policies.
-Note also that in many cases, developers are required to
-learn a new {\sc api}.
 
-Finally, a disadvantage of mechanisms that involve training
-({\sc sd}river, {\sc xss-guard}), is that when code statements
-are altered, a new training phase is necessary. However,
-with the increased adoption of the use of automated testing
+Finally, even though many of the mechanism that involve
+training are easy to deploy, they have a distinct disadvantage.
+When the application is altered, mechanisms like {\sc sd}river
+and {\sc xss-guard} require a new training phase is necessary.
+However, with the increased adoption of automated testing
 and continuous integration frameworks, this phase could be
 easily repeated.
 
 \subsection{Security}
+
+While describing the various mechanisms in
+Section~\ref{sec:defs}, we observed that some
+can be bypassed by attackers that know how they
+work.
+
+However, some mechanisms are designed in such a way
+so that they can be extended and become immune to
+the attacks that they are currently vulnerable to. For
+example, policy enforcement frameworks that are
+based on JavaScript or {\sc html} rewriting
+can be extended to detect attacks that leverage
+{\tt iframe} tags (see Subsubsection~\ref{sec:policy}).
+
+This does not apply to all mechanisms though.
+In particular, training mechanisms like {\sc didafit},
+and {\sc xss-guard} must be redesigned
+to detect the attacks that were described in
+Subsubsection~\ref{sec:train} and
+Subsection~\ref{sec:hybrid} respectively.
 
 \subsection{Point of Detection}
 
@@ -1547,7 +1552,7 @@ browser. In the second case a modified browser or a library that is
 securely downloaded from the server checks the responses for potential
 attacks. We find that the tendency so far is to create frameworks that
 perform detection on the client side: in particular, 11 out of 19
-frameworks (57,8\%) detect JavaScript-driven {\sc xss} attacks at the
+frameworks (57,8\%) detect JavaScript-driven {\sc xss} attacks on the
 client's side. Note that the majority of the mechanisms that detect
 such attacks on the server-side can also detect {\sc dsl} code
 injection attacks (7 out of 8).
@@ -1599,6 +1604,7 @@ answer is provided by \textsc{npv}. We can calculate \textsc{ppv} and
 \textsc{npv} = \frac{\textsc{tn}}{\textsc{fn} + \textsc{tn}}
 \end{equation}
 
+\noindent
 Equations~\ref{eq:ppv-se-sp} and~\ref{eq:npv-se-sp} use true and false
 positives and negatives, like equations~\ref{eq:sensitivity}
 and~\ref{eq:specificity}. However, \textsc{tp}, \textsc{tn},
@@ -1623,6 +1629,7 @@ have~\cite{linn2004,altman1994}:
 \label{eq:npv-se-sp}
 \end{equation}
 
+\noindent
 The prevalence is the prior probability that an event is an attack,
 based on our understanding of the volume and frequency of attacks; the
 \textsc{ppv} and \textsc{npv} are the revised estimates of the
@@ -1651,30 +1658,72 @@ classes of attacks could be an interesting area of study on its own,
 which could feed directly on the evaluation of attack detection
 mechanisms as practical tools.
 
+Moreover, extensive accuracy tests may lead to more
+well-designed and robust mechanisms. Observe that mechanisms
+that can be circumvented were not extensively tested
+in terms of accuracy. For instance, {\sc didafit}
+was not tested at all and {\sc xss-guard}'s testing involved
+6 known attacks. This also applies to some frameworks coming
+from the taint tracking subcategory.
+Perhaps with more tests the authors would design
+their mechanisms differently.
+
+Limiting the scope of the attacks to
+be detected may lead to an efficient tool.
+Consider the system by Stock et al. It is the only one
+that targets exclusively {\sc dom}-based
+{\sc xss} attacks and detects them in an accurate manner
+as seen in Table~\ref{tab:comp}. Notice also
+its extensive testing in real-world attacks.
+
 Another interesting finding involves the computational overhead.
 We observe that the average overhead that can be extracted from
 the publications that provide the overhead in percentage terms is
 18\%. Relative research on protection mechanisms~\cite{SPWS13}
-has indicated that mechanisms that introduce an overhead
+indicates that mechanisms that introduce an overhead
 larger than 10\% do not tend to gain wide adoption in
-production environments which in this case could be a
-reason why some these tools have not been adopted.
+production environments. Hence, the computational overhead
+of some mechanisms could be a reason why they have not been adopted.
 
-Cite~\cite{DKH14}.
+We need to mention that the fact that mechanisms come
+sometimes with deployment difficulties does
+not necessarily mean that this is a serious reason
+not to adopt them. The deployment of such frameworks
+is most of the time complex because as we observed
+in Section~\ref{sec:attacks} the attacks that they
+detect are complex too. So every security feature can
+come with such a trade-off and those who intend to use it
+should be aware of this.
 
-We believe that our research may facilitate researchers
+Deployment can also depend on the detection point
+of an attack. We saw that many policy enforcement
+mechanisms that detect attacks at Point {\sc ub},
+are not easy to deploy because modifications
+are needed both on the server and the client side.
+We observed though that Blueprint has not such
+deployment issues (see Subsection~\ref{sec:deploy2}).
+Thus, when developing a new countermeasure,
+researchers should consider where they are planning
+to detect attacks, observe the corresponding
+deployment challenges, and try to mitigate them.
+
+% discuss Availability. Finally, 
+
+\section{Conclusions}
+
+\begin{itemize}
+\item Cite~\cite{DKH14}.
+\item We believe that our research may facilitate researchers
 or practitioners who would like to use one of the
 aforementioned mechanisms and researchers who would like
 to build new ones. Especially in the second case,
 researchers can utilize our exploitation model as a
 starting point to develop their approach.
-
-\section{Conclusions}
-
-We believe that forming a
+\item We believe that forming a
 standard way to test such mechanisms in terms
 of accuracy and computational performance
 would be one of the reasons of adopting them.
+\end{itemize}
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
