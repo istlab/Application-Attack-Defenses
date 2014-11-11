@@ -125,8 +125,9 @@ identifying some of the most critical risks facing organizations. The
 Top Ten project is popular, referenced by numerous researchers. In its
 three consecutive Top Ten lists (2007, 2010, 2013), different
 source code-driven injection attacks dominate the top five
-positions. Malicious users find new ways to bypass defense mechanisms
-by using a variety of techniques despite the numerous countermeasures
+positions. Malicious users find new ways~\cite{HNSHS12,DKH14}
+to bypass defense mechanisms by using a variety of
+techniques despite the numerous countermeasures
 that are being introduced. Note that the number of systems developed
 to counter {\sc sql} injection attacks until 2006 was more than
 twenty~\cite{HVO06}. Since then the number has doubled. Researchers
@@ -1706,9 +1707,24 @@ deployment challenges, and try to mitigate them.
 \section{Conclusions}
 \label{sec:conclusion}
 
-% In the last 15 years there are numerous mechanisms that have
-% been developed to detect one or more of the attacks mentioned
-% above. However, the majority of them are not used in practice.
+Despite many approaches that have been developed,
+application attacks based on source code injection
+have been consistenly present for the last 15 years,
+and it appears that they will continue to be.
+Attackers seem to find new ways to introduce
+source code to applications by using a variety of
+languages and techniques~\cite{HNSHS12,DKH14}.
+Meanwhile, duirng the last decade, there are
+numerous mechanisms that have been developed to
+detect one or more of such attacks. However,
+% even if
+% some of them share characteristics with supported frameworks
+% like Mozilla's Content Security
+% Policy\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}
+% ({\sc csp}) and Google
+% Caja\footnote{\url{https://code.google.com/p/google-caja/}}~\cite{M06},
+the majority of them are not used in practice.
+
 % This is due to the following reasons:
 % a) the mechanisms have not been extensively tested in terms
 % of accuracy,
@@ -1723,7 +1739,6 @@ deployment challenges, and try to mitigate them.
 % into different categories, and see how they compare to each other.
 
 \begin{itemize}
-\item Cite~\cite{HNSHS12,DKH14}.
 \item We believe that our research may facilitate researchers
 or practitioners who would like to use one of the
 aforementioned mechanisms and researchers who would like
