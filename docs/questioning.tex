@@ -126,7 +126,8 @@ identifying some of the most critical risks facing organizations. The
 Top Ten project is popular, referenced by numerous researchers. In its
 three consecutive Top Ten lists (2007, 2010, 2013), different
 source code-driven injection attacks dominate the top five
-positions. Malicious users find new ways to bypass defense mechanisms
+positions. Malicious users find new ways~\cite{HNSHS12,DKH14}
+to bypass defense mechanisms
 by using a variety of techniques despite the numerous countermeasures
 that are being introduced. Note that the number of systems developed
 to counter {\sc sql} injection attacks until 2006 was more than
@@ -391,8 +392,7 @@ actually sent back afterwards to the user.
 application attacks based on source
 code injection vulnerabilities. For every arrow there is a
 corresponding tuple that includes a transition number for
-every attack. Note that {\sc xss} attacks can also involve
-phishing. Every {\it point} indicates a transition where mechanisms
+every attack. Every {\it point} indicates a transition where mechanisms
 detect attacks. For every point we provide the corresponding
 references:
 Point {\sc ub}~\cite{KJKV09,TNH07,NSS06,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
@@ -437,7 +437,7 @@ The first two criteria are \emph{Accuracy} and
 \subsection{Accuracy}
 \label{ssec:diagnostic-performance}
 
-As in medical diagnostic tests, application attack defense mechanisms
+Application attack defense mechanisms
 must demonstrate the presence of an attack. This, however, does not
 make an application attack defense mechanism immediately useful. A
 detection mechanism must be reliable. The accuracy of a detection
@@ -486,6 +486,7 @@ With these we can calculate:
 \label{eq:specificity}
 \end{equation}
 
+\noindent
 Sensitivity and specificity can be calculated based on test
 data alone. To calculate the sensitivity, we run the test on a
 controlled environment where we allow only attack events to reach the
@@ -537,6 +538,7 @@ performance evaluation is provided for a mechanism the more valuable
 it becomes as a practical approach.
 
 \subsection{Ease of Use}
+\label{sec:deployment}
 
 The value of a detection mechanism as a practical tool depends on how
 it is to deploy it in a production setting. That is independent of the
@@ -1267,18 +1269,17 @@ tracking approaches as described in reference~\cite{NBR14}.
     \begin{small}
 \scalebox{0.99}{
     \begin{tabular}{l|c|ccc}
-    \hline
+    \thickhline
     \bf{Approach}
   & \bf{Mechanism}
   & \multicolumn{3}{|c|}{Availability\tnote{1}} \\
   && \bf{Source Code}
   & \bf{Executable}
   & \bf{Testbed} \\
-    \hline
+    \thickhline
   \multirow{2}{*}{Parse-Tree Validation}
   &   {\it {\sc sqlc}heck}~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
-  \hline  
   \hline
   \multirow{12}{*}{Policy Enforcement}
   &   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
@@ -1303,14 +1304,13 @@ tracking approaches as described in reference~\cite{NBR14}.
   % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & {\sc na} & {\sc na} & {\sc na} \\
   % &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
-  \hline
   \multirow{4}{*}{{\sc isr}}
   &   {\it {\sc sql}rand}~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
-  \hline
-  \hline 
+  \thickhline
+  \thickhline
   \multirow{7}{*}{Taint Tracking}
   &   {\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
@@ -1320,7 +1320,6 @@ tracking approaches as described in reference~\cite{NBR14}.
   &   {\it {\sc php} Aspis}~\cite{PMP11} & {\bf AO} & {\sc na} & {\bf AO} \\
   &   {\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
-  \hline 
   \multirow{6}{*}{Training}
   &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\bf AO} & {\sc na} \\
@@ -1328,13 +1327,13 @@ tracking approaches as described in reference~\cite{NBR14}.
   &   {\it {\sc xssds}}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it {\sc swap}}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
-  \hline
-  \hline
+  \thickhline
+  \thickhline
   \multirow{3}{*}{Hybrid}
   &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
   &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
-  \hline
+  \thickhline
     \end{tabular}}
     \begin{tablenotes}
   \begin{footnotesize}
@@ -1379,9 +1378,6 @@ On the other hand, we see that 4 out of
 34 (11.7\%) were not tested at all.
 In this cases, all the four elements of the
 quadruples are not available ({\sc na}).
-% Maybe we should comment on the fact that these are
-% frameworks coming from the etiological category
-% and detect the attacks ``by design".
 An interesting observation is that 10 out of 34
 (29.41\%) of the authors performed only attacks
 during their tests and did not test their mechanisms
@@ -1489,14 +1485,45 @@ their mechanism, the execution time is doubled.
 
 \subsection{Ease of Use}
 
+As we mentioned in Subsection~\ref{sec:deployment},
+there are various reasons why a mechanism could
+be difficult to deploy.
+
 Consider the majority of mechanisms coming from
-the policy enforcement category. In most cases
+the policy enforcement subcategory. In most cases
 developers should modify multiple components
 to use each mechanism. Specifically, mechanisms like
 BrowserShield, and {\sc beep} require modifications
 both on the server and the client side.
 Thus, it would be difficult for them to be adopted by
 both browser vendors and application developers.
+On the other hand, there are cases where the policies
+introduced in the server, are enforced on the client-side,
+via a library embedded in the server's response
+(i.e. Blueprint). Such an approach is really convenient
+since no modifications are needed on the client.
+
+Extensive modifications in the application's source
+code can also be a reason that can make a mechanism
+difficult to use. {\sc sql}rand, {\sc amnesia}
+and mechanisms coming from the taint tracking
+subcategory are such examples.
+In the first two cases, programmers should modify every
+code fragment that involves the execution of a query.
+In the latter case they should also change
+all the code fragments that involve user-input handling. 
+In addition, there are cases (i.e. ConScript and the system
+by Phung et al.) that require many modifications
+by the developers in order to introduce their policies.
+Note also that in many cases, developers are required to
+learn a new {\sc api}.
+
+Finally, a disadvantage of mechanisms that involve training
+({\sc sd}river, {\sc xss-guard}), is that when code statements
+are altered, a new training phase is necessary. However,
+with the increased adoption of the use of automated testing
+and continuous integration frameworks, this phase could be
+easily repeated.
 
 \subsection{Security}
 
@@ -1624,6 +1651,17 @@ classes of attacks could be an interesting area of study on its own,
 which could feed directly on the evaluation of attack detection
 mechanisms as practical tools.
 
+Another interesting finding involves the computational overhead.
+We observe that the average overhead that can be extracted from
+the publications that provide the overhead in percentage terms is
+18\%. Relative research on protection mechanisms~\cite{SPWS13}
+has indicated that mechanisms that introduce an overhead
+larger than 10\% do not tend to gain wide adoption in
+production environments which in this case could be a
+reason why some these tools have not been adopted.
+
+Cite~\cite{DKH14}.
+
 We believe that our research may facilitate researchers
 or practitioners who would like to use one of the
 aforementioned mechanisms and researchers who would like
@@ -1631,131 +1669,12 @@ to build new ones. Especially in the second case,
 researchers can utilize our exploitation model as a
 starting point to develop their approach.
 
-Notes on taint tools:
-\begin{enumerate}
-\item The accuracy testing of {\sc csse}~\cite{PB05} was based on 
-defects found in the security mailing
-list: {\it Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}}.
-\item During their evaluation, the authors of~\cite{HCF05} have only performed
-two attacks in one synthetic benchmark ({\sc owasp}'s
-{\it WebGoat}\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project}}).
-\item The testing in~\cite{XBS06} was made based on
-defects with specific {\sc cve id}s.
-\item The authors of {\it {\sc wasc}}~\cite{NLC07}
-mention the vulnerabilities (specific {\sc cve id}s)
-exploited and the corresponding applications but they do not explicitly
-state how many attacks they launched (``{\it [...] launched a variety of
-attacks against it}").
-\item The authors of~\cite{VFJKKV07} do the same.
-However, even if they do not mention specific {\sc cve id}s,
-they browsed applications without performing attacks.
-\item Even if the authors of {\it Noxes}~\cite{KKVJ06,KJKV09} state in
-both papers that ``{\it [...] we are planning to make the tool available as
-a freeware utility}." the tool cannot be found anywhere on the Internet.
-The vulnerabilities exploited during testing were reported
-by {\it Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}}.
-\item {\it {\sc php} Aspis}~\cite{PMP11} was tested on only one
-application (Wordpress 2.9.2) with multiple vulnerabilities (specific {\sc cve id}s).
-\item During their initial tests, the authors of
-managed to bypass the browser-based {\sc xss} filters of the
-73\% of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
-Then they proposed an approach that detected all the attacks they
-found (1169). This is a complex paper --- we need to elaborate.
-\end{enumerate}
-
-Notes on {\sc isr} mechanisms:
-\begin{enumerate}
-\item {\it {\sc sql}rand}~\cite{BK04}: Both exploits from {\sc cve} --- though
-this is not mentioned in the publication.
-\item {\it Noncespaces}~\cite{GC09} was only tested on one
-known vulnerable application (TikiWiki). The authors mention that they performed
-a number of attacks but they do not state how many.
-\item The authors of {\it x{\sc js}}~\cite{APKLM10}, have tested
-their mechanisms based on real-world attacks coming from
-{\sc xss}ed.com.\footnote{www.xssed.com}
-\end{enumerate}
-
-Notes on policy enforcement tools:
-\begin{enumerate}
-\item Just like the authors of {\it x{\sc js}~\cite{APKLM10},
-the authors of {\sc dsi}}~\cite{NSS06}, have tested
-their mechanisms based on real-world attacks coming from
-{\sc xss}ed.com.\footnote{www.xssed.com}
-\item The testing of {\it BrowserShield}~\cite{RDWDE07}
-involved {\sc xss} vulnerabilities reported by Microsoft
-in 2005.\footnote{\url{https://technet.microsoft.com/en-us/security/bulletin}}
-The link currently shows defects for 2014.
-\item {\it CoreScript}~\cite{YCIS07} is more of a programming
-language\footnote{``[...] uses program instrumentation for
-JavaScript where untrusted JavaScript
-code goes through a rewriting process according to a security policy
-before executing them in the browser"~\cite{PSC09}.}
-than an {\sc IDS}.
-\item Surprisingly, {\sc met}~\cite{ELX07} was not tested at all.
-\item {\sc beep}~\cite{TNH07}'s test suite was based on 61 {\sc xss}
-attack vectors published by \url{ha.ckers.org}.
-\item {\sc soma}~\cite{OWVS08} --- all synthetics.
-\item The attacks used for the testing of {\it Blueprint}~\cite{LV09},
-came from \url{ha.ckers.org}.
-\item {\it Phung et al.}~\cite{PSC09} also utilized \url{ha.ckers.org}.
-\item {\it WebJail}~\cite{VDDPJ11} --- not tested at all.
-\item {\it ConScript}~\cite{ML10} --- not tested at all. A scheme
-similar to {\it CoreScript}~\cite{YCIS07}.
-\item {\it j{\sc csrf}}~\cite{PS11} --- based on {\sc csrf}
-defects with specific {\sc cve id}s.
-\item The authors of {\it TreeHouse}~\cite{IW12} have tested
-only the overhead and how easy is to incorporate the mechanism
-into an application.
-\end{enumerate}
-
-Notes on training-based mechanisms:
-\begin{enumerate}
-\item {\it {\sc didafit}}~\cite{LLW02} is one of
-the first {\sc ids}.
-\item {\sc amnesia}~\cite{HO05,HO06,HO05b} was tested
-on applications with known vulnerabilities taken
-from \url{http://gotocode.com} plus two synthetic benchmarks.
-Interestingly, in one of the papers~\cite{HO06},
-the authors mention that the tool can produce both {\sc fp} and
-{\sc fn}.
-\item {\it libAnomaly}~\cite{VMV05} --- one application tested ({\sc php}-Nuke).
-\item {\sc sqlg}uard~\cite{BWS05} --- no testing at all.
-\item {\sc sm}ask~\cite{JB07} was tested on real-world applications
-with exploits from {\sc cve} --- though this is not mentioned in the publication.
-\item {\sc xssds}~\cite{JEP08} --- testing was based on 
-defects found in the security mailing
-list: {\it Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}}.
-The authors provide multiple {\sc fp} rates depending on the experiment.
-\item {\sc xss-guard}~\cite{BV08} was tested on real-world applications
-with exploits from {\sc cve}.
-\item {\sc swap}~\cite{WPLKK09} was tested on a real-world application ({\sc phpbb})
-with exploits from {\sc cve} --- though this is not mentioned in the publication.
-%\item {\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} have developed a
-%mechanism to detect {\sc sql} and {\sc xp}ath injection attacks
-%only on web services. Their testing involve a real-world benchmark
-%({\sc tpc}-app).\footnote{\url{http://www.tpc.org/}}
-\item {\it Diglossia}~\cite{SMS13} was tested on real-world applications
-with exploits from {\sc cve}.
-\end{enumerate}
-
-Notes:
-\begin{enumerate}
-\item Note that most mechanisms that implement etiological
-approaches have not been extensively tested in terms of
-accuracy.
-\item We need to mention that there are mechanisms that
-do not need to be established purely through testing
-Since they provide systematic arguments as to why
-the design is secure against attacks.
-\item Policy enforcement is the
-only approach that is
-used to prevent {\sc csrf} attacks.
-\item See j{\sc csrf} for {\sc soma}'s drawbacks.
-\item Discuss about how tools can be easily modified
-to detect other attacks ({\sc sql}rand).
-\end{enumerate}
-
 \section{Conclusions}
+
+We believe that forming a
+standard way to test such mechanisms in terms
+of accuracy and computational performance
+would be one of the reasons of adopting them.
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
