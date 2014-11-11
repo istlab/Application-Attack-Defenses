@@ -344,7 +344,7 @@ The attacker may use the browser of an innocent user as an attack
 vehicle, through which the code will be injected in the application.
 For example, the attacker could craft a malicious script into a {\sc url}
 and then trick an end user to click on it via social engineering (i.e., phishing ---
-{\it transition}: {\sc p-xss}' 1 \text{\textbar} {\sc n-xss}' 1 \text{\textbar} {\sc csrf} 1).
+{\it transition}: {\sc p-xss} 1.1 \text{\textbar} {\sc n-xss} 1.1 \text{\textbar} {\sc csrf} 1).
 Alternatively, the attacker may be able to inject
 directly the malicious code in the application. For example, consider
 a web application that accepts and redisplays user input
@@ -1653,32 +1653,52 @@ classes of attacks could be an interesting area of study on its own,
 which could feed directly on the evaluation of attack detection
 mechanisms as practical tools.
 
-Moreover, extensive accuracy tests may lead to more
-well-designed and robust mechanisms. Observe that mechanisms
-that can be circumvented were not extensively tested
-in terms of accuracy. For instance, {\sc didafit}
-was not tested at all and {\sc xss-guard}'s testing involved
-6 known attacks. This also applies to some frameworks coming
-from the taint tracking subcategory.
-Perhaps with more tests the authors would design
-their mechanisms differently.
+Apart from demonstrating the value of a mechanism, good accuracy tests
+may be beneficial per se, by leading to more well-designed and robust
+mechanisms. Mechanisms that can be circumvented were not extensively
+tested in terms of accuracy. For instance, {\sc didafit} was not
+tested at all and {\sc xss-guard}'s testing involved 6 known attacks.
+This also applies to some frameworks coming from the taint tracking
+subcategory. It is possible that more tests during development would
+have led the authors to wider improvements in design. 
+%% PL: Do we have a reference in Software Engineering correlating
+%% testing with better design?
 
-Limiting the scope of the attacks to
-be detected may lead to an efficient tool.
-Consider the system by Stock et al. It is the only one
-that targets exclusively {\sc dom}-based
-{\sc xss} attacks and detects them in an accurate manner
-as seen in Table~\ref{tab:comp}. Notice also
-its extensive testing in real-world attacks.
+The accuracy of a tool may be related to the scope of the attacks it
+aims to detect. A more limited scope may allow the development of more
+accurate tools. In this vein, the system by Stock et al~\cite{SLMS14}
+is the only one that targets exclusively {\sc dom}-based {\sc xss}
+attacks and detects them in an accurate manner as seen in
+Table~\ref{tab:comp}. It is also extensively tested in real-world
+attacks.
 
-Another interesting finding involves the computational overhead.
-We observe that the average overhead that can be extracted from
-the publications that provide the overhead in percentage terms is
-18\%. Relative research on protection mechanisms~\cite{SPWS13}
-indicates that mechanisms that introduce an overhead
-larger than 10\% do not tend to gain wide adoption in
-production environments. Hence, the computational overhead
-of some mechanisms could be a reason why they have not been adopted.
+Apart from testing practices, another area that merits improvement is
+the availability of source code and testbeds. We are not aware of
+specific reasons why authors of attack detection mechanisms seem to be
+wary of releasing online their code and tests. Our finding may reflect
+the status in the current point in time, when authors are urged to
+publish their code and tests, and may start, or may have already
+started doing so, but this does not show yet in the research we
+examined, which goes several years back. We also saw instances where
+material was published, but does not seem to be available any more.
+That points to the importance of curation of research materials. That
+is a problem arising in all scientific fields. It is not enough to
+publish the underlying code and data, but to make sure that it remains
+accessible and to provide the means to test it even as technology
+progresses and operating systems, file formats, and software libraries
+change. That may be too much to ask right now; what seems reasonable,
+though, is to ask of researchers in attack detection mechanisms not to
+buck the trend and to take steps to increase the availability of their
+research.
+
+Another interesting finding involves the computational overhead. We
+observe that the average overhead that can be extracted from the
+publications that provide the overhead in percentage terms is 18\%.
+Relative research on protection mechanisms~\cite{SPWS13} indicates
+that mechanisms that introduce an overhead larger than 10\% do not
+tend to gain wide adoption in production environments. Hence, the
+computational overhead of some mechanisms could be a reason why they
+have not been adopted.
 
 We need to mention that the fact that mechanisms come
 sometimes with deployment difficulties does
