@@ -745,13 +745,31 @@ parse the {\sc html} of server responses and identifies
 scripts. Then, it rewrites them into safe equivalents
 and protects the web user from exploits
 that are based on reported browser vulnerabilities.
-An issue regarding this framework (as well as {\sc beep}
-and {\sc dsi}) is that it cannot define policies that
-restrict the behavior of third-party scripts introduced
-by script inclusion and {\tt iframe} tags.
-For instance, consider a web page (foo.net)
-that prints the value of a query parameter ({\tt query})
-from the page's {\sc url} in the web page's content
+{\it ConScript}~\cite{ML10}, {\it CoreScript}~\cite{YCIS07}
+and the framework by {\it Phung et al.}~\cite{PSC09}
+extend JavaScript with new primitive functions that
+provide safe methods to protect potentially vulnerable
+JavaScript functions. In both cases, policy enforcement takes
+place on the JavaScript engine of the browser (Point {\sc ub}).
+In this way, {\sc xxs} attacks that take advantage
+functions like {\tt write} and {\tt eval}, which are
+used to assemble innocuous-looking parts into harmful
+strings,\footnote{The infamous Sammy worm that
+infected MySpace in 2005~\cite{SP07,ELX07}
+utilized the {\tt eval} function to assemble a
+script with malicious behavior.} would fail.
+
+An issue regarding the above frameworks
+involves features like script inclusion
+and {\tt iframe} tags. Even though they allow developers
+decide if they will disable them or not,
+this is unpractical because such features are quite popular.
+If developers choose to use them, these frameworks cannot
+define policies that restrict the behavior of third-party
+scripts introduced by such features. For instance,
+consider a web page (foo.net) that prints the value
+of a query parameter ({\tt query}) from the
+page's {\sc url} in the web page's content
 without escaping the value. A malicious user
 can take advantage of this and inject an {\tt iframe}
 into the page to steal the user's cookie and
@@ -771,31 +789,18 @@ http://foo.net/vulnerable.html?query=
 \end{lstlisting}
 
 \noindent
-The following frameworks can actually detect such
-an attack (Point {\sc ub}).
-{\it ConScript}~\cite{ML10}, {\it CoreScript}~\cite{YCIS07}
-and the framework by {\it Phung et al.}~\cite{PSC09}
-extend JavaScript with new primitive functions that
-provide safe methods to protect potentially vulnerable
-JavaScript functions. In both cases, policy enforcement takes
-place on the JavaScript engine of the browser (Point {\sc ub}).
-In this way, {\sc xxs} attacks that take advantage
-functions like {\tt write} and {\tt eval}, which are
-used to assemble innocuous-looking parts into harmful
-strings,\footnote{The infamous Sammy worm that
-infected MySpace in 2005~\cite{SP07,ELX07}
-utilized the {\tt eval} function to assemble a
-script with malicious behavior.} would fail.
-{\it WebJail}~\cite{VDDPJ11}, is a framework similar to
-ConScript. WebJail, contains the functionality of
-third-party scripts by introducing a web component
-integrator that restricts the access that these scripts
-may have to either the data or the functionality of other components
-Finally, {\sc soma}~\cite{OWVS08} requires site administrators
+{\it WebJail}~\cite{VDDPJ11}, and
+{\sc soma}~\cite{OWVS08} are two frameworks that
+can actually detect such an attack (Point {\sc ub}).
+To achieve this, {\sc soma} requires site administrators
 to specify legitimate, external domains for sending
 or receiving information in order to approve interactions
 between them and the protected web site. As a result,
 {\sc soma} can also detect {\sc csrf} attacks.
+WebJail, contains the functionality of
+third-party scripts by introducing a web component
+integrator that restricts the access that these scripts
+may have to either the data or the functionality of other components
 
 Policy enforcement mechanisms that detect {\sc csrf}
 attacks are usually implemented in the form of a
