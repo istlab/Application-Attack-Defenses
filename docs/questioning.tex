@@ -1489,17 +1489,14 @@ Extensive modifications in the application's source
 code can also be a reason that can make a mechanism
 difficult to use. {\sc sql}rand, {\sc amnesia},
 mechanisms coming from the parse-tree validation
-subcategory and mechanisms coming from the taint tracking
-subcategory are such examples.
+subcategory and mechanisms coming from the taint
+tracking subcategory are such examples.
 In the first three cases, programmers should modify every
 code fragment that involves the execution of a query.
 In the latter case they should also change
 all the code fragments that involve user-input handling. 
-In addition, there are cases (i.e. ConScript and the system
-by Phung et al.) that require many modifications
-by the developers in order to introduce their policies.
 
-Finally, even though many of the mechanism that involve
+Finally, even though many of the mechanisms that involve
 training are easy to deploy, they have a distinct disadvantage.
 When the application is altered, mechanisms like {\sc sd}river
 and {\sc xss-guard} require a new training phase is necessary.
