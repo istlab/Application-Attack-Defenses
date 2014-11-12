@@ -510,12 +510,11 @@ usefulness of a detection mechanism depends therefore on the
 computational cost it requires and on where it extracts it, as
 different overheads may be acceptable server-side than client-side.
 
-Other factors matter as well. Reporting absolute measurements gives
-little information on the real overhead, unless separate measurements
-are given for the system under study with and without the proposed
-mechanism. Percentage measurements are normally better. Outliers may
-be important. It is always necessary to describe the experimental
-setup.
+What kind of numbers is reported matters as well. Reporting absolute
+measurements gives little information on the real overhead, unless
+separate measurements are given for the system under study with and
+without the proposed mechanism. Percentage measurements are normally
+better. 
 
 Performance evaluation rests on strong foundations~\cite{jain1991} and
 is a vibrant field as new technologies emerge~\cite{gregg2014}.
@@ -587,7 +586,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 \end{center}
 \caption{\label{fig:defenses}The basic categories of countermeasures
 against web application attacks, based on source code
-injectiion. For each approach we provide the references
+injection. For each approach we provide the references
 that present corresponding mechanisms:
 {\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,LV09},
 {\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
@@ -600,13 +599,13 @@ that present corresponding mechanisms:
 We categorize and describe the various mechanisms developed to detect
 the attacks described in Section~\ref{sec:attacks} on the dimensions
 we proposed apart from availability, which we treat separately in the
-``Discussion" section (\ref{sec:discussion}).
+discussion in Section (\ref{sec:discussion}).
 
 Figure~\ref{fig:defenses} presents a taxonomy of the
 defenses that protect web applications against attacks based on
 code injection vulnerabilities.
 We can identify three approaches:
-{\it etiological}, {\it symptomatic} and {\it hybrid}.
+{\it etiological}, {\it symptomatic}, and {\it hybrid}.
 The etiological category involves mechanisms designed to
 stop attacks based on their causes and origins~\cite{JL75,L81}. 
 The symptomatic category incorporates a variety of schemes that
@@ -622,9 +621,8 @@ for every mechanism provides the following:
 \item The attacks that the mechanism detects.
 \end{enumerate}
 
-Finally, as we mentioned in Subsection~\ref{sec:model},
-Figure~\ref{fig:attacks} illustrates for each mechanism (found in the
-figure's caption), the point where it detects attacks.
+Recall that the point where attacks are detected is given in the
+caption of Figure~\ref{fig:attacks}.
 
 \subsection{Etiological}
 \label{sec:prot}
@@ -635,12 +633,11 @@ applications from source code injection attacks.
 \subsubsection{Parse-Tree Validation}
 \label{sec:tree}
 
-The key idea behind this approach is to compare
-the tree representation of the abstract syntactic
-structure of the source code that is about to be
-executed with the one that was originally intended.
-If the trees diverge, the application is probably
-under attack.
+The key idea behind parse-tree validation is to compare the tree
+representation of the abstract syntactic structure of the source code
+that is about to be executed with the one that was originally
+intended. If the trees diverge, the application is probably under
+attack.
 
 In the case of {\sc dsl} injection attacks, mechanisms check 
 the query before the inclusion of user input with the one
@@ -650,10 +647,10 @@ Both mechanisms that implement this approach,
 {\sc sql}check~\cite{SW06} are pretty similar
 and detect the attack before a query reaches the
 database (Point {\sc e}i{\sc q}).
-Contrary to {\sc sqlg}uard (and other
-mechanisms as we will observe), {\sc sql}check has been
+Contrary to {\sc sqlg}uard and other
+mechanisms, {\sc sql}check has been
 extensively tested in terms of accuracy
-as it can be seen in Table~\ref{tab:comp}.
+as can be seen in Table~\ref{tab:comp}.
 A disadvantage of those mechanisms is that the
 application must be modified in every code fragment
 that sends an {\sc sql} query to the database for execution.
@@ -664,21 +661,19 @@ especially in the case of the {\sc sql}check
 implementation. This however does not apply in
 the case of the mechanisms that borrow elements from
 this approach and examine the syntax trees
-of scripts to detect JavaScript-driven {\sc xss} attacks
+of scripts to detect JavaScript-driven {\sc xss} attacks,
 as we will see in Subsection~\ref{sec:hybrid}.
 
 \subsubsection{Policy Enforcement}
 \label{sec:policy}
 
-This approach is used to detect {\sc xss} and {\sc csrf} attacks.
-When using a framework that implements
-this approach, developers must define
-specific security policies on the server side.
-Policies can be expressed through JavaScript extensions,
-pattern matching or syntax specific settings.
-Then the policies are enforced either in the user's
-browser at runtime or in a server-side proxy that intercepts
-server responses.
+This approach is used to detect {\sc xss} and {\sc csrf} attacks. When
+using a framework that implements policy enforcement, developers must
+define specific security policies on the server side. Policies can be
+expressed through JavaScript extensions, pattern matching, or syntax
+specific settings. Then the policies are enforced either in the user's
+browser at runtime or in a server-side proxy that intercepts server
+responses.
 
 {\it Noxes}~\cite{KKVJ06,KJKV09} is the only
 framework that partially allows the web
@@ -692,34 +687,26 @@ can be also provided by the server (i.e. ``never
 follow a link that leads to the malicious.com
 web site"). The main issue with Noxes is that
 it does not deal with JavaScript-driven {\sc xss}
-attacks which is currently the most popular
+attacks, which currently make for the most popular
 {\sc xss} attack vector.
 
-A number of the frameworks define policies
-based on information and features provided by
-the Document Object Model ({\sc dom}) of a web page.
-Specifically, developers must place all legitimate
-scripts inside {\sc html} elements like {\tt div}.
-The web browser (Point {\sc ub}), parses the
-{\sc dom} tree and executes scripts only when they
-are contained in such elements. All other scripts
-are treated according to the policies defined
-on the server. Frameworks that support this
-functionality are {\sc beep}~\cite{TNH07}
-and {\sc dsi}~\cite{NSS06}. The main problem with
-these mechanisms is that they do
-not examine the script's location inside the web
-document. Based on this fact, attackers
-can perform mimicry attacks~\cite{WS02}.
-Specifically, they can execute legitimate scripts,
-but not as intended by the original design of
-the developers. This is extensively described
-in reference~\cite{APKLM10}. In addition,
-the authors of~\cite{APKLM10} describe
-another recent variation of JavaScript
-injection attacks that can be used to bypass the
-above mechanisms, known as return-to-JavaScript
-attacks.
+A number of the frameworks define policies based on information and
+features provided by the Document Object Model ({\sc dom}) of a web
+page. Specifically, developers must place all legitimate scripts
+inside {\sc html} elements like {\tt div}. The web browser (Point {\sc
+  ub}), parses the {\sc dom} tree and executes scripts only when they
+are contained in such elements. All other scripts are treated
+according to the policies defined on the server. Frameworks that
+support this functionality are {\sc beep}~\cite{TNH07} and {\sc
+  dsi}~\cite{NSS06}. The main problem with these mechanisms is that
+they do not examine the script's location inside the web document.
+Based on this fact, attackers can perform mimicry attacks~\cite{WS02}.
+Specifically, they can execute legitimate scripts, but not as intended
+by the original design of the developers. This is extensively
+described by {\it Athanasopoulos et al.}~\cite{APKLM10}, who also describe
+another recent variation of JavaScript injection attacks, known as
+return-to-JavaScript attacks that can be used to bypass the above
+mechanisms.
 % Such attacks share
 % many similarities with the {\it return-to-lib}
 % attack~\cite{SPPGMMB04}. 
@@ -733,7 +720,7 @@ Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
 to confine their behavior. {\it BrowserShield}~\cite{RDWDE07}
 acts as a proxy on the server side (Point {\sc s}t{\sc b}) to
-parse the {\sc html} of server responses and identifies
+parse the {\sc html} of server responses and identify
 scripts. Then, it rewrites them into safe equivalents
 and protects the web user from exploits
 that are based on reported browser vulnerabilities.
@@ -780,24 +767,21 @@ http://foo.net/vulnerable.html?query=
 </iframe>
 \end{lstlisting}
 
-\noindent
-{\it WebJail}~\cite{VDDPJ11}, and
-{\sc soma}~\cite{OWVS08} are two frameworks that
-can actually detect such an attack (Point {\sc ub}).
-To achieve this, {\sc soma} requires site administrators
-to specify legitimate, external domains for sending
-or receiving information in order to approve interactions
-between them and the protected web site. As a result,
-{\sc soma} can also detect {\sc csrf} attacks.
-WebJail, contains the functionality of
-third-party scripts by introducing a web component
-integrator that restricts the access that these scripts
-may have to either the data or the functionality of other components
+\noindent {\it WebJail}~\cite{VDDPJ11}, and {\sc soma}~\cite{OWVS08}
+are two frameworks that can actually detect such an attack (Point {\sc
+  ub}). To achieve this, {\sc soma} requires site administrators to
+specify legitimate, external domains for sending or receiving
+information in order to approve interactions between them and the
+protected web site. As a result, {\sc soma} can also detect {\sc csrf}
+attacks. WebJail contains the functionality of third-party scripts by
+introducing a web component integrator that restricts the access that
+these scripts may have to either the data or the functionality of
+other components.
 
 Policy enforcement mechanisms that detect {\sc csrf}
 attacks are usually implemented in the form of a
 server-side proxy (Point {\sc s}t{\sc b})
-interposing on the client-server communication, and modifying
+interposed on the client-server communication and modifying
 it. {\it NoForge}~\cite{JKK06a}
 parses the {\sc html} server responses
 and adds a token to every {\sc url} referring to this
@@ -832,16 +816,16 @@ introduce the policies.
 of application attacks~\cite{K09b,KKP03}. The main idea behind it is
 to separate code from data by randomizing the legitimate code's
 execution environment. In this way, the malicious code injected by the
-attackers who do not know the randomization algorithm, will not get
+attackers who do not know the randomization algorithm will not get
 executed.
 
 {\it {\sc sql}rand}~\cite{BK04} implements {\sc isr} to detect {\sc
   sql} injection attacks. It allows programmers to create {\sc sql}
 statements using randomized instructions instead of standard keywords.
 The modified queries are reconstructed at runtime using the same key
-that is inaccessible to the malicious user. {\sc sql}rand is one of
-the few mechanisms that detect {\sc sql} injection attacks on the
-database level (Point i{\sc db}).
+used for randomization, which is inaccessible to the malicious user.
+{\sc sql}rand is one of the few mechanisms that detect {\sc sql}
+injection attacks on the database level (Point i{\sc db}).
 
 In the case of {\sc xss} attacks that are based on JavaScript or {\sc
   html}, consider a {\sc xor} function that encodes all source of a
@@ -861,26 +845,26 @@ it adds a token to it. This results to a ``code mask". Then, before
 sending the resulting {\sc html} data to the web user, the framework
 searches the data for illegal code by using the same keywords (Point
 {\sc s}t{\sc b}). Since all legitimate code has been ``masked", the injected
-code can be identified. The pre- and post-processing of the code
+code can be identified. The pre- and post-processing of the code,
 though, may add a significant overhead to the application.
 Unfortunately, the authors of {\sc sm}ask did not provide measurements
 regarding the computational performance of the tool (see
 Table~\ref{tab:comp}).
 
 {\sc isr} is a deterministic approach that can be applied to detect
-different attacks in an efficient manner. However, Sovarel et
-al.~\cite{SEP05} have investigated thoroughly the effectiveness of
+different attacks in an efficient manner. However, {\it Sovarel et
+al.}~\cite{SEP05} have investigated thoroughly the effectiveness of
 {\sc isr} and showed that a malicious user may be able to circumvent
-it by determining the randomization key and their results indicate
+it by determining the randomization key. Their results indicate
 that doing {\sc isr} in a way that provides a certain degree of
 security against a motivated attacker is more difficult than
 previously thought. Furthermore, developers who wish to use such
 mechanisms must follow good coding practices and never show a
-randomized code statement in any case (i.e. an exception error)
+randomized code statement in any case (i.e., an exception error)
 because in this way they will reveal the encoding key.
 
 Even though the above implementations impose a low computational
-overhead, they impose an infrastructure overhead. In particular, in
+overhead, they impose a deployment infrastructure overhead. In particular, in
 {\sc sql}rand requires the integration of a proxy within the database
 server, while Noncespaces and x{\sc js} require modifications on both
 the server and the client.
@@ -983,20 +967,21 @@ the server and the client.
 
 \subsection{Symptomatic}
 
-In this section we examine the two main symptomatic
-approaches.
+Symptomatic approaches adopt one of two tacks. They either track
+untrusted input and ban certain operations on it, or they first learn what
+code to trust and then approve for execution code that they recognize
+as safe.
 
 \subsubsection{Taint Tracking}
 \label{sec:taint}
 
-A taint tracking scheme marks untrusted
-(``tainted") data (for instance, a variable set
-by a field in a web form) and traces its flow through
-the program. If the variable is used in an expression
-that sets another variable, that variable is also
-marked as untrusted and so on. If any of these variables
-is used to execute a potentially risky command (``sink") the
-scheme may act accordingly.
+A taint tracking scheme marks untrusted (``tainted") data (for
+instance, a variable set by a field in a web form) and traces its flow
+through the program. If the variable is used in an expression that
+sets another variable, that variable is also marked as untrusted and
+so on. If any of these variables is used in a potentially risky
+command (for example, send the data to a vulnerable ``sink'', such as
+a database, a file, the network) the scheme may act accordingly.
 
 Taint tracking is provided as a feature in some programming languages,
 such as Perl and Ruby. By enabling the feature, Perl would refuse to
@@ -1011,7 +996,7 @@ For example, {\it Haldar et al.}~\cite{HCF05} have implemented
 their scheme for the Java Virtual Machine ({\sc jvm})
 where they instrument various classes. When a
 tainted string is used as an argument to a sink method
-then an exception is raised (Point {\sc e}i{\sc q}).
+an exception is raised (Point {\sc e}i{\sc q}).
 
 It is possible to apply further checks when it is established that
 tainted data have reached a sink (Point {\sc e}i{\sc q}). {\it Xu et
@@ -1024,13 +1009,13 @@ the origins of tainted data, its propagation within the application,
 and others. When tainted data reaches a sink, {\sc csse} performs
 syntactic checks based on the aforementioned metadata (Point {\sc e}i{\sc q}).
 {\it {\sc php} Aspis}~\cite{PMP11} works in a similar way. To obtain
-metadata, it takes advantage of {\sc php} arrays data structure.
+metadata, it takes advantage of the  {\sc php} array data structure.
 Finally, {\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
 if there are tainted data that contain scripts (Point {\sc s}t{\sc b}).
 
 A recent study~\cite{NBR14} showed that there are ways to circumvent
 the majority of the above schemes. Furthermore, most of them are not
-easy to deploy since the majority of input vectors, string operations
+easy to deploy since the majority of input vectors, string operations,
 and output vectors of the application must be instrumented.
 
 {\it Vogt et al.}~\cite{VFJKKV07} have developed a tainting scheme
@@ -1060,18 +1045,18 @@ identify the generation of code coming from tainted data.
 Training techniques are based on the ideas of Denning's original
 intrusion detection framework~\cite{Den87}. In particular, a training
 mechanism registers all valid legitimate code statements during a
-training phase (mostly in the form of signatures). This can
-be done in various ways according to the implementation. Then, only
-those will be recognized and approved for execution
-during production.
+training phase (mostly in the form of signatures). This can be done in
+various ways according to the implementation. Then, only those
+statements will be recognized and approved for execution during
+production.
 
 Training methods that detect {\sc dsl}-driven injection attacks
-generate and store valid code statements (i.e. {\sc sql} or {\sc
+generate and store valid code statements (i.e., {\sc sql} or {\sc
   xp}ath queries) in various forms, and detect attacks as outliers
 from the set of valid code statements. An early approach, {\it {\sc
     didafit}}~\cite{LLW02} detects {\sc sql} injection (Point
-sdb) attacks by recording all database transactions
-(stripped from user input). Subsequent
+{\sc sdb}) attacks by recording all database transactions
+stripped from user input. Subsequent
 refinements by Valeur et al.~\cite{VMV05} tagged each transaction with
 the corresponding application as an extension of their anomaly
 detection framework called {\it libAnomaly}. {\it {\sc
@@ -1079,7 +1064,7 @@ detection framework called {\it libAnomaly}. {\it {\sc
 that prevents {\sc sql} and {\sc xp}ath injection attacks. The
 signatures generated during a training phase are based on features
 that can depend either on the code statement or on its execution
-environment (i.e. the stack trace). Then, at runtime, the mechanism
+environment (i.e., the stack trace). Then, at runtime, the mechanism
 checks all statements for compliance and can block code statements
 containing injected elements (Point {\sc e}i{\sc q}). {\sc
   amnesia}~\cite{HO05,HO06,HO05b} is a tool that also detects {\sc
@@ -1098,20 +1083,17 @@ forwards the request to the client. This mechanism is relatively
 inflexible since it does not support dynamic scripts. In addition it
 imposes a significant overhead (see Table~\ref{tab:comp}). The authors
 of {\it {\sc xssds}}~\cite{JEP08} have implemented a similar mechanism
-that also supports dynamic and external scripts. Specifically, during
+that also supports dynamic and external scripts. Specifically, during the
 training phase they build a list of all benign scripts. In the case of
 external scripts they keep a white list of all the valid domain names
 that contain scripts used by the application.
 
 Defenses based on training include some mechanisms that can be easily
-circumvented. For example, {\sc didafit} and {\it libAnomaly}
-do not tag transactions with their corresponding call-sites.
-In this case a false negative result
-is prominent. For instance, consider an application that will send the
-password for a forgetful user via email by executing the following
-query:
-\bgroup
-\lstset{language=SQL}
+circumvented. For example, {\sc didafit} and {\it libAnomaly} do not
+tag transactions with their corresponding call sites. This can lead
+easily to false negatives. For instance, consider an application that
+will send the password for a forgetful user via email by executing the
+following query: \bgroup \lstset{language=SQL}
 \begin{small}
 \begin{lstlisting}
 SELECT password from userdata WHERE id = 'Alice'
@@ -1135,8 +1117,8 @@ id = 'admin'
 \end{small}
 \egroup
 \noindent
-In this case {\sc didafit} and {\it libAnomaly}, could be easily escaped
-since a malicious user, could obtain the administrator's password
+In this case {\sc didafit} and {\it libAnomaly}, could be easily bypassed
+since a malicious user could obtain the administrator's password
 by email by entering on the password retrieval form
 as his user identifier the following:
 \bgroup
@@ -1148,30 +1130,28 @@ nosuchuser' OR id = 'admin
 \end{small}
 \egroup
 \noindent
+The infected query matches the signature of the second one above and
+is therefore accepted. The problem lies with the call location of the
+query, not the query alone.
 
-However, mechanisms that create signatures that involve
-elements not only associated with the code statements
-(i.e. {\sc amnesia} and {\sc sd}river)
-could detect such attacks. Specifically,
-{\sc sd}river associates a complete stack trace with the
-root of an {\sc sql} statement, thus it can correlate
-queries with their call sites and detect attacks
-like the aforementioned one.
-Furthermore, training tools that detect
-{\sc xss} attacks based on JavaScript injection
-would fail to detect mimicry attacks 
-where legitimate scripts can be executed by
-attackers, but not in the way intended by
-the the developers~\cite{APKLM10}.
+Mechanisms that create signatures that involve elements not only
+associated with the code statements (i.e., {\sc amnesia} and {\sc
+  sd}river) could detect such attacks. Specifically, {\sc sd}river
+associates a complete stack trace with the root of an {\sc sql}
+statement, thus it can correlate queries with their call sites and
+detect attacks like the aforementioned one. Furthermore, training
+tools that detect {\sc xss} attacks based on JavaScript injection
+would fail to detect mimicry attacks where legitimate scripts can be
+executed by attackers, but not in the way intended by the the
+developers~\cite{APKLM10}.
 
-In general, the detection accuracy of training approaches is
-heavily based on the coverage that is achieved during the
-training phase. If the coverage is insufficient the
-production of false alarms is very likely.
-In addition, when a code statement is altered, a new
-training phase is necessary.
+In general, the detection accuracy of training approaches is heavily
+based on the coverage that is achieved during the training phase. If
+the coverage is insufficient false alarms are very likely. In
+addition, when a code statement is altered, a new training phase is
+necessary.
 
-Most of the mechanisms above are relatively easy to deploy.
+Most of the training approaches are relatively easy to deploy.
 {\sc dsl} injection attack countermeasures
 can be retrofitted to a system typically by changing
 some configuration files (i.e. {\sc sd}river). This does not apply
@@ -1184,12 +1164,12 @@ are implemented within a proxy on the server-side.
 \label{sec:hybrid}
 
 This category includes mechanisms that borrow
-characteristics from more than one of the above categories.
+characteristics from both of the above categories.
 Two of them focus on the detection of {\sc xss}
 attacks and one of them focuses on {\sc dsl} code
 injection attacks.
 
-{\sc xss-guard}~\cite{BV08} is a training scheme that also employs
+{\sc xss-guard}~\cite{BV08} is a training scheme that employs
 parse-tree validation. During training, the scheme maps legitimate
 scripts to {\sc http} responses. During production {\sc xss-guard}
 retrieves for every script included in a response its parsed tree and
@@ -1197,10 +1177,9 @@ checks if it is one of those previously mapped to this response. Apart
 from the comparison of the parsed trees, {\sc xss-guard} checks also
 for an exact match of lexical entities. To achieve this, the scheme
 utilizes that data structures of Firefox's JavaScript engine (Point
-{\sc ub}). However, string literals are not compared literally and
-therefore a false negative result could occur if an adversary performs
-the following attack: Consider a banner rotator
-that every time it runs, it creates a value that depends on the
+{\sc ub}). However, string literals are not compared literally, which
+can lead to false negatives. For instance, consider a banner rotator
+that every time it runs it creates a value that depends on the
 current date and the length of the array that contains the references
 of the various images to be displayed. Then, based on this value it
 shows a specific image to a user. In a vulnerable web site that allows
@@ -1214,30 +1193,30 @@ retrieve the {\sc ip} addresses of the users that visit the vulnerable
 site.
 
 {\it Blueprint}~\cite{LV09} is a policy enforcement framework that
-also utilizes parsed trees to detect {\sc xss} attacks. To guarantee
+uses parsed trees to detect {\sc xss} attacks. To guarantee
 that untrusted content is not executed, Blueprint generates on the
 server-side a parsed tree from untrusted {\sc html} to ensure that it
 does not contain any dynamic content. Then the parsed tree is
-transfered to the document generator of the browser (Point {\sc ub})
+transfered to the document generator of the browser (Point {\sc ub}),
 where untrusted browser parsing behavior is ruled out.
 Blueprint is an efficient countermeasure but it imposes an
 overhead due to its extensive parsing (see Table~\ref{tab:comp}).
 
-{\it Diglossia}~\cite{SMS13} combines positive taint tracking (see
-Subsubsection~\ref{sec:taint}) together with parse-tree validation.
-Diglossia was based on the theory of Ray and Ligatti~\cite{RL12b}
-(also see Section~\ref{sec:attacks}) to detect {\sc dsl} code
-injection attacks. In addition, it is actually the first, and so far
-the only framework that detects No{\sc sql} injection attacks. When an
-application computes an output string (query), Diglossia computes a
-``shadow" of this string. Specifically, it maps all characters
-introduced by the application to a shadow character set. This set does
-not contain any characters coming from the tainted input. Then, the
-scheme creates the tree of the query that is about to be executed and
-compares it with the parsed tree of the ``shadow" (Point {\sc e}i{\sc q}). If
-the trees are not equal the application is probably under attack. Note
-that Diglossia can be bypassed in the same way as other taint
-tracking approaches as described in reference~\cite{NBR14}.
+{\it Diglossia}~\cite{SMS13} combines positive taint tracking together
+with parse-tree validation. Diglossia was based on the theory of Ray
+and Ligatti~\cite{RL12b} (which we saw in Section~\ref{sec:attacks})
+to detect {\sc dsl} code injection attacks. In addition, it is
+actually the first, and so far the only framework that detects No{\sc
+  sql} injection attacks. When an application computes an output
+string (query), Diglossia computes a ``shadow" of this string.
+Specifically, it maps all characters introduced by the application to
+a shadow character set. This set does not contain any characters
+coming from the tainted input. Then, the scheme creates the tree of
+the query that is about to be executed and compares it with the parsed
+tree of the ``shadow" (Point {\sc e}i{\sc q}). If the trees are not
+equal the application is probably under attack. Note that Diglossia
+can be bypassed in the same way as other taint tracking
+approaches~\cite{NBR14}.
 
 \begin{table*}
 \caption{Availability of the corresponding mechanisms.}
@@ -1316,12 +1295,13 @@ tracking approaches as described in reference~\cite{NBR14}.
     \begin{tablenotes}
   \begin{footnotesize}
        \item[1] The check mark (\tick) indicates that the publication
-       includes a homepage where the reader can refer to, to
+       includes a homepage where the reader can 
        download the corresponding software. {\bf AO} (Available On-line) suggests
        that the software is available on-line but the
        address was not mentioned in the paper, which probably indicates that
-       the authors made it available after the publication. The question ({\bf ?})
-       mark, indicates that the a homepage for the software was included
+       the authors made it available after the publication. The question 
+       mark ({\bf ?}) indicates that the a homepage for the software
+       was included
        in the publication but now it is not available.
   \end{footnotesize}
     \end{tablenotes}
@@ -1339,8 +1319,8 @@ tracking approaches as described in reference~\cite{NBR14}.
 \leavevmode
 \includegraphics[scale=0.47]{defect-percentages.png}
 \end{center}
-\caption{\label{fig:defect_sources}A pie showing the sources
-where the authors reffered to, to find vulnerabilities to test
+\caption{\label{fig:defect_sources}Pie chart showing the sources
+that the used to find vulnerabilities to test
 their mechanisms. We also provide which source was used
 in which publication:
 {\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
@@ -1350,50 +1330,40 @@ ha.ckers.org~\cite{TNH07,PSC09,LV09},
 Microsoft~\cite{RDWDE07}.}
 \end{figure}
 
-Table~\ref{tab:comp} indicates that the authors of 3 out of 34
-(8.8\%) publications, provided complete quadruples.
-On the other hand, we see that 4 out of
-34 (11.7\%) were not tested at all.
-In this cases, all the four elements of the
-quadruples are not available ({\sc na}).
-An interesting observation is that 10 out of 34
-(29.41\%) of the authors performed only attacks
-during their tests and did not test their mechanisms
-to see if they produce any false alarms. The corresponding
-quadruples in this case, are the ones that contain {\sc tp} and
-{\sc fn} results but {\sc tn} and {\sc fp} results are not
-available ({\sc na}). This stresses the fact that authors
-maybe more interested into making sure that
-their mechanisms can detect known attacks than seeing how
-they respond under normal conditions.
-In some occasions (where the number of {\sc tp} results
-are not quantified), authors did not mention how many or
-which attacks they performed.
-Also, in some cases, we observe that even if
-the authors report the existence of possible
-false positive and negative results, they have not
-quantified them ({\sc nq}).
+Table~\ref{tab:comp} indicates that the authors of 3 out of 34 (8.8\%)
+publications provided complete quadruples of {\sc tp}, {\sc tn}, 
+{\sc fp}, and {\sc fn}. On the other hand, we
+see that 4 out of 34 (11.7\%) were not tested at all. In these cases,
+all the four elements of the quadruples are not available ({\sc na}).
+An interesting observation is that in 10 out of the 34 (29.41\%)
+publications, the authors performed only attacks during their tests
+and did not test their mechanisms to see if they produce any false
+alarms. The corresponding quadruples contain {\sc tp} and {\sc fn}
+results but {\sc tn} and {\sc fp} results are not available ({\sc
+  na}). This stresses the fact that authors may be more interested in
+making sure that their mechanisms can detect known attacks rather than
+seeing how they respond under normal conditions. In some occasions,
+where the number of {\sc tp} results are not quantified, authors did
+not mention how many or which attacks they performed. Moreover in some
+cases we observe that even if the authors report the existence of
+possible false positive and negative results, they have not quantified
+them ({\sc nq}).
 
-Furthermore, we see that 27 out of
-34 mechanisms were tested on real-world applications
-known to be vulnerable. The vulnerabilities
-associated with these applications are enlisted
-in the following providers: the Common Vulnerabilities
-and Exposures ({\sc cve})
-database,\footnote{\url{https://cve.mitre.org/}}
-the {\it Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}}
-security mailing list, the
-{\sc xss}ed.com\footnote{\url{www.xssed.com}}
+Regarding the subjects of tests, we see that 27 out of 34 mechanisms
+were tested on real-world applications known to be vulnerable. The
+vulnerabilities associated with these applications are enlisted in the
+following providers: the Common Vulnerabilities and Exposures ({\sc
+  cve}) database,\footnote{\url{https://cve.mitre.org/}} the {\it
+  Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}} security
+mailing list, the {\sc xss}ed.com\footnote{\url{www.xssed.com}}
 security bulletin provider, Microsoft's security
 bulletin\footnote{\url{https://technet.microsoft.com/en-us/security/bulletin}}
-and the ha.ckers.org\footnote{\url{www.xssed.com}}
-security bulletin provider. Figure~\ref{fig:defect_sources}
-presents how many (in terms of percentages) and which
-(in the figure's caption) authors referred to which source.
-In numerous occassions authors performed tests based
-on the same applications. For example, 12 mechanisms
-were tested on a vulnerable version of
-{\sc phpbb}.\footnote{https://www.phpbb.com/}
+and the ha.ckers.org\footnote{\url{www.xssed.com}} security bulletin
+provider. Figure~\ref{fig:defect_sources} presents how many, in percentage,
+and which, in the figure's caption, authors referred
+to which source. In numerous occassions authors performed tests based
+on the same applications. For example, 12 mechanisms were tested on a
+vulnerable version of {\sc phpbb}.\footnote{https://www.phpbb.com/}
 
 There are also authors that took a different approach.
 For instance, during their initial tests,
@@ -1426,24 +1396,15 @@ and then test the accuracy of their tools on them.
 \subsection{Availability}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
-of the mechanism in terms of source code and corresponding
+of each mechanism in terms of source code and corresponding
 executables. We also examined the availability of the testbeds
-mentioned in the paper. The check mark (\tick) indicates that at some
-point in the publication there is a homepage where the reader can
-refer to, to download the corresponding software. {\bf AO} (Available
-On-line) suggests that the software is available on-line but the
-address was not mentioned in the paper, which probably indicates that
-the authors made it available after the publication. The question mark
-({\bf ?}), indicates that a homepage for the software was given in the
-publication but now it is not available.
-
-We see that only 6 out of 34 (17.6\%) of the authors provided a
-homepage for their mechanism through their publication and 2 from
-these 6 homepages are currently not available. In 5 cases authors made
-either the source code or their executables available after their
-paper got published. Regarding the availability of test materials, we
-see that only 3 out of 34 (8.8\%) authors have currently their
-testbeds available on-line.
+mentioned in the paper. We see that only 6 out of 34 (17.6\%) of the
+pubications provided a homepage for their mechanism and 2 from these 6
+homepages are currently not available. In 5 cases authors made either
+the source code or their executables available after their paper got
+published. Regarding the availability of test materials, we see that
+only 3 out of 34 (8.8\%) publications have currently their testbeds
+available on-line.
 
 \subsection{Computational Performance}
 
@@ -1464,22 +1425,17 @@ their mechanism, the execution time is doubled.
 \subsection{Ease of Use}
 \label{sec:deploy2}
 
-As we observed in Subsection~\ref{sec:deployment},
-there are various reasons why a mechanism could
-be difficult to deploy.
+Mechanisms in different categories face different deployment issues.
 
-Consider the majority of mechanisms coming from
-the policy enforcement subcategory. In most cases
-developers should modify multiple components
-to use each mechanism. Specifically, mechanisms like
-BrowserShield, and {\sc beep} require modifications
-both on the server and the client side.
-Thus, it would be difficult for them to be adopted by
-both browser vendors and application developers.
-On the other hand, there are cases where the policies
-introduced in the server are enforced on the client-side,
-via a library embedded in the server's response
-(i.e. Blueprint). Such an approach is really convenient
+Consider the majority of mechanisms coming from the policy enforcement
+subcategory. In most cases developers should modify multiple
+components to use each mechanism. Specifically, mechanisms like
+BrowserShield and {\sc beep} require modifications both on the server
+and the client side. Thus, it would be difficult for them to be
+adopted by both browser vendors and application developers. On the
+other hand, there are cases where the policies introduced in the
+server are enforced on the client-side, via a library embedded in the
+server's response (i.e., Blueprint). Such an approach is convenient
 since no modifications are needed on the client.
 
 Extensive modifications in the application's source
@@ -1503,25 +1459,16 @@ easily repeated.
 
 \subsection{Security}
 
-While describing the various mechanisms in
-Section~\ref{sec:defs}, we observed that some
-can be bypassed by attackers that know how they
-work.
-
-However, some mechanisms are designed in such a way
-so that they can be extended and become immune to
-the attacks that they are currently vulnerable to. For
-example, policy enforcement frameworks that are
-based on JavaScript or {\sc html} rewriting
-can be extended to detect attacks that leverage
-{\tt iframe} tags (see Subsubsection~\ref{sec:policy}).
-
-This does not apply to all mechanisms though.
-In particular, training mechanisms like {\sc didafit},
-and {\sc xss-guard} must be redesigned
-to detect the attacks that were described in
-Subsubsection~\ref{sec:train} and
-Subsection~\ref{sec:hybrid} respectively.
+While describing the various mechanisms in Section~\ref{sec:defs}, we
+observed that some can be bypassed by attackers that know how they
+work. Still, some mechanisms are designed in such a way so that they
+can be extended and become immune to the attacks that they are
+currently vulnerable to. For example, policy enforcement frameworks
+that are based on JavaScript or {\sc html} rewriting can be extended
+to detect attacks that leverage {\tt iframe} tags. This does not apply
+to all mechanisms though. In particular, training mechanisms like {\sc
+  didafit} and {\sc xss-guard} must be redesigned to detect the
+attacks we described in the related sections.
 
 \subsection{Point of Detection}
 
@@ -1687,36 +1634,31 @@ though, is to ask of researchers in attack detection mechanisms not to
 buck the trend and to take steps to increase the availability of their
 research.
 
-Another interesting finding involves the computational overhead. We
-observe that the average overhead that can be extracted from the
-publications that provide the overhead in percentage terms is 18\%.
-Relative research on protection mechanisms~\cite{SPWS13} indicates
-that mechanisms that introduce an overhead larger than 10\% do not
-tend to gain wide adoption in production environments. Hence, the
+Computational overhead comes up as a non-trivial issue. We observe
+that the average overhead that can be extracted from the publications
+that provide the overhead in percentage terms is 18\%. Relative
+research on protection mechanisms~\cite{SPWS13} indicates that
+mechanisms that introduce an overhead larger than 10\% do not tend to
+gain wide adoption in production environments. Hence, the
 computational overhead of some mechanisms could be a reason why they
 have not been adopted.
 
-We need to mention that the fact that mechanisms come
-sometimes with deployment difficulties does
-not necessarily mean that this is a serious reason
-not to adopt them. The deployment of such frameworks
-is most of the time complex because as we observed
-in Section~\ref{sec:attacks} the attacks that they
-detect are complex too. So every security feature can
-come with such a trade-off and those who intend to use it
-should be aware of this.
+We need to mention that the fact that mechanisms come sometimes with
+deployment difficulties does not necessarily mean that this is a
+serious reason not to adopt them. The deployment of such frameworks is
+most of the time complex because as we observed in
+Section~\ref{sec:attacks} the attacks that they detect are complex
+too. So every security feature can come with such a trade-off and
+those who intend to use it should be aware of this.
 
-Deployment can also depend on the detection point
-of an attack. We saw that many policy enforcement
-mechanisms that detect attacks at Point {\sc ub},
-are not easy to deploy because modifications
-are needed both on the server and the client side.
-We observed though that Blueprint has not such
-deployment issues (see Subsection~\ref{sec:deploy2}).
-Thus, when developing a new countermeasure,
-researchers should consider where they are planning
-to detect attacks, observe the corresponding
-deployment challenges, and try to mitigate them.
+Deployment can also depend on the detection point of an attack. We saw
+that many policy enforcement mechanisms that detect attacks at Point
+{\sc ub}, are not easy to deploy because modifications are needed both
+on the server and the client side. We observed though that Blueprint
+has not such deployment issues (see Subsection~\ref{sec:deploy2}).
+Thus, when developing a new countermeasure, researchers should
+consider where they are planning to detect attacks, observe the
+corresponding deployment challenges, and try to mitigate them.
 
 % discuss Availability. Finally, 
 
