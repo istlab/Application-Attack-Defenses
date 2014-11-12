@@ -1682,9 +1682,32 @@ detect one or more of such attacks. However,
 % Caja\footnote{\url{https://code.google.com/p/google-caja/}}~\cite{M06},
 the majority of them are not used in practice.
 
-In this paper we first introduced an exploitation model
-that can be a reference point which can be used by
-researchers who wish to develop new countermeasures.
+In our research we tried to identify some of the reasons
+why this is the case. Some of these reasons include
+poor testing, high overhead, code unavailability,
+deployment and security issues. However, our
+systematization suggests that there are many
+promising cases. For instance there are
+many mechanisms that seem to have been extensively
+tested in terms of accuracy ({\sc sqlc}eck, {\sc amnesia},
+{\sc dsi}, libAnomaly), solve specific
+problems in an efficient way (Blueprint and the system
+by Stock et al.) or have a low computational overhead
+({\sc dsi} and the system by Phung et al.).
+There are also cases that researchers have made their
+code available ({\sc beep} and {\sc sd}river) which
+can be a push towards the development of better mechanisms.
+Apart from making the source code of such mechanisms
+available, we also believe that testing them in
+a production setting could propel their adoption.
+
+% First, we introduced an exploitation model
+% to show how defense mechanisms can be seen
+% from a common point of view. Our model can
+% be a reference point for researchers who wish to develop
+% new countermeasures. Then we categorized the various
+% mechanisms and analyzed them based on specific criteria.
+% We observed that the various mechanisms
 
 % This is due to the following reasons:
 % a) the mechanisms have not been extensively tested in terms
@@ -1699,18 +1722,18 @@ researchers who wish to develop new countermeasures.
 % and disadvantages of each mechanism, enlist them
 % into different categories, and see how they compare to each other.
 
-\begin{itemize}
-\item We believe that our research may facilitate researchers
-or practitioners who would like to use one of the
-aforementioned mechanisms and researchers who would like
-to build new ones. Especially in the second case,
-researchers can utilize our exploitation model as a
-starting point to develop their approach.
-\item We believe that forming a
-standard way to test such mechanisms in terms
-of accuracy and computational performance
-would be one of the reasons of adopting them.
-\end{itemize}
+% \begin{itemize}
+% \item We believe that our research may facilitate researchers
+% or practitioners who would like to use one of the
+% aforementioned mechanisms and researchers who would like
+% to build new ones. Especially in the second case,
+% researchers can utilize our exploitation model as a
+% starting point to develop their approach.
+% \item We believe that forming a
+% standard way to test such mechanisms in terms
+% of accuracy and computational performance
+% would be one of the reasons of adopting them.
+% \end{itemize}
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
