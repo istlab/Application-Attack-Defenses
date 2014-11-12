@@ -68,7 +68,7 @@ louridas@aueb.gr
 
   Some of the most dangerous web application attacks, like Cross-Site
   Scripting and {\sc sql} injection, exploit the oversight of
-  programmers that develop applications which may accept and process
+  programmers that develop applications that may accept and process
   data of uncertain origin without appropriate validation and / or
   filtering. Such attacks, relying on source code injection
   vulnerabilities, have been constantly topping the lists of the
@@ -77,21 +77,20 @@ louridas@aueb.gr
 
   In this paper we systematize the existing knowledge regarding
   various defense mechanisms against source code injection by setting
-  up a model that highlights the key weaknesses behind such attacks and
-  helps us observe defenses from a common perspective.
+  up a model that highlights the key weaknesses behind such attacks
+  and provides a common perspective for the different defenses.
 
   We then categorize and analyze the various defense mechanisms that
-  have been developed. Our analysis is based on dimensions such as
-  accuracy, performance, deployment, security and availability.
-  Especially notable is accuracy, as our findings show that there are
-  many defense mechanisms that are tested in a poor manner.
-  In addition, we observe that there are mechanisms
-  that can be bypassed by attackers that know how the mechanisms
-  work.
+  have been developed. Our analysis is based on accuracy, performance,
+  deployment, security and availability. Especially notable is
+  accuracy, as our findings show that there are many defense
+  mechanisms that are tested in a poor manner. In addition, we observe
+  that there are mechanisms that can be bypassed by attackers that
+  know how the mechanisms work.
 
   By comparing the existing defenses and identifying their common
-  characteristics, we help: a) researchers and practitioners to choose
-  or modify a mechanism according to their needs, and b) designers of
+  characteristics, we help researchers and practitioners to choose or
+  modify a mechanism according to their needs as well as designers of
   new approaches in developing more efficient mechanisms.
 
 \end{abstract}
@@ -123,41 +122,40 @@ years. Consider the case of {\sc owasp}'s Top Ten project whose main
 goal is to raise awareness about web application security by
 identifying some of the most critical risks facing organizations. The
 Top Ten project is popular, referenced by numerous researchers. In its
-three consecutive Top Ten lists (2007, 2010, 2013), different
-source code-driven injection attacks dominate the top five
-positions. Malicious users find new ways~\cite{HNSHS12,DKH14}
-to bypass defense mechanisms by using a variety of
-techniques despite the numerous countermeasures
-that are being introduced. Note that the number of systems developed
-to counter {\sc sql} injection attacks until 2006 was more than
-twenty~\cite{HVO06}. Since then the number has doubled. Researchers
-have also indicated that the number of such attacks is steadily
+three consecutive Top Ten lists (2007, 2010, 2013), different source
+code-driven injection attacks dominate the top five positions.
+Malicious users find new ways~\cite{HNSHS12,DKH14} to bypass defense
+mechanisms by using a variety of techniques despite the numerous
+countermeasures that are being introduced. The number of systems
+developed to counter {\sc sql} injection attacks until 2006 was more
+than twenty~\cite{HVO06}. Since then the number has doubled.
+Researchers have indicated that the number of such attacks is steadily
 increasing in recent years~\cite{SSL12}.
 
-In this paper we initially show how the above attacks can be seen from
-a {\it common perspective}. We achieve this by providing an
-exploitation model that highlights the following fact: the majority of
-the steps needed to perform application attacks based on
-source code injection are common.\footnote{Note that we leave out
-  attacks that are based on binary code injection (i.e. buffer
-  overflows --- see Section~\ref{sec:attacks}).} This is validated by
-the fact that there are protection mechanisms that can detect more
-than one of these attacks. Then, we {\it categorize} a selection of
-these protection mechanisms. The selection comprises protection
-mechanisms that detect such attacks and are presented in publications
-cited more than twenty times, and some of the latest mechanisms that
-have been presented in top security conferences that have been cited
-less than twenty times. We included the second group so that we would
-not penalize recent research. Finally, we {\it analyze} each mechanism based
-on the following dimensions:
+In this paper we show how the above attacks can be seen from a {\it
+  common perspective}. We achieve this by providing an exploitation
+model that highlights that the majority of the steps needed to perform
+application attacks based on source code injection are
+common.\footnote{Note that we leave out attacks that are based on
+  binary code injection (i.e. buffer overflows --- see
+  Section~\ref{sec:attacks}).} This is validated by the fact that
+there are protection mechanisms that can detect more than one of these
+attacks. Then, we {\it categorize} a selection of these protection
+mechanisms. In the selection we included protection mechanisms that
+detect such attacks and are presented in publications cited more than
+twenty times. We also added some recent mechanisms that have been
+presented in top security conferences, even though they have been
+cited less than twenty times. We included the second group so that we
+would not penalize recent research. Finally, we {\it analyze} each
+mechanism based on the following dimensions:
 \begin{itemize}
 \item {\it Accuracy} Protection mechanisms are as good
   as their detection capability; this requires low false positive and
   false negative rates.
-\item {\it Computational Performance} We examine
-  the overhead of the mechanisms
-  that affect the experience of a web user who actually
-  uses the protected application.
+\item {\it Availability} We check if the mechanism and its
+  testbed are available on-line.
+\item {\it Computational Performance} We examine the computational
+  overhead of the mechanisms at their points of deployment.
 \item {\it Ease of use} We examine if the protection
   mechanism is practical in terms of deployment
   and can be easily adopted by security experts.
@@ -165,9 +163,6 @@ on the following dimensions:
   attackers that know how it works and wants to circumvent it.
 \item {\it Point of Detection} Based on our exploitation model
   we examine the location where a mechanism detects an attack.
-\item {\it Availability} We check if the mechanism and its
-  testbed are available on-line.
-available 
 \end{itemize}
 
 \noindent
@@ -185,7 +180,7 @@ There is already a survey on mitigating software vulnerabilities
 in general~\cite{SZ12}. The scope of that
 research is pretty wide and leaves out the majority of the
 approaches and mechanisms that we report here.
-This is mainly because this work includes countermeasures
+This is mainly because that work includes countermeasures
 that detect such vulnerabilities via program analysis
 (which is done during development or testing), while
 we include protection mechanisms that counter
@@ -250,8 +245,8 @@ Bratus et al.~\cite{BLSPS11} portray the issue in a generic fashion:
   inputs (a.k.a. `exploits')''}. In particular, {\it ``every
   application that copies untrusted input verbatim into an output
   program is vulnerable to code injection''}. Ray and
-Ligatti~\cite{RL12b} actually proved the above claim based on formal
-language theory.
+Ligatti~\cite{RL12b} have proved this claim based on formal language
+theory.
 
 \begin{figure}
 \begin{center}
@@ -282,17 +277,17 @@ code injection attacks. Such attacks may involve source code, either of a
 
 Application attacks that involve {\sc dsl}s constitute an important
 subset of the code injection problem, as {\sc dsl}s like {\sc sql} and
-{\sc xml} play an significant role in the development of either web or
+{\sc xml} play an significant role in the development of both web and
 mobile applications. For example, many applications have interfaces
 where a user enters input to interact with the application's data,
 thereby interacting with the underlying Relational Database Management
 System ({\sc rdbms}). This input can become part of an {\sc sql} query
-and executed on the target {\sc rdbms}. A code injection attack that
+and get executed on the target {\sc rdbms}. A code injection attack that
 exploits the vulnerabilities of these interfaces by taking advantage
 of input validation issues like incorrectly passed parameters or
-incorrect type handling, is called an {\sc sql} injection
+incorrect type handling is called an {\sc sql} injection
 attack~\cite{CERT02,MS09,HVO06,SW06}. By using similar techniques
-malicious users can perform other exploits based on {\sc dsl}s,
+malicious users can perform other exploits based on {\sc dsl}s
 like {\sc xp}ath~\cite{SW06,CDL07,MKS09}, {\sc xml}~\cite{MSM13}
 and No{\sc sql}~\cite{SMS13}. With this kind of attacks,
 a malicious user can view sensitive information,
@@ -305,20 +300,20 @@ typically via a parameter value, and inject their own
 content into the page. {\sc html} injection is mainly associated
 with {\sc xss} defects~\cite{HNSHS12}.
 
-A recent class of {\sc cia}s involve dynamic languages like
-JavaScript and {\sc php}~\cite{SFVM09,EWKK09,SMS13}. JavaScript
+A recent class of code injection attacks involve dynamic languages
+like JavaScript and {\sc php}~\cite{SFVM09,EWKK09,SMS13}. JavaScript
 injection attacks, in particular, make up a large subset of dynamic
 language-driven attacks. Such attacks are manifested when a web
 application accepts and redisplays data of uncertain origin without
 appropriate validation and filtering. Based on this flaw, an attacker
 can manage to inject a script in the JavaScript engine of a browser
 and alter its execution flow~\cite{ELX07}. JavaScript injection
-attacks are considered as a critical issue in web application security
-mainly because they are associated with major vulnerabilities such as:
-{\sc xss} attacks~\cite{SG07}, {\sc csrf} attacks~\cite{BJM08,LZRL09} and
-Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}.
-In many cases {\sc xss} attacks involve the injection of
-both {\sc html} and JavaScript code.
+attacks are considered a critical issue in web application security
+mainly because they are associated with major vulnerabilities such as
+{\sc xss} attacks~\cite{SG07}, {\sc csrf} attacks~\cite{BJM08,LZRL09}
+and Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}. In
+many cases {\sc xss} attacks involve the injection of both {\sc html}
+and JavaScript code.
 
 % {\sc html} injection --- such attacks pose no threat to cookies and session IDs.
 
@@ -327,34 +322,31 @@ both {\sc html} and JavaScript code.
 
 In this section we provide a step-by-step exploitation model to
 understand the process of carrying out application attacks based on
-source code injection vulnerabilities.
-Figure~\ref{fig:attacks} presents the steps of different application
-attacks. For every arrow there are
-corresponding transition numbers for every attack.
-Every number indicates the number of the
-steps taken until we reach this transition.
-For the most part, the steps are common in all attacks. This
+source code injection vulnerabilities. Figure~\ref{fig:attacks}
+presents the steps of different application attacks. Links between
+steps are labelled with the paths constituting different attacks. The
+sequence of steps for each attack is shown by the numbers next to the
+attack names in the labels. Most steps are common in all attacks. This
 is because they are based on similar attack vectors as we mentioned in
-the previous section. Most importantly,
-Figure~\ref{fig:attacks} illustrates in which transitions
-the defenses detect corresponding attacks.
+the previous section. Large crosses on transitions in
+Figure~\ref{fig:attacks} indicate the points where defenses detect
+attacks.
 
 A malicious user can initiate the attack through two different routes.
 The attacker may use the browser of an innocent user as an attack
 vehicle, through which the code will be injected in the application.
-For example, the attacker could craft a malicious script into a {\sc url}
-and then trick an end user to click on it via social engineering (i.e., phishing ---
-{\it transitions}: {\sc p-xss} 1.1, {\sc n-xss} 1.1, {\sc csrf} 1).
-Alternatively, the attacker may be able to inject
-directly the malicious code in the application. For example, consider
-a web application that accepts and redisplays user input
-without appropriate validation. An attacker could
-upload data containing a specially crafted script (for example, in a
-blog comment) to steal the cookies of the visiting users or embed
-malicious {\sc sql} code to retrieve all the password entries from a
-database ({\it transitions}: {\sc dsl} 1,
-{\sc p-xss} 1, {\sc n-xss} 1).
-Note that an {\sc xss} attack can start from both routes.
+For example, the attacker could craft a malicious script into a {\sc
+  url} and then trick an end user to click on it via social
+engineering (i.e., phishing, through transition {\sc p-xss} 1.1, {\sc
+  n-xss} 1.1, {\sc csrf} 1). Alternatively, the attacker may be able
+to inject directly the malicious code in the application (through
+transition {\sc dsl} 1, {\sc p-xss} 1, {\sc n-xss} 1). This would happen
+in a web application that accepts and redisplays user input
+without appropriate validation. An attacker could upload data
+containing a specially crafted script (for example, in a blog comment)
+to steal the cookies of the visiting users or embed malicious {\sc
+  sql} code to retrieve all the password entries from a database. Note that
+an {\sc xss} attack can start from both routes.
 
 Once the injected code reaches the vulnerable application, it becomes
 a part of a value represented by a program variable. The target of the
@@ -362,11 +354,11 @@ attack determines the route from now on. In {\sc sql} injection and
 {\sc csrf} attacks the injected code becomes part of a query that
 finally reaches the database where it is executed. 
 
-{\sc xss} attacks fall ino two categories, {\it non-persistent} and
+{\sc xss} attacks fall into two categories, {\it non-persistent} and
 {\it persistent}. Non-persistent {\sc xss} attacks take place when the
 data provided by a user is used immediately by server-side scripts to
 parse and display a page of results, without properly sanitizing the
-request ({\it transitions}: {\sc p-xss} 7, {\sc n-xss} 2).
+request (transition {\sc p-xss} 7, {\sc n-xss} 2).
 Thus, in a non-persistent {\sc xss} attack the injected code
 is never saved on the server and immediately becomes part of the
 content that is sent back to a web user.
@@ -499,10 +491,10 @@ not possible, for whatever reason, it is important to make sure that
 all computer code and test data is available noting any restrictions
 on accessibility. Availability of computer code has been recognised as
 an important issue outside the computer science field: the journal
-Nature, in a recent editorial, adopted a publication policy stressing
+\emph{Nature}, in a recent editorial, adopted a publication policy stressing
 access to code and data~\cite{nature2014}. At a time and date that the
 merits of open access to code are discussed in non computer science
-journals~\cite{easterbrook2014} we should expect computer scientists
+journals~\cite{easterbrook2014}, we should expect computer scientists
 to lead the way.
  
 \subsection{Computational Performance}
@@ -517,11 +509,13 @@ performance, or it may take place on the client, or both. The
 usefulness of a detection mechanism depends therefore on the
 computational cost it requires and on where it extracts it, as
 different overheads may be acceptable server-side than client-side.
-For example, reporting absolute measurements gives little information
-on the real overhead, unless separate measurements are given for the
-system under study with and without the proposed mechanism. Percentage
-measurements are normally better. Outliers may be important. It is
-always necessary to describe the experimental setup.
+
+Other factors matter as well. Reporting absolute measurements gives
+little information on the real overhead, unless separate measurements
+are given for the system under study with and without the proposed
+mechanism. Percentage measurements are normally better. Outliers may
+be important. It is always necessary to describe the experimental
+setup.
 
 Performance evaluation rests on strong foundations~\cite{jain1991} and
 is a vibrant field as new technologies emerge~\cite{gregg2014}.
@@ -541,13 +535,13 @@ excellent research contribution that merits publication; it may also
 be heavily cited and open the road to other, practical
 implementations in the future. 
 
-The ease of use, in turn, depends on several factors. The detection
-mechanism may be deployed server-side or client-side, or both.
-Deployments on just the server or the client are easier to handle than
-deployments on both of them. The mechanism may be an add-on, or
-plugin, on existing software, client or server, or it may be tightly
-integrated with existing software, requiring rebuilding from source
-code. 
+Ease of use depends on the deployment protocol required for the
+mechanism. The detection mechanism may be deployed server-side or
+client-side, or both. Deployments on just the server or the client are
+easier to handle than deployments on both of them. The mechanism may
+be an add-on, or plugin, on existing software, client or server, or it
+may be tightly integrated with existing software, requiring rebuilding
+from source code.
 
 No matter where it gets installed, the means of installation influences
 ease of use. A detection mechanism that comes with ready to install
@@ -559,7 +553,7 @@ of source code.
 Defenders and attackers are often caught in a cat-and-mouse game,
 where countermeasures are bypassed by canny attacks, which are caught
 by more sophisticated countermeasures, yet again bypassed by cannier
-attacks, and so on. We use Security to refer to the ability of a
+attacks, and so on. We use security to refer to the ability of a
 detection mechanism to resist being circumvented. 
 
 A mechanism that has not been bypassed is not eternally secure, as it
