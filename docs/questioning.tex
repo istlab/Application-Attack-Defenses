@@ -329,9 +329,9 @@ In this section we provide a step-by-step exploitation model to
 understand the process of carrying out application attacks based on
 source code injection vulnerabilities.
 Figure~\ref{fig:attacks} presents the steps of different application
-attacks. For every arrow there is a
-corresponding tuple that includes the transition number for
-every attack. Every number indicates the number of the
+attacks. For every arrow there are
+corresponding transition numbers for every attack.
+Every number indicates the number of the
 steps taken until we reach this transition.
 For the most part, the steps are common in all attacks. This
 is because they are based on similar attack vectors as we mentioned in
@@ -344,7 +344,7 @@ The attacker may use the browser of an innocent user as an attack
 vehicle, through which the code will be injected in the application.
 For example, the attacker could craft a malicious script into a {\sc url}
 and then trick an end user to click on it via social engineering (i.e., phishing ---
-{\it transition}: {\sc p-xss} 1.1 \text{\textbar} {\sc n-xss} 1.1 \text{\textbar} {\sc csrf} 1).
+{\it transitions}: {\sc p-xss} 1.1, {\sc n-xss} 1.1, {\sc csrf} 1).
 Alternatively, the attacker may be able to inject
 directly the malicious code in the application. For example, consider
 a web application that accepts and redisplays user input
@@ -352,8 +352,8 @@ without appropriate validation. An attacker could
 upload data containing a specially crafted script (for example, in a
 blog comment) to steal the cookies of the visiting users or embed
 malicious {\sc sql} code to retrieve all the password entries from a
-database ({\it transition}: {\sc dsl} 1 \text{\textbar}
-{\sc p-xss} 1 \text{\textbar} {\sc n-xss} 1).
+database ({\it transitions}: {\sc dsl} 1,
+{\sc p-xss} 1, {\sc n-xss} 1).
 Note that an {\sc xss} attack can start from both routes.
 
 Once the injected code reaches the vulnerable application, it becomes
@@ -366,7 +366,7 @@ finally reaches the database where it is executed.
 {\it persistent}. Non-persistent {\sc xss} attacks take place when the
 data provided by a user is used immediately by server-side scripts to
 parse and display a page of results, without properly sanitizing the
-request ({\it transition}: {\sc p-xss} 7 \text{\textbar} {\sc n-xss} 2).
+request ({\it transitions}: {\sc p-xss} 7, {\sc n-xss} 2).
 Thus, in a non-persistent {\sc xss} attack the injected code
 is never saved on the server and immediately becomes part of the
 content that is sent back to a web user.
@@ -379,19 +379,19 @@ actually sent back afterwards to the user.
 \begin{figure*}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.61]{attacks-steps.pdf}
+\includegraphics[scale=0.61]{attacks-steps-new.pdf}
 \end{center}
 \caption{\label{fig:attacks}Attack model demonstrating web
 application attacks based on source
-code injection vulnerabilities. For every arrow there is a
-corresponding tuple that includes a transition number for
+code injection vulnerabilities. For every arrow there are
+corresponding transition numbers for
 every attack. Every {\it point} indicates a transition where mechanisms
 detect attacks. For every point we provide the corresponding
 references:
-Point {\sc ub}~\cite{KJKV09,TNH07,NSS06,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
-Point {\sc s}t{\sc b}~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08},
-Point {\sc e}i{\sc q}~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
-Point {\sc sdb}~\cite{BK04,LLW02,VMV05}.}
+Point {\sc ub} (at the user's browser):~\cite{KJKV09,TNH07,NSS06,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
+Point {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08},
+Point {\sc e}i{\sc q} (embedded in a query en route to the database):~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
+Point i{\sc db} (in the database):~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
 
 \section{Analysis Dimensions}
@@ -579,8 +579,8 @@ in Figure~\ref{fig:attacks}:
 within a proxy (Point {\sc s}t{\sc b}).
 \item Embedded in a query, but before it reaches the server's database
   (Point {\sc e}i{\sc q}).
-\item After the malicious code has been executed on the server's
-  database (Point {\sc sdb}).
+\item After the malicious code reaches the server's database
+  (Point i{\sc db}).
 \end{itemize}
 
 \section{Defenses}
@@ -595,12 +595,12 @@ within a proxy (Point {\sc s}t{\sc b}).
 against web application attacks, based on source code
 injectiion. For each approach we provide the references
 that present corresponding mechanisms:
-{\bf 1}~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,LV09},
-{\bf 2}~\cite{BK04,JB07,GC09,APKLM10},
-{\bf 3}~\cite{BWS05,SW06},
-{\bf 4}~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
-{\bf 5}~\cite{LLW02,HO05,HO06,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
-{\bf 6}~\cite{BV08,LV09,SMS13}.}
+{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,LV09},
+{\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
+{\it Parse-Tree Validation}:~\cite{BWS05,SW06},
+{\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
+{\it Training}:~\cite{LLW02,HO05,HO06,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
+{\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
 \end{figure*}
 
 We categorize and describe the various mechanisms developed to detect
@@ -843,7 +843,7 @@ statements using randomized instructions instead of standard keywords.
 The modified queries are reconstructed at runtime using the same key
 that is inaccessible to the malicious user. {\sc sql}rand is one of
 the few mechanisms that detect {\sc sql} injection attacks on the
-database level (Point {\sc sdb}).
+database level (Point i{\sc db}).
 
 In the case of {\sc xss} attacks that are based on JavaScript or {\sc
   html}, consider a {\sc xor} function that encodes all source of a
@@ -1535,7 +1535,7 @@ on the server-side, all the mechanisms that detect
 such attacks are placed in some point within the server.
 From the mechanisms that detect {\sc dsl} code injection
 attacks, 3 out of 13 (23\%) do so at the level
-of the {\sc rdbms}---Point {\sc sdb}.
+of the {\sc rdbms}---Point i{\sc db}.
 The other 11 wrap {\sc api} calls related to output
 vectors---Point {\sc e}i{\sc q}.
 
