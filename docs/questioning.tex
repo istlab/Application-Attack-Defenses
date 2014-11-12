@@ -388,9 +388,9 @@ corresponding transition numbers for
 every attack. Every {\it point} indicates a transition where mechanisms
 detect attacks. For every point we provide the corresponding
 references:
-Point {\sc ub} (at the user's browser):~\cite{KJKV09,TNH07,NSS06,APKLM10,SPPGMMB04,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
-Point {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08},
-Point {\sc e}i{\sc q} (embedded in a query en route to the database):~\cite{BWS05,SW06,PS11,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
+Point {\sc ub} (at the user's browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
+Point {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08,PS11},
+Point {\sc e}i{\sc q} (embedded in a query en route to the database):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
 Point i{\sc db} (in the database):~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
 
@@ -713,14 +713,19 @@ are treated according to the policies defined
 on the server. Frameworks that support this
 functionality are {\sc beep}~\cite{TNH07}
 and {\sc dsi}~\cite{NSS06}. The main problem with
-the above mechanisms is that they are vulnerable
-to non-persistent {\sc xss} attacks that alter
-the {\sc dom} of an already rendered
-page~\cite{APKLM10}.
-In addition, a recent variation of JavaScript
-injection attacks known as return-to-JavaScript
-attack can be used to bypass the above mechanisms
-as described extensively in reference~\cite{APKLM10}.
+these mechanisms is that they do
+not examine the script's location inside the web
+document. Based on this fact, attackers
+can perform mimicry attacks~\cite{WS02}.
+Specifically, they can execute legitimate scripts,
+but not as intended by the original design of
+the developers. This is extensively described
+in reference~\cite{APKLM10}. In addition,
+the authors of~\cite{APKLM10} describe
+another recent variation of JavaScript
+injection attacks that can be used to bypass the
+above mechanisms, known as return-to-JavaScript
+attacks.
 % Such attacks share
 % many similarities with the {\it return-to-lib}
 % attack~\cite{SPPGMMB04}. 
@@ -812,9 +817,8 @@ the browser will not include the token.
 Thus, sites that create their {\sc html} on the client
 will remain vulnerable. In addition, it does not
 support cross-origin requests.
-{\it j{\sc csrf}}~\cite{PS11}
-has a very similar functionality and meanwhile
-addresses the above problems.
+{\it j{\sc csrf}}~\cite{PS11} has a similar
+functionality and meanwhile addresses the above problems.
 Finally, {\it CsFire}~\cite{DDHPJ10}
 examines cross-domain interactions, to design a
 cross-domain policy on the client's side (Point {\sc ub}).
@@ -854,11 +858,9 @@ browser decodes the source by applying the same function again (Point
 randomize the instruction set of {\sc html} and JavaScript
 respectively. Contrary to x{\sc js}, in Noncespaces administrators
 must set specific policies in a manner similar to a firewall
-configuration language. This fact, together with the insufficient
-testing of the mechanism (see Table~\ref{tab:comp}) brings up
-questions concerning its accuracy. {\it {\sc
-    sm}ask}~\cite{JB07} is another framework that was inspired by {\sc
-  isr}. To detect {\sc xss} attacks it searches for {\sc html} and
+configuration language. {\it {\sc sm}ask}~\cite{JB07} is another
+framework that was inspired by {\sc isr}. To detect {\sc xss}
+attacks it searches for {\sc html} and
 JavaScript keywords within the application's legitimate code. This is
 done before the processing of an {\sc http} request. When it finds one
 it adds a token to it. This results to a ``code mask". Then, before
@@ -946,7 +948,7 @@ the server and the client.
   % &   {\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
   &   {\it Xu et al.}~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
   &   {\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   {\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
+  &   {\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc c}) & {\sc xss} \\
   &   {\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql}i and {\sc php}i, {\sc xss} \\
   &   {\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
   \hline 
@@ -1163,8 +1165,10 @@ queries with their call sites and detect attacks
 like the aforementioned one.
 Furthermore, training tools that detect
 {\sc xss} attacks based on JavaScript injection
-would fail to detect a return-to-JavaScript
-attack~\cite{APKLM10}.
+would fail to detect mimicry attacks 
+where legitimate scripts can be executed by
+attackers, but not in the way intended by
+the the developers~\cite{APKLM10}.
 
 In general, the detection accuracy of training approaches is
 heavily based on the coverage that is achieved during the
@@ -1201,7 +1205,7 @@ for an exact match of lexical entities. To achieve this, the scheme
 utilizes that data structures of Firefox's JavaScript engine (Point
 {\sc ub}). However, string literals are not compared literally and
 therefore a false negative result could occur if an adversary performs
-a mimicry attack~\cite{WS02}. For example, consider a banner rotator
+the following attack: Consider a banner rotator
 that every time it runs, it creates a value that depends on the
 current date and the length of the array that contains the references
 of the various images to be displayed. Then, based on this value it
@@ -1221,9 +1225,9 @@ that untrusted content is not executed, Blueprint generates on the
 server-side a parsed tree from untrusted {\sc html} to ensure that it
 does not contain any dynamic content. Then the parsed tree is
 transfered to the document generator of the browser (Point {\sc ub})
-where untrusted browser parsing behavior is ruled out. Blueprint is an
-efficient countermeasure but it imposes a significant overhead due to
-its extensive parsing (see Table~\ref{tab:comp}).
+where untrusted browser parsing behavior is ruled out.
+Blueprint is an efficient countermeasure but it imposes an
+overhead due to its extensive parsing (see Table~\ref{tab:comp}).
 
 {\it Diglossia}~\cite{SMS13} combines positive taint tracking (see
 Subsubsection~\ref{sec:taint}) together with parse-tree validation.
@@ -1537,18 +1541,18 @@ of the {\sc rdbms}---Point i{\sc db}.
 The other 11 wrap {\sc api} calls related to output
 vectors---Point {\sc e}i{\sc q}.
 
-In frameworks that deal with JavaScript-driven {\sc xss} attacks we
+In frameworks that deal with {\sc xss} attacks we
 see that attack detection may take place either on the server-side or
 on the client-side. In the first case, a proxy is placed on the server
 to examine the server's responses before they reach the user's web
 browser. In the second case a modified browser or a library that is
 securely downloaded from the server checks the responses for potential
 attacks. We find that the tendency so far is to create frameworks that
-perform detection on the client side: in particular, 11 out of 19
-frameworks (57,8\%) detect JavaScript-driven {\sc xss} attacks on the
+perform detection on the client side: in particular, 14 out of 23
+frameworks (60,8\%) detect {\sc xss} attacks on the
 client's side. Note that the majority of the mechanisms that detect
 such attacks on the server-side can also detect {\sc dsl} code
-injection attacks (7 out of 8).
+injection attacks (6 out of 9).
 
 \section{Lessons Learned}
 \label{sec:lessons-learned}
