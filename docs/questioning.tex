@@ -289,7 +289,7 @@ incorrect type handling is called an {\sc sql} injection
 attack~\cite{CERT02,MS09,HVO06,SW06}. By using similar techniques
 malicious users can perform other exploits based on {\sc dsl}s
 like {\sc xp}ath~\cite{SW06,CDL07,MKS09}, {\sc xml}~\cite{MSM13}
-and No{\sc sql}~\cite{SMS13}. With this kind of attacks,
+and {\sc json}~\cite{SMS13}. With this kind of attacks,
 a malicious user can view sensitive information,
 destroy or modify protected data, or even crash the entire
 application. {\sc html} is another {\sc dsl} that can be used
@@ -943,7 +943,7 @@ the server and the client.
   \multirow{3}{*}{Hybrid}
   &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
   &   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
-  &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and No{\sc sql}i \\
+  &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
   \thickhline
     \end{tabular}}
     \begin{tablenotes}
@@ -1206,8 +1206,8 @@ overhead due to its extensive parsing (see Table~\ref{tab:comp}).
 with parse-tree validation. Diglossia was based on the theory of Ray
 and Ligatti~\cite{RL12b} (which we saw in Section~\ref{sec:attacks})
 to detect {\sc dsl} code injection attacks. In addition, it is
-actually the first, and so far the only framework that detects No{\sc
-  sql} injection attacks. When an application computes an output
+actually the first, and so far the only framework that detects {\sc
+  json} injection attacks. When an application computes an output
 string (query), Diglossia computes a ``shadow" of this string.
 Specifically, it maps all characters introduced by the application to
 a shadow character set. This set does not contain any characters
