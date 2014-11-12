@@ -1046,7 +1046,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{294.56697665898224, 414.44087871580649}, {22, 32}}</string>
+			<string>{{293.56700070441246, 414.44773800569379}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1076,7 +1076,7 @@
 				<key>ID</key>
 				<integer>3066</integer>
 				<key>Position</key>
-				<real>0.15451712906360626</real>
+				<real>0.16497249901294708</real>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
@@ -1117,7 +1117,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{569.94008968992136, 413.91577665489018}, {22, 32}}</string>
+			<string>{{570.9400907366022, 413.91529082137055}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1147,7 +1147,7 @@
 				<key>ID</key>
 				<integer>109</integer>
 				<key>Position</key>
-				<real>0.12340080738067627</real>
+				<real>0.13256959617137909</real>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
@@ -2599,7 +2599,7 @@ N-XSS}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{289.2962646484375, 394}, {35.000002115568179, 24}}</string>
+			<string>{{288.2962646484375, 394}, {35.000002115568179, 24}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -2709,7 +2709,7 @@ UB}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{564.9813232421875, 394}, {35, 24}}</string>
+			<string>{{565.9813232421875, 394}, {35, 24}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -3544,7 +3544,7 @@ injection Attack / CSRF}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-11-12 01:42:57 +0000</string>
+	<string>2014-11-12 01:53:37 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
