@@ -103,113 +103,114 @@ Testing, Cross-Site Scripting.
 
 Web application attacks may involve security misconfigurations, broken
 authentication and session management, or other issues. Some of the
-most dangerous web application attacks are associated with the
-processing of external input data that can contain malicious code, a
-vulnerability known as code injection.
+most dangerous and prevalent web application attacks, however,
+exploit vulnerabilities associated with improper validation or filtering
+of untrusted inputs, resulting in the injection of malicious
+script or domain-specific language code.
+Attacks of this type include Cross-Site Scripting ({\sc xss})
+attacks~\cite{SG07}, {\sc sql} injection~\cite{RL12b}, and
+Cross-Site Request Forgery ({\sc csrf}) attacks~\cite{LZRL09}, among
+others.
 
-Such attacks include Cross-Site Scripting ({\sc xss})
-attacks~\cite{SG07}, {\sc sql} injection attacks~\cite{RL12b},
-Cross-Site Request Forgery ({\sc csrf}) attacks~\cite{LZRL09}, and
-others. Attacks like these have been topping the vulnerability lists
-of numerous bulletin providers like the Open Web Application Security
-Project\footnote{\url{https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project}}
-({\sc owasp}) and {\sc
-  mitre}\footnote{\url{http://cwe.mitre.org/top25/}} for several
-years. Consider the case of {\sc owasp}'s Top Ten project whose main
-goal is to raise awareness about web application security by
-identifying some of the most critical risks facing organizations. The
-Top Ten project is popular, referenced by numerous researchers. In its
-three consecutive Top Ten lists (2007, 2010, 2013), different source
+For the past several years,
+these attacks have been topping the lists of the most dangerous vulnerabilities
+published by {\sc owasp}~\cite{OWASPtop10},
+{\sc mitre}~\cite{MITREtop25}, and other organizations.
+For instance, consider the case of {\sc owasp}'s popular Top Ten
+project~\cite{OWASPtop10},
+which aims to raise awareness about web application security by
+identifying some of the most critical risks organizations may face.
+In its three consecutive Top Ten lists (2007, 2010, 2013), different source
 code-driven injection attacks dominate the top five positions.
-Malicious users find new ways~\cite{HNSHS12,DKH14} to bypass defense
-mechanisms by using a variety of techniques despite the numerous
-countermeasures that are being introduced. The number of systems
-developed to counter {\sc sql} injection attacks until 2006 was more
-than twenty~\cite{HVO06}. Since then the number has doubled.
-Researchers have indicated that the number of such attacks is steadily
+At the same time,
+attackers find new ways~\cite{HNSHS12,DKH14} to bypass defense
+mechanisms using a variety of techniques, despite the numerous
+countermeasures that are being introduced. As an example, already by 2006,
+there were more than 20 proposed defenses
+against {\sc sql} injection attacks~\cite{HVO06}.
+Since then, the number has doubled, while researchers have indicated that
+the number of {\sc sql} injection attacks has been steadily
 increasing in recent years~\cite{SSL12}.
 
-In this paper we show how the above attacks can be seen from a {\it
-  common perspective}. We achieve this by providing an exploitation
-model that highlights that the majority of the steps needed to perform
-application attacks based on source code injection are
-common.\footnote{Note that we leave out attacks that are based on
-  binary code injection (i.e. buffer overflows --- see
-  Section~\ref{sec:attacks}).} This is validated by the fact that
-there are protection mechanisms that can detect more than one of these
-attacks. Then, we {\it categorize} a selection of these protection
-mechanisms. In the selection we included protection mechanisms that
-detect such attacks and are presented in publications cited more than
-twenty times. We also added some recent mechanisms that have been
+In this paper, we explore how different attacks associated with 
+the exploitation of untrusted input validation errors can be modeled 
+under a {\it common perspective}. To that end, we propose an exploitation
+model which highlights that most of the steps needed to mount
+different types of source code injection attacks are
+common.\footnote{Note that we do not consider lower-level attacks based on
+the exploitation of memory corruption vulnerabilities and the injection
+of binary code---see Section~\ref{sec:attacks}.} This is validated by the fact that
+there are protection mechanisms that can defend against more than one of these
+types of attacks. Then, we categorize a selection of these protection
+mechanisms. In our selection we include approaches that
+have been proposed in publications cited more than
+20 times. We also include some recent mechanisms that have been
 presented in top security conferences, even though they have been
-cited less than twenty times. We included the second group so that we
-would not penalize recent research. Finally, we {\it analyze} each
-mechanism based on the following dimensions:
+cited less than twenty times, so that recent research is not penalized.
+Finally, we analyze each
+mechanism across the following dimensions:
 \begin{itemize}
-\item {\it Accuracy} Protection mechanisms are as good
+\item {\it Accuracy:} protection mechanisms are as good
   as their detection capability; this requires low false positive and
   false negative rates.
-\item {\it Availability} We check if the mechanism and its
-  testbed are available on-line.
-\item {\it Computational Performance} We examine the computational
+\item {\it Availability:} whether the mechanism and its
+  testbed are publicly available.
+\item {\it Computational performance:} the computational
   overhead of the mechanisms at their points of deployment.
-\item {\it Ease of use} We examine if the protection
+\item {\it Ease of use:} whether the protection
   mechanism is practical in terms of deployment
   and can be easily adopted by security experts.
-\item {\it Security} We examine how resilient is the system to
-  attackers that know how it works and wants to circumvent it.
-\item {\it Point of Detection} Based on our exploitation model
-  we examine the location where a mechanism detects an attack.
+\item {\it Security:} the robustness of the protection mechanism against
+  attackers with knowledge of its internals who attempt to circumvent it.
+\item {\it Detection Point:} the location where a mechanism detects an attack
+  based on our exploitation model.
 \end{itemize}
 
 \noindent
-All the aforementioned requirements are considered critical
-when building security mechanisms that protect
+All the above requirements are considered important
+when building security mechanisms for the protection of
 applications~\cite{A01,A00,SPWS13,nature2014}.
-Based on this analysis we can identify the advantages
+Based on this analysis, we identify the advantages
 and disadvantages of the
 various mechanisms and enumerate some of their common
-characteristics. We can also draw useful conclusions
-about the various categories and see how they compare
+characteristics. We also draw useful conclusions
+about the various protection categories and see how they compare
 to each other.
 
 There is already a survey on mitigating software vulnerabilities
 in general~\cite{SZ12}. The scope of that
-research is pretty wide and leaves out the majority of the
-approaches and mechanisms that we report here.
+research is much broader and leaves out the majority of the
+approaches and mechanisms that we consider in this work.
 This is mainly because that work includes countermeasures
-that detect such vulnerabilities via program analysis
-(which is done during development or testing), while
-we include protection mechanisms that counter
-such attacks when they take place. Static or
-dynamic analyzers that examine applications to
+that identify vulnerabilities using program analysis
+(which takes place during the development or testing phases), while
+we consider protection mechanisms that counter
+web attacks when they take place. Similarly, static or
+dynamic analysis techniques that examine applications to
 identify vulnerabilities that may lead to the attacks
-that we described earlier are out of the scope of this paper.
-Also, countermeasures that prevent {\sc sql}
-injection attacks~\cite{HVO06}, have already been surveyed.
-However, this survey is quite old and since then
-the number of countermeasures that detect {\sc sql}
-injection attacks alone, has been drastically increased
-as we mentioned earlier.
+that we described earlier are out of scope as well.
+While countermeasures against {\sc sql}
+injection attacks have been previously surveyed in a 2006 paper~\cite{HVO06},
+a significant number of new {\sc sql} injection defenses has been proposed since
+then, as we mentioned earlier.
 
 The main contributions of this paper are the following:
 
 \begin{enumerate}
-\item We provide an exploitation model that puts application attacks
-  based on source code injection under a common
-  perspective.
+\item We provide a unified exploitation model for different types of
+  web application attacks based on source code injection.
 \item We categorize and analyze proposed defenses using a set of
   criteria that are important for building protection mechanisms.
-\item We discuss the issues that arise from our analysis. We put
-  emphasis on factors that may hinder widespread adoption of
-  approaches and the translation of tools from research to practice.
+\item We provide insight based on the issues that arise from our analysis. We put
+  emphasis on factors that may hinder the widespread deployment of
+  protection mechanisms, and the transition of tools from research to practice.
 \end{enumerate}
 
 The rest of the paper is organized as follows.
-Section~\ref{sec:attacks} provides the exploitation model
-of application attacks based on source code injection.
+Section~\ref{sec:attacks} presents our proposed model
+of web application attacks based on source code injection.
 Section~\ref{sec:dimensions} introduces the dimensions
-on which we base the analysis of the various defenses.
+across which we analyze the various defenses.
 Our categorization and analysis is presented in
 Section~\ref{sec:defs} and a discussion is provided in
 Section~\ref{sec:discussion}. Finally,
