@@ -281,25 +281,23 @@ subset of the code injection problem, as {\sc dsl}s like {\sc sql} and
 {\sc xml} play an significant role in the development of both web and
 mobile applications. For example, many applications have interfaces
 where a user enters input to interact with the application's data,
-thereby interacting with the underlying Relational Database Management
-System ({\sc rdbms}). This input can become part of an {\sc sql} query
-and get executed on the target {\sc rdbms}. A code injection attack that
-exploits the vulnerabilities of these interfaces by taking advantage
-of input validation issues like incorrectly passed parameters or
-incorrect type handling is called an {\sc sql} injection
-attack~\cite{CERT02,MS09,HVO06,SW06}. By using similar techniques
-malicious users can perform other exploits based on {\sc dsl}s
-like {\sc xp}ath~\cite{SW06,CDL07,MKS09}, {\sc xml}~\cite{MSM13}
-and {\sc json}~\cite{SMS13}. With this kind of attacks,
-a malicious user can view sensitive information,
-destroy or modify protected data, or even crash the entire
-application. {\sc html} is another {\sc dsl} that can be used
-for malicious purposes when an application does not properly
-handle user supplied data. Based on this vulnerability
-an attacker can supply valid {\sc html},
-typically via a parameter value, and inject their own
-content into the page. {\sc html} injection is mainly associated
-with {\sc xss} defects~\cite{HNSHS12}.
+thereby interacting with the underlying database. This input can
+become part of an {\sc sql} query and get executed on the target
+database. A code injection attack that exploits the vulnerabilities of
+these interfaces by taking advantage of input validation issues like
+incorrectly passed parameters or incorrect type handling is called an
+{\sc sql} injection attack~\cite{CERT02,MS09,HVO06,SW06}. By using
+similar techniques malicious users can perform other exploits based on
+{\sc dsl}s like {\sc xp}ath~\cite{SW06,CDL07,MKS09}, {\sc
+  xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. With this kind of
+attacks, a malicious user can view sensitive information, destroy or
+modify protected data, or even crash the entire application. {\sc
+  html} is another {\sc dsl} that can be used for malicious purposes
+when an application does not properly handle user supplied data. Based
+on this vulnerability an attacker can supply valid {\sc html},
+typically via a parameter value, and inject their own content into the
+page. {\sc html} injection is mainly associated with {\sc xss}
+defects~\cite{HNSHS12}.
 
 A recent class of code injection attacks involve dynamic languages
 like JavaScript and {\sc php}~\cite{SFVM09,EWKK09,SMS13}. JavaScript
@@ -1350,6 +1348,14 @@ cases we observe that even if the authors report the existence of
 possible false positive and negative results, they have not quantified
 them ({\sc nq}).
 
+Even when some numbers are given, they may not be adequate.
+Sensitivity and specificity are statistical measures, and as such
+should be interpreted with suitable confidence intervals. There are
+various methods to calculate confidence intervals, even dispensing
+with the need to have large samples in order to be able to use the
+central limit theorem~\cite{agresti1998,brown2001}. However, sample sizes in the single
+digits are not enough to produce good intervals.
+
 Regarding the subjects of tests, we see that 27 out of 34 mechanisms
 were tested on real-world applications known to be vulnerable. The
 vulnerabilities associated with these applications are enlisted in the
@@ -1698,7 +1704,7 @@ cost of its use. The cost need not be directly monetary, but may be
 incurred from the time required to use the tool, any inconvenience
 caused, false alarms that it may raise. These costs are related to the
 issues we have been investigating here: poor testing, high overhead,
-unavailabilty of source, deployment difficulties, security issues. 
+unavailabilty of source, deployment difficulties, compromised security. 
 
 Enhancing any of these would not just increase the value of a piece of
 research as a practical tool, it would increase its research value as
