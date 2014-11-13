@@ -234,9 +234,9 @@ Bratus et al.~\cite{BLSPS11} portray the issue in a generic fashion:
 {\it ``unexpected (and unexpectedly powerful) computational models
   inside targeted systems, which turn a part of the target into a
   so-called `weird machine' programmable by the attacker via crafted
-  inputs (a.k.a. `exploits')''}. In particular, {\it ``every
+  inputs (a.k.a. `exploits').''} In particular, {\it ``every
   application that copies untrusted input verbatim into an output
-  program is vulnerable to code injection''}. Ray and
+  program is vulnerable to code injection.''} Ray and
 Ligatti~\cite{RL12b} have proved this claim based on formal language
 theory.
 
@@ -253,10 +253,10 @@ Code injection attacks can be divided into two categories. The first
 involves binary code and the second source code. An
 extensive survey on binary code injection attacks can be found
 in reference~\cite{LC03}. Specific advances in exploiting such vulnerabilities
-(i.e. ``heap smashing", ``arc injection" and others) have already
+(i.e., ``heap smashing,'' ``arc injection,'' and others) have already
 been presented~\cite{PB04} and the countermeasures used to detect such
 defects have already been surveyed~\cite{YJP12} (many of them are also
-included in a book:~\cite{DKZ12} -- Section 13.8). In the present work
+included in a book:~\cite{DKZ12}---Section 13.8). In the present work
 we do not include binary code injection, focusing instead on defenses
 that protect applications against attacks based on the
 source code injection category.
@@ -558,7 +558,7 @@ There are four different points where an attack can be caught, as seen
 in Figure~\ref{fig:attacks}:
 \begin{itemize}
 \item At the user's browser (Point {\sc ub}).
-\item En route from the server to the user's browser --- in most cases
+\item En route from the server to the user's browser---in most cases
 within a proxy (Point {\sc s}t{\sc b}).
 \item Embedded in a query, but before it reaches the server's database
   (Point {\sc e}i{\sc q}).
@@ -673,9 +673,9 @@ the {\sc html} that reaches the browser to
 find static {\sc url} references. Then, based on
 a set of policies Noxes allows or blocks
 the request (Point {\sc ub}). Such policies
-can be also provided by the server (i.e. ``never
+can be also provided by the server (i.e., ``never
 follow a link that leads to the malicious.com
-web site"). The main issue with Noxes is that
+web site''). The main issue with Noxes is that
 it does not deal with JavaScript-driven {\sc xss}
 attacks, which currently make for the most popular
 {\sc xss} attack vector.
@@ -832,10 +832,10 @@ framework that was inspired by {\sc isr}. To detect {\sc xss}
 attacks it searches for {\sc html} and
 JavaScript keywords within the application's legitimate code. This is
 done before the processing of an {\sc http} request. When it finds one
-it adds a token to it. This results to a ``code mask". Then, before
+it adds a token to it. This results to a ``code mask.'' Then, before
 sending the resulting {\sc html} data to the web user, the framework
 searches the data for illegal code by using the same keywords (Point
-{\sc s}t{\sc b}). Since all legitimate code has been ``masked", the injected
+{\sc s}t{\sc b}). Since all legitimate code has been ``masked,'' the injected
 code can be identified. The pre- and post-processing of the code,
 though, may add a significant overhead to the application.
 Unfortunately, the authors of {\sc sm}ask did not provide measurements
@@ -966,12 +966,12 @@ as safe.
 \subsubsection{Taint Tracking}
 \label{sec:taint}
 
-A taint tracking scheme marks untrusted (``tainted") data (for
+A taint tracking scheme marks untrusted (``tainted'') data (for
 instance, a variable set by a field in a web form) and traces its flow
 through the program. If the variable is used in an expression that
 sets another variable, that variable is also marked as untrusted and
 so on. If any of these variables is used in a potentially risky
-command (for example, send the data to a vulnerable ``sink'', such as
+command (for example, send the data to a vulnerable ``sink,'' such as
 a database, a file, the network) the scheme may act accordingly.
 
 Taint tracking is provided as a feature in some programming languages,
@@ -1145,7 +1145,7 @@ necessary.
 Most of the training approaches are relatively easy to deploy.
 {\sc dsl} injection attack countermeasures
 can be retrofitted to a system typically by changing
-some configuration files (i.e. {\sc sd}river). This does not apply
+some configuration files (i.e., {\sc sd}river). This does not apply
 to {\sc amnesia} though, since significant source code
 modifications are required for every query that exists
 in the application. Finally, {\sc swap} and {\sc xssds}
@@ -1199,12 +1199,12 @@ and Ligatti~\cite{RL12b} (which we saw in Section~\ref{sec:attacks})
 to detect {\sc dsl} code injection attacks. In addition, it is
 actually the first, and so far the only framework that detects {\sc
   json} injection attacks. When an application computes an output
-string (query), Diglossia computes a ``shadow" of this string.
+string (query), Diglossia computes a ``shadow'' of this string.
 Specifically, it maps all characters introduced by the application to
 a shadow character set. This set does not contain any characters
 coming from the tainted input. Then, the scheme creates the tree of
 the query that is about to be executed and compares it with the parsed
-tree of the ``shadow" (Point {\sc e}i{\sc q}). If the trees are not
+tree of the ``shadow'' (Point {\sc e}i{\sc q}). If the trees are not
 equal the application is probably under attack. Note that Diglossia
 can be bypassed in the same way as other taint tracking
 approaches~\cite{NBR14}.
