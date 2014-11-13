@@ -251,7 +251,7 @@ code injection attacks.}
 Code injection attacks can be divided into two categories. The first
 involves binary code and the second source code. An
 extensive survey on binary code injection attacks can be found
-in~\cite{LC03}. Specific advances in exploiting such vulnerabilities
+in reference~\cite{LC03}. Specific advances in exploiting such vulnerabilities
 (i.e. ``heap smashing", ``arc injection" and others) have already
 been presented~\cite{PB04} and the countermeasures used to detect such
 defects have already been surveyed~\cite{YJP12} (many of them are also
@@ -369,8 +369,8 @@ corresponding transition numbers for
 every attack. Every {\it point} indicates a transition where mechanisms
 detect attacks. For every point we provide the corresponding
 references:
-Point {\sc ub} (at the user's browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,GC09,VFJKKV07,SLMS14,BV08},
-Point {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,JB07,NLC07,WPLKK09,JEP08,PS11},
+Point {\sc ub} (at the user's browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08},
+Point {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
 Point {\sc e}i{\sc q} (embedded in a query en route to the database):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
 Point i{\sc db} (in the database):~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
@@ -577,7 +577,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 against web application attacks, based on source code
 injection. For each approach we provide the references
 that present corresponding mechanisms:
-{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,LV09},
+{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08},
 {\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
 {\it Parse-Tree Validation}:~\cite{BWS05,SW06},
 {\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
@@ -819,8 +819,9 @@ injection attacks on the database level (Point i{\sc db}).
 In the case of {\sc xss} attacks that are based on JavaScript or {\sc
   html}, consider a {\sc xor} function that encodes all source of a
 web page on the server-side and then, on the client-side, the web
-browser decodes the source by applying the same function again (Point
-{\sc ub}). Variations of this approach include {\it
+browser decodes the source by applying the same function again either
+in a proxy at the server-side (Point {\sc s}t{\sc b}) or in the browser
+(Point {\sc ub}). Variations of this approach include {\it
   Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}, which
 randomize the instruction set of {\sc html} and JavaScript
 respectively. Contrary to x{\sc js}, in Noncespaces administrators
@@ -880,7 +881,7 @@ the server and the client.
   &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql}i \\
   \hline
   \multirow{12}{*}{Policy Enforcement}
-  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},46,15)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
+  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},{\sc nq},85)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
   &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
   &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
   % &   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
@@ -905,7 +906,7 @@ the server and the client.
   \multirow{4}{*}{{\sc isr}}
   &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql}i \\
   &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% ({\sc c}) & {\sc xss} \\ 
+  &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% ({\sc s}) & {\sc xss} \\ 
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} ({\sc c}) & {\sc xss} \\
   \thickhline
   \thickhline
@@ -932,7 +933,7 @@ the server and the client.
   \multirow{3}{*}{Hybrid}
   &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
   &   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
-  &   {\it Diglossia}~\cite{SMS13} & 4 & (9,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
+  &   {\it Diglossia}~\cite{SMS13} & 4 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
   \thickhline
     \end{tabular}}
     \begin{tablenotes}
@@ -1491,11 +1492,11 @@ to examine the server's responses before they reach the user's web
 browser. In the second case a modified browser or a library that is
 securely downloaded from the server checks the responses for potential
 attacks. We find that the tendency so far is to create frameworks that
-perform detection on the client side: in particular, 14 out of 23
-frameworks (60,8\%) detect {\sc xss} attacks on the
+perform detection on the client side: in particular, 13 out of 23
+frameworks (56,5\%) detect {\sc xss} attacks on the
 client's side. Note that the majority of the mechanisms that detect
 such attacks on the server-side can also detect {\sc dsl} code
-injection attacks (6 out of 9).
+injection attacks (6 out of 10).
 
 \section{Lessons Learned}
 \label{sec:lessons-learned}
@@ -1705,7 +1706,7 @@ deployment brings ease of experimentation. Secure methods can form the
 basis for developing methods with more extensive coverage.
 
 We saw that there are mechanisms that have been extensively tested in
-terms of accuracy ({\sc sqlc}heck, {\sc amnesia}, {\sc dsi},
+terms of accuracy ({\sc sqlc}heck, {\sc amnesia},
 libAnomaly), solve specific problems in an efficient way (Blueprint
 and the system by Stock et al.) or have a low computational overhead
 ({\sc dsi} and the system by Phung et al.). There are also cases where
