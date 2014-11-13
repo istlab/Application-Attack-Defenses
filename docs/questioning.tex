@@ -894,7 +894,7 @@ the server and the client.
   &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
   &   {\it CsFire}~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
   &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & 25 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & $\sim$7ms ({\sc c}) & {\sc xss} \\
+  &   {\it WebJail}~\cite{VDDPJ11} & 25 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
   % \hline
@@ -906,7 +906,7 @@ the server and the client.
   \multirow{4}{*}{{\sc isr}}
   &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql}i \\
   &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   {\it Noncespaces}~\cite{GC09} & 109 & ({\sc nq},{\sc na},{\sc na},0)\_r &  10.3\% ({\sc s}) & {\sc xss} \\ 
+  &   {\it Noncespaces}~\cite{GC09} & 109 & (6,{\sc na},{\sc na},0)\_r &  2\% ({\sc s}) & {\sc xss} \\ 
   &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} ({\sc c}) & {\sc xss} \\
   \thickhline
   \thickhline
@@ -1415,7 +1415,7 @@ provide the time (in terms of ms) that their mechanisms add to the
 normal execution time of the protecting entity. Note that in some
 cases, the times of normal executions are not provided,
 so it is not possible to move from absolute
-time measurements to percentage overheads. In 10 cases (29,4\%), the
+time measurements to percentage overheads. In 10 cases (29.4\%), the
 overhead was either not available ({\sc na}) or not quantified ({\sc
   nq}). In the case of {\sc php aspis}, its authors indicate that with
 their mechanism, the execution time is doubled.
@@ -1637,7 +1637,7 @@ research.
 
 Computational overhead comes up as a non-trivial issue. We observe
 that the average overhead that can be extracted from the publications
-that provide the overhead in percentage terms is 18\%. Relative
+that provide the overhead in percentage terms is 17.45\%. Relative
 research on protection mechanisms~\cite{SPWS13} indicates that
 mechanisms that introduce an overhead larger than 10\% do not tend to
 gain wide adoption in production environments. Hence, the
