@@ -44,22 +44,24 @@
 \date{}
 \begin{document}
 
-\author{
-\IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
-Panos Louridas,\IEEEauthorrefmark{2}
-Michalis Polychronakis,\IEEEauthorrefmark{1}
-and Angelos D. Keromytis\IEEEauthorrefmark{1}}
-\IEEEauthorblockA{\IEEEauthorrefmark{1}
-Network Security Lab\\
-Department of Computer Scinence\\
-Columbia University\\
-\{dimitro, mikepo, angelos\}@cs.columbia.edu\\
-\IEEEauthorrefmark{2}
-Software Engineering and Security Lab\\
-Department of Management Science and Technology\\
-Athens University of Economics and Business\\
-louridas@aueb.gr
-}}
+% \author{
+% \IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
+% Panos Louridas,\IEEEauthorrefmark{2}
+% Michalis Polychronakis,\IEEEauthorrefmark{1}
+% and Angelos D. Keromytis\IEEEauthorrefmark{1}}
+% \IEEEauthorblockA{\IEEEauthorrefmark{1}
+% Network Security Lab\\
+% Department of Computer Scinence\\
+% Columbia University\\
+% \{dimitro, mikepo, angelos\}@cs.columbia.edu\\
+% \IEEEauthorrefmark{2}
+% Software Engineering and Security Lab\\
+% Department of Management Science and Technology\\
+% Athens University of Economics and Business\\
+% louridas@aueb.gr
+% }}
+
+\author{Anonymous Submission}
 
 \title{SoK: The Evolution of Defenses Against Web Application Attacks}
 
@@ -1674,12 +1676,12 @@ languages and techniques~\cite{HNSHS12,DKH14}.
 Meanwhile, during the last decade, there are
 numerous mechanisms that have been developed to
 detect one or more of such attacks. However,
-% even if
-% some of them share characteristics with supported frameworks
-% like Mozilla's Content Security
-% Policy\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}
-% ({\sc csp}) and Google
-% Caja\footnote{\url{https://code.google.com/p/google-caja/}}~\cite{M06},
+even if some of them share characteristics
+(for instance, {\sc html} sanitization and {\tt eval} handling)
+with supported frameworks like Mozilla's Content Security
+Policy\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}
+({\sc csp}) and Google
+Caja\footnote{\url{https://code.google.com/p/google-caja/}}~\cite{M06}
 the majority of them are not used in practice.
 
 In our research we tried to identify some of the reasons
@@ -1688,18 +1690,25 @@ poor testing, high overhead, code unavailability,
 deployment and security issues. However, our
 systematization suggests that there are many
 promising cases. For instance there are
-many mechanisms that seem to have been extensively
-tested in terms of accuracy ({\sc sqlc}eck, {\sc amnesia},
+mechanisms that have been extensively
+tested in terms of accuracy ({\sc sqlc}heck, {\sc amnesia},
 {\sc dsi}, libAnomaly), solve specific
 problems in an efficient way (Blueprint and the system
 by Stock et al.) or have a low computational overhead
 ({\sc dsi} and the system by Phung et al.).
 There are also cases that researchers have made their
 code available ({\sc beep} and {\sc sd}river) which
-can be a push towards the development of better mechanisms.
-Apart from making the source code of such mechanisms
-available, we also believe that testing them in
-a production setting could propel their adoption.
+can be a push towards the development of better
+mechanisms. This argument has been raised
+by another {\sc s}o{\sc k} paper too~\cite{SPWS13}.
+We believe that testing defenses in
+a production setting could also propel their adoption.
+
+We hope that the exploitation model, analysis
+and observations that emerged from our research
+can be a reference point for researcher who
+wish to develop new countermeasures that
+detect web application attacks.
 
 % First, we introduced an exploitation model
 % to show how defense mechanisms can be seen
