@@ -1462,7 +1462,7 @@ easily repeated.
 
 While describing the various mechanisms in Section~\ref{sec:defs}, we
 observed that some can be bypassed by attackers that know how they
-work. Still, some mechanisms are designed in such a way so that they
+work. Still, some mechanisms are designed in such a way that they
 can be extended and become immune to the attacks that they are
 currently vulnerable to. For example, policy enforcement frameworks
 that are based on JavaScript or {\sc html} rewriting can be extended
@@ -1471,9 +1471,10 @@ to all mechanisms though. In particular, training mechanisms like {\sc
   didafit} and {\sc xss-guard} must be redesigned to detect the
 attacks we described in the related sections.
 
-An interesting observation is that mimicry attacks can be
-used to bypass mechanisms coming from the hybrid category and
-the policy enforcement and training subcategories.
+Taking the attackers' point of view, mimicry attacks can affect a
+range of different mechanisms: they can be used to bypass mechanisms
+in the hybrid category, as well as the policy enforcement and training
+subcategories.
 
 \subsection{Point of Detection}
 
@@ -1648,22 +1649,27 @@ gain wide adoption in production environments. Hence, the
 computational overhead of some mechanisms could be a reason why they
 have not been adopted.
 
-We need to mention that the fact that mechanisms come sometimes with
-deployment difficulties does not necessarily mean that this is a
-serious reason not to adopt them. The deployment of such frameworks is
-most of the time complex because as we observed in
-Section~\ref{sec:attacks} the attacks that they detect are complex
-too. So every security feature can come with such a trade-off and
-those who intend to use it should be aware of this.
+The deployment difficulties we have found with many mechanisms are not
+a reason not to adopt them, but they may hinder their widespread use.
+Since source code injection attacks are complex, it may be logical to
+expect that mechanisms to detect them would be complex too. The effort
+to install and use a tool should be weighed against the expected
+benefits. That is one more reason why it is important to report tool
+accuracy, as this provides an immediate indicator to the expected
+benefits. 
 
-Deployment can also depend on the detection point of an attack. We saw
-that many policy enforcement mechanisms that detect attacks at Point
-{\sc ub}, are not easy to deploy because modifications are needed both
-on the server and the client side. We observed though that Blueprint
-has not such deployment issues (see Subsection~\ref{sec:deploy2}).
-Thus, when developing a new countermeasure, researchers should
-consider where they are planning to detect attacks, observe the
-corresponding deployment challenges, and try to mitigate them.
+The issue is more acute when the point of detection is at the client.
+We saw that many policy enforcement mechanisms that detect attacks at
+Point {\sc ub} are not easy to deploy because modifications are needed
+both on the server and the client side. It is unrealistic to expect
+the average web user to go through complicated installation and
+configuration procedures. Conversely, it may be possible to deliver
+the tools to the user unobtrusively; for example, we saw that
+Blueprint enforces policies on the client side by embedding a library
+in the server's response to the client. In general, when developing a
+new countermeasure, researchers should consider where they are
+planning to detect attacks, observe the corresponding deployment
+challenges, and try to mitigate them.
 
 % discuss Availability. Finally, 
 
@@ -1688,31 +1694,38 @@ Policy\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}
 Caja\footnote{\url{https://code.google.com/p/google-caja/}}~\cite{M06}
 the majority of them are not used in practice.
 
-In our research we tried to identify some of the reasons
-why this is the case. Some of these reasons include
-poor testing, high overhead, code unavailability,
-deployment and security issues. However, our
-systematization suggests that there are many
-promising cases. For instance there are
-mechanisms that have been extensively
-tested in terms of accuracy ({\sc sqlc}heck, {\sc amnesia},
-{\sc dsi}, libAnomaly), solve specific
-problems in an efficient way (Blueprint and the system
-by Stock et al.) or have a low computational overhead
-({\sc dsi} and the system by Phung et al.).
-There are also cases where researchers have made their
-code available ({\sc beep} and {\sc sd}river) which
-can be a push towards the development of better
-mechanisms. This argument has been raised
-by another {\sc s}o{\sc k} paper too~\cite{SPWS13}.
-Finally, we believe that testing defenses in
-a production setting could also propel their adoption.
+In order for a security tool to be used in practice it must provide
+some value to the user. In particular, the value should outweigh the
+cost of its use. The cost need not be directly monetary, but may be
+incurred from the time required to use the tool, any inconvenience
+caused, false alarms that it may raise. These costs are related to the
+issues we have been investigating here: poor testing, high overhead,
+unavailabilty of source, deployment difficulties, security issues. 
 
-We hope that the exploitation model, analysis
-and observations that emerged from our research
-can be a reference point for researcher who
-wish to develop new countermeasures that
-detect web application attacks.
+Enhancing any of these would not just increase the value of a piece of
+research as a practical tool, it would increase its research value as
+well. Accurate detection reporting would help in appraising different
+approaches. Performance measurements can point to blind, unpractical,
+alleys and focus effort elsewhere. Availability of source code
+enhances basic scientific tasks like checking and replication. Ease of
+deployment brings ease of experimentation. Secure methods can form the
+basis for developing methods with more extensive coverage.
+
+We saw that there are mechanisms that have been extensively tested in
+terms of accuracy ({\sc sqlc}heck, {\sc amnesia}, {\sc dsi},
+libAnomaly), solve specific problems in an efficient way (Blueprint
+and the system by Stock et al.) or have a low computational overhead
+({\sc dsi} and the system by Phung et al.). There are also cases where
+researchers have made their code available ({\sc beep} and {\sc
+  sd}river) which can be a push towards the development of better
+mechanisms. This argument has been raised by another {\sc s}o{\sc k}
+paper~\cite{SPWS13}. Furthermore, testing defenses in a production
+setting could also propel their adoption.
+
+We hope that the exploitation model, analysis, and observations that
+emerged from our research can be a reference point for researchers who
+wish to develop new countermeasures against web application
+attacks.
 
 % First, we introduced an exploitation model
 % to show how defense mechanisms can be seen
