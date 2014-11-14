@@ -306,9 +306,9 @@ purposes when an application does not properly handle user-supplied
 data. Based on this vulnerability attackers can supply valid {\sc
   html}, typically via a parameter value, and inject their own content
 into the page. {\sc html} injection is mainly associated with {\sc
-  xss} attacks~\cite{BJM08,LZRL09}. However, it can also be used as a
-vehicle for cross-site request forgery ({\sc csrf}) attacks in the
-following manner: Consider a bulletin board system where
+  xss} attacks~\cite{BJM08,LZRL09}. An {\sc xss} attack based on
+{\sc html} injection though, can also be used as a
+vehicle for a {\sc csrf} attack. Consider a bulletin board system where
 {\tt img} tags are not checked. A malicious user could embed a {\sc
   csrf} request within an {\tt img} tag in the following manner:
 
@@ -385,6 +385,14 @@ be executed on the server. Hence, if an attacker provides as
 input the following string: {\tt 10 ; system("touch foo");}
 then a file will be created on the server---it is easy
 to imagine more detrimental scenarios.
+
+A recent attack called {\sc php} Object Injection
+({\sc poi})~\cite{DKH14} does not directly involve code
+injection and is performed by injecting malicious
+payloads (for example cookies) that when deserialized
+by the application, arbitrary code execution can be
+achieved. Note that the exploitation model that we propose
+in the following Section can represent such attacks too.
 
 \section{Exploitation Model}
 \label{sec:model}
