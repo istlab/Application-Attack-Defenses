@@ -175,22 +175,20 @@ characteristics. We also draw useful conclusions
 about the various protection categories and see how they compare
 to each other.
 
-There is already a survey on mitigating software vulnerabilities
-in general~\cite{SZ12}. The scope of that
-research is much broader and leaves out the majority of the
-approaches and mechanisms that we consider in this work.
-This is mainly because that work includes countermeasures
-that identify vulnerabilities using program analysis
-(which takes place during the development or testing phases), while
-we consider protection mechanisms that counter
-web attacks when they take place. Similarly, static or
-dynamic analysis techniques that examine applications to
-identify vulnerabilities that may lead to the attacks
-that we described earlier are out of scope as well.
-While countermeasures against {\sc sql}
-injection attacks have been previously surveyed in a 2006 paper~\cite{HVO06},
-a significant number of new {\sc sql} injection defenses has been proposed since
-then, as we mentioned earlier.
+There is already a survey on mitigating software vulnerabilities in
+general~\cite{SZ12}. The scope of that research is much broader that
+ours and leaves out the majority of the approaches and mechanisms that
+we consider in this work. This is mainly because that work includes
+countermeasures that identify vulnerabilities using program analysis
+(which takes place during the development or testing phases), while we
+consider protection mechanisms that counter web attacks when they take
+place. Similarly, static or dynamic analysis techniques that examine
+applications to identify vulnerabilities that may lead to the attacks
+that we described earlier are out of scope as well. While
+countermeasures against {\sc sql} injection attacks have been
+previously surveyed in a 2006 paper~\cite{HVO06}, a significant number
+of new {\sc sql} injection defenses has been proposed since then, as
+we mentioned earlier.
 
 The main contributions of this paper are the following:
 
@@ -220,14 +218,12 @@ and Section~\ref{sec:conclusion} concludes the paper.
 \section{Source Code Injection Attacks\\in Web Applications}
 \label{sec:attacks}
 
-The main vulnerability behind the most dangerous
-web application attacks involves
-the absence of input validation. By taking advantage of
-this, attackers can inject their code into
-applications to perform malicious tasks. Exploits
-of this kind can have different forms depending on the
-execution context of the application and the location
-of the programming flaw that leads to the attack.
+Lack of input validation is a major vulnerability behind dangerouw web
+application attacks. By taking advantage of this, attackers can inject
+their code into applications to perform malicious tasks. Exploits of
+this kind can have different forms depending on the execution context
+of the application and the location of the programming flaw that leads
+to the attack.
 
 Bratus et al.~\cite{BLSPS11} portray the issue in a more generic way:
 {\it ``unexpected (and unexpectedly powerful) computational models
@@ -248,8 +244,8 @@ theory.
 language code injection attacks against web applications.}
 \end{figure}
 
-Code injection attacks can be divided into two categories. The first
-involves binary code and the second higher-level language code. An
+Code injection attacks can be divided in two categories. The first
+involves binary code and the second source language code. An
 extensive survey on binary code injection attacks was conducted by
 Lhee and Chapin~\cite{LC03}. Advances in memory corruption vulnerability
 exploitation have been studied extensively~\cite{PB04, SPWS13}
@@ -258,30 +254,29 @@ have already been surveyed~\cite{YJP12}\cite[Sec. 13.8]{DKZ12}.
 In this work
 we do not consider binary code injection, focusing instead on defenses
 that protect web applications against attacks based on the
-injection of higher level language code.
+injection of source code.
 
 Figure~\ref{fig:taxonomy} presents a taxonomy of source
 code injection attacks against web applications.
 Such attacks may involve high-level language code, written in either a
 {\it Domain Specific Language} ({\sc dsl}) or a {\it Dynamic Language}.
-In the following, we briefly discuss examples from both categories
-that will be used throughout the paper.
+To illustrate, we briefly discuss examples from both categories.
 
 Injection attacks that involve {\sc dsl}s constitute an important
-subset of the code injection problem, as {\sc dsl}s such as {\sc sql} and
-{\sc xml} play an significant role in the development of both web and
-mobile applications. For example, many applications have interfaces
-through which a user enters input to interact with the application,
-thereby interacting with the underlying database. This input can
-become part of an {\sc sql} query and get executed on the target
-database. Code injection attacks that exploit vulnerabilities in database
-interfaces by taking advantage of input validation issues, such as
-incorrectly passed parameters or incorrect type handling, are called
-{\sc sql} injection attacks~\cite{CERT02,MS09,HVO06,SW06}.
-Consider a trivial example that takes advantage of incorrectly
-filtered quotation characters in an application that
-sends a temporary password for a forgetful user via email by executing the
-following query:
+subset of the source code injection problem, as {\sc dsl}s such as
+{\sc sql} and {\sc xml} play a significant role in the development of
+both web and mobile applications. For example, many applications have
+interfaces through which a user enters input to interact with the
+application, thereby interacting with the underlying database. This
+input can become part of an {\sc sql} query and get executed on the
+target database. Code injection attacks that exploit vulnerabilities
+in database interfaces by taking advantage of input validation issues,
+such as incorrectly passed parameters or incorrect type handling, are
+called {\sc sql} injection attacks~\cite{CERT02,MS09,HVO06,SW06}.
+Consider a trivial exploit that takes advantage of incorrectly
+filtered quotation characters in an application that sends a temporary
+password for a forgetful user via email by executing the following
+query:
 
 \bgroup \lstset{language=SQL}
 \begin{small}
@@ -292,30 +287,29 @@ SELECT password from userdata WHERE id = 'Alice'
 \egroup
 
 \noindent
-Attackers that would input the string {\tt anything' OR 'x'='x},
-could obtain the administrator's password by email.
-Savvy programmers can use certain {\sc api} functions, such as {\sc php}'s
-{\tt mysql\_real\_escape\_string()} to detect malformed input, or
-better use prepared {\sc sql} statements, instead of statement
-templates. Unfortunately,
-the increasing number of {\sc sql} injection attacks
-suggest that programmers are not always that careful.
-Using similar techniques, malicious users can mount other exploits based on
-{\sc dsl}s such as {\sc xp}ath~\cite{SW06,CDL07,MKS09},
-{\sc xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. With this kind of
-attacks, a malicious user can view sensitive information, destroy or
-modify protected data, or even crash the entire application.
+Attackers that would input the string {\tt anything' OR 'x'='x}
+thereby obtaining the administrator's password by email. Savvy
+programmers can use certain {\sc api} functions, such as {\sc php}'s
+{\tt mysql\_real\_escape\_string()}, to detect malformed input, or,
+better, use prepared {\sc sql} statements instead of statement
+templates. Unfortunately, the increasing number of {\sc sql} injection
+attacks suggests that programmers are not always that careful. Using
+similar techniques, malicious users can mount other exploits based on
+{\sc dsl}s such as {\sc xp}ath~\cite{SW06,CDL07,MKS09}, {\sc
+  xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. The effects can be
+wide-ranging. A malicious user can view sensitive information, destroy
+or modify protected data, or even crash the entire application.
 
-{\sc html} is another {\sc dsl} that can be used for malicious purposes
-when an application does not properly handle user-supplied data. Based
-on this vulnerability attackers can supply valid {\sc html},
-typically via a parameter value, and inject their own content into the
-page. {\sc html} injection is mainly associated with {\sc xss}
-attacks~\cite{BJM08,LZRL09}. However, it can also be used as a
-vehicle for cross-site request forgery attacks in the following manner:
-Consider a vulnerable bulletin board system where {\tt img} tags are not checked.
-A malicious user could embed a {\sc csrf} request within an {\tt img}
-tag in the following manner:
+{\sc html} is another {\sc dsl} that can be used for malicious
+purposes when an application does not properly handle user-supplied
+data. Based on this vulnerability attackers can supply valid {\sc
+  html}, typically via a parameter value, and inject their own content
+into the page. {\sc html} injection is mainly associated with {\sc
+  xss} attacks~\cite{BJM08,LZRL09}. However, it can also be used as a
+vehicle for cross-site request forgery ({\sc csrf}) attacks in the
+following manner: Consider a vulnerable bulletin board system where
+{\tt img} tags are not checked. A malicious user could embed a {\sc
+  csrf} request within an {\tt img} tag in the following manner:
 
 \bgroup \lstset{language=HTML}
 \begin{small}
@@ -365,8 +359,8 @@ JavaScript injection attacks are considered a critical issue
 in web application security mainly because it is associated with
 major vulnerabilities such as {\sc xss} attacks~\cite{SG07} and
 Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}.
-A typical {\sc xss} example that involves JavaScript injection
-is the following: consider a web page that prints the value
+For a typical {\sc xss} example that involves JavaScript injection
+consider a web page that prints the value
 of a query parameter ({\tt query}) from the
 page's {\sc url} as part of the page's content
 without escaping the value. Attackers
@@ -375,8 +369,8 @@ into the page to steal a user's cookie and
 send it via an image request to a web site
 under their control (malicious.com).
 This could be achieved by including the following
-link to the malicious web site (or send it via phishing
-email) and induce the user to click on it:
+link to the malicious web site (or sending it via phishing
+email) and inducing the user to click on it:
 
 \lstset{language=VBScript, basicstyle=\footnotesize\ttfamily,}
 \begin{lstlisting}
@@ -394,18 +388,16 @@ involve the injection of both {\sc html} and JavaScript code.
 \section{Exploitation Model}
 \label{sec:model}
 
-In this section we provide a step-by-step exploitation model to
-understand the process of carrying out source code injection attacks
-against web applications.
-Figure~\ref{fig:attacks}
-presents the required steps for different classes of injection attacks.
-Links between steps are labeled with the different attacks that use that path,
-while the numbers next to attack labels denote the 
-sequence of steps for a particular attack.
-Most steps are common in all attacks. This
-is because they are based on similar attack vectors as we mentioned in
-the previous section. Large `X' marks on transitions 
-indicate the points where defenses detect or prevent attacks.
+We provide a step-by-step exploitation model to understand the process
+of carrying out source code injection attacks against web
+applications. Figure~\ref{fig:attacks} presents the required steps for
+different classes of injection attacks. Links between steps are
+labeled with the different attacks that use that path, while the
+numbers next to attack labels denote the sequence of steps for a
+particular attack. Most steps are common in all attacks. This is
+because they are based on similar attack vectors as we mentioned in
+the previous section. Large `X' marks on transitions indicate the
+points where defenses detect or prevent attacks.
 
 An attacker can initiate an injection attack through two different main routes.
 One way is to use the browser of a victim as an attack
@@ -1367,8 +1359,8 @@ approaches~\cite{NBR14}.
 \section{Observations}
 \label{sec:discussion}
 
-In this section we enumerate key observations
-based on the dimensions we set in Section~\ref{sec:dimensions}.
+We group our key observations on the~34 publications along the
+dimensions we identified in Section~\ref{sec:dimensions}.
 
 \subsection{Accuracy}
 
@@ -1568,9 +1560,10 @@ injection attacks (6 out of 10).
 \section{Recommendations and Lessons Learned}
 \label{sec:lessons-learned}
 
-In this section we provide some lessons learned from
-our observations and provide some recommendations
-that developers of new mechanisms may find helpful.
+Our observations lead to some lessons and recommendations that
+developers of new mechanisms may find helpful. In particular, they
+call for improving accuracy tests and code availability, while
+aiming to reduce computational and deployment overheads.
 
 % @dimitro: move this to the analysis Section:
 % This scheme is an efficient scheme that focuses
