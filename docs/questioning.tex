@@ -390,33 +390,35 @@ involve the injection of both {\sc html} and JavaScript code.
 \label{sec:model}
 
 In this section we provide a step-by-step exploitation model to
-understand the process of carrying out application attacks associated
-with source code injection. Figure~\ref{fig:attacks}
-presents the steps of different application attacks. Links between
-steps are labeled with the paths constituting different attacks. The
-sequence of steps for each attack is shown by the numbers next to the
-attack names in the labels. Most steps are common in all attacks. This
+understand the process of carrying out source code injection attacks
+against web applications.
+Figure~\ref{fig:attacks}
+presents the required steps for different classes of injection attacks.
+Links between steps are labeled with the different attacks that use that path,
+while the numbers next to attack labels denote the 
+sequence of steps for a particular attack.
+Most steps are common in all attacks. This
 is because they are based on similar attack vectors as we mentioned in
-the previous section. Large crosses on transitions in
-Figure~\ref{fig:attacks} indicate the points where defenses detect
-attacks.
+the previous section. Large `X' marks on transitions 
+indicate the points where defenses detect or prevent attacks.
 
-A malicious user can initiate the attack through two different routes.
-The attacker may use the browser of an innocent user as an attack
+An attacker can initiate an injection attack through two different main routes.
+One way is to use the browser of a victim as an attack
 vehicle, through which the code will be injected in the application.
 For example, the attacker could craft a malicious script into a {\sc
-  url} and then trick an end user to click on it via social
-engineering (i.e., phishing, through transition {\sc p-xss} 1.1, {\sc
+  url} and then trick a user to click on it through social
+engineering, e.g., by sending a phishing email (transition {\sc p-xss} 1.1, {\sc
   n-xss} 1.1, {\sc csrf} 1). Alternatively, the attacker may be able
-to inject directly the malicious code in the application (through
-transition {\sc dsl} 1, {\sc p-xss} 1, {\sc n-xss} 1). This would happen
-in a web application that accepts and redisplays user input
+to inject directly the malicious code on the server through an HTTP request
+({\sc dsl} 1, {\sc p-xss} 1, {\sc n-xss} 1). This would happen
+in a web application that accepts and processes user input
 without appropriate validation. An attacker could upload data
 containing a specially crafted script
-to steal the cookies of the visiting users or embed malicious
-{\sc sql} code to retrieve all the password entries from a database.
-Recall the examples we provided in Section~\ref{sec:attacks}.
-Note that an {\sc xss} attack can start from both routes.
+to steal the cookies of the visiting users ({\sc p-xss} 1, {\sc n-xss} 1)
+or embed malicious
+{\sc sql} code to retrieve the password entries from a database ({\sc dsl} 1).
+%Recall the examples we provided in Section~\ref{sec:attacks}.
+Note that {\sc xss} attacks can start from both routes.
 
 Once the injected code reaches the vulnerable application, it becomes
 a part of a value represented by a program variable. The target of the
@@ -428,33 +430,35 @@ the malicious response is performed.
 
 {\sc xss} attacks fall into two categories, {\it non-persistent} and
 {\it persistent}. Non-persistent {\sc xss} attacks take place when the
-data provided by a user is used immediately by server-side scripts to
-parse and display a page of results, without properly sanitizing the
-request (transition {\sc p-xss} 7, {\sc n-xss} 2).
-Thus, in a non-persistent {\sc xss} attack the injected code
-is never saved on the server and immediately becomes part of the
+data provided by a user is processed on-the-fly
+by server-side application logic and end up without proper sanitization
+into a dynamically generated response ({\sc p-xss} 7, {\sc n-xss} 2)
+that is eventually rendered by the user's browser.
+Thus, in a non-persistent {\sc xss} attack, the injected code
+is not saved on the server and immediately becomes part of the
 content that is sent back to a web user.
-
-In persistent {\sc xss} attacks malicious code is saved by the server.
-The injected code that is stored on the server-side re-enters the
+In persistent {\sc xss} attacks, on the other hand,
+malicious code is permanently stored on the server ({\sc p-xss} 5).
+The injected code residing at server-side then re-enters the
 application's execution flow and becomes part of the content that is
-actually sent back afterwards to the user.
+actually sent back to the user as part of a future response.
 
 \begin{figure*}
 \begin{center}
 \leavevmode
 \includegraphics[scale=0.61]{attacks-steps-new.pdf}
 \end{center}
-\caption{\label{fig:attacks}Attack model demonstrating web
-application attacks based on source code injection.
-For every arrow there are corresponding transition numbers for
-every attack. Every {\it point} indicates a transition where mechanisms
-detect attacks. For every point we provide the corresponding
-references:
-Point {\sc ub} (at the user's browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08},
-Point {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
-Point {\sc e}i{\sc q} (embedded in a query en route to the database):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
-Point i{\sc db} (in the database):~\cite{BK04,LLW02,VMV05}.}
+\caption{\label{fig:attacks}Attack model for dynamic and domain specific
+language code injection in web applications.
+Transitions are labeled with the different attacks that use that path,
+while the numbers next to attack labels denote the 
+sequence of steps for a particular attack.
+Points where different types of defenses
+detect or prevent attacks are marked with an `X' symbol:
+{\sc ub} (browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08},
+{\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
+{\sc e}i{\sc q} (embedded in a query en route to the database):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
+Point i{\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
 
 \section{Analysis Dimensions}
