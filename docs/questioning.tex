@@ -122,10 +122,11 @@ which aims to raise awareness about web application security by
 identifying some of the most critical risks organizations may face.
 In its three consecutive Top Ten lists (2007, 2010, 2013), different source
 code-driven injection attacks dominate the top five positions.
-At the same time,
-attackers find new ways~\cite{HNSHS12,DKH14} to bypass defense
-mechanisms using a variety of techniques, despite the numerous
-countermeasures that are being introduced. As an example, already by 2006,
+
+At the same time, attackers find new ways~\cite{HNSHS12,DKH14}
+to bypass defense mechanisms using a variety of techniques,
+despite the numerous countermeasures that are being introduced.
+As an example, already by 2006,
 there were more than 20 proposed defenses
 against {\sc sql} injection attacks~\cite{HVO06}.
 Since then, the number has doubled, while researchers have indicated that
@@ -141,14 +142,9 @@ common.\footnote{Note that we do not consider lower-level attacks based on
 the exploitation of memory corruption vulnerabilities and the injection
 of binary code---see Section~\ref{sec:attacks}.} This is validated by the fact that
 there are protection mechanisms that can defend against more than one of these
-types of attacks. Then, we categorize a selection of these protection
-mechanisms. In our selection we include approaches that
-have been proposed in publications cited more than
-20 times. We also include some recent mechanisms that have been
-presented in top security conferences, even though they have been
-cited less than twenty times, so that recent research is not penalized.
-Finally, we analyze each
-mechanism across the following dimensions:
+types of attacks. Then, we {\it categorize} a selection of representative
+protection mechanisms and finally we {\it analyze} each mechanism across the
+following dimensions:
 \begin{itemize}
 \item {\it Accuracy:} protection mechanisms are as good
   as their detection capability; this requires low false positive and
@@ -207,8 +203,9 @@ The main contributions of this paper are the following:
 \end{enumerate}
 
 The rest of the paper is organized as follows.
-Section~\ref{sec:attacks} presents our proposed model
-of web application attacks based on source code injection.
+Section~\ref{sec:attacks} provides some insights on
+source code injection attacks and
+Section~\ref{sec:model} presents our proposed model.
 Section~\ref{sec:dimensions} introduces the dimensions
 across which we analyze the various defenses.
 Our categorization and analysis is presented in
@@ -218,7 +215,7 @@ Section~\ref{sec:lessons-learned} highlights
 some lessons learned from our observations
 and Section~\ref{sec:conclusion} concludes the paper.
 
-\section{Attacks}
+\section{Source Code Injection on Web Applications}
 \label{sec:attacks}
 
 The basic problem behind the most dangerous
@@ -261,11 +258,11 @@ we do not include binary code injection, focusing instead on defenses
 that protect applications against attacks based on the
 source code injection category.
 
-\subsection{Source Code Injection Vulnerabilities}
-
 Figure~\ref{fig:taxonomy} presents a taxonomy of source
 code injection attacks. Such attacks may involve source code, either of a
 {\it Domain Specific Language} ({\sc dsl}) or a {\it Dynamic Language}.
+For both categories, we provide examples that will be used
+throughout the whole paper.
 
 Application attacks that involve {\sc dsl}s constitute an important
 subset of the code injection problem, as {\sc dsl}s like {\sc sql} and
@@ -277,44 +274,125 @@ become part of an {\sc sql} query and get executed on the target
 database. A code injection attack that exploits the vulnerabilities of
 these interfaces by taking advantage of input validation issues like
 incorrectly passed parameters or incorrect type handling is called an
-{\sc sql} injection attack~\cite{CERT02,MS09,HVO06,SW06}. By using
-similar techniques malicious users can perform other exploits based on
-{\sc dsl}s like {\sc xp}ath~\cite{SW06,CDL07,MKS09}, {\sc
-  xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. With this kind of
+{\sc sql} injection attack~\cite{CERT02,MS09,HVO06,SW06}.
+Consider a trivial example that takes advantage of incorrectly
+filtered quotation characters. In an application that
+will send the password for a forgetful user via email by executing the
+following query:
+
+\bgroup \lstset{language=SQL}
+\begin{small}
+\begin{lstlisting}
+SELECT password from userdata WHERE id = 'Alice'
+\end{lstlisting}
+\end{small}
+\egroup
+
+\noindent
+If an attacker, inputs the string {\tt anything' OR 'x'='x}, he or
+she could could obtain the administrator's password by email.
+Savvy programmers could use a language's libraries, like {\sc php}'s
+{\tt mysql\_real\_escape\_string()} to detect malformed input; or they
+could use prepared {\sc sql} statements, instead of statement
+templates. Unfortunately,
+the increasing number of {\sc sql} injection attacks
+suggest that programmers are not always that careful.
+By using similar techniques malicious users can perform other exploits based on
+{\sc dsl}s like {\sc xp}ath~\cite{SW06,CDL07,MKS09},
+{\sc xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. With this kind of
 attacks, a malicious user can view sensitive information, destroy or
-modify protected data, or even crash the entire application. {\sc
-  html} is another {\sc dsl} that can be used for malicious purposes
+modify protected data, or even crash the entire application.
+
+{\sc html} is another {\sc dsl} that can be used for malicious purposes
 when an application does not properly handle user supplied data. Based
 on this vulnerability an attacker can supply valid {\sc html},
 typically via a parameter value, and inject their own content into the
 page. {\sc html} injection is mainly associated with {\sc xss}
-defects~\cite{HNSHS12}.
+attacks~\cite{BJM08,LZRL09}. However, it can also be used as a
+vehicle for an {\sc csrf} attack in the following manner:
+Consider a vulnerable bulletin board system where {\tt img} tags are not checked.
+A malicious user could embed a {\sc csrf} request within {\tt img}
+tags in the following manner:
+
+\bgroup \lstset{language=HTML}
+\begin{small}
+\begin{lstlisting}
+<img src='http://www.vulnerable.com/
+  admin.php?edituserwithID=13&addgroup=admin'/>
+\end{lstlisting}
+\end{small}
+\egroup
+
+\noindent
+When the page with this injected code is accessed by an administrator,
+the attacker (with {\sc id} 13) will gain administrative privileges
+while the administrator will have no immediate indication that there
+has been an attack.
 
 A recent class of code injection attacks involve dynamic languages
-like JavaScript and {\sc php}~\cite{SFVM09,EWKK09,SMS13}. JavaScript
-injection attacks, in particular, make up a large subset of dynamic
+like JavaScript and {\sc php}~\cite{SFVM09,EWKK09,SMS13}.
+A simple example of a dynamic language-driven attack is an input string
+that is fed into an {\tt eval()} function call, e.g., in {\sc php}:
+
+\bgroup \lstset{language=PHP}
+\begin{small}
+\begin{lstlisting}
+$variable = $_GET['var']; 
+$input = $_GET['value'];
+eval('$variable = ' . $input . ';')
+\end{lstlisting}
+\end{small}
+\egroup
+
+\noindent
+The user may pass into the {\tt value} parameter code that will
+execute in the server. Hence, if an attacker provides as
+input the following string: {\tt 10 ; system(''touch foo'');}
+then a file will be created on the server; it is easy
+to imagine more detrimental instances.
+
+JavaScript injection attacks, make up a large subset of dynamic
 language-driven attacks. Such attacks are manifested when a web
 application accepts and redisplays data of uncertain origin without
 appropriate validation and filtering. Based on this flaw, an attacker
 can manage to inject a script in the JavaScript engine of a browser
-and alter its execution flow~\cite{ELX07}. JavaScript injection
-attacks are considered a critical issue in web application security
-mainly because they are associated with major vulnerabilities such as
-{\sc xss} attacks~\cite{SG07}, {\sc csrf} attacks~\cite{BJM08,LZRL09}
-and Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}. In
-many cases {\sc xss} attacks involve the injection of both {\sc html}
-and JavaScript code.
+and alter its execution flow~\cite{ELX07}. For instance,
+consider a web page (foo.net) that prints the value
+of a query parameter ({\tt query}) from the
+page's {\sc url} in the web page's content
+without escaping the value. A malicious user
+can take advantage of this and inject an {\tt iframe} tag
+into the page to steal the user's cookie and
+send it via an image request to a web site
+that he or she controls (malicious.com).
+This could be achieved by including the following
+link to the malicious web site (or send it via phishing
+email) and induce the user to click on it:
 
-% {\sc html} injection --- such attacks pose no threat to cookies and session IDs.
+\lstset{language=VBScript, basicstyle=\footnotesize\ttfamily,}
+\begin{lstlisting}
+http://foo.net/vulnerable.html?query=
+<iframe src="javascript:document.body.innerHTML=+
+'<img src=\"http://malicious.com/?c=
+'+encodeURIComponent(document.cookie)+'\">'">
+</iframe>
+\end{lstlisting}
 
-\subsection{Exploitation Model}
+\noindent
+JavaScript injection is considered a critical issue in web application security
+mainly because it is associated with major vulnerabilities such as
+{\sc xss} attacks~\cite{SG07} and Cross-Channel Scripting
+({\sc xcs}) attacks~\cite{W10,BBB09}. In many cases {\sc xss} attacks
+involve the injection of both {\sc html} and JavaScript code.
+
+\section{Exploitation Model}
 \label{sec:model}
 
 In this section we provide a step-by-step exploitation model to
-understand the process of carrying out application attacks based on
-source code injection vulnerabilities. Figure~\ref{fig:attacks}
+understand the process of carrying out application attacks associated
+with source code injection. Figure~\ref{fig:attacks}
 presents the steps of different application attacks. Links between
-steps are labelled with the paths constituting different attacks. The
+steps are labeled with the paths constituting different attacks. The
 sequence of steps for each attack is shown by the numbers next to the
 attack names in the labels. Most steps are common in all attacks. This
 is because they are based on similar attack vectors as we mentioned in
@@ -340,8 +418,8 @@ an {\sc xss} attack can start from both routes.
 
 Once the injected code reaches the vulnerable application, it becomes
 a part of a value represented by a program variable. The target of the
-attack determines the route from now on. In {\sc sql} injection and
-{\sc csrf} attacks the injected code becomes part of a query that
+attack determines the route from now on. In an {\sc sql} injection
+attack the injected code becomes part of a query that
 finally reaches the database where it is executed. 
 
 {\sc xss} attacks fall into two categories, {\it non-persistent} and
@@ -364,9 +442,8 @@ actually sent back afterwards to the user.
 \includegraphics[scale=0.61]{attacks-steps-new.pdf}
 \end{center}
 \caption{\label{fig:attacks}Attack model demonstrating web
-application attacks based on source
-code injection vulnerabilities. For every arrow there are
-corresponding transition numbers for
+application attacks based on source code injection.
+For every arrow there are corresponding transition numbers for
 every attack. Every {\it point} indicates a transition where mechanisms
 detect attacks. For every point we provide the corresponding
 references:
@@ -479,7 +556,7 @@ Ideally the code should be available under an open source license, so
 that it is easy to modify and improve an approach; even when this is
 not possible, for whatever reason, it is important to make sure that
 all computer code and test data is available noting any restrictions
-on accessibility. Availability of computer code has been recognised as
+on accessibility. Availability of computer code has been recognized as
 an important issue outside the computer science field: the journal
 \emph{Nature}, in a recent editorial, adopted a publication policy stressing
 access to code and data~\cite{nature2014}. At a time and date that the
@@ -575,7 +652,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 \includegraphics[scale=0.65]{defenses.pdf}
 \end{center}
 \caption{\label{fig:defenses}The basic categories of countermeasures
-against web application attacks, based on source code
+against web application attacks based on source code
 injection. For each approach we provide the references
 that present corresponding mechanisms:
 {\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08},
@@ -587,13 +664,17 @@ that present corresponding mechanisms:
 \end{figure*}
 
 We categorize and describe the various mechanisms developed to detect
-the attacks described in Section~\ref{sec:attacks} on the dimensions
-we proposed apart from availability, which we treat separately in the
-discussion in Section (\ref{sec:discussion}).
+the attacks described in Section~\ref{sec:attacks} and~\ref{sec:model},
+on the dimensions we proposed apart from availability, which we treat
+separately in the discussion in Section (\ref{sec:discussion}).
+All mechanisms have been proposed in publications cited more than
+20 times. We also include some recent mechanisms that have been
+presented in top security conferences, even though they have been
+cited less than twenty times, so that recent research is not penalized.
 
 Figure~\ref{fig:defenses} presents a taxonomy of the
-defenses that protect web applications against attacks based on
-code injection vulnerabilities.
+defenses that protect web applications against
+source code injection attacks based on.
 We can identify three approaches:
 {\it etiological}, {\it symptomatic}, and {\it hybrid}.
 The etiological category involves mechanisms designed to
@@ -697,14 +778,6 @@ described by {\it Athanasopoulos et al.}~\cite{APKLM10}, who also describe
 another recent variation of JavaScript injection attacks, known as
 return-to-JavaScript attacks that can be used to bypass the above
 mechanisms.
-% Such attacks share
-% many similarities with the {\it return-to-lib}
-% attack~\cite{SPPGMMB04}. 
-%% PL Explain what it does, I guess it's what you go on to say
-%% directly below?
-% When performing an attack like this the malicious user transfers the
-% execution to points that contain script code which in turn is used to
-% perform the attack.
 
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
@@ -735,28 +808,9 @@ decide if they will disable them or not,
 this is unpractical because such features are quite popular.
 If developers choose to use them, these frameworks cannot
 define policies that restrict the behavior of third-party
-scripts introduced by such features. For instance,
-consider a web page (foo.net) that prints the value
-of a query parameter ({\tt query}) from the
-page's {\sc url} in the web page's content
-without escaping the value. A malicious user
-can take advantage of this and inject an {\tt iframe}
-into the page to steal the user's cookie and
-send it via an image request to a web site
-that he or she controls (malicious.com).
-This could be achieved by including the following
-link to the malicious web site (or send it via phishing
-email) and induce the user to click on it:
-
-\lstset{language=VBScript, basicstyle=\footnotesize\ttfamily,}
-\begin{lstlisting}
-http://foo.net/vulnerable.html?query=
-<iframe src="javascript:document.body.innerHTML=+
-'<img src=\"http://malicious.com/?c=
-'+encodeURIComponent(document.cookie)+'\">'">
-</iframe>
-\end{lstlisting}
-
+scripts introduced by such features. Thus, they would
+be vulnerable in an attack that utilizes {\tt iframes}
+in the way we described in Section~\ref{sec:attacks}.
 \noindent {\it WebJail}~\cite{VDDPJ11}, and {\sc soma}~\cite{OWVS08}
 are two frameworks that can actually detect such an attack (Point {\sc
   ub}). To achieve this, {\sc soma} requires site administrators to
@@ -1082,15 +1136,18 @@ that contain scripts used by the application.
 Defenses based on training include some mechanisms that can be easily
 circumvented. For example, {\sc didafit} and {\it libAnomaly} do not
 tag transactions with their corresponding call sites. This can lead
-easily to false negatives. For instance, consider an application that
-will send the password for a forgetful user via email by executing the
-following query: \bgroup \lstset{language=SQL}
+easily to false negatives. For instance, the application
+mentioned in Section~\ref{sec:attacks}, which will send the password
+for a forgetful user via email by executing the following query:
+
+\bgroup \lstset{language=SQL}
 \begin{small}
 \begin{lstlisting}
 SELECT password from userdata WHERE id = 'Alice'
 \end{lstlisting}
 \end{small}
 \egroup
+
 \noindent
 This same application could allow users to lock their terminal,
 but allow the unlocking either with the user's password or with
@@ -1098,6 +1155,7 @@ the administrator password (the 4.3 {\sc bsd} {\em lock} command
 behaved in this peculiar way).
 The corresponding query to verify the password on the locked
 workstation would be as follows:
+
 \bgroup
 \lstset{language=SQL}
 \begin{small}
@@ -1107,23 +1165,15 @@ id = 'admin'
 \end{lstlisting}
 \end{small}
 \egroup
+
 \noindent
-In this case {\sc didafit} and {\it libAnomaly}, could be easily bypassed
-since a malicious user could obtain the administrator's password
-by email by entering on the password retrieval form
-as his user identifier the following:
-\bgroup
-\lstset{language=SQL}
-\begin{small}
-\begin{lstlisting}
-nosuchuser' OR id = 'admin
-\end{lstlisting}
-\end{small}
-\egroup
-\noindent
-The infected query matches the signature of the second one above and
-is therefore accepted. The problem lies with the call location of the
-query, not the query alone.
+Even if the application's administrators have chosen to use
+either {\sc didafit} or {\it libAnomaly}, an attacker could bypass
+them and obtain the administrator's password via email,
+by entering on the form the standard string:
+{\tt nosuchuser' OR id = 'admin}. The infected query matches the
+signature of the second one above and is therefore accepted.
+The problem lies with the call location of the query, not the query alone.
 
 Mechanisms that create signatures that involve elements not only
 associated with the code statements (i.e., {\sc amnesia} and {\sc
@@ -1300,8 +1350,11 @@ approaches~\cite{NBR14}.
     \end{threeparttable}
 \end{table*}
 
-\section{Discussion}
+\section{Observations}
 \label{sec:discussion}
+
+In this section we enumerate key observations
+based on the dimensions we set in Section~\ref{sec:dimensions}.
 
 \subsection{Accuracy}
 
@@ -1352,13 +1405,12 @@ Regarding the subjects of tests, we see that 27 out of 34 mechanisms
 were tested on real-world applications known to be vulnerable. The
 vulnerabilities associated with these applications are enlisted in the
 following providers: the Common Vulnerabilities and Exposures ({\sc
-  cve}) database,\footnote{\url{https://cve.mitre.org/}} the {\it
-  Bugtraq}\footnote{\url{http://seclists.org/bugtraq/}} security
-mailing list, the {\sc xss}ed.com\footnote{\url{www.xssed.com}}
-security bulletin provider, Microsoft's security
-bulletin\footnote{\url{https://technet.microsoft.com/en-us/security/bulletin}}
-and the ha.ckers.org\footnote{\url{www.xssed.com}} security bulletin
-provider. Figure~\ref{fig:defect_sources} presents how many, in percentage,
+  cve}) database~\cite{cve}, the {\it Bugtraq} security
+mailing list~\cite{bugtraq}, the {\sc xss}ed.com
+security bulletin provider~\cite{xssed}, Microsoft's security
+bulletin~\cite{microsoftBulletin} and the
+ha.ckers.org security bulletin provider~\cite{hackers}.
+Figure~\ref{fig:defect_sources} presents how many, in percentage,
 and which, in the figure's caption, authors referred
 to which source. In numerous occassions authors performed tests based
 on the same applications. For example, 12 mechanisms were tested on a
@@ -1499,8 +1551,12 @@ client's side. Note that the majority of the mechanisms that detect
 such attacks on the server-side can also detect {\sc dsl} code
 injection attacks (6 out of 10).
 
-\section{Lessons Learned}
+\section{Recommendations and Lessons Learned}
 \label{sec:lessons-learned}
+
+In this section we provide some lessons learned from
+our observations and provide some recommendations
+that developers of new mechanisms may find helpful.
 
 % @dimitro: move this to the analysis Section:
 % This scheme is an efficient scheme that focuses
@@ -1510,6 +1566,8 @@ injection attacks (6 out of 10).
 % Also: 
 % As the author of {\sc csse} state~\cite{PB05}, the prevention
 % of {\sc xss} attack requires a more complex analysis.
+
+\subsection{Improving Accuracy Tests}
 
 One of our key findings indicate that many detect mechanisms are
 tested in a poor manner. In many cases researchers tend not to provide
@@ -1527,7 +1585,7 @@ happen in practice. Moreover, even a mechanism that detects an attack
 based on its root cause, instead of observer behavior, may still be
 circumvented so that attacks will pass undetected.
 
-When we introduced specicifity and sensitivity in
+When we introduced specificity and sensitivity in
 Section~\ref{ssec:diagnostic-performance} we deferred discussion of
 \textsc{ppv} and \textsc{npv} to this point. These two relate to the
 performance of a detection mechanism in an actual production setting,
@@ -1617,10 +1675,12 @@ attacks and detects them in an accurate manner as seen in
 Table~\ref{tab:comp}. It is also extensively tested in real-world
 attacks.
 
+\subsection{On Code Availability}
+
 Apart from testing practices, another area that merits improvement is
 the availability of source code and testbeds. We are not aware of
 specific reasons why authors of attack detection mechanisms seem to be
-wary of releasing online their code and tests. Our finding may reflect
+wary of releasing on-line their code and tests. Our finding may reflect
 the status in the current point in time, when authors are urged to
 publish their code and tests, and may start, or may have already
 started doing so, but this does not show yet in the research we
@@ -1635,6 +1695,8 @@ change. That may be too much to ask right now; what seems reasonable,
 though, is to ask of researchers in attack detection mechanisms not to
 buck the trend and to take steps to increase the availability of their
 research.
+
+\subsection{Computational Overhead and Deployment Remarks}
 
 Computational overhead comes up as a non-trivial issue. We observe
 that the average overhead that can be extracted from the publications
@@ -1666,8 +1728,6 @@ new countermeasure, researchers should consider where they are
 planning to detect attacks, observe the corresponding deployment
 challenges, and try to mitigate them.
 
-% discuss Availability. Finally, 
-
 \section{Conclusions}
 \label{sec:conclusion}
 
@@ -1684,9 +1744,7 @@ detect one or more of such attacks. However,
 even if some of them share characteristics
 (for instance, {\sc html} sanitization and {\tt eval} handling)
 with supported frameworks like Mozilla's Content Security
-Policy\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}
-({\sc csp}) and Google
-Caja\footnote{\url{https://code.google.com/p/google-caja/}}~\cite{M06}
+Policy~\cite{cspMoz} ({\sc csp}) and Google Caja~\cite{M06,caja}
 the majority of them are not used in practice.
 
 In order for a security tool to be used in practice it must provide
