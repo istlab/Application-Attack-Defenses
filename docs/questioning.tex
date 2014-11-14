@@ -624,6 +624,23 @@ performance evaluation analysis for a defense mechanism, the more
 evaluation results are provided for a mechanism, the more valuable
 it becomes as a practical approach.
 
+\begin{figure*}[t]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.65]{defenses.pdf}
+\end{center}
+\caption{\label{fig:defenses}The basic categories of countermeasures
+against web application attacks based on code
+injection. For each approach we provide the references
+that present corresponding mechanisms:
+{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08},
+{\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
+{\it Parse-Tree Validation}:~\cite{BWS05,SW06},
+{\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
+{\it Training}:~\cite{LLW02,HO05,HO06,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
+{\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
+\end{figure*}
+
 \subsection{Ease of Use}
 \label{sec:deployment}
 
@@ -678,276 +695,13 @@ within a proxy (Point {\sc s}t{\sc b}).
   (Point i{\sc db}).
 \end{itemize}
 
+
+
 \section{Defenses}
 \label{sec:defs}
 
-\begin{figure*} [ht]
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.65]{defenses.pdf}
-\end{center}
-\caption{\label{fig:defenses}The basic categories of countermeasures
-against web application attacks based on code
-injection. For each approach we provide the references
-that present corresponding mechanisms:
-{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08},
-{\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
-{\it Parse-Tree Validation}:~\cite{BWS05,SW06},
-{\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
-{\it Training}:~\cite{LLW02,HO05,HO06,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
-{\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
-\end{figure*}
-
-We categorize and describe the various mechanisms developed to detect
-the attacks described in Section~\ref{sec:attacks} and~\ref{sec:model},
-on the dimensions we proposed apart from availability, which we treat
-separately in the discussion in Section (\ref{sec:discussion}).
-All mechanisms have been proposed in publications cited more than
-20 times. We also include some recent mechanisms that have been
-presented in top security conferences, even though they have been
-cited less than twenty times, so that recent research is not penalized.
-
-Figure~\ref{fig:defenses} presents a taxonomy of the
-defenses that protect web applications against code injection attacks.
-We can identify three approaches:
-{\it etiological}, {\it symptomatic}, and {\it hybrid}.
-The etiological category involves mechanisms designed to
-stop attacks based on their causes and origins~\cite{JL75,L81}. 
-The symptomatic category incorporates a variety of schemes that
-inspect the behavior of applications and detect attacks based on
-their undesirable symptoms~\cite{D76,A00}.
-Hybrid mechanisms borrow characteristics from both
-categories. Table~\ref{tab:comp} groups the various subcategories and
-for every mechanism provides the following:
-
-\begin{enumerate}
-\item The number of times the corresponding publication has been cited.
-\item Accuracy and computational overhead measurements.
-\item The attacks that the mechanism detects.
-\end{enumerate}
-
-Recall that the point where attacks are detected is given in the
-caption of Figure~\ref{fig:attacks}.
-
-\subsection{Etiological}
-\label{sec:prot}
-
-There exist three basic etiological approaches used to protect web
-applications from code injection attacks.
-
-\subsubsection{Parse-Tree Validation}
-\label{sec:tree}
-
-The key idea behind parse-tree validation is to compare the tree
-representation of the abstract syntactic structure of the source code
-that is about to be executed with the one that was originally
-intended. If the trees diverge, the application is probably under
-attack.
-
-In the case of {\sc dsl} injection attacks, mechanisms check 
-the query before the inclusion of user input with the one
-resulting after the inclusion of user input.
-Both mechanisms that implement this approach,
-{\sc sqlg}uard~\cite{BWS05} and
-{\sc sql}check~\cite{SW06} are pretty similar
-and detect the attack before a query reaches the
-database (Point {\sc dbal}).
-Contrary to {\sc sqlg}uard and other
-mechanisms, {\sc sql}check has been
-extensively tested in terms of accuracy
-as can be seen in Table~\ref{tab:comp}.
-A disadvantage of those mechanisms is that the
-application must be modified in every code fragment
-that sends an {\sc sql} query to the database for execution.
-
-Parse-tree validation seems to be an efficient approach
-to detect {\sc dsl} code injection attack,
-especially in the case of the {\sc sql}check
-implementation. This however does not apply in
-the case of the mechanisms that borrow elements from
-this approach and examine the syntax trees
-of scripts to detect JavaScript-driven {\sc xss} attacks,
-as we will see in Subsection~\ref{sec:hybrid}.
-
-\subsubsection{Policy Enforcement}
-\label{sec:policy}
-
-This approach is used to detect {\sc xss} and {\sc csrf} attacks. When
-using a framework that implements policy enforcement, developers must
-define specific security policies on the server side. Policies can be
-expressed through JavaScript extensions, pattern matching, or syntax
-specific settings. Then the policies are enforced either in the user's
-browser at runtime or in a server-side proxy that intercepts server
-responses.
-
-Noxes~\cite{KKVJ06,KJKV09} is the only
-framework that partially allows the web
-user to specify policies to prevent {\sc xss} attacks.
-The key idea behind Noxes is to parse
-the {\sc html} response that reaches the browser to
-find static {\sc url} references. Then, based on
-a set of policies Noxes allows or blocks
-the request (Point {\sc ub}). Such policies
-can be also provided by the server (i.e., ``never
-follow a link that leads to the malicious.com
-web site''). The main issue with Noxes is that
-{\sc url}s can be dynamically assembled by scripts
-which may lead to false alarms.
-
-A number of the frameworks define policies based on information and
-features provided by the Document Object Model ({\sc dom}) of a web
-page. Specifically, developers must place all legitimate scripts
-inside {\sc html} elements like {\tt div}. The web browser (Point {\sc
-  ub}), parses the {\sc dom} tree and executes scripts only when they
-are contained in such elements. All other scripts are treated
-according to the policies defined on the server. Frameworks that
-support this functionality are {\sc beep}~\cite{TNH07} and {\sc
-  dsi}~\cite{NSS06}. The main problem with these mechanisms is that
-they do not examine the script's location inside the web document.
-Based on this fact, attackers can perform mimicry attacks~\cite{WS02}.
-Specifically, they can execute legitimate scripts, but not as intended
-by the original design of the developers. This is extensively
-described by Athanasopoulos et al.~\cite{APKLM10}, who also describe
-another recent variation of JavaScript injection attacks, known as
-return-to-JavaScript attacks that can be used to bypass the above
-mechanisms.
-
-Another policy enforcement approach introduces
-policies directly either in {\sc html} or JavaScript code
-to confine their behavior. BrowserShield~\cite{RDWDE07}
-acts as a proxy on the server side (Point {\sc s}t{\sc b}) to
-parse the {\sc html} of server responses and identify
-scripts. Then, it rewrites them into safe equivalents
-and protects the web user from exploits
-that are based on reported browser vulnerabilities.
-ConScript~\cite{ML10}, CoreScript~\cite{YCIS07}
-and the framework by Phung et al.~\cite{PSC09}
-extend JavaScript with new primitive functions that
-provide safe methods to protect potentially vulnerable
-JavaScript functions. In both cases, policy enforcement takes
-place on the JavaScript engine of the browser (Point {\sc ub}).
-In this way, {\sc xxs} attacks that take advantage
-functions like {\tt write} and {\tt eval}, which are
-used to assemble innocuous-looking parts into harmful
-strings,\footnote{The infamous Sammy worm that
-infected MySpace in 2005~\cite{SP07,ELX07}
-utilized the {\tt eval} function to assemble a
-script with malicious behavior.} would fail.
-
-An issue regarding the above frameworks
-involves features like script inclusion
-and {\tt iframe} tags. Even though they allow developers
-decide if they will disable them or not,
-this is unpractical because such features are quite popular.
-If developers choose to use them, these frameworks cannot
-define policies that restrict the behavior of third-party
-scripts introduced by such features. Thus, they would
-be vulnerable in an attack that utilizes {\tt iframes}
-in the way we described in Section~\ref{sec:attacks}.
-\noindent WebJail~\cite{VDDPJ11}, and {\sc soma}~\cite{OWVS08}
-are two frameworks that can actually detect such an attack (Point {\sc
-  ub}). To achieve this, {\sc soma} requires site administrators to
-specify legitimate, external domains for sending or receiving
-information in order to approve interactions between them and the
-protected web site. As a result, {\sc soma} can also detect {\sc csrf}
-attacks. WebJail contains the functionality of third-party scripts by
-introducing a web component integrator that restricts the access that
-these scripts may have to either the data or the functionality of
-other components.
-
-Policy enforcement mechanisms that detect {\sc csrf}
-attacks are usually implemented in the form of a
-server-side proxy (Point {\sc s}t{\sc b})
-interposed on the client-server communication and modifying
-it. NoForge~\cite{JKK06a}
-parses the {\sc html} server responses
-and adds a token to every {\sc url} referring to this
-server. Then it associates the token with the cookie
-representing the session {\sc id} for the application.
-When a request is received, the mechanism checks
-if the request contains the token related
-to the session {\sc id}. A disadvantage of NoForge
-is that {\sc html} that is dynamically created within
-the browser will not include the token.
-Thus, sites that create their {\sc html} on the client
-will remain vulnerable. In addition, it does not
-support cross-origin requests.
-j{\sc csrf}~\cite{PS11} has a similar
-functionality and meanwhile addresses the above problems.
-Finally, CsFire~\cite{DDHPJ10}
-examines cross-domain interactions, to design a
-cross-domain policy on the client's side (Point {\sc ub}).
-The policy is based on the concept of a relaxed
-same-origin policy that allows communication between
-sub-domains of the same registered domain.
-
-Most of the aforementioned frameworks involve
-several deployment issues since they
-require significant source modifications by the
-developers on the server-side in order to
-introduce the policies.
-
-\subsubsection{Instruction Set Randomization (ISR)}
-
-{\sc isr} is a method that has been applied to counter different kinds
-of application attacks~\cite{K09b,KKP03}. The main idea behind it is
-to separate code from data by randomizing the legitimate code's
-execution environment. In this way, the malicious code injected by the
-attackers who do not know the randomization algorithm will not get
-executed.
-
-{\sc sql}rand~\cite{BK04} implements {\sc isr} to detect {\sc
-  sql} injection attacks. It allows programmers to create {\sc sql}
-statements using randomized instructions instead of standard keywords.
-The modified queries are reconstructed at runtime using the same key
-used for randomization, which is inaccessible to the malicious user.
-{\sc sql}rand is one of the few mechanisms that detect {\sc sql}
-injection attacks on the database level (Point i{\sc db}).
-
-In the case of {\sc xss} attacks that are based on JavaScript or {\sc
-  html}, consider a {\sc xor} function that encodes all source of a
-web page on the server-side and then, on the client-side, the web
-browser decodes the source by applying the same function again either
-in a proxy at the server-side (Point {\sc s}t{\sc b}) or in the browser
-(Point {\sc ub}). Variations of this approach include
-Noncespaces~\cite{GC09} and x{\sc js}~\cite{APKLM10}, which
-randomize the instruction set of {\sc html} and JavaScript
-respectively. Contrary to x{\sc js}, in Noncespaces administrators
-must set specific policies in a manner similar to a firewall
-configuration language. {\sc sm}ask~\cite{JB07} is another
-framework that was inspired by {\sc isr}. To detect {\sc xss}
-attacks it searches for {\sc html} and
-JavaScript keywords within the application's legitimate code. This is
-done before the processing of an {\sc http} request. When it finds one
-it adds a token to it. This results to a ``code mask.'' Then, before
-sending the resulting {\sc html} data to the web user, the framework
-searches the data for illegal code by using the same keywords (Point
-{\sc s}t{\sc b}). Since all legitimate code has been ``masked,'' the injected
-code can be identified. The pre- and post-processing of the code,
-though, may add a significant overhead to the application.
-Unfortunately, the authors of {\sc sm}ask did not provide measurements
-regarding the computational performance of the tool (see
-Table~\ref{tab:comp}).
-
-{\sc isr} is a deterministic approach that can be applied to detect
-different attacks in an efficient manner. However, Sovarel et
-al.~\cite{SEP05} have investigated thoroughly the effectiveness of
-{\sc isr} and showed that a malicious user may be able to circumvent
-it by determining the randomization key. Their results indicate
-that doing {\sc isr} in a way that provides a certain degree of
-security against a motivated attacker is more difficult than
-previously thought. Furthermore, developers who wish to use such
-mechanisms must follow good coding practices and never show a
-randomized code statement in any case (i.e., an exception error)
-because in this way they will reveal the encoding key.
-
-Even though the above implementations impose a low computational
-overhead, they impose a deployment infrastructure overhead. In particular, in
-{\sc sql}rand requires the integration of a proxy within the database
-server, while Noncespaces and x{\sc js} require modifications on both
-the server and the client.
-
-\begin{table*}
+\begin{table*}[t]
+  \renewcommand{\baselinestretch}{1.12}
     \caption{Comparison summary of mechanisms developed to counter application attacks based on code injection.}
     \label{tab:comp}
 \centering
@@ -1026,22 +780,296 @@ the server and the client.
     \end{tabular}}
     \begin{tablenotes}
   \begin{footnotesize}
-        \item[1] {\sc na} (Not Available) means that a requirement is not mentioned in the paper.
+        \item[1] {\sc na} (Not Available) indicates that a requirement is not mentioned in the paper.
   {\sc nq} (Not Quantified) indicates that a requirement is mentioned in the\newline publication
-  but it is not quantified.
-      \item[2] Quadruples contain numbers given for True Positives
+  but is not quantified.
+      \item[2] Tuples contain numbers given for True Positives
         ({\sc TP}), True Negatives ({\sc tn}), False Positives ({\sc
-          fp}) and False Negatives ({\sc fn}). For every quadruple\newline there is a corresponding suffix that indicates whether the testbed was
-  based on: a) real-world applications known to be vulnerable ({\it r}), b) synthetic\newline benchmarks ({\it s}), c) both ({\it a}).
-  If no testing has taken place we add a question mark ({\bf ?}).
-    \item[3] Regarding the computational overhead we show if it is applied to the server ({\sc s}) or the client ({\sc c}). 
+          fp}) and False Negatives ({\sc fn}). For every tuple\newline there is a corresponding suffix that indicates whether the testbed was
+  based on: real-world applications known to be vulnerable ({\it r}),
+  synthetic\newline benchmarks ({\it s}), or both ({\it a}).
+  A question mark ({\bf ?}) denotes that no test results are reported.
+    \item[3] Whether the overhead is incurred on the server ({\sc s}) or the client ({\sc c}). 
     \item[4] {\it i} stands for injection.
-    \item[5] The numbers of this quadruple involve requests.
+    \item[5] The numbers in this particular case involve requests.
   \end{footnotesize}
     \end{tablenotes}
     \end{small}
     \end{threeparttable}
 \end{table*}
+
+
+We categorize and analyze a large set of defenses developed to detect
+and prevent
+the attacks described in Sections~\ref{sec:attacks} and~\ref{sec:model}.
+We perform our analysis across
+the dimensions discussed in the previous section,
+except from availability, which we treat
+separately in Section~\ref{sec:discussion}.
+Due to the immense number of published works in the area, we only consider
+defenses that have been proposed in publications cited more than
+20 times according to Google Scholar.
+We also include some recent works that have been
+presented in top security conferences, even though they have been
+cited less than twenty times, so that recent research is not penalized.
+
+Figure~\ref{fig:defenses} presents a taxonomy of 
+web application defenses against injection attacks.
+We can identify three broad categories:
+{\it etiological}, {\it symptomatic}, and {\it hybrid}.
+The etiological category involves mechanisms designed to
+block attacks based on their causes and origins~\cite{JL75,L81}. 
+The symptomatic category incorporates a variety of schemes that
+inspect the behavior of applications and detect attacks based on
+their undesirable symptoms~\cite{D76,A00}.
+Hybrid mechanisms borrow characteristics from both
+categories. Table~\ref{tab:comp} lists the specific mechanisms we consider
+in this work, grouped according to the subcategories shown in
+Figure~\ref{fig:defenses}, and for each mechanism
+provides the following information:
+
+\begin{enumerate}
+\item Number of citations of the corresponding publication(s).
+\item Accuracy and computational overhead measurements.
+\item Types of attacks handled.
+\end{enumerate}
+
+\noindent
+Recall that the point of operation for each mechanism is provided
+in the caption of Figure~\ref{fig:attacks}.
+
+\subsection{Etiological}
+\label{sec:prot}
+
+There are three main categories of etiological approaches used to protect web
+applications against injection attacks:
+\emph{Parse-Tree Validation},
+\emph{Policy Enforcement}, and
+\emph{Instruction Set Randomization (ISR)}.
+
+\subsubsection{Parse-Tree Validation}
+\label{sec:tree}
+
+The key idea behind parse-tree validation is to compare the tree
+representation of the abstract syntactic structure of the source code
+that is about to be executed with the one that was originally
+intended. If the trees diverge, the application is probably under
+attack.
+
+For domain-specific language code injection attacks, mechanisms check 
+the query before the inclusion of user input with the one
+resulting after the inclusion of user input.
+Two mechanisms that implement this approach for protection against {\sc SQL}
+injection attacks,
+{\sc sqlg}uard~\cite{BWS05} and
+{\sc sql}check~\cite{SW06}, are quite similar
+and detect the attack before a query reaches the
+database (Point {\sc dbal}).
+Contrary to {\sc sqlg}uard,
+% mikepo: if others exist, cite them
+%and other mechanisms,
+{\sc sql}check has been
+extensively tested in terms of accuracy,
+as can be seen in Table~\ref{tab:comp}.
+A disadvantage of these mechanisms is that the
+application must be modified in every code fragment
+that sends an {\sc sql} query to the database for execution.
+
+Parse-tree validation is an effective approach
+for the detection of {\sc dsl} code injection attacks,
+especially as implemented in {\sc sql}check.
+This is not however the case
+for mechanisms that borrow elements from
+this approach and examine the syntax trees
+of scripts to detect JavaScript-driven {\sc xss} attacks,
+as we will see in Section~\ref{sec:hybrid}.
+
+\subsubsection{Policy Enforcement}
+\label{sec:policy}
+
+This approach is used to prevent {\sc xss} and {\sc csrf} attacks. When
+using a framework that implements policy enforcement, developers must
+define specific security policies on the server side. Policies can be
+expressed through JavaScript extensions, pattern matching, or
+syntax-specific settings. The policies are then enforced either in the user's
+browser at runtime, or on a server-side proxy that intercepts server
+responses.
+
+Noxes~\cite{KKVJ06,KJKV09} is the only
+framework that partially allows
+users to specify policies for the prevention of {\sc xss} attacks.
+The key idea behind Noxes is to parse
+the {\sc html} response that reaches the browser and
+find static {\sc url} references. Then, based on
+a set of policies, Noxes allows or blocks
+any generated requests (Point {\sc ub}). Such policies
+can also be provided by the server (i.e., ``never
+follow a link that leads to the malicious.com
+web site''). The main issue with Noxes is that
+{\sc url}s can be dynamically assembled by scripts,
+which may lead to false alarms.
+
+Some frameworks define policies based on information and
+features provided by the Document Object Model ({\sc dom}) of a web
+page. Specifically, developers must place all legitimate scripts
+inside {\sc html} elements like {\tt div}. The web browser (Point {\sc
+  ub}) parses the {\sc dom} tree and executes scripts only when they
+are contained in such elements. All other scripts are treated
+according to the policies defined on the server. Frameworks that
+support this functionality include {\sc beep}~\cite{TNH07} and {\sc
+  dsi}~\cite{NSS06}. The main problem with these mechanisms is that
+they do not examine the script's location inside the web document.
+Attackers can take advantage of this fact to perform mimicry attacks~\cite{WS02}.
+Specifically, they can execute legitimate scripts, but not as intended
+by the original design of the developers. This is extensively
+described by Athanasopoulos et al.~\cite{APKLM10}, who also describe
+another recent variation of JavaScript injection attacks, known as
+return-to-JavaScript attacks, which can be used to bypass the above
+mechanisms.
+
+Another policy enforcement approach introduces
+policies directly either in {\sc html} or JavaScript code
+to confine their behavior. BrowserShield~\cite{RDWDE07}
+acts as a proxy on the server side (Point {\sc s}t{\sc b}) to
+parse the {\sc html} of server responses and identify
+scripts. Then, it rewrites them into safe equivalents
+and protects the web user from exploits
+that are based on reported browser vulnerabilities.
+ConScript~\cite{ML10}, CoreScript~\cite{YCIS07},
+and the framework by Phung et al.~\cite{PSC09}
+extend JavaScript with new primitive functions that
+provide safe methods to protect potentially vulnerable
+JavaScript functions. In both cases, policy enforcement takes
+place at client side, in the JavaScript engine of the browser (Point {\sc ub}).
+In this way, {\sc xxs} attacks that take advantage
+of functions such as {\tt write} and {\tt eval}, which are
+used to assemble innocuous-looking parts into harmful
+strings,\footnote{The infamous Sammy worm that
+infected MySpace in 2005~\cite{SP07,ELX07}
+utilized the {\tt eval} function to assemble a
+malicious script.} would fail.
+
+An issue regarding the above frameworks
+involves features like script inclusion
+and {\tt iframe} tags. Even though they allow developers
+to decide if they will disable them or not,
+this is impractical because such features are quite popular and widely used.
+If developers choose to use them, these frameworks cannot
+define policies that restrict the behavior of third-party
+scripts introduced by such features. Thus, they would
+be vulnerable to attacks that use {\tt iframes}
+in the way described in Section~\ref{sec:attacks}.
+WebJail~\cite{VDDPJ11}, and {\sc soma}~\cite{OWVS08}
+are two frameworks that can actually detect such attacks (Point {\sc
+  ub}). To achieve this, {\sc soma} requires site administrators to
+specify legitimate, external domains for sending or receiving
+information in order to approve interactions between them and the
+protected web site. As a result, {\sc soma} can also detect {\sc csrf}
+attacks. WebJail contains the functionality of third-party scripts by
+introducing a web component integrator that restricts the access that
+these scripts may have to either the data or the functionality of
+other components.
+
+Policy enforcement mechanisms that detect {\sc csrf}
+attacks are usually implemented in the form of a
+server-side proxy (Point {\sc s}t{\sc b})
+interposed at the client-server communication path.
+NoForge~\cite{JKK06a}
+parses the {\sc html} server responses
+and adds a token to every {\sc url} referring to that particular
+server. Then, it associates the token with the cookie
+representing the session {\sc id} for the application.
+When a request is received, the mechanism checks
+if the request contains the token related
+to the session {\sc id}. A disadvantage of NoForge
+is that  dynamically created {\sc html} within
+the browser will not include the token.
+Thus, sites that create part of their {\sc html} code at client side
+will remain vulnerable. In addition, it does not
+support cross-origin requests.
+The above problems ar addressed by j{\sc csrf}~\cite{PS11},
+which shares similar functionality.
+Finally, CsFire~\cite{DDHPJ10}
+examines cross-domain interactions to design a
+cross-domain policy at the client side (Point {\sc ub}).
+The policy is based on the concept of a relaxed
+same-origin policy that allows communication between
+sub-domains of the same registered domain.
+
+Most of the above frameworks involve
+several deployment hurdles, as they
+require significant source code modifications by the
+developers on the server side to introduce and enforce the applied policies.
+
+\subsubsection{Instruction Set Randomization (ISR)}
+
+{\sc isr} is a method that has been applied to counter different kinds
+of application attacks~\cite{K09b}, and was originally applied for the
+prevention of binary code injection attacks~\cite{KKP03, isr03forrest}.
+The main idea behind {\sc isr} is
+to change the representation of code
+based on a randomly chosen transformation,
+and randomizing the execution environment accordingly.
+In this way, any malicious code injected as part of untrusted input data,
+by attackers who do not know the randomization algorithm,
+will not be executed.
+
+{\sc sql}rand~\cite{BK04} applies the concept of {\sc isr} for the prevention
+of {\sc sql} injection attacks. It allows programmers to create {\sc sql}
+statements using randomized instructions instead of standard keywords.
+The modified queries are reconstructed at runtime using the same key
+used for randomization, which is inaccessible to a malicious user.
+{\sc sql}rand is one of the few mechanisms that prevent {\sc sql}
+injection attacks at the database level (Point i{\sc db}).
+
+The same concept can be applied for protection against
+{\sc xss} attacks that inject JavaScript or {\sc html} code.
+Initially, the trusted code of a web page can be transformed
+to a random representation using a simple function such as {\sc xor}.
+Before being sent to the client (Point {\sc s}t{\sc b}),
+or being processed by the browser (Point {\sc ub}),
+the legitimate code is transformed back to its original form,
+while any additional injected code will be transformed into junk code.
+Variations of this approach include
+Noncespaces~\cite{GC09} and x{\sc js}~\cite{APKLM10}, which
+randomize the instruction set of {\sc html} and JavaScript,
+respectively. Contrary to x{\sc js}, in Noncespaces administrators
+must set specific policies in a manner similar to a firewall
+configuration language. {\sc sm}ask~\cite{JB07} is another
+framework that was inspired by {\sc isr}. To detect {\sc xss}
+attacks, it searches for {\sc html} and
+JavaScript keywords within the application's legitimate code. This is
+done before the processing of any {\sc http} request. When a keyword is found,
+it adds a token to it, resulting in a ``code mask.'' Then, before
+sending the resulting {\sc html} data to the user, the framework
+searches the data for illegal code using the same keywords (Point
+{\sc s}t{\sc b}). Since all legitimate code has been ``masked,'' the injected
+code can be identified. The need for 
+pre-processing and post-processing the code,
+however, may add a significant overhead to the application.
+Unfortunately, the authors of {\sc sm}ask did not provide measurements
+regarding the runtime overhead of the tool (see
+Table~\ref{tab:comp}).
+
+{\sc isr} is a deterministic approach that can be applied to prevent
+different attacks in an effective manner. However, Sovarel et
+al.~\cite{SEP05} have investigated thoroughly the effectiveness of
+{\sc isr} and showed that a malicious user may be able to circumvent
+it by determining the randomization key. Their results indicate
+that applying {\sc isr} in a way that provides a certain degree of
+security against a motivated attacker is more difficult than
+previously thought. Furthermore, developers who wish to use such
+mechanisms must follow good coding practices and make sure that
+randomized code statement are never leaked
+(e.g., as part of an exception error),
+as this may be used to reveal the encoding key.
+
+Even though the above implementations impose a low computational
+overhead, they require significant deployment effort. In particular,
+{\sc sql}rand requires the integration of a proxy within the database
+server, while Noncespaces and x{\sc js} require modifications on both
+the server and the client.
+
 
 \subsection{Symptomatic}
 
@@ -1392,21 +1420,6 @@ dimensions we identified in Section~\ref{sec:dimensions}.
 
 \subsection{Accuracy}
 
-\begin{figure}
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.47]{defect-percentages.png}
-\end{center}
-\caption{\label{fig:defect_sources}Pie chart showing the sources
-that the used to find vulnerabilities to test
-their mechanisms. We also provide which source was used
-in which publication:
-{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
-{\it Bugtraq}~\cite{PB05,KKVJ06,JEP08},
-{\sc xss}ed.com~\cite{NSS06,APKLM10},
-ha.ckers.org~\cite{TNH07,PSC09,LV09},
-Microsoft~\cite{RDWDE07}.}
-\end{figure}
 
 Table~\ref{tab:comp} indicates that the authors of 3 out of 34 (8.8\%)
 publications provided complete quadruples of {\sc tp}, {\sc tn}, 
@@ -1449,6 +1462,22 @@ and which, in the figure's caption, authors referred
 to which source. In numerous occassions authors performed tests based
 on the same applications. For example, 12 mechanisms were tested on a
 vulnerable version of {\sc phpbb}.\footnote{https://www.phpbb.com/}
+
+\begin{figure}[t]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.47]{defect-percentages.png}
+\end{center}
+\caption{\label{fig:defect_sources}Pie chart showing the sources
+that the used to find vulnerabilities to test
+their mechanisms. We also provide which source was used
+in which publication:
+{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
+{\it Bugtraq}~\cite{PB05,KKVJ06,JEP08},
+{\sc xss}ed.com~\cite{NSS06,APKLM10},
+ha.ckers.org~\cite{TNH07,PSC09,LV09},
+Microsoft~\cite{RDWDE07}.}
+\end{figure}
 
 There are also authors that took a different approach.
 For instance, during their initial tests,
