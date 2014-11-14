@@ -99,7 +99,7 @@ Testing, Cross-Site Scripting.
 
 \IEEEpeerreviewmaketitle
 
-\section{Introduction Remarks}
+\section{Introduction}
 
 Web application attacks may involve security misconfigurations, broken
 authentication and session management, or other issues. Some of the
@@ -215,19 +215,19 @@ Section~\ref{sec:lessons-learned} highlights
 some lessons learned from our observations
 and Section~\ref{sec:conclusion} concludes the paper.
 
-\section{Source Code Injection on Web Applications}
+\section{Source Code Injection Attacks\\in Web Applications}
 \label{sec:attacks}
 
-The basic problem behind the most dangerous
+The main vulnerability behind the most dangerous
 web application attacks involves
 the absence of input validation. By taking advantage of
 this, attackers can inject their code into
-applications to perform malicious tasks. Such
-an exploit can have different forms depending on the
+applications to perform malicious tasks. Exploits
+of this kind can have different forms depending on the
 execution context of the application and the location
 of the programming flaw that leads to the attack.
 
-Bratus et al.~\cite{BLSPS11} portray the issue in a generic fashion:
+Bratus et al.~\cite{BLSPS11} portray the issue in a more generic way:
 {\it ``unexpected (and unexpectedly powerful) computational models
   inside targeted systems, which turn a part of the target into a
   so-called `weird machine' programmable by the attacker via crafted
@@ -240,44 +240,45 @@ theory.
 \begin{figure}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.47]{attack-tree-uml.pdf}
+\includegraphics[width=\columnwidth]{attack-tree-uml.pdf}
 \end{center}
-\caption{\label{fig:taxonomy}A taxonomy of source
-code injection attacks.}
+\caption{\label{fig:taxonomy}A taxonomy of dynamic and domain-specific
+language code injection attacks against web applications.}
 \end{figure}
 
 Code injection attacks can be divided into two categories. The first
-involves binary code and the second source code. An
-extensive survey on binary code injection attacks can be found
-in reference~\cite{LC03}. Specific advances in exploiting such vulnerabilities
-(i.e., ``heap smashing,'' ``arc injection,'' and others) have already
-been presented~\cite{PB04} and the countermeasures used to detect such
-defects have already been surveyed~\cite{YJP12} (many of them are also
-included in a book:~\cite{DKZ12}---Section 13.8). In the present work
-we do not include binary code injection, focusing instead on defenses
-that protect applications against attacks based on the
-source code injection category.
+involves binary code and the second higher-level language code. An
+extensive survey on binary code injection attacks was conducted by
+Lhee and Chapin~\cite{LC03}. Advances in memory corruption vulnerability
+exploitation have been studied extensively~\cite{PB04, SPWS13}
+and countermeasures to such attacks
+have already been surveyed~\cite{YJP12}\cite[Sec. 13.8]{DKZ12}.
+In this work
+we do not consider binary code injection, focusing instead on defenses
+that protect web applications against attacks based on the
+injection of higher level language code.
 
 Figure~\ref{fig:taxonomy} presents a taxonomy of source
-code injection attacks. Such attacks may involve source code, either of a
+code injection attacks against web applications.
+Such attacks may involve high-level language code, written in either a
 {\it Domain Specific Language} ({\sc dsl}) or a {\it Dynamic Language}.
-For both categories, we provide examples that will be used
-throughout the whole paper.
+In the following, we briefly discuss examples from both categories
+that will be used throughout the paper.
 
-Application attacks that involve {\sc dsl}s constitute an important
-subset of the code injection problem, as {\sc dsl}s like {\sc sql} and
+Injection attacks that involve {\sc dsl}s constitute an important
+subset of the code injection problem, as {\sc dsl}s such as {\sc sql} and
 {\sc xml} play an significant role in the development of both web and
 mobile applications. For example, many applications have interfaces
-where a user enters input to interact with the application's data,
+through which a user enters input to interact with the application,
 thereby interacting with the underlying database. This input can
 become part of an {\sc sql} query and get executed on the target
-database. A code injection attack that exploits the vulnerabilities of
-these interfaces by taking advantage of input validation issues like
-incorrectly passed parameters or incorrect type handling is called an
-{\sc sql} injection attack~\cite{CERT02,MS09,HVO06,SW06}.
+database. Code injection attacks that exploit vulnerabilities in database
+interfaces by taking advantage of input validation issues, such as
+incorrectly passed parameters or incorrect type handling, are called
+{\sc sql} injection attacks~\cite{CERT02,MS09,HVO06,SW06}.
 Consider a trivial example that takes advantage of incorrectly
-filtered quotation characters. In an application that
-will send the password for a forgetful user via email by executing the
+filtered quotation characters in an application that
+sends a temporary password for a forgetful user via email by executing the
 following query:
 
 \bgroup \lstset{language=SQL}
@@ -289,30 +290,30 @@ SELECT password from userdata WHERE id = 'Alice'
 \egroup
 
 \noindent
-If an attacker, inputs the string {\tt anything' OR 'x'='x}, he or
-she could could obtain the administrator's password by email.
-Savvy programmers could use a language's libraries, like {\sc php}'s
-{\tt mysql\_real\_escape\_string()} to detect malformed input; or they
-could use prepared {\sc sql} statements, instead of statement
+Attackers that would input the string {\tt anything' OR 'x'='x},
+could obtain the administrator's password by email.
+Savvy programmers can use certain API functions, such as {\sc php}'s
+{\tt mysql\_real\_escape\_string()} to detect malformed input, or
+better use prepared {\sc sql} statements, instead of statement
 templates. Unfortunately,
 the increasing number of {\sc sql} injection attacks
 suggest that programmers are not always that careful.
-By using similar techniques malicious users can perform other exploits based on
-{\sc dsl}s like {\sc xp}ath~\cite{SW06,CDL07,MKS09},
+Using similar techniques, malicious users can mount other exploits based on
+{\sc dsl}s such as {\sc xp}ath~\cite{SW06,CDL07,MKS09},
 {\sc xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. With this kind of
 attacks, a malicious user can view sensitive information, destroy or
 modify protected data, or even crash the entire application.
 
 {\sc html} is another {\sc dsl} that can be used for malicious purposes
-when an application does not properly handle user supplied data. Based
-on this vulnerability an attacker can supply valid {\sc html},
+when an application does not properly handle user-supplied data. Based
+on this vulnerability attackers can supply valid {\sc html},
 typically via a parameter value, and inject their own content into the
 page. {\sc html} injection is mainly associated with {\sc xss}
 attacks~\cite{BJM08,LZRL09}. However, it can also be used as a
-vehicle for an {\sc csrf} attack in the following manner:
+vehicle for cross-site request forgery attacks in the following manner:
 Consider a vulnerable bulletin board system where {\tt img} tags are not checked.
-A malicious user could embed a {\sc csrf} request within {\tt img}
-tags in the following manner:
+A malicious user could embed a {\sc csrf} request within an {\tt img}
+tag in the following manner:
 
 \bgroup \lstset{language=HTML}
 \begin{small}
@@ -325,14 +326,14 @@ tags in the following manner:
 
 \noindent
 When the page with this injected code is accessed by an administrator,
-the attacker (with {\sc id} 13) will gain administrative privileges
+the attacker (with {\sc id} 13) will gain administrative privileges,
 while the administrator will have no immediate indication that there
 has been an attack.
 
 A recent class of code injection attacks involve dynamic languages
-like JavaScript and {\sc php}~\cite{SFVM09,EWKK09,SMS13}.
+such as JavaScript and {\sc php}~\cite{SFVM09,SMS13}.
 A simple example of a {\sc php} injection attack is an input string
-that is fed into an {\tt eval()} function call, e.g., in {\sc php}:
+that is fed into an {\tt eval()} function call, e.g.:
 
 \bgroup \lstset{language=PHP}
 \begin{small}
@@ -346,32 +347,32 @@ eval('$variable = ' . $input . ';')
 
 \noindent
 The user may pass into the {\tt value} parameter code that will
-execute in the server. Hence, if an attacker provides as
-input the following string: {\tt 10 ; system(''touch foo'');}
-then a file will be created on the server; it is easy
-to imagine more detrimental instances.
+be executed on the server. Hence, if an attacker provides as
+input the following string: {\tt 10 ; system("touch foo");}
+then a file will be created on the server---it is easy
+to imagine more detrimental scenarios.
 
-JavaScript injection attacks, make up a large subset of dynamic
-language-driven attacks. Such attacks are manifested when a web
+JavaScript injection attacks make up a large subset of dynamic
+language code injection attacks. Such attacks are enabled when a web
 application accepts and redisplays data of uncertain origin without
-appropriate validation and filtering. Based on this flaw, an attacker
+proper validation and filtering. Based on this flaw, an attacker
 can manage to inject a script in the JavaScript engine of a browser
 and alter its execution flow~\cite{ELX07}. For instance,
-consider a web page (foo.net) that prints the value
+consider a web page that prints the value
 of a query parameter ({\tt query}) from the
-page's {\sc url} in the web page's content
-without escaping the value. A malicious user
+page's {\sc url} as part of the page's content
+without escaping the value. Attackers
 can take advantage of this and inject an {\tt iframe} tag
-into the page to steal the user's cookie and
+into the page to steal a user's cookie and
 send it via an image request to a web site
-that he or she controls (malicious.com).
+under their control (malicious.com).
 This could be achieved by including the following
 link to the malicious web site (or send it via phishing
 email) and induce the user to click on it:
 
 \lstset{language=VBScript, basicstyle=\footnotesize\ttfamily,}
 \begin{lstlisting}
-http://foo.net/vulnerable.html?query=
+http://example.com/vulnerable.html?query=
 <iframe src="javascript:document.body.innerHTML=+
 '<img src=\"http://malicious.com/?c=
 '+encodeURIComponent(document.cookie)+'\">'">
