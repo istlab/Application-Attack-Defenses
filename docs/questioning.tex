@@ -218,7 +218,7 @@ and Section~\ref{sec:conclusion} concludes the paper.
 \section{Code Injection Attacks\\in Web Applications}
 \label{sec:attacks}
 
-Lack of input validation is a major vulnerability behind dangerouw web
+Lack of input validation is a major vulnerability behind dangerous web
 application attacks. By taking advantage of this, attackers can inject
 their code into applications to perform malicious tasks. Exploits of
 this kind can have different forms depending on the execution context
@@ -260,7 +260,8 @@ Figure~\ref{fig:taxonomy} presents a taxonomy of source
 code injection attacks against web applications.
 Such attacks may involve high-level language code, written in either a
 {\it Domain Specific Language} ({\sc dsl}) or a {\it Dynamic Language}.
-To illustrate, we briefly discuss examples from both categories.
+To illustrate, we briefly discuss examples from both categories
+that will be used throughout the paper.
 
 Injection attacks that involve {\sc dsl}s constitute an important
 subset of the code injection problem, as {\sc dsl}s such as
@@ -761,16 +762,15 @@ Noxes~\cite{KKVJ06,KJKV09} is the only
 framework that partially allows the web
 user to specify policies to prevent {\sc xss} attacks.
 The key idea behind Noxes is to parse
-the {\sc html} that reaches the browser to
+the {\sc html} response that reaches the browser to
 find static {\sc url} references. Then, based on
 a set of policies Noxes allows or blocks
 the request (Point {\sc ub}). Such policies
 can be also provided by the server (i.e., ``never
 follow a link that leads to the malicious.com
 web site''). The main issue with Noxes is that
-it does not deal with JavaScript-driven {\sc xss}
-attacks, which currently make for the most popular
-{\sc xss} attack vector.
+{\sc url}s can be dynamically assembled by scripts
+which may lead to false alarms.
 
 A number of the frameworks define policies based on information and
 features provided by the Document Object Model ({\sc dom}) of a web
