@@ -292,7 +292,7 @@ SELECT password from userdata WHERE id = 'Alice'
 \noindent
 Attackers that would input the string {\tt anything' OR 'x'='x},
 could obtain the administrator's password by email.
-Savvy programmers can use certain API functions, such as {\sc php}'s
+Savvy programmers can use certain {\sc api} functions, such as {\sc php}'s
 {\tt mysql\_real\_escape\_string()} to detect malformed input, or
 better use prepared {\sc sql} statements, instead of statement
 templates. Unfortunately,
@@ -353,12 +353,18 @@ then a file will be created on the server---it is easy
 to imagine more detrimental scenarios.
 
 JavaScript injection attacks make up a large subset of dynamic
-language code injection attacks. Such attacks are enabled when a web
-application accepts and redisplays data of uncertain origin without
+language code injection attacks. Such attacks are enabled when
+a web application accepts
+and redisplays data of uncertain origin without
 proper validation and filtering. Based on this flaw, an attacker
 can manage to inject a script in the JavaScript engine of a browser
-and alter its execution flow~\cite{ELX07}. For instance,
-consider a web page that prints the value
+and alter its execution flow~\cite{ELX07}.
+JavaScript injection attacks are considered a critical issue
+in web application security mainly because it is associated with
+major vulnerabilities such as {\sc xss} attacks~\cite{SG07} and
+Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}.
+A typical {\sc xss} example that involves JavaScript injection
+is the following: consider a web page that prints the value
 of a query parameter ({\tt query}) from the
 page's {\sc url} as part of the page's content
 without escaping the value. Attackers
@@ -380,10 +386,7 @@ http://example.com/vulnerable.html?query=
 \end{lstlisting}
 
 \noindent
-JavaScript injection is considered a critical issue in web application security
-mainly because it is associated with major vulnerabilities such as
-{\sc xss} attacks~\cite{SG07} and Cross-Channel Scripting
-({\sc xcs}) attacks~\cite{W10,BBB09}. In many cases {\sc xss} attacks
+Note that in many cases {\sc xss} attacks
 involve the injection of both {\sc html} and JavaScript code.
 
 \section{Exploitation Model}
@@ -455,10 +458,10 @@ while the numbers next to attack labels denote the
 sequence of steps for a particular attack.
 Points where different types of defenses
 detect or prevent attacks are marked with an `X' symbol:
-{\sc ub} (browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08},
+{\sc ub} (at the browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08},
 {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
-{\sc e}i{\sc q} (embedded in a query en route to the database):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
-Point i{\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
+{\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
+i{\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
 
 \section{Analysis Dimensions}
@@ -645,8 +648,8 @@ in Figure~\ref{fig:attacks}:
 \item At the user's browser (Point {\sc ub}).
 \item En route from the server to the user's browser---in most cases
 within a proxy (Point {\sc s}t{\sc b}).
-\item Embedded in a query, but before it reaches the server's database
-  (Point {\sc e}i{\sc q}).
+\item At the database abstraction layer, before it reaches the server's database
+  (Point {\sc dbal}).
 \item After the malicious code reaches the server's database
   (Point i{\sc db}).
 \end{itemize}
@@ -725,7 +728,7 @@ Both mechanisms that implement this approach,
 {\sc sqlg}uard~\cite{BWS05} and
 {\sc sql}check~\cite{SW06} are pretty similar
 and detect the attack before a query reaches the
-database (Point {\sc e}i{\sc q}).
+database (Point {\sc dbal}).
 Contrary to {\sc sqlg}uard and other
 mechanisms, {\sc sql}check has been
 extensively tested in terms of accuracy
@@ -1049,10 +1052,10 @@ For example, {\it Haldar et al.}~\cite{HCF05} have implemented
 their scheme for the Java Virtual Machine ({\sc jvm})
 where they instrument various classes. When a
 tainted string is used as an argument to a sink method
-an exception is raised (Point {\sc e}i{\sc q}).
+an exception is raised (Point {\sc dbal}).
 
 It is possible to apply further checks when it is established that
-tainted data have reached a sink (Point {\sc e}i{\sc q}). {\it Xu et
+tainted data have reached a sink (Point {\sc dbal}). {\it Xu et
   al.}~\cite{XBS06} track taint information at the level of bytes in
 memory. To distinguish between legitimate and malicious uses of
 untrusted data that reach a sink, they search the data for suspicious
@@ -1060,7 +1063,7 @@ symbols by using regular expressions. {\sc csse}~\cite{PB05}
 associates tainted data with specific metadata. Such metadata include
 the origins of tainted data, its propagation within the application,
 and others. When tainted data reaches a sink, {\sc csse} performs
-syntactic checks based on the aforementioned metadata (Point {\sc e}i{\sc q}).
+syntactic checks based on the aforementioned metadata (Point {\sc dbal}).
 {\it {\sc php} Aspis}~\cite{PMP11} works in a similar way. To obtain
 metadata, it takes advantage of the  {\sc php} array data structure.
 Finally, {\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
@@ -1119,9 +1122,9 @@ signatures generated during a training phase are based on features
 that can depend either on the code statement or on its execution
 environment (i.e., the stack trace). Then, at runtime, the mechanism
 checks all statements for compliance and can block code statements
-containing injected elements (Point {\sc e}i{\sc q}). {\sc
+containing injected elements (Point {\sc dbal}). {\sc
   amnesia}~\cite{HO05,HO06,HO05b} is a tool that also detects {\sc
-  sql} injection attacks (Point {\sc e}i{\sc q}) by associating a query model
+  sql} injection attacks (Point {\sc dbal}) by associating a query model
 with the location of every {\sc sql} statement within the application.
 Then, at runtime, it monitors the application's execution to detect
 when {\sc sql} statements diverge from the expected model.
@@ -1263,7 +1266,7 @@ Specifically, it maps all characters introduced by the application to
 a shadow character set. This set does not contain any characters
 coming from the tainted input. Then, the scheme creates the tree of
 the query that is about to be executed and compares it with the parsed
-tree of the ``shadow'' (Point {\sc e}i{\sc q}). If the trees are not
+tree of the ``shadow'' (Point {\sc dbal}). If the trees are not
 equal the application is probably under attack. Note that Diglossia
 can be bypassed in the same way as other taint tracking
 approaches~\cite{NBR14}.

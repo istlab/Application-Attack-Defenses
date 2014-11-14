@@ -1046,7 +1046,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{293.56700060413459, 414.44624994949663}, {22, 32}}</string>
+			<string>{{293.56700060413459, 414.44624988342491}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1302,8 +1302,8 @@
 			<integer>3066</integer>
 			<key>Points</key>
 			<array>
-				<string>{320.34535499861465, 430.33834255386273}</string>
-				<string>{224.70302376835431, 430.99243578927792}</string>
+				<string>{320.34535499861465, 430.33834250215546}</string>
+				<string>{224.70302376835431, 430.99243565049898}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1368,8 +1368,8 @@
 			<integer>3064</integer>
 			<key>Points</key>
 			<array>
-				<string>{223.65608084520167, 262.88508101249175}</string>
-				<string>{452.77041508143151, 262.04942063546935}</string>
+				<string>{223.65608084520167, 262.88508101248982}</string>
+				<string>{452.77041508143151, 262.04942063545985}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1497,8 +1497,8 @@
 			<integer>3030</integer>
 			<key>Points</key>
 			<array>
-				<string>{167.66040637505287, 168.51477704080375}</string>
-				<string>{167.09212477015677, 235.59225732198919}</string>
+				<string>{167.66040582921079, 168.51477704080375}</string>
+				<string>{167.09212296177213, 235.59225732198919}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1770,7 +1770,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{654.44015502929688, 111.01479498291013}, {167, 64.5}}</string>
+			<string>{{652.84393310546875, 110.38011486816401}, {167, 64.5}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1913,7 +1913,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{655.17872619628906, 124.63010565185544}, {149, 12}}</string>
+			<string>{{655.17872619628906, 124.63010565185544}, {159, 12}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1960,7 +1960,7 @@
 \f0\b\fs20 \cf0 DSL
 \b0 :
 \b  
-\b0 DSL code injection attack}</string>
+\b0 DSL injection (SQLi, XPath)}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -2707,7 +2707,7 @@ UB}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{565.9813232421875, 394}, {35, 24}}</string>
+			<string>{{565.4813232421875, 394}, {38, 24}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -2752,7 +2752,7 @@ UB}</string>
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
 \f0\b\fs20 \cf0 Point\
-EiQ}</string>
+DBAL}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -3542,7 +3542,7 @@ injection Attack / CSRF}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-11-14 00:41:59 +0000</string>
+	<string>2014-11-14 07:08:17 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
@@ -3630,7 +3630,7 @@ injection Attack / CSRF}</string>
 		<key>SidebarWidth</key>
 		<integer>230</integer>
 		<key>VisibleRegion</key>
-		<string>{{-46, 48}, {1210, 735}}</string>
+		<string>{{-38, 48}, {1196, 735}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>
