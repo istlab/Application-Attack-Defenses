@@ -488,68 +488,70 @@ i{\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
 
 Research on application attack defense mechanisms has a dual
 character. First, a defense mechanism may be important, and therefore
-publishable, because it shows that an attack can be detected in a
-reliable manner. Secondly, a defense mechanism may be important not
+publishable, because it shows that an attack can be detected or prevented in a
+reliable manner. Second, a defense mechanism may be important not
 just as a research contribution, but as a practical tool, if it can be
-put to use by administrators and users to shield their applications
-and services against the detected attacks.
+used by administrators and users to shield their applications
+and services against the supported attacks.
 
-The detection of attacks in a reliable manner can be analyzed using
+The detection and prevention of attacks
+in a reliable manner can be analyzed using
 criteria common with other research fields:
 \begin{itemize}
-\item Statistical measures that show how reliable the detection really
+\item Statistical measurements that show how reliable the detection really
   is.
-\item Research practices that promote replication of the findings.
+\item Research practices that promote replication and validation
+of the findings.
 \end{itemize}
 
-Whether a reliable attack defense mechanism has value in a practical
+Whether a reliable defense mechanism has value in a practical
 setting rests on a different set of criteria:
 \begin{itemize}
 \item What are the overheads imposed by the mechanism?
 \item How easy is it to deploy and use the mechanism?
 \item How robust is it against ways to circumvent it?
-\item At which point of the computation flow does it detect an attack?
+\item At which point throughout the system does it block an attack?
 \end{itemize}
 
-The first two criteria are \emph{Accuracy} and
-\emph{Availability}. The other four criteria are \emph{Computational
+The first two criteria correspond to \emph{Accuracy} and
+\emph{Availability}. The other four criteria correspond to \emph{Computational
   Performance}, \emph{Ease of Use}, \emph{Security}, and
 \emph{Point of Detection}.
 
 \subsection{Accuracy}
 \label{ssec:diagnostic-performance}
 
-Web application attack defense mechanisms
-must demonstrate the presence of an attack. This, however, does not
-make an application attack defense mechanism immediately useful. A
-detection mechanism must be reliable. The accuracy of a detection
-mechanism is gauged with the following
-metrics~\cite{TDR2013,GFDLS06,A00}:
+Web application defenses 
+crucially have to capture the presence of an attack. This, however, does not
+make a defense mechanism immediately useful. A
+detection mechanism must also be reliable.
+Detection accuracy is gauged with the following
+metrics~\cite{TDR2013,GFDLS06,A00}.
 \begin{itemize}
-\item {\bf Sensitivity}, the probability that an attack will be
+\item {\bf Sensitivity}: the probability that an attack will be
   caught.
-\item {\bf Specificity}, the probability that a normal interaction
-  will test negative.
-\item {\bf Positive Predictive Value} ({\sc ppv}), the probability that a
+\item {\bf Specificity}: the probability that a normal interaction
+  will not be flagged.
+\item {\bf Positive Predictive Value} ({\sc ppv}): the probability that a
   reported attack is a real attack. It is the conditional probability
   that an event is an attack if the detection mechanism flags it as
   such. 
-\item {\bf Negative Predictive Value} ({\sc npv}), the probability that if
-  nothing is reported no attack has taken place. It is the conditional
+\item {\bf Negative Predictive Value} ({\sc npv}): the probability that if
+  nothing is reported, no attack has taken place. It is the conditional
   probability that an event is not an attack given that the detection
   mechanism flags it as normal.
 \end{itemize}
 
 We will focus on sensitivity and specificity; we will come back to
 \textsc{ppv} and \textsc{npv} in Section~\ref{sec:lessons-learned}.
-Sensitivity and specifity are defined using the following~\cite{linn2004}:
+Sensitivity and specifity are defined as follows~\cite{linn2004}.
 \begin{itemize}
-\item True Positive (\textsc{tp}), an attack that raises an alarm.
-\item True Negative (\textsc{tn}), an event that is not an attack and that does
+\item True Positive (\textsc{tp}): an attack that raises an alarm.
+\item True Negative (\textsc{tn}): an event that is not an attack and that does
   not raise an alarm.
-\item False Positive (\textsc{fp}), an event that although it is not an attack
+\item False Positive (\textsc{fp}): an event that although it is not an attack,
   raises an alarm.
-\item False Negative (\textsc{fn}), an event that although is as attack does
+\item False Negative (\textsc{fn}): an event that although is an attack, does
   not raise an alarm.
 \end{itemize}
 
@@ -570,7 +572,7 @@ With these we can calculate:
 
 \noindent
 Sensitivity and specificity can be calculated based on test
-data alone. To calculate the sensitivity, we run the test on a
+data alone. To calculate sensitivity, we run the test on a
 controlled environment where we allow only attack events to reach the
 system. The ratio of reported attacks over all attacks will give us
 the sensitivity. Similarly, to calculate the specificity we can run
@@ -580,7 +582,7 @@ events will give us the specificity.
 
 \subsection{Availability}
 
-To ensure replicability of research results the source code
+To ensure reproducibility of research results, the source code
 implementing a detection mechanism should be available to researchers.
 Ideally the code should be available under an open source license, so
 that it is easy to modify and improve an approach; even when this is
@@ -596,19 +598,20 @@ to lead the way.
  
 \subsection{Computational Performance}
 
-All detection mechanisms extract a cost for their use, as they
-introduce some amount of extra computation on an existing application.
-The extra computation depends on the exact defense mechanism. For
-example, it may be some form of run-time checking, or some form of
-obfuscation. Also depending on the mechanism, the cost may be incurred
-on different places: it may take place on a server, affecting service
-performance, or it may take place on the client, or both. The
+Detection mechanisms may impose a cost due to their use, as they
+typically introduce some amount of extra computation on a existing applications.
+The overhead depends on the specifics of each mechanism. For
+example, it may be due to some form of run-time checking, or some form of
+obfuscation. Also, depending on the approach, the cost may be incurred
+on different places: it may affect a server
+(e.g., its memory or CPU usage, processing throughput, or response latency),
+it may affect the client, or both. The
 usefulness of a detection mechanism depends therefore on the
-computational cost it requires and on where it extracts it, as
-different overheads may be acceptable server-side than client-side.
+computational cost it requires and on where it imposes it, as
+different overheads may be acceptable at the server side than the client side.
 
 What kind of numbers is reported matters as well. Reporting absolute
-measurements gives little information on the real overhead, unless
+measurements gives little information on the actual overhead, unless
 separate measurements are given for the system under study with and
 without the proposed mechanism. Percentage measurements are normally
 better. 
@@ -617,31 +620,32 @@ Performance evaluation rests on strong foundations~\cite{jain1991} and
 is a vibrant field as new technologies emerge~\cite{gregg2014}.
 Although it may not be necessary to conduct a comprehensive
 performance evaluation analysis for a defense mechanism, the more
-performance evaluation is provided for a mechanism the more valuable
+evaluation results are provided for a mechanism, the more valuable
 it becomes as a practical approach.
 
 \subsection{Ease of Use}
 \label{sec:deployment}
 
 The value of a detection mechanism as a practical tool depends on how
-it is to deploy it in a production setting. That is independent of the
+easy it is to deploy it in a production setting. This aspect is
+orthogonal to the
 value of a detection mechanism as a research finding. Devising a
-mechanism to detect a hitherto undetectable class of attacks may be an
+technique to detect a hitherto undetectable class of attacks may be an
 excellent research contribution that merits publication; it may also
 be heavily cited and open the road to other, practical
 implementations in the future. 
 
-Ease of use depends on the deployment protocol required for the
-mechanism. The detection mechanism may be deployed server-side or
-client-side, or both. Deployments on just the server or the client are
+Ease of use depends on the deployment process required for the
+mechanism. The detection mechanism may be deployed at either or both
+the server and the client side. Deployments on just the server or the client are
 easier to handle than deployments on both of them. The mechanism may
-be an add-on, or plugin, on existing software, client or server, or it
+be an add-on or plugin for existing software, client or server, or it
 may be tightly integrated with existing software, requiring rebuilding
 from source code.
 
-No matter where it gets installed, the means of installation influences
-ease of use. A detection mechanism that comes with ready to install
-packages will trump a detection mechanism that only exists in the form
+No matter where it is installed, the means of installation influences
+ease of use. A detection mechanism that is available as a ready-to-install
+package will trump others that only exist in the form
 of source code. 
 
 \subsection{Security}
@@ -650,12 +654,12 @@ Defenders and attackers are often caught in a cat-and-mouse game,
 where countermeasures are bypassed by canny attacks, which are caught
 by more sophisticated countermeasures, yet again bypassed by cannier
 attacks, and so on. We use security to refer to the ability of a
-detection mechanism to resist being circumvented. 
+detection mechanism to resist circumvention. 
 
 A mechanism that has not been bypassed is not eternally secure, as it
 is possible that a bypass method will be discovered in the future. We
-examine the various approaches on the knowledge we have to this date,
-that is, whether there are known ways to bypass the detection
+examine the various approaches based on the knowledge we have so far,
+that is, whether there are any known ways to bypass the detection
 mechanism today.
 
 \subsection{Point of Detection}
