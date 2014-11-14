@@ -82,7 +82,7 @@
   countermeasures that have been proposed over the past 15 years.
 
   In this paper, we systematize the existing knowledge on
-  various defense mechanisms against source code injection attacks by proposing
+  various defense mechanisms against code injection attacks by proposing
   a model that highlights the key weaknesses that enable these attacks,
   and provides a common perspective for the different defenses.
   We then categorize and analyze the various defense mechanisms that
@@ -139,7 +139,7 @@ In this paper, we explore how different attacks associated with
 the exploitation of untrusted input validation errors can be modeled 
 under a {\it common perspective}. To that end, we propose an exploitation
 model which highlights that most of the steps needed to mount
-different types of source code injection attacks are
+different types of code injection attacks are
 common.\footnote{Note that we do not consider lower-level attacks based on
 the exploitation of memory corruption vulnerabilities and the injection
 of binary code---see Section~\ref{sec:attacks}.} This is validated by the fact that
@@ -194,7 +194,7 @@ The main contributions of this paper are the following:
 
 \begin{enumerate}
 \item We provide a unified exploitation model for different types of
-  web application attacks based on source code injection.
+  web application attacks based on code injection.
 \item We categorize and analyze proposed defenses using a set of
   criteria that are important for building protection mechanisms.
 \item We provide insight based on the issues that arise from our analysis. We put
@@ -204,7 +204,7 @@ The main contributions of this paper are the following:
 
 The rest of the paper is organized as follows.
 Section~\ref{sec:attacks} provides some insights on
-source code injection attacks and
+code injection attacks and
 Section~\ref{sec:model} presents our proposed model.
 Section~\ref{sec:dimensions} introduces the dimensions
 across which we analyze the various defenses.
@@ -215,7 +215,7 @@ Section~\ref{sec:lessons-learned} highlights
 some lessons learned from our observations
 and Section~\ref{sec:conclusion} concludes the paper.
 
-\section{Source Code Injection Attacks\\in Web Applications}
+\section{Code Injection Attacks\\in Web Applications}
 \label{sec:attacks}
 
 Lack of input validation is a major vulnerability behind dangerouw web
@@ -245,7 +245,7 @@ language code injection attacks against web applications.}
 \end{figure}
 
 Code injection attacks can be divided in two categories. The first
-involves binary code and the second source language code. An
+involves binary code and the second higher-level language code. An
 extensive survey on binary code injection attacks was conducted by
 Lhee and Chapin~\cite{LC03}. Advances in memory corruption vulnerability
 exploitation have been studied extensively~\cite{PB04, SPWS13}
@@ -254,7 +254,7 @@ have already been surveyed~\cite{YJP12}\cite[Sec. 13.8]{DKZ12}.
 In this work
 we do not consider binary code injection, focusing instead on defenses
 that protect web applications against attacks based on the
-injection of source code.
+injection of higher-level language code.
 
 Figure~\ref{fig:taxonomy} presents a taxonomy of source
 code injection attacks against web applications.
@@ -263,7 +263,7 @@ Such attacks may involve high-level language code, written in either a
 To illustrate, we briefly discuss examples from both categories.
 
 Injection attacks that involve {\sc dsl}s constitute an important
-subset of the source code injection problem, as {\sc dsl}s such as
+subset of the code injection problem, as {\sc dsl}s such as
 {\sc sql} and {\sc xml} play a significant role in the development of
 both web and mobile applications. For example, many applications have
 interfaces through which a user enters input to interact with the
@@ -389,7 +389,7 @@ involve the injection of both {\sc html} and JavaScript code.
 \label{sec:model}
 
 We provide a step-by-step exploitation model to understand the process
-of carrying out source code injection attacks against web
+of carrying out code injection attacks against web
 applications. Figure~\ref{fig:attacks} presents the required steps for
 different classes of injection attacks. Links between steps are
 labeled with the different attacks that use that path, while the
@@ -664,7 +664,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 \includegraphics[scale=0.65]{defenses.pdf}
 \end{center}
 \caption{\label{fig:defenses}The basic categories of countermeasures
-against web application attacks based on source code
+against web application attacks based on code
 injection. For each approach we provide the references
 that present corresponding mechanisms:
 {\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08},
@@ -685,8 +685,7 @@ presented in top security conferences, even though they have been
 cited less than twenty times, so that recent research is not penalized.
 
 Figure~\ref{fig:defenses} presents a taxonomy of the
-defenses that protect web applications against
-source code injection attacks based on.
+defenses that protect web applications against code injection attacks.
 We can identify three approaches:
 {\it etiological}, {\it symptomatic}, and {\it hybrid}.
 The etiological category involves mechanisms designed to
@@ -711,7 +710,7 @@ caption of Figure~\ref{fig:attacks}.
 \label{sec:prot}
 
 There exist three basic etiological approaches used to protect web
-applications from source code injection attacks.
+applications from code injection attacks.
 
 \subsubsection{Parse-Tree Validation}
 \label{sec:tree}
@@ -758,7 +757,7 @@ specific settings. Then the policies are enforced either in the user's
 browser at runtime or in a server-side proxy that intercepts server
 responses.
 
-{\it Noxes}~\cite{KKVJ06,KJKV09} is the only
+Noxes~\cite{KKVJ06,KJKV09} is the only
 framework that partially allows the web
 user to specify policies to prevent {\sc xss} attacks.
 The key idea behind Noxes is to parse
@@ -786,21 +785,21 @@ they do not examine the script's location inside the web document.
 Based on this fact, attackers can perform mimicry attacks~\cite{WS02}.
 Specifically, they can execute legitimate scripts, but not as intended
 by the original design of the developers. This is extensively
-described by {\it Athanasopoulos et al.}~\cite{APKLM10}, who also describe
+described by Athanasopoulos et al.~\cite{APKLM10}, who also describe
 another recent variation of JavaScript injection attacks, known as
 return-to-JavaScript attacks that can be used to bypass the above
 mechanisms.
 
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
-to confine their behavior. {\it BrowserShield}~\cite{RDWDE07}
+to confine their behavior. BrowserShield~\cite{RDWDE07}
 acts as a proxy on the server side (Point {\sc s}t{\sc b}) to
 parse the {\sc html} of server responses and identify
 scripts. Then, it rewrites them into safe equivalents
 and protects the web user from exploits
 that are based on reported browser vulnerabilities.
-{\it ConScript}~\cite{ML10}, {\it CoreScript}~\cite{YCIS07}
-and the framework by {\it Phung et al.}~\cite{PSC09}
+ConScript~\cite{ML10}, CoreScript~\cite{YCIS07}
+and the framework by Phung et al.~\cite{PSC09}
 extend JavaScript with new primitive functions that
 provide safe methods to protect potentially vulnerable
 JavaScript functions. In both cases, policy enforcement takes
@@ -823,7 +822,7 @@ define policies that restrict the behavior of third-party
 scripts introduced by such features. Thus, they would
 be vulnerable in an attack that utilizes {\tt iframes}
 in the way we described in Section~\ref{sec:attacks}.
-\noindent {\it WebJail}~\cite{VDDPJ11}, and {\sc soma}~\cite{OWVS08}
+\noindent WebJail~\cite{VDDPJ11}, and {\sc soma}~\cite{OWVS08}
 are two frameworks that can actually detect such an attack (Point {\sc
   ub}). To achieve this, {\sc soma} requires site administrators to
 specify legitimate, external domains for sending or receiving
@@ -838,7 +837,7 @@ Policy enforcement mechanisms that detect {\sc csrf}
 attacks are usually implemented in the form of a
 server-side proxy (Point {\sc s}t{\sc b})
 interposed on the client-server communication and modifying
-it. {\it NoForge}~\cite{JKK06a}
+it. NoForge~\cite{JKK06a}
 parses the {\sc html} server responses
 and adds a token to every {\sc url} referring to this
 server. Then it associates the token with the cookie
@@ -851,9 +850,9 @@ the browser will not include the token.
 Thus, sites that create their {\sc html} on the client
 will remain vulnerable. In addition, it does not
 support cross-origin requests.
-{\it j{\sc csrf}}~\cite{PS11} has a similar
+j{\sc csrf}~\cite{PS11} has a similar
 functionality and meanwhile addresses the above problems.
-Finally, {\it CsFire}~\cite{DDHPJ10}
+Finally, CsFire~\cite{DDHPJ10}
 examines cross-domain interactions, to design a
 cross-domain policy on the client's side (Point {\sc ub}).
 The policy is based on the concept of a relaxed
@@ -875,7 +874,7 @@ execution environment. In this way, the malicious code injected by the
 attackers who do not know the randomization algorithm will not get
 executed.
 
-{\it {\sc sql}rand}~\cite{BK04} implements {\sc isr} to detect {\sc
+{\sc sql}rand~\cite{BK04} implements {\sc isr} to detect {\sc
   sql} injection attacks. It allows programmers to create {\sc sql}
 statements using randomized instructions instead of standard keywords.
 The modified queries are reconstructed at runtime using the same key
@@ -888,12 +887,12 @@ In the case of {\sc xss} attacks that are based on JavaScript or {\sc
 web page on the server-side and then, on the client-side, the web
 browser decodes the source by applying the same function again either
 in a proxy at the server-side (Point {\sc s}t{\sc b}) or in the browser
-(Point {\sc ub}). Variations of this approach include {\it
-  Noncespaces}~\cite{GC09} and {\it x{\sc js}}~\cite{APKLM10}, which
+(Point {\sc ub}). Variations of this approach include
+Noncespaces~\cite{GC09} and x{\sc js}~\cite{APKLM10}, which
 randomize the instruction set of {\sc html} and JavaScript
 respectively. Contrary to x{\sc js}, in Noncespaces administrators
 must set specific policies in a manner similar to a firewall
-configuration language. {\it {\sc sm}ask}~\cite{JB07} is another
+configuration language. {\sc sm}ask~\cite{JB07} is another
 framework that was inspired by {\sc isr}. To detect {\sc xss}
 attacks it searches for {\sc html} and
 JavaScript keywords within the application's legitimate code. This is
@@ -909,8 +908,8 @@ regarding the computational performance of the tool (see
 Table~\ref{tab:comp}).
 
 {\sc isr} is a deterministic approach that can be applied to detect
-different attacks in an efficient manner. However, {\it Sovarel et
-al.}~\cite{SEP05} have investigated thoroughly the effectiveness of
+different attacks in an efficient manner. However, Sovarel et
+al.~\cite{SEP05} have investigated thoroughly the effectiveness of
 {\sc isr} and showed that a malicious user may be able to circumvent
 it by determining the randomization key. Their results indicate
 that doing {\sc isr} in a way that provides a certain degree of
@@ -927,7 +926,7 @@ server, while Noncespaces and x{\sc js} require modifications on both
 the server and the client.
 
 \begin{table*}
-    \caption{Comparison summary of mechanisms developed to counter application attacks based on source code injection.}
+    \caption{Comparison summary of mechanisms developed to counter application attacks based on code injection.}
     \label{tab:comp}
 \centering
     \begin{threeparttable}
@@ -944,24 +943,24 @@ the server and the client.
   & \bf{Computational Overhead}\tnote{3} & \\
     \thickhline
   \multirow{2}{*}{Parse-Tree Validation}
-  &   {\it {\sc sqlg}uard}~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql}i \\
-  &   {\it {\sc sqlc}heck}~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql}i \\
+  &   {\sc sqlg}uard~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql}i \\
+  &   {\sc sqlc}heck~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql}i \\
   \hline
   \multirow{12}{*}{Policy Enforcement}
-  &   {\it {\sc dsi}}~\cite{NSS06} & 135 & (5268,{\sc nq},{\sc nq},85)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
-  &   {\it NoForge}~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
-  &   {\it Noxes}~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
+  &   {\sc dsi}~\cite{NSS06} & 135 & (5268,{\sc nq},{\sc nq},85)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
+  &   NoForge~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
+  &   Noxes~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
   % &   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
-  &   {\it {\sc beep}}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% ({\sc c}) & {\sc xss} \\
-  &   {\it BrowserShield}~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% ({\sc s}) & {\sc xss} \\ 
-  &   {\it CoreScript}~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} ({\sc c}) & {\sc xss} \\
+  &   {\sc beep}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% ({\sc c}) & {\sc xss} \\
+  &   BrowserShield~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% ({\sc s}) & {\sc xss} \\ 
+  &   CoreScript~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} ({\sc c}) & {\sc xss} \\
   &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% ({\sc c}) & {\sc xss}, {\sc csrf} \\
   % &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
-  &   {\it Phung et al.}~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
-  &   {\it ConScript}~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
-  &   {\it CsFire}~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
-  &   {\it j{\sc csrf}}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & 25 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
+  &   Phung et al.~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
+  &   ConScript~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
+  &   CsFire~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
+  &   j{\sc csrf}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
+  &   WebJail~\cite{VDDPJ11} & 25 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
   % \hline
@@ -971,36 +970,36 @@ the server and the client.
   % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
   \hline
   \multirow{4}{*}{{\sc isr}}
-  &   {\it {\sc sql}rand}~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql}i \\
-  &   {\it {\sc sm}ask}~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   {\it Noncespaces}~\cite{GC09} & 109 & (6,{\sc na},{\sc na},0)\_r &  2\% ({\sc s}) & {\sc xss} \\ 
-  &   {\it x{\sc js}}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} ({\sc c}) & {\sc xss} \\
+  &   {\sc sql}rand~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql}i \\
+  &   {\sc sm}ask~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql}i, {\sc xss} \\
+  &   Noncespaces~\cite{GC09} & 109 & (6,{\sc na},{\sc na},0)\_r &  2\% ({\sc s}) & {\sc xss} \\ 
+  &   x{\sc js}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} ({\sc c}) & {\sc xss} \\
   \thickhline
   \thickhline
   \multirow{7}{*}{Taint Tracking}
-  &   {\it Haldar et al.}~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
+  &   Haldar et al.~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
   &   {\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% ({\sc s}) & {\sc sql}i, {\sc xp}athi, {\sc xss} \\
   % &   {\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
-  &   {\it Xu et al.}~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
-  &   {\it {\sc wasc}}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   {\it Vogt et al.}~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc c}) & {\sc xss} \\
-  &   {\it {\sc php} Aspis}~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql}i and {\sc php}i, {\sc xss} \\
-  &   {\it Stock et al.}~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
+  &   Xu et al.~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
+  &   {\sc wasc}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
+  &   Vogt et al.~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc c}) & {\sc xss} \\
+  &   {\sc php} Aspis~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql}i and {\sc php}i, {\sc xss} \\
+  &   Stock et al.~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
   \hline 
   \multirow{6}{*}{Training}
-  &   {\it {\sc didafit}}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql}i \\
-  &   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql}i \\ 
-  &   {\it libAnomaly}~\cite{VMV05} & 226 & (9,15987,60,0)\_r & 0.20--1{\it ms} per query ({\sc s}) & {\sc sql}i \\
-  &   {\it {\sc xssds}}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
-  &   {\it {\sc swap}}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261 {\it ms} ({\sc s}) & {\sc xss} \\ 
-  &   {\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql}i and {\sc xp}athi \\
+  &   {\sc didafit}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql}i \\
+  &   {\sc amnesia}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql}i \\ 
+  &   libAnomaly~\cite{VMV05} & 226 & (9,15987,60,0)\_r & 0.20--1{\it ms} per query ({\sc s}) & {\sc sql}i \\
+  &   {\sc xssds}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
+  &   {\sc swap}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261 {\it ms} ({\sc s}) & {\sc xss} \\ 
+  &   {\sc sd}river~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql}i and {\sc xp}athi \\
   % &   {\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
   \thickhline
   \thickhline
   \multirow{3}{*}{Hybrid}
-  &   {\it {\sc xss-guard}}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
-  &   {\it Blueprint}~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
-  &   {\it Diglossia}~\cite{SMS13} & 4 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
+  &   {\sc xss-guard}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
+  &   Blueprint~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
+  &   Diglossia~\cite{SMS13} & 4 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
   \thickhline
     \end{tabular}}
     \begin{tablenotes}
@@ -1049,15 +1048,15 @@ message.
 There are different implementations of this approach
 in terms of how the tainted data is marked and observed,
 and how attacks are detected.
-For example, {\it Haldar et al.}~\cite{HCF05} have implemented
+For example, Haldar et al.~\cite{HCF05} have implemented
 their scheme for the Java Virtual Machine ({\sc jvm})
 where they instrument various classes. When a
 tainted string is used as an argument to a sink method
 an exception is raised (Point {\sc dbal}).
 
 It is possible to apply further checks when it is established that
-tainted data have reached a sink (Point {\sc dbal}). {\it Xu et
-  al.}~\cite{XBS06} track taint information at the level of bytes in
+tainted data have reached a sink (Point {\sc dbal}).
+Xu et al.~\cite{XBS06} track taint information at the level of bytes in
 memory. To distinguish between legitimate and malicious uses of
 untrusted data that reach a sink, they search the data for suspicious
 symbols by using regular expressions. {\sc csse}~\cite{PB05}
@@ -1065,7 +1064,7 @@ associates tainted data with specific metadata. Such metadata include
 the origins of tainted data, its propagation within the application,
 and others. When tainted data reaches a sink, {\sc csse} performs
 syntactic checks based on the aforementioned metadata (Point {\sc dbal}).
-{\it {\sc php} Aspis}~\cite{PMP11} works in a similar way. To obtain
+{\sc php} Aspis~\cite{PMP11} works in a similar way. To obtain
 metadata, it takes advantage of the  {\sc php} array data structure.
 Finally, {\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
 if there are tainted data that contain scripts (Point {\sc s}t{\sc b}).
@@ -1075,7 +1074,7 @@ the majority of the above schemes. Furthermore, most of them are not
 easy to deploy since the majority of input vectors, string operations,
 and output vectors of the application must be instrumented.
 
-{\it Vogt et al.}~\cite{VFJKKV07} have developed a tainting scheme
+Vogt et al.~\cite{VFJKKV07} have developed a tainting scheme
 that follows a different approach. Contrary to the aforementioned
 schemes that operate on the server side, they track sensitive
 information on the client side (Point {\sc ub}). This is a form of
@@ -1083,7 +1082,7 @@ positive taint tracking, where taint data is considered to be
 legitimate. Their scheme detects JavaScript-driven {\sc xss} attacks
 by ensuring that a script can send sensitive user data only to the
 site from which it came from.
-{\it Stock et al.}~\cite{SLMS14} propose a scheme that also operates
+Stock et al.~\cite{SLMS14} propose a scheme that also operates
 in the browser (Point {\sc ub}). The scheme focuses on the detection of
 {\sc dom}-based {\sc xss} attacks. In such an attack, the malicious
 payload is executed as a result of the modification of the {\sc dom}
@@ -1110,14 +1109,14 @@ production.
 Training methods that detect {\sc dsl}-driven injection attacks
 generate and store valid code statements (i.e., {\sc sql} or {\sc
   xp}ath queries) in various forms, and detect attacks as outliers
-from the set of valid code statements. An early approach, {\it {\sc
-    didafit}}~\cite{LLW02} detects {\sc sql} injection (Point
+from the set of valid code statements. An early approach,
+{\sc didafit}~\cite{LLW02} detects {\sc sql} injection (Point
 {\sc sdb}) attacks by recording all database transactions
 stripped from user input. Subsequent
-refinements by {\it Valeur et al.}~\cite{VMV05} tagged each transaction with
+refinements by Valeur et al.~\cite{VMV05} tagged each transaction with
 the corresponding application as an extension of their anomaly
-detection framework called {\it libAnomaly}. {\it {\sc
-    sd}river}~\cite{MS09,MKS09,MKLS11} is a signature-based mechanism
+detection framework called libAnomaly.
+{\sc sd}river~\cite{MS09,MKS09,MKLS11} is a signature-based mechanism
 that prevents {\sc sql} and {\sc xp}ath injection attacks. The
 signatures generated during a training phase are based on features
 that can depend either on the code statement or on its execution
@@ -1131,7 +1130,7 @@ Then, at runtime, it monitors the application's execution to detect
 when {\sc sql} statements diverge from the expected model.
 
 Various countermeasures against {\sc xss} attacks follow a similar
-pattern. {\it {\sc swap}}~\cite{WPLKK09} creates a unique identifier
+pattern. {\sc swap}~\cite{WPLKK09} creates a unique identifier
 ({\it script {\sc id}}) for every legitimate script on the server.
 Then, a JavaScript detection component placed in a web proxy (Point
 {\sc s}t{\sc b}) searches for injected scripts with no corresponding {\sc id}
@@ -1139,14 +1138,14 @@ in the server's responses. If no injected scripts are found, the proxy
 forwards the request to the client. This mechanism is relatively
 inflexible since it does not support dynamic scripts. In addition it
 imposes a significant overhead (see Table~\ref{tab:comp}). The authors
-of {\it {\sc xssds}}~\cite{JEP08} have implemented a similar mechanism
+of {\sc xssds}~\cite{JEP08} have implemented a similar mechanism
 that also supports dynamic and external scripts. Specifically, during the
 training phase they build a list of all benign scripts. In the case of
 external scripts they keep a white list of all the valid domain names
 that contain scripts used by the application.
 
 Defenses based on training include some mechanisms that can be easily
-circumvented. For example, {\sc didafit} and {\it libAnomaly} do not
+circumvented. For example, {\sc didafit} and libAnomaly do not
 tag transactions with their corresponding call sites. This can lead
 easily to false negatives. For instance, recall the application
 mentioned in Section~\ref{sec:attacks}, which will send the password
@@ -1180,7 +1179,7 @@ id = 'admin'
 
 \noindent
 Even if the application's administrators have chosen to use
-either {\sc didafit} or {\it libAnomaly} as protection,
+either {\sc didafit} or libAnomaly as protection,
 an attacker could bypass them and obtain the
 administrator's password via email,
 by entering on the form the standard string:
@@ -1246,7 +1245,7 @@ images hosted on a web server that is maintained by him in order to
 retrieve the {\sc ip} addresses of the users that visit the vulnerable
 site.
 
-{\it Blueprint}~\cite{LV09} is a policy enforcement framework that
+Blueprint~\cite{LV09} is a policy enforcement framework that
 uses parsed trees to detect {\sc xss} attacks. To guarantee
 that untrusted content is not executed, Blueprint generates on the
 server-side a parsed tree from untrusted {\sc html} to ensure that it
@@ -1256,7 +1255,7 @@ where untrusted browser parsing behavior is ruled out.
 Blueprint is an efficient countermeasure but it imposes an
 overhead due to its extensive parsing (see Table~\ref{tab:comp}).
 
-{\it Diglossia}~\cite{SMS13} combines positive taint tracking together
+Diglossia~\cite{SMS13} combines positive taint tracking together
 with parse-tree validation. Diglossia was based on the theory of Ray
 and Ligatti~\cite{RL12b} (which we saw in Section~\ref{sec:attacks})
 to detect {\sc dsl} code injection attacks. In addition, it is
@@ -1289,24 +1288,24 @@ approaches~\cite{NBR14}.
   & \bf{Testbed} \\
     \thickhline
   \multirow{2}{*}{Parse-Tree Validation}
-  &   {\it {\sc sqlc}heck}~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc sqlg}uard}~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
+  &   {\sc sqlc}heck~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc sqlg}uard~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
   \hline
   \multirow{12}{*}{Policy Enforcement}
-  &   {\it {\sc dsi}}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it NoForge}~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
-  &   {\it Noxes}~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc dsi}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
+  &   NoForge~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
+  &   Noxes~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
   % &   {\it {\sc met}}~\cite{ELX07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc beep}}~\cite{TNH07} & \tick & \tick & \tick \\
-  &   {\it BrowserShield}~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it CoreScript}~\cite{YCIS07} & {\bf AO} & {\sc na} & {\sc na} \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc beep}~\cite{TNH07} & \tick & \tick & \tick \\
+  &   BrowserShield~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   CoreScript~\cite{YCIS07} & {\bf AO} & {\sc na} & {\sc na} \\
+  &   {\sc soma}~\cite{OWVS08} & {\sc na} & {\sc na} & {\sc na} \\
   % &   {\it Barth et al.}~\cite{BJM08} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Phung et al.}~\cite{PSC09} & \tick & \tick & \tick \\
-  &   {\it ConScript}~\cite{ML10} & {\bf AO} & {\sc na} & {\sc na} \\
-  &   {\it CsFire}~\cite{DDHPJ10} & \tick & {\sc na} & {\sc na} \\
-  &   {\it j{\sc csrf}}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it WebJail}~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
+  &   Phung et al.~\cite{PSC09} & \tick & \tick & \tick \\
+  &   ConScript~\cite{ML10} & {\bf AO} & {\sc na} & {\sc na} \\
+  &   CsFire~\cite{DDHPJ10} & \tick & {\sc na} & {\sc na} \\
+  &   j{\sc csrf}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
+  &   WebJail~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
     % &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
   % \hline
   % \hline 
@@ -1316,34 +1315,34 @@ approaches~\cite{NBR14}.
   % &   {\it TreeHouse}~\cite{IW12} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
   \multirow{4}{*}{{\sc isr}}
-  &   {\it {\sc sql}rand}~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc sm}ask}~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Noncespaces}~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it x{\sc js}}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc sql}rand~\cite{BK04} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc sm}ask~\cite{JB07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   Noncespaces~\cite{GC09} & {\sc na} & {\sc na} & {\sc na} \\
+  &   x{\sc js}~\cite{APKLM10} & {\sc na} & {\sc na} & {\sc na} \\
   \thickhline
   \thickhline
   \multirow{7}{*}{Taint Tracking}
-  &   {\it Haldar et al.}~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
+  &   Haldar et al.~\cite{HCF05}  & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc csse}~\cite{PB05} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Xu et al.}~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc wasc}}~\cite{NLC07} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Vogt et al.}~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc php} Aspis}~\cite{PMP11} & {\bf AO} & {\sc na} & {\bf AO} \\
-  &   {\it Stock et al.}~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
+  &   Xu et al.~\cite{XBS06}  & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc wasc}~\cite{NLC07} & {\sc na} & {\sc na} & {\sc na} \\
+  &   Vogt et al.~\cite{VFJKKV07}  & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc php} Aspis~\cite{PMP11} & {\bf AO} & {\sc na} & {\bf AO} \\
+  &   Stock et al.~\cite{SLMS14} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
   \multirow{6}{*}{Training}
-  &   {\it {\sc didafit}}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc amnesia}}~\cite{HO05,HO06,HO05b} & {\sc na} & {\bf AO} & {\sc na} \\
-  &   {\it libAnomaly}~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
-  &   {\it {\sc xssds}}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc swap}}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it {\sc sd}river}~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
+  &   {\sc didafit}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc amnesia}~\cite{HO05,HO06,HO05b} & {\sc na} & {\bf AO} & {\sc na} \\
+  &   libAnomaly~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
+  &   {\sc xssds}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc swap}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc sd}river~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
   \thickhline
   \thickhline
   \multirow{3}{*}{Hybrid}
-  &   {\it {\sc xss-guard}}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\it Blueprint}~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
-  &   {\it Diglossia}~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc xss-guard}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
+  &   Blueprint~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
+  &   Diglossia~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
   \thickhline
     \end{tabular}}
     \begin{tablenotes}
@@ -1418,7 +1417,7 @@ Regarding the subjects of tests, we see that 27 out of 34 mechanisms
 were tested on real-world applications known to be vulnerable. The
 vulnerabilities associated with these applications are enlisted in the
 following providers: the Common Vulnerabilities and Exposures ({\sc
-  cve}) database~\cite{cve}, the {\it Bugtraq} security
+  cve}) database~\cite{cve}, the Bugtraq security
 mailing list~\cite{bugtraq}, the {\sc xss}ed.com
 security bulletin provider~\cite{xssed}, Microsoft's security
 bulletin~\cite{microsoftBulletin} and the
@@ -1723,7 +1722,7 @@ have not been adopted.
 
 The deployment difficulties we have found with many mechanisms are not
 a reason not to adopt them, but they may hinder their widespread use.
-Since source code injection attacks are complex, it may be logical to
+Since code injection attacks are complex, it may be logical to
 expect that mechanisms to detect them would be complex too. The effort
 to install and use a tool should be weighed against the expected
 benefits. That is one more reason why it is important to report tool
@@ -1746,7 +1745,7 @@ challenges, and try to mitigate them.
 \label{sec:conclusion}
 
 Despite many approaches that have been developed,
-application attacks based on source code injection
+application attacks based on code injection
 have been consistently present for the last 15 years,
 and it appears that they will continue to be.
 Attackers seem to find new ways to introduce
