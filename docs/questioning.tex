@@ -308,7 +308,7 @@ data. Based on this vulnerability attackers can supply valid {\sc
 into the page. {\sc html} injection is mainly associated with {\sc
   xss} attacks~\cite{BJM08,LZRL09}. However, it can also be used as a
 vehicle for cross-site request forgery ({\sc csrf}) attacks in the
-following manner: Consider a vulnerable bulletin board system where
+following manner: Consider a bulletin board system where
 {\tt img} tags are not checked. A malicious user could embed a {\sc
   csrf} request within an {\tt img} tag in the following manner:
 
@@ -323,43 +323,23 @@ following manner: Consider a vulnerable bulletin board system where
 
 \noindent
 When the page with this injected code is accessed by an administrator,
-the attacker (with {\sc id} 13) will gain administrative privileges,
-while the administrator will have no immediate indication that there
-has been an attack.
+the attacker (with {\sc id} 13) will gain administrative privileges
+over the vulnerable.com web page,
+while the administrator of the bulletin board system
+will have no immediate indication that there has been an attack.
 
 A recent class of code injection attacks involve dynamic languages
 such as JavaScript and {\sc php}~\cite{SFVM09,SMS13}.
-A simple example of a {\sc php} injection attack is an input string
-that is fed into an {\tt eval()} function call, e.g.:
-
-\bgroup \lstset{language=PHP}
-\begin{small}
-\begin{lstlisting}
-$variable = $_GET['var']; 
-$input = $_GET['value'];
-eval('$variable = ' . $input . ';')
-\end{lstlisting}
-\end{small}
-\egroup
-
-\noindent
-The user may pass into the {\tt value} parameter code that will
-be executed on the server. Hence, if an attacker provides as
-input the following string: {\tt 10 ; system("touch foo");}
-then a file will be created on the server---it is easy
-to imagine more detrimental scenarios.
-
 JavaScript injection attacks make up a large subset of dynamic
-language code injection attacks. Such attacks are enabled when
-a web application accepts
+language code injection attacks and are considered a critical issue
+in web application security mainly because they are associated with
+major vulnerabilities such as {\sc xss} attacks~\cite{SG07} and
+Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}
+Such attacks are enabled when a web application accepts
 and redisplays data of uncertain origin without
 proper validation and filtering. Based on this flaw, an attacker
 can manage to inject a script in the JavaScript engine of a browser
 and alter its execution flow~\cite{ELX07}.
-JavaScript injection attacks are considered a critical issue
-in web application security mainly because it is associated with
-major vulnerabilities such as {\sc xss} attacks~\cite{SG07} and
-Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}.
 For a typical {\sc xss} example that involves JavaScript injection
 consider a web page that prints the value
 of a query parameter ({\tt query}) from the
@@ -385,6 +365,26 @@ http://example.com/vulnerable.html?query=
 \noindent
 Note that in many cases {\sc xss} attacks
 involve the injection of both {\sc html} and JavaScript code.
+
+A simple example of a {\sc php} injection attack is an input string
+that is fed into an {\tt eval()} function call, e.g.:
+
+\bgroup \lstset{language=PHP}
+\begin{small}
+\begin{lstlisting}
+$variable = $_GET['var']; 
+$input = $_GET['value'];
+eval('$variable = ' . $input . ';')
+\end{lstlisting}
+\end{small}
+\egroup
+
+\noindent
+The user may pass into the {\tt value} parameter code that will
+be executed on the server. Hence, if an attacker provides as
+input the following string: {\tt 10 ; system("touch foo");}
+then a file will be created on the server---it is easy
+to imagine more detrimental scenarios.
 
 \section{Exploitation Model}
 \label{sec:model}
@@ -443,23 +443,24 @@ actually sent back to the user as part of a future response.
 A common {\sc csrf} attack could involve just a
 {\sc url} containing a malicious {\sc http} request
 which in turn must be clicked by the user
-(via social engineering again).
-However, this technique does not involve code injection
-and it is not described in Figure~\ref{fig:attacks}.
-The {\sc csrf} attack illustrated here could
-involve an attacker that manages to inject
-{\sc html} code that contains a hidden request
-in the way we described in Section~\ref{sec:attacks}.
-This code will be stored in the database ({\sc csrf} 5)
+via social engineering again ({\sc csrf} 1).
+Note, that this case does not involve code injection
+and it never reaches the server that is vulnerable
+to code injection (Server 1).
+The {\sc i-csrf} attack involves an attacker
+that manages to inject {\sc html} code that contains
+a hidden request in the way we described in
+Section~\ref{sec:attacks}. This code will be stored
+in the database ({\sc i-csrf} 5)
 and then it will re-enter the application if
-a user visits a page ({\sc csrf} 6). When the
+a user visits a page ({\sc i-csrf} 6). When the
 content reaches the browser the functionality
 dictated by the malicious request will be performed. 
 
 \begin{figure*}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.61]{attacks-steps-newer.pdf}
+\includegraphics[scale=0.55]{attacks-steps-CSRF.pdf}
 \end{center}
 \caption{\label{fig:attacks}Attack model for dynamic and domain specific
 language code injection in web applications.
