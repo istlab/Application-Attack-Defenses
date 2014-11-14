@@ -422,8 +422,6 @@ a part of a value represented by a program variable. The target of the
 attack determines the route from now on. In an {\sc sql} injection
 attack the injected code becomes part of a query that
 finally reaches the database where it is executed.
-In the case of a {\sc csrf} attack the functionality dictated by
-the malicious response is performed.
 
 {\sc xss} attacks fall into two categories, {\it non-persistent} and
 {\it persistent}. Non-persistent {\sc xss} attacks take place when the
@@ -440,10 +438,19 @@ The injected code residing at server-side then re-enters the
 application's execution flow and becomes part of the content that is
 actually sent back to the user as part of a future response.
 
+In the case of a {\sc csrf} attack, consider a
+user who visits a page, where attackers have managed
+to inject {\sc html} code that contains a hidden
+request in the way we described in Section~\ref{sec:attacks}.
+If an authenticated user visits this web page, then the
+malicious request will reach the application ({\sc csrf} 2) and
+the functionality dictated by the malicious response will
+be performed.
+
 \begin{figure*}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.61]{attacks-steps-new.pdf}
+\includegraphics[scale=0.61]{attacks-steps-newer.pdf}
 \end{center}
 \caption{\label{fig:attacks}Attack model for dynamic and domain specific
 language code injection in web applications.
