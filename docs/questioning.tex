@@ -405,73 +405,81 @@ detect or prevent attacks are marked with an `X' symbol:
 \end{figure*}
 
 
-We provide a step-by-step exploitation model to understand the process
+We provide a step-by-step exploitation model to aid in understanding the process
 of carrying out code injection attacks against web
-applications. Figure~\ref{fig:attacks} presents the required steps for
-different classes of injection attacks. Links between steps are
+applications. Figure~\ref{fig:attacks} illustrates the required steps for
+different classes of injection attacks,
+such as SQL injection, XSS, and CSRF. Links between steps are
 labeled with the different attacks that use that path, while the
 numbers next to attack labels denote the sequence of steps for a
-particular attack. Most steps are common in all attacks. This is
-because they are based on similar attack vectors as we mentioned in
-the previous section. Large `X' marks on transitions indicate the
-points where defenses detect or prevent attacks.
+particular attack. Most steps are common in all attacks, as different attack
+types follow similar exploitation paths, as mentioned in
+the previous section. Large `X' marks on transitions correspond to the
+points where the defenses we consider in this work detect or prevent attacks.
 
-An attacker can initiate an injection attack through two different main routes.
+An attacker can initiate an injection attack through two main routes.
 One way is to use the browser of a victim as an attack
 vehicle, through which the code will be injected in the application.
-For example, the attacker could craft a malicious script into a {\sc
+For example, the attacker could embed a malicious script into a {\sc
   url} and then trick a user to click on it through social
 engineering, e.g., by sending a phishing email (transition {\sc p-xss} 1.1, {\sc
-  n-xss} 1.1). Alternatively, the attacker may be able
+  n-xss} 1.1, {\sc csrf} 1). Alternatively, the attacker may be able
 to inject directly the malicious code on the server through an {\sc http} request
-({\sc dsl} 1, {\sc p-xss} 1, {\sc n-xss} 1, {\sc csrf} 1). This would happen
+({\sc dsl} 1, {\sc p-xss} 1, {\sc n-xss} 1, {\sc i-csrf} 1). This would happen
 in a web application that accepts and processes user input
 without appropriate validation. An attacker could upload data
 containing a specially crafted script
 to steal the cookies of the visiting users ({\sc p-xss} 1, {\sc n-xss} 1),
-an {\tt img} tag including a malicious {\sc http} request ({\sc csrf}),
+an {\tt img} tag including a malicious {\sc http} request ({\sc csrf 1}, {\sc
+i-csrf 1}),
 or embed malicious
-{\sc sql} code to retrieve the password entries from a database ({\sc dsl} 1).
+{\sc sql} code to retrieve private data from a database ({\sc dsl} 1).
 %Recall the examples we provided in Section~\ref{sec:attacks}.
-Note that {\sc xss} attacks can start from both routes.
+Note that {\sc xss} and {\sc csrf} attacks can start from both routes.
 
 Once the injected code reaches the vulnerable application, it becomes
 a part of a value represented by a program variable. The target of the
-attack determines the route from now on. In an {\sc sql} injection
-attack the injected code becomes part of a query that
-finally reaches the database where it is executed.
+attack determines the route from that point and on. In an {\sc sql} injection
+attack, the injected code becomes part of a query that
+eventually reaches the database where it is executed.
 
-{\sc xss} attacks fall into two categories, {\it non-persistent} and
-{\it persistent}. Non-persistent {\sc xss} attacks take place when the
+Cross-site scripting attacks fall into two categories, {\it non-persistent}
+(also known as \emph{reflected}) {\sc xss}
+and {\it persistent} (also known as \emph{stored}) {\sc XSS}.
+Non-persistent {\sc xss} attacks take place when the
 data provided by a user is processed on-the-fly
-by server-side application logic and end up without proper sanitization
+by server-side application logic and ends up without proper sanitization
 into a dynamically generated response ({\sc p-xss} 7, {\sc n-xss} 2)
 that is eventually rendered by the user's browser.
 Thus, in a non-persistent {\sc xss} attack, the injected code
-is not saved on the server and immediately becomes part of the
-content that is sent back to a web user.
+is not saved on the server, but immediately becomes part of the
+content that is sent back to a user.
 In persistent {\sc xss} attacks, on the other hand,
 malicious code is permanently stored on the server ({\sc p-xss} 5).
-The injected code residing at server-side then re-enters the
+The injected code residing at server side then re-enters the
 application's execution flow and becomes part of the content that is
-actually sent back to the user as part of a future response.
+eventually sent to the user as part of a future response.
 
-A common {\sc csrf} attack could involve just a
-{\sc url} containing a malicious {\sc http} request
-which in turn must be clicked by the user
-via social engineering again ({\sc csrf} 1).
-Note, that this case does not involve code injection
-and it never reaches the server that is vulnerable
-to code injection (Server 1).
-The {\sc i-csrf} attack involves an attacker
-that manages to inject {\sc html} code that contains
-a hidden request in the way we described in
-Section~\ref{sec:attacks}. This code will be stored
+Cross-site request forgery attacks typically involve just a
+URL or page that contains a malicious request towards
+a site vulnerable to {\sc csrf}.
+An attacker can entice a victim to click on the URL or visit the page
+through social engineering ({\sc csrf} 1), which will the result in a malicious
+request towards the vulnerable site ({\sc csrf} 2}).
+Note that this scenario does not involve the injection of any code through the
+exploitation of some server-side vulnerability (as is the case with Server 1).
+On the other hand, {\sc csrf} is also possible through injection
+({\sc i-csrf}). In this attack, an attacker
+manages to inject {\sc html} code that contains
+a malicious {\sc csrf} request in the way we described in
+Section~\ref{sec:attacks}.
+This code will be stored
 in the database ({\sc i-csrf} 5)
-and then it will re-enter the application if
+and then it will re-enter the application when
 a user visits a page ({\sc i-csrf} 6). When the
-content reaches the browser the functionality
-dictated by the malicious request will be performed. 
+content reaches the browser, a malicious request will be generated
+towards the site that is vulnerable to {\sc csrf}.
+
 
 \section{Analysis Dimensions}
 \label{sec:dimensions}
