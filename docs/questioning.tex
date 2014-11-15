@@ -98,7 +98,7 @@
 \end{abstract}
 
 \begin{IEEEkeywords}
-Security and Protection, Web Application Security, Code injection Attacks,
+Protection Mechanisms, Web Application Security, Code injection Attacks,
 Testing, Cross-Site Scripting.
 \end{IEEEkeywords}
 
@@ -179,7 +179,7 @@ about the various protection categories and see how they compare
 to each other.
 
 There is already a survey on mitigating software vulnerabilities in
-general~\cite{SZ12}. The scope of that research is much broader that
+general~\cite{SZ12}. The scope of that research is much broader than
 ours and leaves out the majority of the approaches and mechanisms that
 we consider in this work. This is mainly because that work includes
 countermeasures that identify vulnerabilities using program analysis
@@ -272,7 +272,7 @@ subset of the code injection problem, as {\sc dsl}s such as
 both web and mobile applications. For example, many applications have
 interfaces through which a user enters input to interact with the
 application, thereby interacting with the underlying database. This
-input can become part of an {\sc sql} query and get executed on the
+input can become part of an {\sc sql} query and gets executed on the
 target database. Code injection attacks that exploit vulnerabilities
 in database interfaces by taking advantage of input validation issues,
 such as incorrectly passed parameters or incorrect type handling, are
@@ -289,7 +289,7 @@ SELECT password from userdata WHERE id = 'Alice'
 
 \noindent
 Attackers that would input the string {\tt anything' OR 'x'='x}
-thereby obtaining the administrator's password by email. Savvy
+would obtain the administrator's password by email. Savvy
 programmers can use certain {\sc api} functions, such as {\sc php}'s
 {\tt mysql\_real\_escape\_string()}, to detect malformed input, or,
 better, use prepared {\sc sql} statements instead of statement
@@ -305,7 +305,7 @@ or modify protected data, or even crash the entire application.
 purposes when an application does not properly handle user-supplied
 data. Based on this vulnerability attackers can supply valid {\sc
   html}, typically via a parameter value, and inject their own content
-into the page. {\sc html} injection is mainly associated with {\sc
+into the application's page. {\sc html} injection is mainly associated with {\sc
   xss} attacks~\cite{BJM08,LZRL09}. An {\sc xss} attack based on
 {\sc html} injection though, can also be used as a
 vehicle for a {\sc csrf} attack. Consider a bulletin board system where
