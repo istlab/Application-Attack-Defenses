@@ -516,7 +516,7 @@ crucially have to capture the presence of an attack. This, however, does not
 make a defense mechanism immediately useful. A
 detection mechanism must also be reliable.
 Detection accuracy is gauged with the following
-metrics~\cite{TDR2013,GFDLS06,A00}.
+metrics~\cite{TDR2013,GFDLS06,A00}:
 \begin{itemize}
 \item {\bf Sensitivity}: the probability that an attack will be
   caught.
@@ -535,7 +535,7 @@ metrics~\cite{TDR2013,GFDLS06,A00}.
 \noindent
 We will focus on sensitivity and specificity; we will come back to
 \textsc{ppv} and \textsc{npv} in Section~\ref{sec:lessons-learned}.
-Sensitivity and specifity are defined as follows~\cite{linn2004}.
+Sensitivity and specifity are defined as follows~\cite{linn2004}:
 \begin{itemize}
 \item True Positive (\textsc{tp}): an attack that raises an alarm.
 \item True Negative (\textsc{tn}): an event that is not an attack and that does
@@ -775,7 +775,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   {\sc nq} (Not Quantified) indicates that a requirement is mentioned in the\newline publication
   but is not quantified.
       \item[2] Tuples contain numbers given for True Positives
-        ({\sc TP}), True Negatives ({\sc tn}), False Positives ({\sc
+        ({\sc tp}), True Negatives ({\sc tn}), False Positives ({\sc
           fp}) and False Negatives ({\sc fn}). For every tuple\newline there is a corresponding suffix that indicates whether the testbed was
   based on: real-world applications known to be vulnerable ({\it r}),
   synthetic\newline benchmarks ({\it s}), or both ({\it a}).
@@ -799,7 +799,7 @@ except from availability, which we treat
 separately in Section~\ref{sec:discussion}.
 Due to the immense number of published works in the area, we only consider
 defenses that have been proposed in publications cited more than
-20 times according to Google Scholar.
+20 times according to Google Scholar~\cite{googleScholar}.
 We also include some recent works that have been
 presented in top security conferences, even though they have been
 cited less than twenty times, so that recent research is not penalized.
@@ -836,7 +836,7 @@ There are three main categories of etiological approaches used to protect web
 applications against injection attacks:
 \emph{Parse-Tree Validation},
 \emph{Policy Enforcement}, and
-\emph{Instruction Set Randomization (ISR)}.
+\emph{Instruction Set Randomization} ({\sc isr})}.
 
 \subsubsection{Parse-Tree Validation}
 \label{sec:tree}
