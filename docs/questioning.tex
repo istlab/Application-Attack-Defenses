@@ -449,7 +449,7 @@ eventually reaches the database where it is executed.
 
 Cross-site scripting attacks fall into two categories, {\it non-persistent}
 (also known as \emph{reflected}) {\sc xss}
-and {\it persistent} (also known as \emph{stored}) {\sc XSS}.
+and {\it persistent} (also known as \emph{stored}) {\sc xss}.
 Non-persistent {\sc xss} attacks take place when the
 data provided by a user is processed on-the-fly
 by server-side application logic and ends up without proper sanitization
@@ -465,9 +465,9 @@ application's execution flow and becomes part of the content that is
 eventually sent to the user as part of a future response.
 
 Cross-site request forgery attacks typically involve just a
-URL or page that contains a malicious request towards
+{\sc url} or page that contains a malicious request towards
 a site vulnerable to {\sc csrf}.
-An attacker can entice a victim to click on the URL or visit the page
+An attacker can entice a victim to click on the {\sc url} or visit the page
 through social engineering ({\sc csrf} 1), which will the result in a malicious
 request towards the vulnerable site ({\sc csrf} 2).
 Note that this scenario does not involve the injection of any code through the
@@ -1249,8 +1249,8 @@ The problem lies with the call location of the query, not the query alone.
 
 Mechanisms based on signatures that involve elements not only
 associated with code statements (e.g.,
-{\sc amnesia}~\cite{HO05,HO06,HO05b} and
-{\sc sd}river~\cite{MS09,MKS09,MKLS11})
+{\sc amnesia}~\cite{HO06} and
+{\sc sd}river~\cite{MS09})
 could detect such attacks. Specifically, {\sc sd}river
 associates a complete stack trace with the root of an {\sc sql}
 statement, thus it can correlate queries with their call sites and
@@ -1410,8 +1410,8 @@ the browser-based {\sc xss} filters of
 73\% out of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
 These vulnerabilities were actually found as part of
 their previous research~\cite{LSJ13}.
-Finally, in the {\sc amnesia}~\cite{HO05,HO06,HO05b} and
-{\sc sd}river~\cite{MS09,MKS09,MKLS11} publications,
+Finally, in the {\sc amnesia}~\cite{HO06} and
+{\sc sd}river~\cite{MS09} publications,
 the authors managed to break existing application suites
 and then test the accuracy of their tools on them.
 
@@ -1515,7 +1515,7 @@ mentioned in each paper. We see that only 6 out of 35 (17.1\%) of the
 publications provided a link to their mechanism and, 2 from these 6
 web pages are currently not available. In 5 cases authors made either
 the source code or their executables available after their paper got
-published. In one case ({\sc csp}), the source was available before the
+published. In one case ({\sc csp}~\cite{SSM10}), the source was available before the
 publication through the Mozilla community.
 Regarding the availability of test materials, we see that
 only 3 out of 35 (8.5\%) publications have currently their testbeds
@@ -1557,7 +1557,7 @@ as no modifications are needed at the client.
 Extensive modifications in the application's source
 code can also be a reason that can make a mechanism
 difficult to use. {\sc sql}rand~\cite{BK04},
-{\sc amnesia}~\cite{HO05,HO06,HO05b},
+{\sc amnesia}~\cite{HO06},
 mechanisms of the parse-tree validation
 subcategory, and mechanisms of the taint
 tracking subcategory are such examples.
@@ -1569,7 +1569,7 @@ all the code fragments that involve user input handling.
 Finally, even though many of the mechanisms that involve
 training are easy to deploy, they have a distinct disadvantage.
 When the application is altered, mechanisms like
-{\sc sd}river~\cite{MS09,MKS09,MKLS11}
+{\sc sd}river~\cite{MS09}
 and {\sc xss-guard}~\cite{BV08} require a new training phase.
 However, with the increased adoption of automated testing
 and continuous integration frameworks, this phase could be
@@ -1628,15 +1628,6 @@ our observations
 call for improvements in the accuracy of experimental testing
 and code availability, while
 aiming to reduce performance overheads and deployment hurdles.
-
-% @dimitro: move this to the analysis Section:
-% This scheme is an efficient scheme that focuses
-% on a specific category of {\sc xss} attacks and
-% takes into consideration many attack vectors
-% that many of the previous schemes do not.
-% Also: 
-% As the author of {\sc csse} state~\cite{PB05}, the prevention
-% of {\sc xss} attack requires a more complex analysis.
 
 \subsection{Improving Testing Accuracy}
 
@@ -1818,8 +1809,8 @@ Meanwhile, during the last decade, there have been
 numerous mechanisms designed to
 detect one or more of types of such attacks.
 Although some deployed and widely used frameworks, 
-such as Mozilla's {\sc csp} and Google Caja~\cite{M06,caja},
-share characteristics
+such as Mozilla's {\sc csp}~\cite{SSM10} and
+Google Caja~\cite{M06,caja}, share characteristics
 (for instance, {\sc html} sanitization and {\tt eval} handling)
 with previous proposals, 
 most research works are still not used in practice.
@@ -1845,14 +1836,14 @@ basis for developing methods with more extensive coverage.
 
 To the positive side, some defenses have been extensively tested in
 terms of accuracy ({\sc sqlc}heck~\cite{SW06},
-{\sc amnesia}~\cite{HO05,HO06,HO05b}, libAnomaly~\cite{VMV05}),
+{\sc amnesia}~\cite{HO06}, libAnomaly~\cite{VMV05}),
 solve specific problems in an effective way
 (Blueprint~\cite{LV09} and the system by Stock et al.~\cite{SLMS14}) or
 have a low computational overhead
 ({\sc dsi}~\cite{NSS06} and the system by Phung et al.~\cite{PSC09}).
 There are also cases where
 researchers have made their code available ({\sc beep}~\cite{TNH07}
-and {\sc sd}river~\cite{MS09,MKS09,MKLS11}),
+and {\sc sd}river~\cite{MS09}),
 which can promote the development of better
 mechanisms. This argument has been raised by another {\sc s}o{\sc k}
 paper~\cite{SPWS13}. Furthermore, testing defenses in a production
