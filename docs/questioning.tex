@@ -1073,7 +1073,7 @@ the server and the client.
 
 \subsection{Symptomatic}
 
-Symptomatic approaches adopt one of two tacks. They either track
+Symptomatic techniques follow two main approaches. They either track
 untrusted input and ban certain operations on it, or they first learn what
 code to trust and then approve for execution code that they recognize
 as safe.
@@ -1081,25 +1081,25 @@ as safe.
 \subsubsection{Taint Tracking}
 \label{sec:taint}
 
-A taint tracking scheme marks untrusted (``tainted'') data (for
-instance, a variable set by a field in a web form) and traces its flow
-through the program. If the variable is used in an expression that
+A taint tracking scheme marks untrusted (``tainted'') data, such as
+a variable set by a field in a web form, and traces its propagation
+throughout the program. If the variable is used in an expression that
 sets another variable, that variable is also marked as untrusted and
 so on. If any of these variables is used in a potentially risky
-command (for example, send the data to a vulnerable ``sink,'' such as
-a database, a file, the network) the scheme may act accordingly.
+operation (e.g., sending the data to a vulnerable ``sink,'' such as
+a database, a file, or the network), the scheme may act accordingly.
 
 Taint tracking is provided as a feature in some programming languages,
-such as Perl and Ruby. By enabling the feature, Perl would refuse to
+such as Perl and Ruby. By enabling this feature, Perl would refuse to
 run code vulnerable to an {\sc sql} injection attack (consider a
 tainted variable being used in a query) and would exit with an error
 message.
 
 There are different implementations of this approach
-in terms of how the tainted data is marked and observed,
+in terms of how the tainted data is marked and tracked,
 and how attacks are detected.
 For example, Haldar et al.~\cite{HCF05} have implemented
-their scheme for the Java Virtual Machine ({\sc jvm})
+their scheme for the Java Virtual Machine ({\sc jvm}),
 where they instrument various classes. When a
 tainted string is used as an argument to a sink method
 an exception is raised (Point {\sc dbal}).
@@ -1109,15 +1109,15 @@ tainted data have reached a sink (Point {\sc dbal}).
 Xu et al.~\cite{XBS06} track taint information at the level of bytes in
 memory. To distinguish between legitimate and malicious uses of
 untrusted data that reach a sink, they search the data for suspicious
-symbols by using regular expressions. {\sc csse}~\cite{PB05}
+symbols using regular expressions. {\sc csse}~\cite{PB05}
 associates tainted data with specific metadata. Such metadata include
 the origins of tainted data, its propagation within the application,
 and others. When tainted data reaches a sink, {\sc csse} performs
-syntactic checks based on the aforementioned metadata (Point {\sc dbal}).
+syntactic checks based on its metadata (Point {\sc dbal}).
 {\sc php} Aspis~\cite{PMP11} works in a similar way. To obtain
 metadata, it takes advantage of the  {\sc php} array data structure.
 Finally, {\sc wasc}~\cite{NLC07} analyzes {\sc html} responses to check
-if there are tainted data that contain scripts (Point {\sc s}t{\sc b}).
+if there is any tainted data that contains scripts (Point {\sc s}t{\sc b}).
 
 A recent study~\cite{NBR14} showed that there are ways to circumvent
 the majority of the above schemes. Furthermore, most of them are not
@@ -1125,24 +1125,25 @@ easy to deploy since the majority of input vectors, string operations,
 and output vectors of the application must be instrumented.
 
 Vogt et al.~\cite{VFJKKV07} have developed a tainting scheme
-that follows a different approach. Contrary to the aforementioned
-schemes that operate on the server side, they track sensitive
-information on the client side (Point {\sc ub}). This is a form of
-positive taint tracking, where taint data is considered to be
+that follows a different approach. In contrast to the above
+schemes, which operate on the server side, their technique tracks sensitive
+information at the client side (Point {\sc ub}). This is a form of
+positive data flow tracking, where tagged data is considered to be
 legitimate. Their scheme detects JavaScript-driven {\sc xss} attacks
 by ensuring that a script can send sensitive user data only to the
 site from which it came from.
+
 Stock et al.~\cite{SLMS14} propose a scheme that also operates
 in the browser (Point {\sc ub}). The scheme focuses on the detection of
 {\sc dom}-based {\sc xss} attacks. In such an attack, the malicious
 payload is executed as a result of the modification of the {\sc dom}
 environment so that the client-side code runs in an unanticipated
-manner even if the {\sc http} response that triggers the injection
-seems legitimate. The scheme is different from the previous one
+manner, even if the {\sc http} response that triggers the injection
+seems legitimate. This scheme is different from the previous one
 because it marks and observes data that are considered harmful.
 Specifically, it employs a taint-enhanced JavaScript engine that
 tracks the flow of attacker-controlled data. To detect potential
-attacks the scheme utilizes {\sc html} and JavaScript parsers that can
+attacks, the scheme uses {\sc html} and JavaScript parsers that can
 identify the generation of code coming from tainted data.
 
 \subsubsection{Training}
@@ -1150,27 +1151,27 @@ identify the generation of code coming from tainted data.
 
 Training techniques are based on the ideas of Denning's original
 intrusion detection framework~\cite{Den87}. In particular, a training
-mechanism registers all valid legitimate code statements during a
+mechanism learns all valid legitimate code statements during a
 training phase (mostly in the form of signatures). This can be done in
-various ways according to the implementation. Then, only those
+various ways depending on the implementation. Then, only those
 statements will be recognized and approved for execution during
 production.
 
 Training methods that detect {\sc dsl}-driven injection attacks
-generate and store valid code statements (i.e., {\sc sql} or {\sc
+generate and store valid code statements (e.g., {\sc sql} or {\sc
   xp}ath queries) in various forms, and detect attacks as outliers
 from the set of valid code statements. An early approach,
-{\sc didafit}~\cite{LLW02} detects {\sc sql} injection (Point
-{\sc sdb}) attacks by recording all database transactions
+{\sc didafit}~\cite{LLW02}, detects {\sc sql} injection attacks (Point
+{\sc sdb}) by recording all database transactions
 stripped from user input. Subsequent
-refinements by Valeur et al.~\cite{VMV05} tagged each transaction with
+refinements by Valeur et al.~\cite{VMV05} tag each transaction with
 the corresponding application as an extension of their anomaly
 detection framework called libAnomaly.
 {\sc sd}river~\cite{MS09,MKS09,MKLS11} is a signature-based mechanism
 that prevents {\sc sql} and {\sc xp}ath injection attacks. The
 signatures generated during a training phase are based on features
-that can depend either on the code statement or on its execution
-environment (i.e., the stack trace). Then, at runtime, the mechanism
+that can depend either on code statements or on their execution
+environment (e.g., the stack trace). Then, at runtime, the mechanism
 checks all statements for compliance and can block code statements
 containing injected elements (Point {\sc dbal}). {\sc
   amnesia}~\cite{HO05,HO06,HO05b} is a tool that also detects {\sc
@@ -1186,12 +1187,12 @@ Then, a JavaScript detection component placed in a web proxy (Point
 {\sc s}t{\sc b}) searches for injected scripts with no corresponding {\sc id}
 in the server's responses. If no injected scripts are found, the proxy
 forwards the request to the client. This mechanism is relatively
-inflexible since it does not support dynamic scripts. In addition it
+inflexible since it does not support dynamic scripts. In addition, it
 imposes a significant overhead (see Table~\ref{tab:comp}). The authors
 of {\sc xssds}~\cite{JEP08} have implemented a similar mechanism
 that also supports dynamic and external scripts. Specifically, during the
-training phase they build a list of all benign scripts. In the case of
-external scripts they keep a white list of all the valid domain names
+training phase, they build a list of all benign scripts. For
+external scripts, they keep a whitelist of all the valid domain names
 that contain scripts used by the application.
 
 Defenses based on training include some mechanisms that can be easily
@@ -1237,19 +1238,19 @@ by entering on the form the standard string:
 signature of the second one above and is therefore accepted.
 The problem lies with the call location of the query, not the query alone.
 
-Mechanisms that create signatures that involve elements not only
-associated with the code statements (i.e., {\sc amnesia} and {\sc
+Mechanisms based on signatures that involve elements not only
+associated with code statements (e.g., {\sc amnesia} and {\sc
   sd}river) could detect such attacks. Specifically, {\sc sd}river
 associates a complete stack trace with the root of an {\sc sql}
 statement, thus it can correlate queries with their call sites and
-detect attacks like the aforementioned one. Furthermore, training
+detect attacks like the above. Furthermore, training
 tools that detect {\sc xss} attacks based on JavaScript injection
 would fail to detect mimicry attacks where legitimate scripts can be
-executed by attackers, but not in the way intended by the the
+executed by attackers, but not in the way intended by the
 developers~\cite{APKLM10}.
 
 In general, the detection accuracy of training approaches is heavily
-based on the coverage that is achieved during the training phase. If
+influenced by the coverage that is achieved during the training phase. If
 the coverage is insufficient false alarms are very likely. In
 addition, when a code statement is altered, a new training phase is
 necessary.
@@ -1267,10 +1268,9 @@ are implemented within a proxy on the server-side.
 \label{sec:hybrid}
 
 This category includes mechanisms that borrow
-characteristics from both of the above categories.
+characteristics from both etiological and symptomatic approaches.
 Two of them focus on the detection of {\sc xss}
-attacks and one of them focuses on {\sc dsl} code
-injection attacks.
+attacks and one focuses on {\sc dsl} code injection attacks.
 
 {\sc xss-guard}~\cite{BV08} is a training scheme that employs
 parse-tree validation. During training, the scheme maps legitimate
@@ -1284,25 +1284,25 @@ utilizes that data structures of Firefox's JavaScript engine (Point
 can lead to false negatives. For instance, consider a banner rotator
 that every time it runs it creates a value that depends on the
 current date and the length of the array that contains the references
-of the various images to be displayed. Then, based on this value it
+of the various images to be displayed. Then, based on this value, it
 shows a specific image to a user. In a vulnerable web site that allows
 users to post data and contains this banner rotator, a malicious user
 could create and store a script that has the same code structure, with
 the same JavaScript keywords contained in the rotator script.
 %% PL You mean like the rotator?
-In this script the attacker could also include references to tiny
-images hosted on a web server that is maintained by him in order to
+In this script, attackers could also include references to tiny
+images hosted on a web server that is maintained by them in order to
 retrieve the {\sc ip} addresses of the users that visit the vulnerable
 site.
 
 Blueprint~\cite{LV09} is a policy enforcement framework that
 uses parsed trees to detect {\sc xss} attacks. To guarantee
-that untrusted content is not executed, Blueprint generates on the
-server-side a parsed tree from untrusted {\sc html} to ensure that it
-does not contain any dynamic content. Then the parsed tree is
+that untrusted content is not executed, Blueprint generates at the
+server side a parsed tree from untrusted {\sc html} to ensure that it
+does not contain any dynamic content. Then, the parsed tree is
 transfered to the document generator of the browser (Point {\sc ub}),
 where untrusted browser parsing behavior is ruled out.
-Blueprint is an efficient countermeasure but it imposes an
+Blueprint is an efficient countermeasure but imposes non-negligible
 overhead due to its extensive parsing (see Table~\ref{tab:comp}).
 
 Diglossia~\cite{SMS13} combines positive taint tracking together
@@ -1311,13 +1311,13 @@ and Ligatti~\cite{RL12b} (which we saw in Section~\ref{sec:attacks})
 to detect {\sc dsl} code injection attacks. In addition, it is
 actually the first, and so far the only framework that detects {\sc
   json} injection attacks. When an application computes an output
-string (query), Diglossia computes a ``shadow'' of this string.
+string (query), Diglossia computes a ``shadow'' of that string.
 Specifically, it maps all characters introduced by the application to
 a shadow character set. This set does not contain any characters
 coming from the tainted input. Then, the scheme creates the tree of
 the query that is about to be executed and compares it with the parsed
-tree of the ``shadow'' (Point {\sc dbal}). If the trees are not
-equal the application is probably under attack. Note that Diglossia
+tree of the ``shadow'' (Point {\sc dbal}). If the trees do not match,
+the application is probably under attack. Note that Diglossia
 can be bypassed in the same way as other taint tracking
 approaches~\cite{NBR14}.
 
