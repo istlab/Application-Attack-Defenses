@@ -85,7 +85,7 @@
   countermeasures that have been proposed over the past 15 years.
 
   In this paper, we systematize the existing knowledge on
-  various defense mechanisms against web injection attacks. We propose
+  various defense mechanisms against web code injection attacks. We propose
   a model that highlights the key weaknesses enabling these attacks,
   and that provides a common perspective for studying the available defenses.
   We then categorize and analyze a set of 35 previously proposed defenses 
@@ -116,10 +116,9 @@ most dangerous and prevalent web application attacks, however,
 exploit vulnerabilities associated with improper validation or filtering
 of untrusted inputs, resulting in the injection of malicious
 script or domain-specific language code.
-Attacks of this type include Cross-Site Scripting ({\sc xss})
-attacks~\cite{SG07}, {\sc sql} injection~\cite{RL12b}, and
-Cross-Site Request Forgery ({\sc csrf}) attacks~\cite{LZRL09}, among
-others.
+Attacks of this type include Cross-Site Scripting ({\sc xss})~\cite{SG07},
+{\sc sql} injection~\cite{RL12b}, and Cross-Site Request Forgery
+({\sc csrf}) attacks~\cite{LZRL09}, among others.
 
 For the past several years,
 these attacks have been topping the lists of the most dangerous vulnerabilities
@@ -129,8 +128,8 @@ For instance, consider the case of {\sc owasp}'s popular Top Ten
 project~\cite{OWASPtop10},
 which aims to raise awareness about web application security by
 identifying some of the most critical risks organizations may face.
-In its three consecutive Top Ten lists (2007, 2010, 2013), different source
-code-driven injection attacks dominate the top five positions.
+In its three consecutive Top Ten lists (2007, 2010, 2013), different
+injection attacks dominate the top five positions.
 
 At the same time, attackers find new ways~\cite{HNSHS12,DKH14}
 to bypass defense mechanisms using a variety of techniques,
@@ -150,7 +149,7 @@ different types of code injection attacks are
 common.\footnote{Note that we do not consider lower-level attacks based on
 the exploitation of memory corruption vulnerabilities and the injection
 of binary code---see Section~\ref{sec:attacks}.} This is validated by the fact that
-there are protection mechanisms that can defend against more than one of these
+some protection mechanisms defend against more than one of these
 types of attacks. Then, we {\it categorize} a selection of representative
 protection mechanisms and finally we {\it analyze} each mechanism across the
 following dimensions:
@@ -311,8 +310,8 @@ data. Based on this vulnerability attackers can supply valid {\sc
   html}, typically via a parameter value, and inject their own content
 into the application's page. {\sc html} injection is mainly associated
 with {\sc xss} attacks~\cite{BJM08,LZRL09}. However, {\sc html} injection,
-can also be used as a vehicle for a {\sc csrf} attack.
-Consider a bulletin board system where {\tt img} tags are not checked.
+can also be used as a vehicle for {\sc csrf} attacks.
+Consider a bulletin board system where {\tt img} tags are allowed.
 A malicious user could embed a {\sc csrf} request within an
 {\tt img} tag in the following manner:
 
@@ -1199,7 +1198,7 @@ when {\sc sql} statements diverge from the expected model.
 
 Various countermeasures against {\sc xss} attacks follow a similar
 pattern. {\sc swap}~\cite{WPLKK09} creates a unique identifier
-({\it script {\sc id}}) for every legitimate script on the server.
+(script {\sc id}) for every legitimate script on the server.
 Then, a JavaScript detection component placed in a web proxy (Point
 {\sc s}t{\sc b}) searches for injected scripts with no corresponding {\sc id}
 in the server's responses. If no injected scripts are found, the proxy
@@ -1229,7 +1228,7 @@ SELECT password from userdata WHERE id = 'Alice'
 This same application could allow users to
 login to the site using just their password via a custom login form
 (like the ``Password only login" plugin of
-Wordpress\footnote{\url{https://wordpress.org/plugins/password-only-login/}})
+Wordpress~\cite{password})
 but allow the login either with the user's password or with
 the administrator password. The corresponding query to verify
 the password on the login form would be as follows:
@@ -1388,7 +1387,7 @@ Figure~\ref{fig:defect_sources} presents how many, in percentage,
 and which, in the figure's caption, publications referred
 to which source. In numerous occasions authors performed tests based
 on the same applications. For example, 12 mechanisms were tested on a
-vulnerable version of the {\sc phpbb} bulletin board software.
+vulnerable version of the {\sc phpbb} bulletin board software~\cite{phpbb}.
 
 
 \begin{figure}[t]
