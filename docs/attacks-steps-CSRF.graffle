@@ -1064,8 +1064,8 @@ I-CSRF:}</string>
 			<integer>3094</integer>
 			<key>Points</key>
 			<array>
-				<string>{123.3612967793692, 462.80393739685178}</string>
-				<string>{122.54978221593949, 559.31856779113639}</string>
+				<string>{123.3612967793692, 462.80393739685184}</string>
+				<string>{122.54557826332166, 559.81855010986328}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1233,7 +1233,7 @@ I-CSRF:}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs22 \cf0 CSRF / I-CSRF}</string>
+\f0\b\fs22 \cf0 CSRF}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -1952,7 +1952,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{685.08775850861048, 417.80397377872987}, {22, 32}}</string>
+			<string>{{685.08775850861048, 417.80397069231128}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -2023,7 +2023,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{839.0938739148819, 469.94338054749244}, {22, 32}}</string>
+			<string>{{839.0938739148819, 469.94338054749238}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -2104,8 +2104,8 @@ I-CSRF:}</string>
 			<integer>3067</integer>
 			<key>Points</key>
 			<array>
-				<string>{622.49385978896987, 164.36882813798022}</string>
-				<string>{623.0938301748713, 238.1963284782307}</string>
+				<string>{622.49385980297779, 164.36882813798022}</string>
+				<string>{623.09383022648547, 238.1963284782307}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -2332,8 +2332,8 @@ I-CSRF:}</string>
 			<integer>3030</integer>
 			<key>Points</key>
 			<array>
-				<string>{281.41991890275398, 167.36882810758078}</string>
-				<string>{280.83302192186682, 239.44630562044654}</string>
+				<string>{281.41991888284014, 167.36882810758078}</string>
+				<string>{280.83302185245856, 239.44630562044654}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -2370,7 +2370,7 @@ I-CSRF:}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\b\fs22 \cf0 Crafts malicious URL / Web Page}</string>
+\f0\b\fs22 \cf0 Crafts malicious URL/Web Page}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -2632,7 +2632,7 @@ I-CSRF:}</string>
 			<key>Points</key>
 			<array>
 				<string>{850.0938739148819, 461.30396654012327}</string>
-				<string>{850.0938739148819, 511.26070203283336}</string>
+				<string>{850.0938739148819, 511.26070203283331}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -3614,7 +3614,7 @@ injection Attack}</string>
 			<key>Points</key>
 			<array>
 				<string>{681.23125592109398, 433.80397069231128}</string>
-				<string>{793.29694078831483, 433.80399397380785}</string>
+				<string>{793.29694078831483, 433.80397069231128}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -3691,7 +3691,7 @@ injection Attack}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\b\fs22 \cf0 Trick a user to follow the URL (e.g. via phishing)}</string>
+\f0\b\fs22 \cf0 Trick a user to follow the URL/Page (e.g. via phishing)}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -3731,7 +3731,7 @@ injection Attack}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\b\fs22 \cf0 Includes malicious payload into an HTTP / HTTPS request}</string>
+\f0\b\fs22 \cf0 Includes malicious payload into an HTTP/HTTPS request}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -3942,7 +3942,7 @@ injection Attack}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-11-15 03:55:15 +0000</string>
+	<string>2014-11-15 04:36:44 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
