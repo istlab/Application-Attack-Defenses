@@ -156,8 +156,8 @@ following dimensions:
   false negative rates.
 \item {\it Availability:} whether the mechanism and its
   testbed are publicly available.
-\item {\it Computational performance:} the computational
-  overhead of the mechanisms at their points of deployment.
+\item {\it Performance overhead:} the 
+  overhead imposed by the mechanisms at their points of deployment.
 \item {\it Ease of use:} whether the protection
   mechanism is practical in terms of deployment
   and can be easily adopted by security experts.
@@ -504,7 +504,7 @@ setting rests on a different set of criteria:
 \end{itemize}
 
 The first two criteria correspond to \emph{Accuracy} and
-\emph{Availability}. The other four criteria correspond to \emph{Computational
+\emph{Availability}. The other four criteria correspond to \emph{Runtime
   Performance}, \emph{Ease of Use}, \emph{Security}, and
 \emph{Point of Detection}.
 
@@ -587,10 +587,10 @@ merits of open access to code are discussed in non computer science
 journals~\cite{easterbrook2014}, we should expect computer scientists
 to lead the way.
  
-\subsection{Computational Performance}
+\subsection{Performance Overhead}
 
 Detection mechanisms may impose a cost due to their use, as they
-typically introduce some amount of extra computation on a existing applications.
+typically introduce some amount of extra computation on existing applications.
 The overhead depends on the specifics of each mechanism. For
 example, it may be due to some form of run-time checking, or some form of
 obfuscation. Also, depending on the approach, the cost may be incurred
@@ -706,7 +706,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   & \multicolumn{2}{|c|}{Requirements\tnote{1}}
   & \bf{Attack}\tnote{4} \\
   &&& \bf{TP,TN,FP,FN}\tnote{2}
-  & \bf{Computational Overhead}\tnote{3} & \\
+  & \bf{Performance Overhead}\tnote{3} & \\
     \thickhline
   \multirow{2}{*}{Parse-Tree Validation}
   &   {\sc sqlg}uard~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql}i \\
@@ -1314,6 +1314,90 @@ the application is probably under attack. Note that Diglossia
 can be bypassed in the same way as other taint tracking
 approaches~\cite{NBR14}.
 
+
+\section{Observations}
+\label{sec:discussion}
+
+We group our key observations on the~35 publications that
+we consider in this work along the
+dimensions we identified in Section~\ref{sec:dimensions}.
+
+\subsection{Accuracy}
+
+Table~\ref{tab:comp} indicates that the authors of 3 out of 35 (8.5\%)
+publications provided a complete tuple of {\sc tp}, {\sc tn}, 
+{\sc fp}, and {\sc fn}. On the other hand, we
+see that 4 out of 35 (11.4\%) were not tested at all.
+In these cases, all four elements of the tuple
+are not available ({\sc na}). An interesting observation is
+that in 10 out of the 35 (28.5\%)
+publications, the evaluation focused on only on attack detection,
+and there was no test focusing on false positives.
+The corresponding tuples contain {\sc tp} and {\sc fn}
+results, but {\sc tn} and {\sc fp} results are not available ({\sc
+  na}). This stresses the fact that authors may be more interested in
+making sure that their mechanisms can detect known attacks rather than
+seeing how they respond under normal conditions. In some occasions,
+where the number of {\sc tp} results are not quantified, authors did
+not mention how many or which attacks they performed. Moreover, in some
+cases we observe that even if the authors report the existence of
+possible false positive and negative results, they have not quantified
+them ({\sc nq}).
+
+Even when some numbers are given, they may not be adequate.
+Sensitivity and specificity are statistical measures, and as such,
+they should be interpreted with suitable confidence intervals. There are
+various methods to calculate confidence intervals, even without
+the need to have large sets of samples in order to be able to use the
+central limit theorem~\cite{agresti1998,brown2001}.
+However, sample sizes in the single
+digits are not enough to produce good intervals.
+
+Regarding the subjects of tests, we see that 27 out of 35 (77.1\%)
+mechanisms were tested with real-world applications known to be
+vulnerable. The vulnerabilities associated with these applications
+are enlisted in the following providers: the Common
+Vulnerabilities and Exposures ({\sc cve}) database~\cite{cve},
+the Bugtraq security mailing list~\cite{bugtraq}, the {\sc xss}ed.com
+security bulletin provider~\cite{xssed}, Microsoft's security
+bulletin~\cite{microsoftBulletin} and the
+ha.ckers.org security bulletin provider~\cite{hackers}.
+Figure~\ref{fig:defect_sources} presents how many, in percentage,
+and which, in the figure's caption, publications referred
+to which source. In numerous occasions authors performed tests based
+on the same applications. For example, 12 mechanisms were tested on a
+vulnerable version of the {\sc phpbb} bulletin board software.
+
+
+\begin{figure}[t]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.47]{defect-percentages.png}
+\end{center}
+\caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
+used for testing of web attack defenses.
+Specifically, the publications that used a particular source are as follows:
+{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
+{\it Bugtraq}~\cite{PB05,KKVJ06,JEP08},
+{\sc xss}ed.com~\cite{NSS06,APKLM10},
+ha.ckers.org~\cite{TNH07,PSC09,LV09},
+Microsoft~\cite{RDWDE07}.}
+\end{figure}
+
+There are also authors that took a different approach.
+For instance, during their initial tests,
+Stock et al.~\cite{SLMS14} managed to bypass
+the browser-based {\sc xss} filters of
+73\% out of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
+These vulnerabilities were actually found as part of
+their previous research~\cite{LSJ13}.
+Finally, in the {\sc amnesia}~\cite{HO05,HO06,HO05b} and
+{\sc sd}river~\cite{MS09,MKS09,MKLS11} publications,
+the authors managed to break existing application suites
+and then test the accuracy of their tools on them.
+
+\subsection{Availability}
+
 \begin{table*}
 \caption{Availability of the studied defenses.}
     \label{tab:avail}
@@ -1389,179 +1473,94 @@ approaches~\cite{NBR14}.
   &   Diglossia~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
   \thickhline
 
-    \multicolumn{5}{p{13cm}}{%
+    \multicolumn{5}{p{12.4cm}}{%
   \begin{footnotesize}
-       $^\textsuperscript{1}$The check mark (\tick) indicates that the publication
-       includes a homepage where the reader can 
-       download the corresponding software. {\bf AO} (Available On-line) suggests
+       $^\textsuperscript{1}$A check mark (\tick) indicates that the publication
+       includes a link to a page where the software is available.
+       {\bf AO} (Available On-line) indicates
        that the software is available on-line but the
-       address was not mentioned in the paper, which probably indicates that
-       the authors made it available after the publication. The question 
-       mark ({\bf ?}) indicates that the a homepage for the software
-       was included
-       in the publication but now it is not available.
+       address is not mentioned in the paper, which probably means that
+       the it was made available after the publication. A question 
+       mark ({\bf ?}) indicates that a link to the software
+       was included in the publication but is now inaccessible.
   \end{footnotesize} } \\
     \end{tabular}}
     \end{small}
     \end{threeparttable}
 \end{table*}
 
-\section{Observations}
-\label{sec:discussion}
-
-We group our key observations on the~35 publications that
-we considered in this work along the
-dimensions we identified in Section~\ref{sec:dimensions}.
-
-\subsection{Accuracy}
-
-
-Table~\ref{tab:comp} indicates that the authors of 3 out of 35 (8.5\%)
-publications provided complete quadruples of {\sc tp}, {\sc tn}, 
-{\sc fp}, and {\sc fn}. On the other hand, we
-see that 4 out of 35 (11.4\%) were not tested at all.
-In these cases, all the four elements of the quadruples
-are not available ({\sc na}). An interesting observation is
-that in 10 out of the 35 (28.5\%)
-publications, the authors performed only attacks during their tests
-and did not test their mechanisms to see if they produce any false
-alarms. The corresponding quadruples contain {\sc tp} and {\sc fn}
-results but {\sc tn} and {\sc fp} results are not available ({\sc
-  na}). This stresses the fact that authors may be more interested in
-making sure that their mechanisms can detect known attacks rather than
-seeing how they respond under normal conditions. In some occasions,
-where the number of {\sc tp} results are not quantified, authors did
-not mention how many or which attacks they performed. Moreover in some
-cases we observe that even if the authors report the existence of
-possible false positive and negative results, they have not quantified
-them ({\sc nq}).
-
-Even when some numbers are given, they may not be adequate.
-Sensitivity and specificity are statistical measures, and as such
-should be interpreted with suitable confidence intervals. There are
-various methods to calculate confidence intervals, even dispensing
-with the need to have large samples in order to be able to use the
-central limit theorem~\cite{agresti1998,brown2001}.
-However, sample sizes in the single
-digits are not enough to produce good intervals.
-
-Regarding the subjects of tests, we see that 27 out of 35 (77.1\%)
-mechanisms were tested on real-world applications known to be
-vulnerable. The vulnerabilities associated with these applications
-are enlisted in the following providers: the Common
-Vulnerabilities and Exposures ({\sc cve}) database~\cite{cve},
-the Bugtraq security mailing list~\cite{bugtraq}, the {\sc xss}ed.com
-security bulletin provider~\cite{xssed}, Microsoft's security
-bulletin~\cite{microsoftBulletin} and the
-ha.ckers.org security bulletin provider~\cite{hackers}.
-Figure~\ref{fig:defect_sources} presents how many, in percentage,
-and which, in the figure's caption, authors referred
-to which source. In numerous occassions authors performed tests based
-on the same applications. For example, 12 mechanisms were tested on a
-vulnerable version of {\sc phpbb}.\footnote{https://www.phpbb.com/}
-
-\begin{figure}[t]
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.47]{defect-percentages.png}
-\end{center}
-\caption{\label{fig:defect_sources}Pie chart showing the sources
-that the used to find vulnerabilities to test
-their mechanisms. We also provide which source was used
-in which publication:
-{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
-{\it Bugtraq}~\cite{PB05,KKVJ06,JEP08},
-{\sc xss}ed.com~\cite{NSS06,APKLM10},
-ha.ckers.org~\cite{TNH07,PSC09,LV09},
-Microsoft~\cite{RDWDE07}.}
-\end{figure}
-
-There are also authors that took a different approach.
-For instance, during their initial tests,
-Stock et al.~\cite{SLMS14} managed to bypass
-the browser-based {\sc xss} filters of the
-73\% of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
-These vulnerabilities were actually found during
-their previous research~\cite{LSJ13}.
-Finally, in the publications that
-{\sc amnesia} and {\sc sd}river were presented,
-authors managed to break existing application suites
-and then test the accuracy of their tools on them.
-
-\subsection{Availability}
-
 Table~\ref{tab:avail} presents our findings regarding the availability
 of each mechanism in terms of source code and corresponding
 executables. We also examined the availability of the testbeds
-mentioned in the paper. We see that only 6 out of 35 (17.1\%) of the
-pubications provided a homepage for their mechanism and 2 from these 6
-homepages are currently not available. In 5 cases authors made either
+mentioned in each paper. We see that only 6 out of 35 (17.1\%) of the
+publications provided a link to their mechanism and, 2 from these 6
+web pages are currently not available. In 5 cases authors made either
 the source code or their executables available after their paper got
-published. In one case ({\sc csp}) the source was available before the
+published. In one case ({\sc csp}), the source was available before the
 publication through the Mozilla community.
 Regarding the availability of test materials, we see that
 only 3 out of 35 (8.5\%) publications have currently their testbeds
 available on-line.
 
-\subsection{Computational Performance}
+\subsection{Performance Overhead}
 
-Table~\ref{tab:comp} shows for every mechanism its corresponding
-overhead. In addition, it indicates if the overhead is applied to the
-server-side ({\sc s}), or the client-side ({\sc c}). In almost half of
+Table~\ref{tab:comp} shows the performance overhead of each mechanism.
+In addition, it indicates if the overhead is incurred at the
+server ({\sc s}) or at the client side ({\sc c}). In almost half of
 the approaches, 16 out of 35 (45.7\%), the overhead is provided as a
 percentage, while in other cases, 7 our of 35 (20\%), the authors
-provide the time (in terms of ms) that their mechanisms add to the
-normal execution time of the protecting entity. Note that in some
+provide the latency (in ms) that their mechanisms add to the
+normal execution time of the protected application. Note that in some
 cases, the times of normal executions are not provided,
-so it is not possible to move from absolute
+so it is not possible to convert absolute
 time measurements to percentage overheads. In 10 cases (28.5\%), the
 overhead was either not available ({\sc na}) or not quantified ({\sc
-  nq}). In the case of {\sc php aspis}, its authors indicate that with
+  nq}). For {\sc php aspis}, its authors indicate that with
 their mechanism, the execution time is doubled.
 
 \subsection{Ease of Use}
 \label{sec:deploy2}
 
 Mechanisms in different categories face different deployment issues.
-
-Consider the majority of mechanisms coming from the policy enforcement
-subcategory. In most cases developers should modify multiple
+Consider the majority of mechanisms in the policy enforcement
+subcategory. In most cases, developers should modify multiple
 components to use each mechanism. Specifically, mechanisms like
 BrowserShield and {\sc beep} require modifications both on the server
-and the client side. Thus, it would be difficult for them to be
+and at the client. Thus, it would be difficult to be
 adopted by both browser vendors and application developers. On the
-other hand, there are cases where the policies introduced in the
-server are enforced on the client-side, via a library embedded in the
+other hand, there are cases where the policies introduced at the
+server are enforced at the client side, via a library embedded in the
 server's response (i.e., Blueprint). Such an approach is convenient
-since no modifications are needed on the client.
+as no modifications are needed at the client.
 
 Extensive modifications in the application's source
 code can also be a reason that can make a mechanism
 difficult to use. {\sc sql}rand, {\sc amnesia},
-mechanisms coming from the parse-tree validation
-subcategory and mechanisms coming from the taint
+mechanisms of the parse-tree validation
+subcategory, and mechanisms of the taint
 tracking subcategory are such examples.
 In the first three cases, programmers should modify every
 code fragment that involves the execution of a query.
 In the latter case they should also change
-all the code fragments that involve user-input handling. 
+all the code fragments that involve user input handling. 
 
 Finally, even though many of the mechanisms that involve
 training are easy to deploy, they have a distinct disadvantage.
 When the application is altered, mechanisms like {\sc sd}river
-and {\sc xss-guard} require a new training phase is necessary.
+and {\sc xss-guard} require a new training phase.
 However, with the increased adoption of automated testing
 and continuous integration frameworks, this phase could be
 easily repeated.
 
 \subsection{Security}
 
-While describing the various mechanisms in Section~\ref{sec:defs}, we
-observed that some can be bypassed by attackers that know how they
-work. Still, some mechanisms are designed in such a way that they
-can be extended and become immune to the attacks that they are
+In our discussion of the various mechanisms in Section~\ref{sec:defs}, we
+observed that some of them can be bypassed by attackers that know
+the internals of their operation.
+Still, the design of some mechanisms allows them to
+be extended and become immune to the circumvention attacks they are
 currently vulnerable to. For example, policy enforcement frameworks
-that are based on JavaScript or {\sc html} rewriting can be extended
+based on JavaScript or {\sc html} rewriting can be extended
 to detect attacks that leverage {\tt iframe} tags. This does not apply
 to all mechanisms though. In particular, training mechanisms like {\sc
   didafit} and {\sc xss-guard} must be redesigned to detect the
@@ -1576,25 +1575,25 @@ subcategories.
 
 Given the fact that the final steps of
 {\sc dsl} injection and {\sc csrf} attacks take place
-on the server-side, all the mechanisms that detect
-such attacks are placed in some point within the server.
+at the server side, all mechanisms that detect
+such attacks are placed at some point within the server-side infrastructure.
 From the mechanisms that detect {\sc dsl} code injection
 attacks, 3 out of 13 (23\%) do so at the level
-of the {\sc rdbms}---Point {\sc db}.
-The other 11 wrap {\sc api} calls related to output
-vectors---Point {\sc e}i{\sc q}.
+of the {\sc rdbms} (Point {\sc db}).
+The other 11 are based on interposing on {\sc api} calls related to output
+vectors (Point {\sc e}i{\sc q}).
 
-In frameworks that deal with {\sc xss} attacks we
-see that attack detection may take place either on the server-side or
-on the client-side. In the first case, a proxy is placed on the server
-to examine the server's responses before they reach the user's web
-browser. In the second case a modified browser or a library that is
+For frameworks that deal with {\sc xss} attacks, we
+see that attack detection and prevention may take place either at the server or
+the client side. In the first case, a proxy is typically placed in front of the server
+to examine the server's responses before they reach a user's 
+browser. In the second case, a modified browser or a library that is
 securely downloaded from the server checks the responses for potential
 attacks. We find that the tendency so far is to create frameworks that
 perform detection on the client side: in particular, 14 out of 24
-frameworks (58,3\%) detect {\sc xss} attacks on the
-client's side. Note that the majority of the mechanisms that detect
-such attacks on the server-side can also detect {\sc dsl} code
+frameworks (58,3\%) detect {\sc xss} attacks at the
+client side. Note that the majority of the mechanisms that detect
+such attacks on the server can also detect {\sc dsl} code
 injection attacks (6 out of 10).
 
 \section{Recommendations and Lessons Learned}
@@ -1603,7 +1602,7 @@ injection attacks (6 out of 10).
 Our observations lead to some lessons and recommendations that
 developers of new mechanisms may find helpful. In particular, they
 call for improving accuracy tests and code availability, while
-aiming to reduce computational and deployment overheads.
+aiming to reduce performance and deployment overheads.
 
 % @dimitro: move this to the analysis Section:
 % This scheme is an efficient scheme that focuses
@@ -1743,9 +1742,9 @@ though, is to ask of researchers in attack detection mechanisms not to
 buck the trend and to take steps to increase the availability of their
 research.
 
-\subsection{Computational Overhead and Deployment Remarks}
+\subsection{Performance Overhead and Deployment Remarks}
 
-Computational overhead comes up as a non-trivial issue. We observe
+Performance overhead comes up as a non-trivial issue. We observe
 that the average overhead that can be extracted from the publications
 that provide the overhead in percentage terms is 17.45\%. Relative
 research on protection mechanisms~\cite{SPWS13} indicates that
