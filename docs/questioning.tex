@@ -1781,56 +1781,59 @@ new countermeasure, researchers should consider where it
 will detect attacks, observe the corresponding deployment
 challenges, and try to mitigate them.
 
-\section{Conclusions}
+\section{Conclusion}
 \label{sec:conclusion}
 
 Despite many approaches that have been developed,
-application attacks based on code injection
+attacks based on code injection against web applications
 have been consistently present for the last 15 years,
 and it appears that they will continue to be.
 Attackers seem to find new ways to introduce
-malicious source code to applications by using a
+malicious code to applications using a
 variety of languages and techniques~\cite{HNSHS12,DKH14}.
-Meanwhile, during the last decade, there are
-numerous mechanisms that have been developed to
-detect one or more of such attacks. However,
-even if some of them share characteristics
+Meanwhile, during the last decade, there have been
+numerous mechanisms designed to
+detect one or more of types of such attacks.
+Although some deployed and widely used frameworks, 
+such as Mozilla's {\sc csp} and Google Caja~\cite{M06,caja},
+share characteristics
 (for instance, {\sc html} sanitization and {\tt eval} handling)
-with supported frameworks like Mozilla's {\sc csp}
-and Google Caja~\cite{M06,caja}
-the majority of them are not used in practice.
+with previous proposals, 
+most research works are still not used in practice.
 
-In order for a security tool to be used in practice it must provide
+In order for a security tool to be used in practice, it must provide
 some value to the user. In particular, the value should outweigh the
-cost of its use. The cost need not be directly monetary, but may be
+cost of its use. The cost is not necessarily monetary, but may be
 incurred from the time required to use the tool, any inconvenience
-caused, false alarms that it may raise. These costs are related to the
+caused, false alarms that may raise, and so on. These costs are related to the
 issues we have been investigating here: poor testing, high overhead,
-unavailabilty of source, deployment difficulties, compromised security. 
+lack of publicly available prototypes,
+deployment difficulties, compromised security. 
 
-Enhancing any of these would not just increase the value of a piece of
-research as a practical tool, it would increase its research value as
-well. Accurate detection reporting would help in appraising different
-approaches. Performance measurements can point to blind, unpractical,
-alleys and focus effort elsewhere. Availability of source code
-enhances basic scientific tasks like checking and replication. Ease of
+Improving any of these aspects would not just increase the value of a 
+research work as a practical tool, but it would also increase its
+research value as well.
+Accurate detection reporting would help in evaluating different
+approaches. Extensive performance measurements can reveal impractical
+designs and focus effort elsewhere. Availability of source code
+enhances basic scientific tasks like verification and reproducibility. Ease of
 deployment brings ease of experimentation. Secure methods can form the
 basis for developing methods with more extensive coverage.
 
-We saw that there are mechanisms that have been extensively tested in
+To the positive side, some defenses have been extensively tested in
 terms of accuracy ({\sc sqlc}heck, {\sc amnesia},
-libAnomaly), solve specific problems in an efficient way (Blueprint
+libAnomaly), solve specific problems in an effective way (Blueprint
 and the system by Stock et al.) or have a low computational overhead
 ({\sc dsi} and the system by Phung et al.). There are also cases where
 researchers have made their code available ({\sc beep} and {\sc
-  sd}river) which can be a push towards the development of better
+  sd}river), which can promote the development of better
 mechanisms. This argument has been raised by another {\sc s}o{\sc k}
 paper~\cite{SPWS13}. Furthermore, testing defenses in a production
 setting could also propel their adoption.
 
 We hope that the exploitation model, analysis, and observations that
 emerged from our research can be a reference point for researchers who
-wish to develop new, practical countermeasures against web application
+aim to develop new, practical countermeasures against web application
 attacks.
 
 % First, we introduced an exploitation model
