@@ -850,8 +850,8 @@ attack.
 For domain-specific language code injection attacks, mechanisms check 
 the query before the inclusion of user input with the one
 resulting after the inclusion of user input.
-Two mechanisms that implement this approach for protection against {\sc SQL}
-injection attacks,
+Two mechanisms that implement this approach for protection
+against {\sc sql} injection attacks,
 {\sc sqlg}uard~\cite{BWS05} and
 {\sc sql}check~\cite{SW06}, are quite similar
 and detect the attack before a query reaches the
@@ -1209,12 +1209,13 @@ SELECT password from userdata WHERE id = 'Alice'
 \end{lstlisting}
 
 \noindent
-This same application could allow users to lock their terminal,
-but allow the unlocking either with the user's password or with
-the administrator password (the 4.3 {\sc bsd} {\em lock} command
-behaved in this peculiar way).
-The corresponding query to verify the password on the locked
-workstation would be as follows:
+This same application could allow users to
+login to the site using just their password via a custom login form
+(like the ``Password only login" plugin of
+Wordpress\footnote{\url{https://wordpress.org/plugins/password-only-login/}})
+but allow the login either with the user's password or with
+the administrator password. The corresponding query to verify
+the password on the login form would be as follows:
 
 \lstset{language=SQL}
 \begin{lstlisting}
