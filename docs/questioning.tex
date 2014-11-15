@@ -182,10 +182,10 @@ There is already a survey on mitigating software vulnerabilities in
 general~\cite{SZ12}. The scope of that research is much broader than
 ours and leaves out the majority of the approaches and mechanisms that
 we consider in this work. This is mainly because that work includes
-countermeasures that identify vulnerabilities using program analysis
+countermeasures that identify vulnerabilities using static program analysis
 (which takes place during the development or testing phases), while we
 consider protection mechanisms that counter web attacks when they take
-place. Similarly, static or dynamic analysis techniques that examine
+place. Similarly, dynamic analysis techniques that examine
 applications to identify vulnerabilities that may lead to the attacks
 that we described earlier are out of scope as well. While
 countermeasures against {\sc sql} injection attacks have been
@@ -920,7 +920,7 @@ mechanisms.
 
 A policy enforcement technique developed by Mozilla,
 called {\sc csp} (Content Security Policy)~\cite{cspMoz,SSM10}
-is currently supported by many browsers to detect
+is currently supported by many browsers to prevent
 {\sc xss} and {\sc csrf} attacks. To eliminate such
 attacks, web site administrators
 can specify which domains the browser should treat
