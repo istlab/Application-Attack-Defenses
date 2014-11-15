@@ -449,7 +449,7 @@ eventually reaches the database where it is executed.
 
 Cross-site scripting attacks fall into two categories, {\it non-persistent}
 (also known as \emph{reflected}) {\sc xss}
-and {\it persistent} (also known as \emph{stored}) {\sc XSS}.
+and {\it persistent} (also known as \emph{stored}) {\sc xss}.
 Non-persistent {\sc xss} attacks take place when the
 data provided by a user is processed on-the-fly
 by server-side application logic and ends up without proper sanitization
@@ -465,9 +465,9 @@ application's execution flow and becomes part of the content that is
 eventually sent to the user as part of a future response.
 
 Cross-site request forgery attacks typically involve just a
-URL or page that contains a malicious request towards
+{\sc url} or page that contains a malicious request towards
 a site vulnerable to {\sc csrf}.
-An attacker can entice a victim to click on the URL or visit the page
+An attacker can entice a victim to click on the {\sc url} or visit the page
 through social engineering ({\sc csrf} 1), which will the result in a malicious
 request towards the vulnerable site ({\sc csrf} 2).
 Note that this scenario does not involve the injection of any code through the
