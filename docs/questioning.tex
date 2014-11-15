@@ -98,7 +98,7 @@
 \end{abstract}
 
 \begin{IEEEkeywords}
-Security and Protection, Web Application Security, Code injection Attacks,
+Protection Mechanisms, Web Application Security, Code injection Attacks,
 Testing, Cross-Site Scripting.
 \end{IEEEkeywords}
 
@@ -179,7 +179,7 @@ about the various protection categories and see how they compare
 to each other.
 
 There is already a survey on mitigating software vulnerabilities in
-general~\cite{SZ12}. The scope of that research is much broader that
+general~\cite{SZ12}. The scope of that research is much broader than
 ours and leaves out the majority of the approaches and mechanisms that
 we consider in this work. This is mainly because that work includes
 countermeasures that identify vulnerabilities using program analysis
@@ -272,7 +272,7 @@ subset of the code injection problem, as {\sc dsl}s such as
 both web and mobile applications. For example, many applications have
 interfaces through which a user enters input to interact with the
 application, thereby interacting with the underlying database. This
-input can become part of an {\sc sql} query and get executed on the
+input can become part of an {\sc sql} query and gets executed on the
 target database. Code injection attacks that exploit vulnerabilities
 in database interfaces by taking advantage of input validation issues,
 such as incorrectly passed parameters or incorrect type handling, are
@@ -289,7 +289,7 @@ SELECT password from userdata WHERE id = 'Alice'
 
 \noindent
 Attackers that would input the string {\tt anything' OR 'x'='x}
-thereby obtaining the administrator's password by email. Savvy
+would obtain the administrator's password by email. Savvy
 programmers can use certain {\sc api} functions, such as {\sc php}'s
 {\tt mysql\_real\_escape\_string()}, to detect malformed input, or,
 better, use prepared {\sc sql} statements instead of statement
@@ -305,7 +305,7 @@ or modify protected data, or even crash the entire application.
 purposes when an application does not properly handle user-supplied
 data. Based on this vulnerability attackers can supply valid {\sc
   html}, typically via a parameter value, and inject their own content
-into the page. {\sc html} injection is mainly associated with {\sc
+into the application's page. {\sc html} injection is mainly associated with {\sc
   xss} attacks~\cite{BJM08,LZRL09}. An {\sc xss} attack based on
 {\sc html} injection though, can also be used as a
 vehicle for a {\sc csrf} attack. Consider a bulletin board system where
@@ -516,7 +516,7 @@ crucially have to capture the presence of an attack. This, however, does not
 make a defense mechanism immediately useful. A
 detection mechanism must also be reliable.
 Detection accuracy is gauged with the following
-metrics~\cite{TDR2013,GFDLS06,A00}.
+metrics~\cite{TDR2013,GFDLS06,A00}:
 \begin{itemize}
 \item {\bf Sensitivity}: the probability that an attack will be
   caught.
@@ -535,7 +535,7 @@ metrics~\cite{TDR2013,GFDLS06,A00}.
 \noindent
 We will focus on sensitivity and specificity; we will come back to
 \textsc{ppv} and \textsc{npv} in Section~\ref{sec:lessons-learned}.
-Sensitivity and specifity are defined as follows~\cite{linn2004}.
+Sensitivity and specifity are defined as follows~\cite{linn2004}:
 \begin{itemize}
 \item True Positive (\textsc{tp}): an attack that raises an alarm.
 \item True Negative (\textsc{tn}): an event that is not an attack and that does
@@ -775,7 +775,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   {\sc nq} (Not Quantified) indicates that a requirement is mentioned in the\newline publication
   but is not quantified.
       \item[2] Tuples contain numbers given for True Positives
-        ({\sc TP}), True Negatives ({\sc tn}), False Positives ({\sc
+        ({\sc tp}), True Negatives ({\sc tn}), False Positives ({\sc
           fp}) and False Negatives ({\sc fn}). For every tuple\newline there is a corresponding suffix that indicates whether the testbed was
   based on: real-world applications known to be vulnerable ({\it r}),
   synthetic\newline benchmarks ({\it s}), or both ({\it a}).
@@ -799,7 +799,7 @@ except from availability, which we treat
 separately in Section~\ref{sec:discussion}.
 Due to the immense number of published works in the area, we only consider
 defenses that have been proposed in publications cited more than
-20 times according to Google Scholar.
+20 times according to Google Scholar~\cite{googleScholar}.
 We also include some recent works that have been
 presented in top security conferences, even though they have been
 cited less than twenty times, so that recent research is not penalized.
@@ -836,7 +836,7 @@ There are three main categories of etiological approaches used to protect web
 applications against injection attacks:
 \emph{Parse-Tree Validation},
 \emph{Policy Enforcement}, and
-\emph{Instruction Set Randomization (ISR)}.
+\emph{Instruction Set Randomization} ({\sc isr}).
 
 \subsubsection{Parse-Tree Validation}
 \label{sec:tree}
