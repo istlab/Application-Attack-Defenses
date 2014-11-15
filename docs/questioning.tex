@@ -25,9 +25,12 @@
 \usepackage{multirow}
 \usepackage{subfigure}
 \usepackage{array}
+\usepackage{courier}
 
 \usepackage[numbers,sort]{natbib}
+
 \lstset{columns=flexible,showstringspaces=false}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
 
 \renewcommand{\algorithmiccomment}[1]{\hfill {\tt //} #1}
 \newcommand{\tick}{\ding{52}}
@@ -215,7 +218,7 @@ Section~\ref{sec:lessons-learned} highlights
 some lessons learned from our observations
 and Section~\ref{sec:conclusion} concludes the paper.
 
-\section{Code Injection Attacks\\in Web Applications}
+\section{Code Injection Attacks in Web Applications}
 \label{sec:attacks}
 
 Lack of input validation is a major vulnerability behind dangerous web
@@ -279,13 +282,10 @@ filtered quotation characters in an application that sends a temporary
 password for a forgetful user via email by executing the following
 query:
 
-\bgroup \lstset{language=SQL}
-\begin{small}
+\lstset{language=SQL}
 \begin{lstlisting}
 SELECT password from userdata WHERE id = 'Alice'
 \end{lstlisting}
-\end{small}
-\egroup
 
 \noindent
 Attackers that would input the string {\tt anything' OR 'x'='x}
@@ -312,14 +312,10 @@ vehicle for a {\sc csrf} attack. Consider a bulletin board system where
 {\tt img} tags are not checked. A malicious user could embed a {\sc
   csrf} request within an {\tt img} tag in the following manner:
 
-\bgroup \lstset{language=HTML}
-\begin{small}
+\lstset{language=HTML}
 \begin{lstlisting}
-<img src='http://www.vulnerable.com/
-  admin.php?edituserwithID=13&addgroup=admin'/>
+<img src='http://www.vulnerable.com/admin.php?edituserwithID=13&addgroup=admin'/>
 \end{lstlisting}
-\end{small}
-\egroup
 
 \noindent
 When the page with this injected code is accessed by an administrator,
@@ -353,13 +349,9 @@ This could be achieved by including the following
 link to the malicious web site (or sending it via phishing
 email) and inducing the user to click on it:
 
-\lstset{language=VBScript, basicstyle=\footnotesize\ttfamily,}
+\lstset{language=HTML}
 \begin{lstlisting}
-http://example.com/vulnerable.html?query=
-<iframe src="javascript:document.body.innerHTML=+
-'<img src=\"http://malicious.com/?c=
-'+encodeURIComponent(document.cookie)+'\">'">
-</iframe>
+http://example.com/vulnerable.html?query=<iframe src="javascript:document.body.innerHTML=+'<img src=\"http://malicious.com/?c='+encodeURIComponent(document.cookie)+'\">'"></iframe>
 \end{lstlisting}
 
 \noindent
@@ -369,15 +361,12 @@ involve the injection of both {\sc html} and JavaScript code.
 A simple example of a {\sc php} injection attack is an input string
 that is fed into an {\tt eval()} function call, e.g.:
 
-\bgroup \lstset{language=PHP}
-\begin{small}
+\lstset{language=PHP}
 \begin{lstlisting}
 $variable = $_GET['var']; 
 $input = $_GET['value'];
 eval('$variable = ' . $input . ';')
 \end{lstlisting}
-\end{small}
-\egroup
 
 \noindent
 The user may pass into the {\tt value} parameter code that will
@@ -1213,13 +1202,10 @@ easily to false negatives. For instance, recall the application
 mentioned in Section~\ref{sec:attacks}, which will send the password
 for a forgetful user via email by executing the following query:
 
-\bgroup \lstset{language=SQL}
-\begin{small}
+\lstset{language=SQL}
 \begin{lstlisting}
 SELECT password from userdata WHERE id = 'Alice'
 \end{lstlisting}
-\end{small}
-\egroup
 
 \noindent
 This same application could allow users to lock their terminal,
@@ -1229,15 +1215,10 @@ behaved in this peculiar way).
 The corresponding query to verify the password on the locked
 workstation would be as follows:
 
-\bgroup
 \lstset{language=SQL}
-\begin{small}
 \begin{lstlisting}
-SELECT password from userdata WHERE id = 'Alice' OR
-id = 'admin'
+SELECT password from userdata WHERE id = 'Alice' OR id = 'admin'
 \end{lstlisting}
-\end{small}
-\egroup
 
 \noindent
 Even if the application's administrators have chosen to use
