@@ -409,7 +409,7 @@ while the numbers next to attack labels denote the
 sequence of steps for a particular attack.
 Points where different types of defenses
 detect or prevent attacks are marked with an `X' symbol:
-{\sc ub} (at the browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08},
+{\sc ub} (at the browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08,SSM10},
 {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
 {\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
 i{\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
@@ -633,7 +633,7 @@ it becomes as a practical approach.
 against web application attacks based on code
 injection. For each approach we provide the references
 that present corresponding mechanisms:
-{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08},
+{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,SSM10},
 {\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
 {\it Parse-Tree Validation}:~\cite{BWS05,SW06},
 {\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
@@ -722,7 +722,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   &   {\sc sqlg}uard~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql}i \\
   &   {\sc sqlc}heck~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql}i \\
   \hline
-  \multirow{12}{*}{Policy Enforcement}
+  \multirow{13}{*}{Policy Enforcement}
   &   {\sc dsi}~\cite{NSS06} & 135 & (5268,{\sc nq},{\sc nq},85)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
   &   NoForge~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
   &   Noxes~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
@@ -735,6 +735,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   &   Phung et al.~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
   &   ConScript~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
   &   CsFire~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
+  &   {\sc csp}~\cite{SSM10} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} ({\sc c}) & {\sc xss}, {\sc csrf} \\
   &   j{\sc csrf}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
   &   WebJail~\cite{VDDPJ11} & 25 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
@@ -927,6 +928,16 @@ another recent variation of JavaScript injection attacks, known as
 return-to-JavaScript attacks, which can be used to bypass the above
 mechanisms.
 
+A policy enforcement technique developed by Mozilla,
+called {\sc csp} (Content Security Policy)~\cite{cspMoz,SSM10}
+is currently supported by many browsers to detect
+{\sc xss} and {\sc csrf} attacks. To eliminate such
+attacks, web site administrators
+can specify which domains the browser should treat
+as valid sources of script and which not. Then, the browser
+(Point {\sc ub}) will only execute scripts that exist in
+source files from white-listed domains.
+
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
 to confine their behavior. BrowserShield~\cite{RDWDE07}
@@ -999,7 +1010,8 @@ sub-domains of the same registered domain.
 Most of the above frameworks involve
 several deployment hurdles, as they
 require significant source code modifications by the
-developers on the server side to introduce and enforce the applied policies.
+developers on the server side to introduce and enforce
+the applied policies.
 
 \subsubsection{Instruction Set Randomization (ISR)}
 
@@ -1069,7 +1081,6 @@ overhead, they require significant deployment effort. In particular,
 {\sc sql}rand requires the integration of a proxy within the database
 server, while Noncespaces and x{\sc js} require modifications on both
 the server and the client.
-
 
 \subsection{Symptomatic}
 
@@ -1341,7 +1352,7 @@ approaches~\cite{NBR14}.
   &   {\sc sqlc}heck~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc sqlg}uard~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
   \hline
-  \multirow{12}{*}{Policy Enforcement}
+  \multirow{13}{*}{Policy Enforcement}
   &   {\sc dsi}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
   &   NoForge~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
   &   Noxes~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
@@ -1354,6 +1365,7 @@ approaches~\cite{NBR14}.
   &   Phung et al.~\cite{PSC09} & \tick & \tick & \tick \\
   &   ConScript~\cite{ML10} & {\bf AO} & {\sc na} & {\sc na} \\
   &   CsFire~\cite{DDHPJ10} & \tick & {\sc na} & {\sc na} \\
+  &   {\sc csp}~\cite{SSM10} & {\bf AO} & {\bf AO} & {\sc na} \\
   &   j{\sc csrf}~\cite{PS11} & {\sc na} & {\sc na} & {\sc na} \\
   &   WebJail~\cite{VDDPJ11} & {\sc na} & {\sc na} & {\sc na} \\
     % &   {\it {\sc js}and}~\cite{AVBPDP12} & {\sc na} & {\sc na} & {\sc na} \\
@@ -1415,7 +1427,7 @@ approaches~\cite{NBR14}.
 \section{Observations}
 \label{sec:discussion}
 
-We group our key observations on the~34 publications along the
+We group our key observations on the~35 publications along the
 dimensions we identified in Section~\ref{sec:dimensions}.
 
 \subsection{Accuracy}
@@ -1807,8 +1819,8 @@ numerous mechanisms that have been developed to
 detect one or more of such attacks. However,
 even if some of them share characteristics
 (for instance, {\sc html} sanitization and {\tt eval} handling)
-with supported frameworks like Mozilla's Content Security
-Policy~\cite{cspMoz} ({\sc csp}) and Google Caja~\cite{M06,caja}
+with supported frameworks like Mozilla's {\sc csp}
+and Google Caja~\cite{M06,caja}
 the majority of them are not used in practice.
 
 In order for a security tool to be used in practice it must provide
