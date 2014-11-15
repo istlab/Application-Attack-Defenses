@@ -91,9 +91,13 @@
   We then categorize and analyze the various defense mechanisms that
   have been developed, based on their accuracy, performance,
   deployment, security, and availability properties.
-  We discuss the results of our analysis, with emphasis on factors
-  that may hinder the widespread adoption of attack detection
-  mechanisms in practice.
+  Accuracy is of particular importance, as our findings show that many defense
+  mechanisms have been tested in a poor manner. In addition, we observe
+  that some mechanisms can be bypassed by attackers with knowledge
+  of how the mechanisms work. Finally, we discuss the results
+  of our analysis, with emphasis on factors that may hinder
+  the widespread adoption of attack detection mechanisms
+  in practice.
 
 \end{abstract}
 
@@ -182,10 +186,10 @@ There is already a survey on mitigating software vulnerabilities in
 general~\cite{SZ12}. The scope of that research is much broader than
 ours and leaves out the majority of the approaches and mechanisms that
 we consider in this work. This is mainly because that work includes
-countermeasures that identify vulnerabilities using program analysis
+countermeasures that identify vulnerabilities using static program analysis
 (which takes place during the development or testing phases), while we
 consider protection mechanisms that counter web attacks when they take
-place. Similarly, static or dynamic analysis techniques that examine
+place. Similarly, dynamic analysis techniques that examine
 applications to identify vulnerabilities that may lead to the attacks
 that we described earlier are out of scope as well. While
 countermeasures against {\sc sql} injection attacks have been
@@ -928,7 +932,7 @@ mechanisms.
 
 A policy enforcement technique developed by Mozilla,
 called {\sc csp} (Content Security Policy)~\cite{cspMoz,SSM10}
-is currently supported by many browsers to detect
+is currently supported by many browsers to prevent
 {\sc xss} and {\sc csrf} attacks. To eliminate such
 attacks, web site administrators
 can specify which domains the browser should treat
@@ -1076,9 +1080,10 @@ as this may be used to reveal the encoding key.
 
 Even though the above implementations impose a low computational
 overhead, they require significant deployment effort. In particular,
-{\sc sql}rand requires the integration of a proxy within the database
-server, while Noncespaces and x{\sc js} require modifications on both
-the server and the client.
+{\sc sql}rand~\cite{BK04} requires the integration of
+a proxy within the database
+server, while Noncespaces and x{\sc js}~\cite{APKLM10}
+require modifications on both the server and the client.
 
 \subsection{Symptomatic}
 
@@ -1205,8 +1210,9 @@ external scripts, they keep a whitelist of all the valid domain names
 that contain scripts used by the application.
 
 Defenses based on training include some mechanisms that can be easily
-circumvented. For example, {\sc didafit} and libAnomaly do not
-tag transactions with their corresponding call sites. This can lead
+circumvented. For example, {\sc didafit}~\cite{LLW02}
+and libAnomaly~\cite{VMV05} do not tag transactions with their
+corresponding call sites. This can lead
 easily to false negatives. For instance, recall the application
 mentioned in Section~\ref{sec:attacks}, which will send the password
 for a forgetful user via email by executing the following query:
@@ -1232,7 +1238,8 @@ SELECT password from userdata WHERE id = 'Alice' OR id = 'admin'
 
 \noindent
 Even if the application's administrators have chosen to use
-either {\sc didafit} or libAnomaly as protection,
+either {\sc didafit}~\cite{LLW02} or
+libAnomaly~\cite{VMV05} as protection,
 an attacker could bypass them and obtain the
 administrator's password via email,
 by entering on the form the standard string:
@@ -1241,8 +1248,10 @@ signature of the second one above and is therefore accepted.
 The problem lies with the call location of the query, not the query alone.
 
 Mechanisms based on signatures that involve elements not only
-associated with code statements (e.g., {\sc amnesia} and {\sc
-  sd}river) could detect such attacks. Specifically, {\sc sd}river
+associated with code statements (e.g.,
+{\sc amnesia}~\cite{HO05,HO06,HO05b} and
+{\sc sd}river~\cite{MS09,MKS09,MKLS11})
+could detect such attacks. Specifically, {\sc sd}river
 associates a complete stack trace with the root of an {\sc sql}
 statement, thus it can correlate queries with their call sites and
 detect attacks like the above. Furthermore, training
@@ -1260,8 +1269,9 @@ necessary.
 Most of the training approaches are relatively easy to deploy.
 {\sc dsl} injection attack countermeasures
 can be retrofitted to a system typically by changing
-some configuration files (i.e., {\sc sd}river). This does not apply
-to {\sc amnesia} though, since significant source code
+some configuration files (i.e., {\sc sd}river).
+This does not apply to {\sc amnesia}
+though, since significant source code
 modifications are required for every query that exists
 in the application. Finally, {\sc swap} and {\sc xssds}
 are implemented within a proxy on the server-side.
@@ -1524,7 +1534,7 @@ cases, the times of normal executions are not provided,
 so it is not possible to convert absolute
 time measurements to percentage overheads. In 10 cases (28.5\%), the
 overhead was either not available ({\sc na}) or not quantified ({\sc
-  nq}). For {\sc php aspis}, its authors indicate that with
+  nq}). For {\sc php aspis}~\cite{PMP11}, its authors indicate that with
 their mechanism, the execution time is doubled.
 
 \subsection{Ease of Use}
@@ -1534,17 +1544,20 @@ Mechanisms in different categories face different deployment issues.
 Consider the majority of mechanisms in the policy enforcement
 subcategory. In most cases, developers should modify multiple
 components to use each mechanism. Specifically, mechanisms like
-BrowserShield and {\sc beep} require modifications both on the server
+BrowserShield~\cite{RDWDE07} and {\sc beep}~\cite{TNH07}
+require modifications both on the server
 and at the client. Thus, it would be difficult to be
 adopted by both browser vendors and application developers. On the
 other hand, there are cases where the policies introduced at the
 server are enforced at the client side, via a library embedded in the
-server's response (i.e., Blueprint). Such an approach is convenient
+server's response (i.e., Blueprint~\cite{LV09}).
+Such an approach is convenient
 as no modifications are needed at the client.
 
 Extensive modifications in the application's source
 code can also be a reason that can make a mechanism
-difficult to use. {\sc sql}rand, {\sc amnesia},
+difficult to use. {\sc sql}rand~\cite{BK04},
+{\sc amnesia}~\cite{HO05,HO06,HO05b},
 mechanisms of the parse-tree validation
 subcategory, and mechanisms of the taint
 tracking subcategory are such examples.
@@ -1555,8 +1568,9 @@ all the code fragments that involve user input handling.
 
 Finally, even though many of the mechanisms that involve
 training are easy to deploy, they have a distinct disadvantage.
-When the application is altered, mechanisms like {\sc sd}river
-and {\sc xss-guard} require a new training phase.
+When the application is altered, mechanisms like
+{\sc sd}river~\cite{MS09,MKS09,MKLS11}
+and {\sc xss-guard}~\cite{BV08} require a new training phase.
 However, with the increased adoption of automated testing
 and continuous integration frameworks, this phase could be
 easily repeated.
@@ -1572,8 +1586,8 @@ currently vulnerable to. For example, policy enforcement frameworks
 based on JavaScript or {\sc html} rewriting can be extended
 to detect attacks that leverage {\tt iframe} tags. This does not apply
 to all mechanisms though. In particular, training mechanisms like {\sc
-  didafit} and {\sc xss-guard} must be redesigned to detect the
-attacks we described in the related sections.
+  didafit}~\cite{LLW02} and {\sc xss-guard}~\cite{BV08} must be
+redesigned to detect the atacks we described in the related sections.
 
 Taking the attackers' point of view, mimicry attacks can affect a
 range of different mechanisms: they can be used to bypass mechanisms
@@ -1722,8 +1736,9 @@ mechanisms as practical tools.
 Apart from demonstrating the value of a mechanism, good accuracy tests
 may be beneficial per se, leading to more well-designed and robust
 defenses. Mechanisms that can be circumvented were not extensively
-tested in terms of accuracy. For instance, {\sc didafit} was not
-tested at all and {\sc xss-guard}'s testing involved 6 known attacks.
+tested in terms of accuracy. For instance, {\sc didafit}~\cite{LLW02}
+was not tested at all and {\sc xss-guard}'s~\cite{BV08}
+testing involved 6 known attacks.
 This also applies to some frameworks coming from the taint tracking
 subcategory. It is possible that more tests during development would
 have led the authors to larger design improvements~\cite{Van14}.
@@ -1760,8 +1775,8 @@ research.
 \subsection{Performance Overhead and Deployment Remarks}
 
 Performance overhead comes up as a non-trivial issue. We observe
-that the average overhead that can be extracted from the publications
-that provide the overhead in percentage terms is 17.45\%. Relative
+that there are some mechanisms that introduce an overhead
+that is more than 10\%. Relative
 research on protection mechanisms~\cite{SPWS13} indicates that
 mechanisms that introduce an overhead larger than 10\% do not tend to
 gain wide adoption in production environments. Hence, the
@@ -1783,7 +1798,7 @@ the browser are not easy to deploy because modifications are needed
 both on the server and the client side.
 Conversely, it may be possible to deliver
 the tools to the user unobtrusively; for example, we saw that
-Blueprint enforces policies at the client side by embedding a library
+Blueprint~\cite{LV09} enforces policies at the client side by embedding a library
 in the server's response to the client. In general, when developing a
 new countermeasure, researchers should consider where it
 will detect attacks, observe the corresponding deployment
@@ -1829,12 +1844,16 @@ deployment brings ease of experimentation. Secure methods can form the
 basis for developing methods with more extensive coverage.
 
 To the positive side, some defenses have been extensively tested in
-terms of accuracy ({\sc sqlc}heck, {\sc amnesia},
-libAnomaly), solve specific problems in an effective way (Blueprint
-and the system by Stock et al.) or have a low computational overhead
-({\sc dsi} and the system by Phung et al.). There are also cases where
-researchers have made their code available ({\sc beep} and {\sc
-  sd}river), which can promote the development of better
+terms of accuracy ({\sc sqlc}heck~\cite{SW06},
+{\sc amnesia}~\cite{HO05,HO06,HO05b}, libAnomaly~\cite{VMV05}),
+solve specific problems in an effective way
+(Blueprint~\cite{LV09} and the system by Stock et al.~\cite{SLMS14}) or
+have a low computational overhead
+({\sc dsi}~\cite{NSS06} and the system by Phung et al.~\cite{PSC09}).
+There are also cases where
+researchers have made their code available ({\sc beep}~\cite{TNH07}
+and {\sc sd}river~\cite{MS09,MKS09,MKLS11}),
+which can promote the development of better
 mechanisms. This argument has been raised by another {\sc s}o{\sc k}
 paper~\cite{SPWS13}. Furthermore, testing defenses in a production
 setting could also propel their adoption.
