@@ -1601,9 +1601,11 @@ injection attacks (6 out of 10).
 \label{sec:lessons-learned}
 
 Our observations lead to some lessons and recommendations that
-developers of new mechanisms may find helpful. In particular, they
-call for improving accuracy tests and code availability, while
-aiming to reduce performance and deployment overheads.
+developers of new mechanisms may find helpful. In particular,
+our observations
+call for improvements in the accuracy of experimental testing
+and code availability, while
+aiming to reduce performance overheads and deployment hurdles.
 
 % @dimitro: move this to the analysis Section:
 % This scheme is an efficient scheme that focuses
@@ -1614,28 +1616,29 @@ aiming to reduce performance and deployment overheads.
 % As the author of {\sc csse} state~\cite{PB05}, the prevention
 % of {\sc xss} attack requires a more complex analysis.
 
-\subsection{Improving Accuracy Tests}
+\subsection{Improving Testing Accuracy}
 
-One of our key findings indicate that many detect mechanisms are
-tested in a poor manner. In many cases researchers tend not to provide
-the false positive and negative results that their tools may produce.
-Discussing about the existence of such results and not quantifying
+One of our key findings indicates that many proposed defenses are
+tested in a poor manner. In many cases, researchers tend to not providing
+results on false positives or false negatives for their detection mechanisms
+(where applicable).
+Mere discussion on the existence of such results without quantifying
 them also blurs the picture.
 
 A reasonable argument would be that many mechanisms (especially the
 ones coming from the etiological category), do not need to be
-established purely through testing since they provide systematic
+established purely through testing, since they provide systematic
 arguments as to why their design is secure against attacks. In order
-for this to hold, however, an implementation of a defense mechanism
-may be entirely correct in terms of its specification, which may not
-happen in practice. Moreover, even a mechanism that detects an attack
-based on its root cause, instead of observer behavior, may still be
-circumvented so that attacks will pass undetected.
+for this to hold, however, their implementation should be flawless
+and precisely follow its specification, which may not
+be the case in practice. Moreover, even mechanisms that detect attacks
+based on their root cause, instead of their observed behavior, may still be
+circumvented by evasive attacks.
 
 When we introduced specificity and sensitivity in
-Section~\ref{ssec:diagnostic-performance} we deferred discussion of
+Section~\ref{ssec:diagnostic-performance}, we deferred discussion of
 \textsc{ppv} and \textsc{npv} to this point. These two relate to the
-performance of a detection mechanism in an actual production setting,
+effectiveness of a detection mechanism in an actual production setting,
 instead of a testbed. If an attack is detected in a production
 environment, how much should we be worried? The answer is provided by
 \textsc{ppv}. If no attack is detected in a production environment,
@@ -1655,11 +1658,12 @@ answer is provided by \textsc{npv}. We can calculate \textsc{ppv} and
 Equations~\ref{eq:ppv-se-sp} and~\ref{eq:npv-se-sp} use true and false
 positives and negatives, like equations~\ref{eq:sensitivity}
 and~\ref{eq:specificity}. However, \textsc{tp}, \textsc{tn},
-\textsc{fp}, and \textsc{fn} are not the same in the two cases:
-whereas sensitivity and specificity are measured on a test
-environment, \textsc{ppv} and \textsc{npv} are measured on the real,
-target environment. In fact, if \textsc{pr} is the probability of
-attacks in the real world, the prevalence, then we
+\textsc{fp}, and \textsc{fn} are not qualitatively the same in these two cases:
+whereas sensitivity and specificity are measured on a testing
+environment, \textsc{ppv} and \textsc{npv} are measured on a real,
+production environment. In fact, if \textsc{pr} is the probability of
+a particular class of attacks in the real world,
+i.e., its prevalence, then we
 have~\cite{linn2004,altman1994}:
 
 \begin{equation}
@@ -1677,9 +1681,10 @@ have~\cite{linn2004,altman1994}:
 \end{equation}
 
 \noindent
-The prevalence is the prior probability that an event is an attack,
-based on our understanding of the volume and frequency of attacks; the
-\textsc{ppv} and \textsc{npv} are the revised estimates of the
+Prevalence is the prior probability that an event might be an attack,
+based on our understanding of the volume and frequency of a particular
+class of attacks; 
+\textsc{ppv} and \textsc{npv} are the revised estimates of that
 probability based on the results of the detection
 mechanism~\cite{altman1994}. The lower the prevalence of an attack,
 the more confident we can be that a negative test result indicates
@@ -1687,59 +1692,60 @@ that no attack has taken place and the less sure we can be that a
 positive test result indicates a real attack. 
 
 Of course it is not easy, and it may not even be possible, to know how
-prevalent an attack is. Also, attacks on a system may depend on
-factors such as its visibility and popularity, so that the same piece
-of software may be subject to varying attack regimes depending on
-where it is actually deployed. With this in mind it may be unfair to
-ask of researchers to provide \textsc{ppv} and \textsc{npv} values for
-their mechanisms---in fact, we see that nobody does.
+prevalent an attack class is. Also, attacks against a system may depend on
+factors such as its visibility and popularity, and thus the same
+software may be subject to varying attack intensity depending on
+where it is actually deployed. With this in mind, it may be unfair to
+ask researchers to provide \textsc{ppv} and \textsc{npv} values for
+their mechanisms.
+%---in fact, we observe that nobody does.
 
-That does not mean that deriving \textsc{ppv} and \textsc{npv} is
-altogether impossible. One could deploy a system, armoured with an
-attack detection mechanism, on a honeypot to study what happens over
-a length of time. This could give an indication of the performance of
-the mechanism out in the wild. Alternatively, one could deploy a
+This does not mean though that deriving \textsc{ppv} and \textsc{npv} is
+altogether impossible. One could deploy a system armoured with an
+attack detection mechanism on a honeypot to study what happens over
+a time period. This could give an indication about the performance of
+the mechanism in a realistic setting. Alternatively, one could deploy a
 target, unarmoured system, on a honeypot to study the prevalence of
 the class of attacks to be detected. Studying the prevalence of
-classes of attacks could be an interesting area of study on its own,
-which could feed directly on the evaluation of attack detection
+classes of attacks is an interesting area of study on its own,
+and could feed directly on the evaluation of attack detection
 mechanisms as practical tools.
 
 Apart from demonstrating the value of a mechanism, good accuracy tests
-may be beneficial per se, by leading to more well-designed and robust
-mechanisms. Mechanisms that can be circumvented were not extensively
+may be beneficial per se, leading to more well-designed and robust
+defenses. Mechanisms that can be circumvented were not extensively
 tested in terms of accuracy. For instance, {\sc didafit} was not
 tested at all and {\sc xss-guard}'s testing involved 6 known attacks.
 This also applies to some frameworks coming from the taint tracking
 subcategory. It is possible that more tests during development would
-have led the authors to wider improvements in design~\cite{Van14}.
+have led the authors to larger design improvements~\cite{Van14}.
 
 The accuracy of a tool may be related to the scope of the attacks it
 aims to detect. A more limited scope may allow the development of more
 accurate tools. In this vein, the system by Stock et al~\cite{SLMS14}
 is the only one that targets exclusively {\sc dom}-based {\sc xss}
-attacks and detects them in an accurate manner as seen in
-Table~\ref{tab:comp}. It is also extensively tested in real-world
+attacks and detects them in an accurate manner, as seen in
+Table~\ref{tab:comp}. It is also extensively tested with real-world
 attacks.
 
 \subsection{Code Availability}
 
 Apart from testing practices, another area that merits improvement is
-the availability of source code and testbeds. We are not aware of
+the availability of prototypes and testbeds. We are not aware of
 specific reasons why authors of attack detection mechanisms seem to be
-wary of releasing on-line their code and tests. Our finding may reflect
+wary of publicly releasing their code and tests. Our finding may reflect
 the status in the current point in time, when authors are urged to
 publish their code and tests, and may start, or may have already
 started doing so, but this does not show yet in the research we
 examined, which goes several years back. We also saw instances where
 material was published, but does not seem to be available any more.
-That points to the importance of curation of research materials. That
-is a problem arising in all scientific fields. It is not enough to
+That points to the importance of reproducibility of research materials, 
+an issue arising in all scientific fields. It is not enough to
 publish the underlying code and data, but to make sure that it remains
-accessible and to provide the means to test it even as technology
-progresses and operating systems, file formats, and software libraries
+accessible, and to provide the means to test it even as technology
+advances and operating systems, file formats, and software libraries
 change. That may be too much to ask right now; what seems reasonable,
-though, is to ask of researchers in attack detection mechanisms not to
+though, is to ask of researchers working on attack detection mechanisms not to
 buck the trend and to take steps to increase the availability of their
 research.
 
@@ -1765,14 +1771,14 @@ benefits.
 
 The issue is more acute when the point of detection is at the client.
 We saw that many policy enforcement mechanisms that detect attacks at
-Point {\sc ub} are not easy to deploy because modifications are needed
+the browser are not easy to deploy because modifications are needed
 both on the server and the client side.
 Conversely, it may be possible to deliver
 the tools to the user unobtrusively; for example, we saw that
-Blueprint enforces policies on the client side by embedding a library
+Blueprint enforces policies at the client side by embedding a library
 in the server's response to the client. In general, when developing a
-new countermeasure, researchers should consider where they are
-planning to detect attacks, observe the corresponding deployment
+new countermeasure, researchers should consider where it
+will detect attacks, observe the corresponding deployment
 challenges, and try to mitigate them.
 
 \section{Conclusions}
