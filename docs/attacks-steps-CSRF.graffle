@@ -932,7 +932,7 @@ I-CSRF}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{802.33477783203125, 124.04473844909671}, {134, 60}}</string>
+			<string>{{801.33477783203125, 126.04473844909671}, {134, 60}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -993,7 +993,7 @@ CSRF via HTML injection}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{763.14221668243408, 124.04473876953125}, {47, 60}}</string>
+			<string>{{762.14221668243408, 126.04473876953125}, {47, 60}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1064,8 +1064,8 @@ I-CSRF:}</string>
 			<integer>3094</integer>
 			<key>Points</key>
 			<array>
-				<string>{123.3612967793692, 462.80393739685184}</string>
-				<string>{122.54557826332166, 559.81855010986328}</string>
+				<string>{123.3612967793692, 462.80393739685178}</string>
+				<string>{122.54978221593949, 559.31856779113639}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1952,7 +1952,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{685.08775848365701, 417.81256900199548}, {22, 32}}</string>
+			<string>{{685.0877585085899, 417.80493511426602}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -2023,7 +2023,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{839.09621843215928, 469.94339561352263}, {22, 32}}</string>
+			<string>{{839.0938739148819, 470.18999563142614}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -2104,8 +2104,8 @@ I-CSRF:}</string>
 			<integer>3067</integer>
 			<key>Points</key>
 			<array>
-				<string>{622.49382196229328, 164.36882813798493}</string>
-				<string>{623.09369079726719, 238.19632847893362}</string>
+				<string>{622.49385701680194, 164.36882813798022}</string>
+				<string>{623.09381996043589, 238.19632847823073}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -2332,8 +2332,8 @@ I-CSRF:}</string>
 			<integer>3030</integer>
 			<key>Points</key>
 			<array>
-				<string>{281.41996235826872, 167.36882810794543}</string>
-				<string>{280.83317338267403, 239.44630567337893}</string>
+				<string>{281.41992232602024, 167.36882810758075}</string>
+				<string>{280.83303385342754, 239.44630562044907}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -2424,7 +2424,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{428.08694794464111, 98.708099365234375}, {47, 34.594251399128751}}</string>
+			<string>{{428.08694794464111, 97.708099365234375}, {47, 34.594251399128751}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -2496,7 +2496,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{827.19009876251221, 111.48415724182126}, {47, 12}}</string>
+			<string>{{826.19009876251221, 113.48415724182126}, {47, 12}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -2551,7 +2551,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{764.14221668243408, 111.59687295532217}, {169.42113208770752, 78.403129577636719}}</string>
+			<string>{{763.14221668243408, 111.59687295532217}, {170.42113208770752, 78.403129577636719}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -2631,8 +2631,8 @@ I-CSRF:}</string>
 			<integer>200</integer>
 			<key>Points</key>
 			<array>
-				<string>{850.09511482623486, 461.30396651079627}</string>
-				<string>{850.09735240160524, 511.26072959092386}</string>
+				<string>{850.0938739148819, 461.30396650350144}</string>
+				<string>{850.09385707191541, 511.76071739196777}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -3613,8 +3613,8 @@ injection Attack}</string>
 			<integer>109</integer>
 			<key>Points</key>
 			<array>
-				<string>{681.23125588735002, 433.81078379669907}</string>
-				<string>{793.29694082087917, 433.82424997105551}</string>
+				<string>{681.23125592109318, 433.80473270618324}</string>
+				<string>{793.29694078816499, 433.80625951239386}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -3942,7 +3942,7 @@ injection Attack}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-11-14 20:26:18 +0000</string>
+	<string>2014-11-15 01:13:30 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
@@ -4018,7 +4018,7 @@ injection Attack}</string>
 		<key>ExpandedCanvases</key>
 		<array/>
 		<key>Frame</key>
-		<string>{{7, 45}, {1440, 832}}</string>
+		<string>{{0, 45}, {1440, 832}}</string>
 		<key>ListView</key>
 		<false/>
 		<key>OutlineWidth</key>

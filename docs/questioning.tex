@@ -401,7 +401,7 @@ detect or prevent attacks are marked with an `X' symbol:
 {\sc ub} (at the browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08,SSM10},
 {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
 {\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
-i{\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
+{\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
 
 
@@ -532,6 +532,7 @@ metrics~\cite{TDR2013,GFDLS06,A00}.
   mechanism flags it as normal.
 \end{itemize}
 
+\noindent
 We will focus on sensitivity and specificity; we will come back to
 \textsc{ppv} and \textsc{npv} in Section~\ref{sec:lessons-learned}.
 Sensitivity and specifity are defined as follows~\cite{linn2004}.
@@ -594,7 +595,7 @@ The overhead depends on the specifics of each mechanism. For
 example, it may be due to some form of run-time checking, or some form of
 obfuscation. Also, depending on the approach, the cost may be incurred
 on different places: it may affect a server
-(e.g., its memory or CPU usage, processing throughput, or response latency),
+(e.g., its memory or {\sc cpu} usage, processing throughput, or response latency),
 it may affect the client, or both. The
 usefulness of a detection mechanism depends therefore on the
 computational cost it requires and on where it imposes it, as
@@ -681,7 +682,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 \item At the database abstraction layer, before it reaches the server's database
   (Point {\sc dbal}).
 \item After the malicious code reaches the server's database
-  (Point i{\sc db}).
+  (Point {\sc db}).
 \end{itemize}
 
 
@@ -1021,7 +1022,7 @@ statements using randomized instructions instead of standard keywords.
 The modified queries are reconstructed at runtime using the same key
 used for randomization, which is inaccessible to a malicious user.
 {\sc sql}rand is one of the few mechanisms that prevent {\sc sql}
-injection attacks at the database level (Point i{\sc db}).
+injection attacks at the database level (Point {\sc db}).
 
 The same concept can be applied for protection against
 {\sc xss} attacks that inject JavaScript or {\sc html} code.
@@ -1415,12 +1416,13 @@ dimensions we identified in Section~\ref{sec:dimensions}.
 \subsection{Accuracy}
 
 
-Table~\ref{tab:comp} indicates that the authors of 3 out of 34 (8.8\%)
+Table~\ref{tab:comp} indicates that the authors of 3 out of 35 (8.5\%)
 publications provided complete quadruples of {\sc tp}, {\sc tn}, 
 {\sc fp}, and {\sc fn}. On the other hand, we
-see that 4 out of 34 (11.7\%) were not tested at all. In these cases,
-all the four elements of the quadruples are not available ({\sc na}).
-An interesting observation is that in 10 out of the 34 (29.41\%)
+see that 4 out of 35 (11.4\%) were not tested at all.
+In these cases, all the four elements of the quadruples
+are not available ({\sc na}). An interesting observation is
+that in 10 out of the 35 (28.5\%)
 publications, the authors performed only attacks during their tests
 and did not test their mechanisms to see if they produce any false
 alarms. The corresponding quadruples contain {\sc tp} and {\sc fn}
@@ -1439,15 +1441,16 @@ Sensitivity and specificity are statistical measures, and as such
 should be interpreted with suitable confidence intervals. There are
 various methods to calculate confidence intervals, even dispensing
 with the need to have large samples in order to be able to use the
-central limit theorem~\cite{agresti1998,brown2001}. However, sample sizes in the single
+central limit theorem~\cite{agresti1998,brown2001}.
+However, sample sizes in the single
 digits are not enough to produce good intervals.
 
-Regarding the subjects of tests, we see that 27 out of 34 mechanisms
-were tested on real-world applications known to be vulnerable. The
-vulnerabilities associated with these applications are enlisted in the
-following providers: the Common Vulnerabilities and Exposures ({\sc
-  cve}) database~\cite{cve}, the Bugtraq security
-mailing list~\cite{bugtraq}, the {\sc xss}ed.com
+Regarding the subjects of tests, we see that 27 out of 35 (77.1\%)
+mechanisms were tested on real-world applications known to be
+vulnerable. The vulnerabilities associated with these applications
+are enlisted in the following providers: the Common
+Vulnerabilities and Exposures ({\sc cve}) database~\cite{cve},
+the Bugtraq security mailing list~\cite{bugtraq}, the {\sc xss}ed.com
 security bulletin provider~\cite{xssed}, Microsoft's security
 bulletin~\cite{microsoftBulletin} and the
 ha.ckers.org security bulletin provider~\cite{hackers}.
@@ -1485,33 +1488,19 @@ Finally, in the publications that
 authors managed to break existing application suites
 and then test the accuracy of their tools on them.
 
-% Comment 1: Regarding the frameworks that were
-% not tested in terms of diagnostic performance
-% at all, we see that they are mostly coming from
-% the etiological category.
-
-% Comment 2: Note though that implementations
-% of etiological mechanisms can actually
-% be bypassed.
-
-% Comment 3: The above are some extra findings that
-% indicate that there is no standard way to
-% test such mechanisms. Perhaps, forming a
-% standard way to test such tools in terms
-% of diagnostic and computational performance
-% would be one of the reasons of adopting them.
-
 \subsection{Availability}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
 of each mechanism in terms of source code and corresponding
 executables. We also examined the availability of the testbeds
-mentioned in the paper. We see that only 6 out of 34 (17.6\%) of the
+mentioned in the paper. We see that only 6 out of 35 (17.1\%) of the
 pubications provided a homepage for their mechanism and 2 from these 6
 homepages are currently not available. In 5 cases authors made either
 the source code or their executables available after their paper got
-published. Regarding the availability of test materials, we see that
-only 3 out of 34 (8.8\%) publications have currently their testbeds
+published. In one case ({\sc csp}) the source was available before the
+publication through the Mozilla community.
+Regarding the availability of test materials, we see that
+only 3 out of 35 (8.5\%) publications have currently their testbeds
 available on-line.
 
 \subsection{Computational Performance}
@@ -1519,13 +1508,13 @@ available on-line.
 Table~\ref{tab:comp} shows for every mechanism its corresponding
 overhead. In addition, it indicates if the overhead is applied to the
 server-side ({\sc s}), or the client-side ({\sc c}). In almost half of
-the approaches, 16 out of 34 (47.05\%), the overhead is provided as a
-percentage, while in other cases, 7 our of 34 (20.5\%), the authors
+the approaches, 16 out of 35 (45.7\%), the overhead is provided as a
+percentage, while in other cases, 7 our of 35 (20\%), the authors
 provide the time (in terms of ms) that their mechanisms add to the
 normal execution time of the protecting entity. Note that in some
 cases, the times of normal executions are not provided,
 so it is not possible to move from absolute
-time measurements to percentage overheads. In 10 cases (29.4\%), the
+time measurements to percentage overheads. In 10 cases (28.5\%), the
 overhead was either not available ({\sc na}) or not quantified ({\sc
   nq}). In the case of {\sc php aspis}, its authors indicate that with
 their mechanism, the execution time is doubled.
@@ -1591,7 +1580,7 @@ on the server-side, all the mechanisms that detect
 such attacks are placed in some point within the server.
 From the mechanisms that detect {\sc dsl} code injection
 attacks, 3 out of 13 (23\%) do so at the level
-of the {\sc rdbms}---Point i{\sc db}.
+of the {\sc rdbms}---Point {\sc db}.
 The other 11 wrap {\sc api} calls related to output
 vectors---Point {\sc e}i{\sc q}.
 
@@ -1602,8 +1591,8 @@ to examine the server's responses before they reach the user's web
 browser. In the second case a modified browser or a library that is
 securely downloaded from the server checks the responses for potential
 attacks. We find that the tendency so far is to create frameworks that
-perform detection on the client side: in particular, 13 out of 23
-frameworks (56,5\%) detect {\sc xss} attacks on the
+perform detection on the client side: in particular, 14 out of 24
+frameworks (58,3\%) detect {\sc xss} attacks on the
 client's side. Note that the majority of the mechanisms that detect
 such attacks on the server-side can also detect {\sc dsl} code
 injection attacks (6 out of 10).
