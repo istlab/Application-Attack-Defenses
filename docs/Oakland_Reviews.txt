@@ -1,0 +1,241 @@
+===========================================================================
+                         Oakland 2015 Review #257A
+                     Updated 9 Dec 2014 5:35:33am EST
+---------------------------------------------------------------------------
+  Paper #257: SoK: Defending Against Web Application Attacks: From Research
+              Approaches to Practical Tools
+---------------------------------------------------------------------------
+
+                      Overall merit: 3. Weak accept
+              Technical correctness: 3. Minor problems, probably fixable
+                            Novelty: 3. Substantial increment
+                  Review confidence: 3. High
+
+                            ===== Summary =====
+
+Referencing 100 papers, the submission gives a wide-area overview of
+the state of the art on defending against injection attacks in web
+applications.
+
+Code injection attacks include attacks for domain-specific languages
+(with SQL and HTML as prime examples) and attacks for dynamic
+languages (with JavaScript and PHP as prime examples). A unifying flow
+chart depicts paths that attackers may take for performing injections
+that lead to SQL injection, cross-site scripting (XSS), cross-site
+request forgery (CSRF), and other typical injection attacks on the
+context of the web.
+
+With the focus on the papers that are cited at least 20 times
+according to Google Scholar, the overview provides a classification of
+approaches that treat the etiological and symptomatic aspects of
+injection in web applications. The protection mechanisms are discussed
+along the dimensions of accuracy, availability, performance overhead,
+ease of use, security, and detection points.
+
+                        ===== Main strengths =====
+
+-Code injection in web applications is an extremely active area, and
+so attempts to systematize it are much welcome.
+-The coverage is pretty good (see some comments bellow on other work
+in this domain, inevitable given the size of the area).
+-Classification of etiological vs. symptomatic is useful
+-The overview is up to date on the most recent work, for example
+citing a BlackHat presentation a few months ago.
+-Much work is put into the paper, for example, filling Table I has
+surely been labor-intensive.
+
+                        ===== Main weaknesses =====
+
+-The sensitivity and specificity metrics are questionable (need
+justification and relation to standard techniques), and anyway not
+used much in Table I.
+-The paper is tutorial-like and broad, which is not so bad by itself,
+but it is desirable of a SoK paper to contain more insight than a
+typical survey.
+-Large parts of Table I and in particular Table II are dominated by N/As.
+-Some work not covered (for example, on language subsets and in
+information flow control).
+
+                   ===== Other comments to authors =====
+
+The paper states up front that it focuses on injection attacks in web
+applications. It makes sense to reflect injection in the title, which
+currently suggests that the paper is about all web applications
+attacks (including insecure misconfigurations, web session
+managements, etc.)
+
+The categorization talks about dimensions, but it turns out that the
+dimensions are not fully orthogonal. For example, the accuracy
+dimension includes false negative rates, which directly related to the
+security dimension.
+
+Related strands of work that deserve coverage:
+
+-Language subset and rewriting systems. Caja and BrowserShield are
+mentioned, but there's more work in the area including ADsafe,
+Facebook JavaScript, and Secure EcmaScript.
+
+-Information flow control. Only Vogt's work on NoMoXSS is discussed,
+but there is more in this space including FlowFox, JSFlow, and IFC in
+WebKit's JavaScript Bytecode.
+
+-Further approaches: Contego, AdSentry, JSand.
+
+The paragraph dismissing static and dynamic analysis approaches is
+misleading, given that some of the overviewed approaches utilize
+static and dynamic analysis.
+
+XCS is mentioned but not explained that it involves non-web channels
+to get code into web applications.
+
+Further, attacks that involve plugins (eg polyglots) and scriptless
+attacks would make sense to bring up.
+
+The security discussion (Section IV) is somewhat minimalistic.
+Further, more insight would be helpful on the security of the systems
+and the attack surfaces covered beyond what is reported in Table I
+(which talks about the classical SQL injection, XSS, CSRF and known
+DOM-based, JSON injection, and XPath injection attacks).
+
+The "point of detection" dimensions is specific to the web
+architecture, which means that language-level protection and web
+framework-level protection slip out of the classification.
+
+Regarding the comments about the lack of a testbed for XSS, Firing
+Range is Google's effort to provide a compelling testbed for XSS.
+
+===========================================================================
+                         Oakland 2015 Review #257B
+                    Updated 19 Dec 2014 11:37:15am EST
+---------------------------------------------------------------------------
+  Paper #257: SoK: Defending Against Web Application Attacks: From Research
+              Approaches to Practical Tools
+---------------------------------------------------------------------------
+
+                      Overall merit: 2. Weak reject
+              Technical correctness: 4. Virtually no problems
+                            Novelty: 1. No discernible novelty
+                  Review confidence: 3. High
+
+                            ===== Summary =====
+
+The authors present and categorize several countermeasures against web injection attacks. For each mechanism, the information from the mechanism's main publication is summarized, especially in the categories accuracy, availability (of source code), performance overhead, ease of use and security. They also provide a unified "attack model" for injection attacks.
+
+                        ===== Main strengths =====
+
+The paper gives an overview of the web injection attack countermeasures that were discussed in the last years.
+
+The authors criticize that many countermeasures were not studied enough regarding their accuracy. This is certainly correct, and the web security community would benefit from improvements in this area.
+
+                        ===== Main weaknesses =====
+
+The paper essentially provides only information that is directly available from other publications. This applies especially to the categories accuracy and performance overhead, where several mechanisms do not provide data. The authors of the paper did not perform any original tests.
+
+The paper fails to clearly identify the state of the art. Among the mechanisms studied, there are several that follow approaches that have never been widely used in practice, and for good reasons (take SQLrand as an example). The authors fail to distinguish these mechanisms from those that are actually used in practice today, and they do not explain why some mechanisms were more successful than others. For example, the Content Security Policy has gained much traction in the last years, with browser support by all major vendors, and, implemented correctly, provides a very good level of protection without much overhead. However, the authors mention it only very briefly. As another example, prepared statements are often recommended today as a mitigation for SQL injection attacks. The authors mention this also only very briefly. It would have been interesting to clearly identify other mechanisms that incur more overhead than prepared statements (for developers or for the server performance) but do not provide a better protection (again, SQLrand).
+
+The attack model seems to not be very useful and is rather confusing.  The first two steps ("Crafts malicious URL/Web Page" and "Includes malicious payload into HTTP/HTTPS request") stay a little fuzzy, especially given the unclear ordering that the arrows are labeled with (Step 1 for P-XSS on the right, Step 1.1 on the left?). Also, the model does not contain a path for PHP code injection (where neither the DB is affected nor any malicious payload is sent to a user).
+
+All in all, I think that the paper does not convey much new information. For beginners and practicioners in web security, it does not give any concrete recommendations or guidelines. For academics that seek to get familiar with the topic, it does not show the state of the art. And finally for experts there is only very little added value from reading this paper.
+
+                   ===== Other comments to authors =====
+
+The authors seem to lose track of the focus of the paper, at least in some corner cases. For example, in the beginning, LDAP injection and XPath injection are mentioned, however, later, only SQL injection is considered.
+
+===========================================================================
+                         Oakland 2015 Review #257C
+                    Updated 11 Jan 2015 12:27:09pm EST
+---------------------------------------------------------------------------
+  Paper #257: SoK: Defending Against Web Application Attacks: From Research
+              Approaches to Practical Tools
+---------------------------------------------------------------------------
+
+                      Overall merit: 4. Accept
+              Technical correctness: 2. Minor problems, but may not be
+                                        fixable
+                            Novelty: 3. Substantial increment
+                  Review confidence: 3. High
+
+                            ===== Summary =====
+
+This SoK paper is about protection mechanisms against web application attacks.
+It reviews the most cited proposals, and systematically analyzes and compares them.
+Then it draws conclusions about the achievements, and future research directions.
+
+                        ===== Main strengths =====
+
+Web application attacks are a major issue, and various protection mechanisms have been proposed.
+This paper systematically analyzes existing approaches, and tries to give reasons why despite much research they only had a limited impact in practice.
+To this extent, its conclusions go beyond web application security, as the lessons (need for good evaluation, available source code and experiment data, ease of use) are valid for most protection mechanism research.
+
+                        ===== Main weaknesses =====
+
+It is a pity that the paper does not consider approaches that try to identify and mitigate vulnerabilities before deployment, such as static program analysis, since they become more commonly used in practice.
+Moreover, in the conclusion Google Caja is cited as a practically deployed protection mechanism.
+Why is this tool not part of the survey, in particular since Mozilla's CSP is discussed?
+
+                   ===== Other comments to authors =====
+
+On page 1, you define "ease of use" as "whether the protection mechanism ... can be easily adopted by security experts".
+Probably it would be more desirable that an easily usable protection mechanism can also be exploited by a normal programmer, who is not necessarily a security expert.
+This also corresponds more closely to section IV.D, and the conclusion.
+
+The SQL injection example given on pages 2 and 10 is unclear to me.
+Assume that query on page 2 is used to retrieve the user's password, which is then mailed to the user.
+If the string "Alice" is replaced with the injected string, the query would return all passwords stored in the DB.
+Why would this enable the attacker to learn a user's password?
+Depending on the implementation, the application could simply take the first result and mail to Alice, which does not necessary leak much useful information (even if the attacker is Alice or could read Alice's mail), since it could simply be Alice's password.
+Naturally, if the implementation sends all results, maybe even with all user names, the problem is more obvious.
+This can easily be fixed by giving more details on how the query is used within the application.
+
+On page 13, the acronym RDBMS was not previously introduced, and the point EiQ does not appear elsewhere in the paper - maybe you mean DBAL or DB?
+
+I have some trouble with the definitions of the four accuracy metrics.
+From my understanding, sensitivity and specificity could also be expressed in terms of conditional probability: sensitivity is the conditional probability that the detection mechanism flags an attack, given that an attack is taking place, and specificity is the conditional probability that the mechanism does not report an attack, given that no attack takes place.
+This would help in discerning and relating these measures from and to the positive and negative predictive values, and also explains formulas (5) and (6) on page 13.
+Moreover, the discussion seems to be confusing experiment measurements and abstract probabilities.
+On page 2, it is stated that "sensitivity and specificity can be calculated on test data alone".
+On page 13, it is said that "PPV and NPV ... relate to the effectiveness in an actual production environment".
+Obviously, any measurement of true and false positives and negatives on test data can be skewed, if the test data is skewed.
+Hence, if the sensitivity and specificity are measured using tests that do not relate to "the production environment", the calculated values are meaningless.
+Yet this holds true for all four measures; it is simply related to the way they are estimated.
+The advantage of PPV and NPV is that they answer the question of "given a detection result, how much can you trust it?", which is more interesting in the "production environment".
+This part of the paper should be revised to give a clearer picture.
+
+Typos:
+-page 8, top right column: ar -> are
+
+===========================================================================
+                         Oakland 2015 Review #257D
+                     Updated 13 Jan 2015 1:42:23pm EST
+---------------------------------------------------------------------------
+  Paper #257: SoK: Defending Against Web Application Attacks: From Research
+              Approaches to Practical Tools
+---------------------------------------------------------------------------
+
+                      Overall merit: 3. Weak accept
+              Technical correctness: 3. Minor problems, probably fixable
+                            Novelty: 3. Substantial increment
+                  Review confidence: 3. High
+
+                            ===== Summary =====
+
+This paper systemizes research in defending against web application attacks.
+
+                        ===== Main strengths =====
+
+- The classification of defenses into etiological, symptomatic, and hybrid categories is clear.
+
+- The evaluation of all the techniques on accuracy, availability, performance overhead etc. is refreshing.
+
+- The recommendation on improving testing accurary is thought provoking, and on code availability is to the point.
+
+                        ===== Main weaknesses =====
+
+Although with good intention, the paper sometimes conflates exploratory research with engineering production systems. For example, it criticizes the argument that many etiological mechanisms need no security testing because of their systematic argument on why their designs are secure. This paper counters that the implementation might not follow the specification precisely. But making sure that the implementation is flawless isn't the job of exploratory research, whose goal is provide sufficient evidence that the proposed design is feasible. In fact, I think that relying on a systematic argument is more convincing than relying purely on testing, because the tests may be unrepresentative or biased.
+
+Similarly, the demand on taking the prevalence into consideration when evaluating false positives and false negatives may be an undue burden on security researchers, who would have a hard time collecting these probabilities. On the other hand, this might call for a common attack dataset.
+
+                   ===== Other comments to authors =====
+
+The discussionn on code availability is timely and valuable. However, it would be nice to suggest how to encourage code availability, e.g., what incentives or credits that the community can provide to improve this.
+
