@@ -64,7 +64,35 @@ planning to address them in the next version of the paper.
 
 - Reviewer 2:
 
+# dimitro: maybe we need to mention that we cover only mechanisms
+# that have been presented in a research publication as a general
+# remark in the beginning of our response.
 
+We tried to equally cover every mechanism and then as the paper
+progresses we highlight the reasons why a mechanism may be widely
+used or not. In our conclusion section, we particularly mention
+that CSP is one of the few mechanisms that contrary to other approaches,
+has been presented in a research publication and at the same time
+is widely used. Furthermore, it is true that if a programmer uses
+secure coding practices (for instance prepared statements) then
+a mechanism that counters SQLIAs is not necessarily needed.
+However, as we mention in the paper, programmers are not always
+that careful and this is why protection mechanisms like SQLrand
+have been proposed in the first place.
+
+In the description of our model, we state that there are two
+ways to initiate the majority of the presented attacks.
+In both cases, the first steps will result to the same path.
+To distinguish these first step we use the 1 - 1.1 notation.
+The point concerning the PHP injection attack is valid. In general,
+we tried to illustrate the most known web injection attacks in our
+model. Still, with can easily incorporate such an attack in our model
+with minor modifications (the same applies to POI attacks as we
+already mention in the paper).
+
+Finally, our model covers attacks that utilize DSL languages in general
+(including SQL, XPath etc.), while in our categorization there is
+more than one countermeasure that protects from XPath injection attacks.
 
 - Reviewer 3:
 
