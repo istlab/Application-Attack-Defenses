@@ -1,0 +1,73 @@
+- General Remarks:
+
+We want to thank the reviewers for their meaningful comments.
+
+- Reviewer 1:
+
+# dimitro: I do not know exactly what to say about the following comment:
+# "The sensitivity and specificity metrics are questionable (need
+# justification and relation to standard techniques), and anyway not
+# used much in Table I."
+# What does he mean by justification? We provide the corresponding citations
+# for the metrics. Finally, we can say that we can say that ce can calculate
+# them and add them to the Table.
+
+# dimitro: I do not know what to say about this...
+# "The paper is tutorial-like and broad, which is not so bad by itself,
+# but it is desirable of a SoK paper to contain more insight than a
+# typical survey."
+
+It is true that there are to many N/As in both Tables and especially in
+Table II. However, we believe that issues concerning code availability and
+accuracy testing are instantly identified by a casual reader.
+
+We are planning to change the paper's title into: "Defending Against Code
+Injection Attacks that target Web Applications: From Research Approaches
+to Practical Tools".
+
+# dimitro: or ""Defending Against Code Injection Attacks on the Web:
+# From Research Approaches to Practical Tools"."
+# If you have any other ideas let me know.
+
+As we mention in the paper, we analyze and categorize mechanisms that have
+been described in research papers. Still, we can include ADsafe,
+Facebook JavaScript, and Secure EcmaScript in the paper in the way
+we include Google Caja. In addition, we agree that we should include
+FlowFox and JSand (both have >20 citations which is our threshold),
+and the paper presenting IFC in WebKit's JavaScript Bytecode (which is
+a recent work presented in a top venue). We could also include AdSentry, Contego
+and JSFlow too but currently, they do not reach the citation threshold.
+
+# dimitro: is POST (Conference on Principles of Security and Trust)
+# a top venue?
+
+We agree that some of the presented approaches utilize either static or
+dynamic analysis. As we explain in the paper though, we dismiss the
+static and dynamic approaches that identify vulnerabilities that
+may lead to the attacks that we refer to and cover protection
+mechanisms that stop such attacks when they are launched.
+
+# dimitro: I do not fully understand the following:
+# "The security discussion (Section IV) is somewhat minimalistic.
+# Further, more insight would be helpful on the security of the systems
+# and the attack surfaces covered beyond what is reported in Table I
+# (which talks about the classical SQL injection, XSS, CSRF and known
+# DOM-based, JSON injection, and XPath injection attacks)."
+
+We can update our model to show where the language-level and web
+framework-level protection mechanisms detect an attack. In particular
+we can show that this is done at the application level within the server.
+
+The comments concerning Firing Range, XCS attacks, scriptless attacks
+and attacks that involve plug-ins are totally valid and we are
+planning to address them in the next version of the paper.
+
+- Reviewer 2:
+
+
+
+- Reviewer 3:
+
+
+
+- Reviewer 4:
