@@ -4,13 +4,24 @@ We want to thank the reviewers for their meaningful comments.
 
 - Reviewer 1:
 
-# dimitro: I do not know exactly what to say about the following comment:
-# "The sensitivity and specificity metrics are questionable (need
-# justification and relation to standard techniques), and anyway not
-# used much in Table I."
-# What does he mean by justification? We provide the corresponding citations
-# for the metrics. Finally, we can say that we can say that ce can calculate
-# them and add them to the Table.
+# --- Panos ---
+
+> -The sensitivity and specificity metrics are questionable (need
+> justification and relation to standard techniques), and anyway not
+> used much in Table I.
+
+That's exactly what we try to highlight in the paper. Sensitivity and
+specificity should be more widely applicable, but they are not,
+because not enough data is given in the original publications. In
+general, as we remark in VII.A, "In many cases researchers tend not to
+provide the false positive and negative results that their tools may
+produce."
+
+Concerning the usefullness of sensitivity and specicifity as metrics
+per se, their use in computer security has been advocated by other
+researchers as well, for example ***.
+
+# --- Dimitro ---
 
 # dimitro: I do not know what to say about this...
 # "The paper is tutorial-like and broad, which is not so bad by itself,
@@ -64,6 +75,22 @@ planning to address them in the next version of the paper.
 
 - Reviewer 2:
 
+--- Panos ---
+
+> The paper essentially provides only information that is directly
+> available from other publications. This applies especially to the
+> categories accuracy and performance overhead, where several mechanisms
+> do not provide data. The authors of the paper did not perform any
+> original tests.
+
+Please note that even if we wanted to perform original tests on the
+systems we studied, or even if we wanted to validate the existing
+tests, we would not be able to do so in the vast majority of cases, as
+indicated in Table II; this is in fact one of our main findings, as we
+explain in VII.B.
+
+--- Dimitro ---
+
 # dimitro: maybe we need to mention that we cover only mechanisms
 # that have been presented in a research publication as a general
 # remark in the beginning of our response.
@@ -96,6 +123,8 @@ more than one countermeasure that protects from XPath injection attacks.
 
 - Reviewer 3:
 
+--- Dimitro ----
+
 As we mention in the introduction of our paper, we did not cover static
 analysis tools that detect vulnerabilities that lead to the covered attacks
 because there is a corresponding survey by that does exactly that [14].
@@ -113,8 +142,87 @@ address it in our next revision. Also, the comment about the EiQ is
 correct: it is DBAL. Finally, we will update our SQL injection
 example to make it clearer.
 
+--- Panos ----
+
+> From my understanding, sensitivity and specificity could also be
+> expressed in terms of conditional probability: sensitivity is the
+> conditional probability that the detection mechanism flags an attack,
+> given that an attack is taking place, and specificity is the
+> conditional probability that the mechanism does not report an attack,
+> given that no attack takes place. 
+
+Correct. We can of course add that to the power; we just thought that
+it might not be necessary to explain it.
+
+> This would help in discerning and relating these measures from and to
+> the positive and negative predictive values, and also explains
+> formulas (5) and (6) on page 13. 
+  
+Correct, as above we can easily add the explanations.
+
+> Moreover, the discussion seems to be confusing experiment measurements
+> and abstract probabilities.
+> On page 2 [actually it's on p. 5], it is stated that "sensitivity
+> and specificity can be calculated on test data alone".
+> On page 13, it is said that "PPV and NPV ... relate to the
+> effectiveness in an actual production environment".
+
+This is to highlight that we cannot carry out a set of measurements,
+calculate sensitity and specificity, and then using the {True | False
+} {Positives | Negatives} calculate the PPV and the NPV from equations
+3 and 4 directly. One has to go instead through equations 5 and 6.
+
+> Obviously, any measurement of true and false positives and negatives
+> on test data can be skewed, if the test data is skewed.
+> Hence, if the sensitivity and specificity are measured using tests
+> that do not relate to "the production environment", the calculated
+> values are meaningless.
+
+Definitely, we can highlight that.
+
+> Yet this holds true for all four measures; it is simply related to the
+> way they are estimated.
+> The advantage of PPV and NPV is that they answer the question of
+> "given a detection result, how much can you trust it?", which is more
+> interesting in the "production environment".
+>
+> This part of the paper should be revised to give a clearer picture.
+
+Taking into account all your related comments, we will do that, taking
+care not to go through the paper length limits. The gist is that,
+indeed, PPV and NPV answer the question you state; it is not always
+possible to get data for them (since we may not know the prevalence),
+but it may worth to try and get it, or this could be a new research
+direction. Of course, if we do have such data, it is a way to
+operationalize the protection a system provides.
+
+The validity of test data is in fact important independently of
+sensitivity and specificity; skewed test data will give a wrong
+picture anyway, even if nobody bothers to calculate sensitivity and
+specificity. We do not know in the papers we studies whether test data
+were skewed. We do find, however, that: more tests could have been
+carried out (cf. Table I and VII.A ) and the means to conduct tests should be
+made available to third parties (cf. Table II and VII.B).
+
 - Reviewer 4:
+
+--- Dimitro ---
 
 We need to make clear that we do not want to criticize the lack of testing
 in etiological mechanisms. We try to investigate the reason why such mechanisms
 are not widely used and we suggest that this is one reason.
+
+--- Panos ---
+
+> Similarly, the demand on taking the prevalence into consideration when
+> evaluating false positives and false negatives may be an undue burden
+> on security researchers, who would have a hard time collecting these
+> probabilities. On the other hand, this might call for a common attack
+> dataset.
+
+That is why we state, in p. 13, that "With this in mind it may be
+unfair to ask of researchers to provide PPV and NPV values for
+their mechanisms---in fact, we see that nobody does." In the following
+paragraph (last paragraph of first column in p. 13) we explore what
+this would require. We can make it more clear.
+
