@@ -96,6 +96,21 @@ more than one countermeasure that protects from XPath injection attacks.
 
 - Reviewer 3:
 
+As we mention in the introduction of our paper, we did not cover static
+analysis tools that detect vulnerabilities that lead to the covered attacks
+because there is a corresponding survey by that does exactly that [14].
 
+# dimitro: here we go again.
+
+As we also mentioned to the previous responses, we did not include
+in our categorization, mechanisms that have not been presented in
+a research paper. However, Caja is a very important mechanism
+and this is why we reference it in our paper and particularly as
+a framework that is widely used.
+
+We do agree with the comment on the "ease of use" dimension and we will
+address it in our next revision. Also, the comment about the EiQ is
+correct: it is DBAL. Finally, we will update our SQL injection
+example to make it clearer.
 
 - Reviewer 4:
