@@ -114,3 +114,7 @@ correct: it is DBAL. Finally, we will update our SQL injection
 example to make it clearer.
 
 - Reviewer 4:
+
+We need to make clear that we do not want to criticize the lack of testing
+in etiological mechanisms. We try to investigate the reason why such mechanisms
+are not widely used and we suggest that this is one reason.
