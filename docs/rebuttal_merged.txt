@@ -2,28 +2,30 @@ We thank the reviewers for their insightful comments.
 
 Overall, we didn't consider mechanisms that
 haven't been presented in research papers. We mention Caja
-due to its importance and popularity.  Also, although
-some of the presented works use
+due to its importance.
+
+Although some of the presented works use
 static/dynamic analysis, we don't
 consider the broader area of static/dynamic analysis for
 vulnerability detection (another paper covers that area [14]),
 but focus only on protections against attacks
-that might exploit such vulnerabilities.
+that exploit such vulnerabilities.
 
-In general, we will update our text and our model
-to address the various issues indicated by the
-the reviewers like the paper's title,
+We will update our paper
+to address the issues indicated by the
+the reviewers, i.e. the title,
 the point where language protection mechanisms detect an attack,
 the "ease of use" dimension, the SQLi example,
-and the code availability discussion.
+the fact that we fail to capture PHP injection in our model,
+the 1/1.1 notation in our model, and
+the code availability discussion.
 
 Rev1:
 
 Sensitivity and specificity should be more widely applicable,
-but not enough data is given in the
-original publications (see VII.A).
+but not enough data is given in the publications (see VII.A).
 The usefulness of such metrics in computer security
-has been advocated by other researchers too, such as
+has been advocated by other researchers too, i.e.
 Pfleeger and Pfleeger (Analyzing Computer Security:
 A Threat/Vulnerability/Countermeasure Approach,
 Prentice Hall, 2011); we’ll add the citations.
@@ -43,7 +45,7 @@ We agree that using "security" as a dimension
 is misleading---we use it in the sense of "bypassability", which is 
 orthogonal to "accuracy". We will replace it with a more specific term.
 
-We fully agree about the minimalism of the security discussion, and
+We agree about the minimalism of the security discussion, and
 will try to enrich this part. For instance, approaches that provide
 systematic arguments on why their designs are secure, aren't as
 "bypassable" as heuristic/threshold-based approaches.
@@ -54,7 +56,7 @@ The lack of code availability for most systems makes performing
 original tests challenging, which is one of our findings, as we
 explain in VII.B.
 
-We attempted to equally cover every mechanism and then
+We attempt to equally cover every mechanism and then
 highlight the reasons why a mechanism may be widely
 used or not. In our conclusion section, we particularly mention
 that CSP is one of the few that 
@@ -66,14 +68,9 @@ However, best programming practices aren't always followed,
 and this motivates proposals like SQLrand,
 which might be easier to retrofit in existing code bases.
 
-We use the 1/1.1 notation to distinguish some shared states by the two
-main ways attacks in our model can be initiated---we'll explore a
-clearer representation. The point regarding PHP injection attacks
-is valid. We tried to capture the most known injection attacks, and we
-will incorporate this attack with a few minor modifications to the
-model. Our model covers attacks that utilize DSL languages in general,
-and in our categorization there are more than one countermeasures that
-protect from XPathi.
+Our model covers attacks that utilize DSL languages in
+general, and in our categorization there are more than
+one countermeasures that protect from XPathi.
 
 Rev3:
 
@@ -81,19 +78,19 @@ Of course sensitivity and specificity could be expressed in terms of a
 conditional probability---we will include this in the paper.
 
 Our discussion in pages 2 and 13 highlights that we
-cannot carry out a set of measurements, calculate sensitivity and
-specificity, and then using {True|False} {Positives|Negatives}
+cannot perform a set of measurements, calculate sensitivity and
+specificity, and then using {True|False} {Positives|Negatives},
 calculate PPV and NPV from equations 3 and 4 directly. One has to go
 instead through equations 5 and 6.
 
 We will expand on the advantages of PPV and NPV. PPV and NPV answer
-the question about trusting a detection result; however,it isn't
-always possible to get data for them as we indicate in p. 13.
+the question about trusting a detection result; however, it isn't
+always possible to get data for them as we indicate in p.13.
 
 The comment on the skewed data is valid. The validity of test data is
 important independently of sensitivity and specificity. We don't know
-in the papers we studied whether test data were skewed. We do find,
-however, that: more tests could have been carried out (Table I and
+in the papers we studied if test data were skewed. We do find,
+though, that: more tests could have been performed (Table I and
 VII.A) and the means to conduct tests should be made available to
 third parties (Table II and VII.B).
 
@@ -106,5 +103,5 @@ that this is one reason.
 
 Regarding the comment about demanding prevalence, it may be unfair to
 ask of researchers to provide PPV and NPV values for their mechanisms.
-In the p.13 we explore what this would require---we will elaborate
+In p.13 we explore what this would require---we will elaborate
 more.
