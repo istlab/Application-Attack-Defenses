@@ -1,117 +1,103 @@
-We want to thank the reviewers for their meaningful comments.
+We thank the reviewers for their insightful comments.
 
-As a general remark we need to say that as we state in the
-paper, we did not include in our categorization mechanisms that
-have not been presented in a research paper. However, Caja
-is an important mechanism and this is why we reference it
-as a framework that is widely used. Also, we are aware
-that some of the presented approaches utilize
-either static or dynamic analysis. As we explain in the paper though,
-we dismiss static and dynamic approaches that identify
-vulnerabilities that may lead to injection attacks
-(there is a corresponding survey that covers this area [14])
-and cover protection mechanisms that counter such attacks when
-they take place.
+Overall, we did not consider mechanisms that
+have not been presented in research papers. We mention Caja
+due to its importance and popularity.  Also, although
+some of the presented works use
+static/dynamic analysis, we do not
+consider the broader area of static/dynamic analysis for
+vulnerability detection (another paper covers that area [14]),
+but focus only on protections against attacks
+that might exploit such vulnerabilities.
 
 Rev1:
 
-Concerning the skepticism on the sensitivity and specificity metrics
-we need to mention that these metrics should be more widely applicable,
-but they are not, because not enough data is given in the
-original publications as we remark in VII.A. Also, the
+Sensitivity and specificity should be more widely applicable,
+but not enough data is given in the
+original publications, as mentioned in VII.A. The
 usefulness of such metrics in computer security has been advocated
-by other researchers as well, as we discuss in the same Section.
+by other researchers as mentioned in the same section.
 
-It is true that there are to many N/As in both Tables and especially in
-Table II. However, we believe that issues concerning code availability and
-accuracy testing are instantly identified by a casual reader.
+It is true that there are too many N/As, especially
+Table II, but this actually highlights the issues regarding
+code availability and accuracy testing.
 
-We agree that we should (and we will) incorporate the term "injection"
-into the paper's title.
+We agree that "injection" should be part of the title,
+and we will incorporate it.
 
-We can include ADsafe etc. in the paper in the way we
-include Google Caja. Also, we will include FlowFox and
-JSand (both have >20 citations --- our threshold),
-and the paper presenting IFC in WebKit's
-JavaScript Bytecode (which is a recent paper presented in a
-respected venue) in the paper. We could also include AdSentry,
-Contego and JSFlow too, but they do not reach our citation threshold.
+We will include FlowFox and JSand (both have >20 citations),
+the paper presenting IFC in WebKit's
+JavaScript Bytecode (a recent paper)
+and discuss ADsafe etc. in the same way as Google Caja.
+AdSentry, Contego, and JSFlow 
+do not reach our citation threshold.
 
-We agree that using "security" as a term for one of our dimensions
-may be misleading since it is a generic term and in this case
-we need to make it more specific.
+We agree that using "security" as a dimension
+is misleading---we use it in the sense of "bypassability", which is 
+orthogonal to "accuracy". We will replace it with a more specific term.
 
-The point about the minimalism of the security discussion is actually
-pretty good and we will try to enrich this part. A first attempt
-would be to say that approaches that provide systematic
+We fully agree with the point about the minimalism of the security discussion,
+and will try to enrich this part. For instance,
+approaches that provide systematic
 arguments on why their designs are secure, are not as
-by-passable as the approaches coming from the other
-category.
+"bypassable" as heuristic/threshold-based approaches.
 
 We can update our model to show where the language and web
 framework-level protection mechanisms detect an attack
 (the point would be at the application level within the server).
 
-The comments concerning Firing Range, XCS attacks, scriptless attacks
-and attacks that involve plug-ins are valid and we are
-planning to address them.
+The comments about Firing Range, XCS attacks, scriptless attacks,
+and attacks that involve plug-ins are valid and we will address them.
 
 Rev2:
 
-Please note that even if we wanted to perform original tests on the
-systems we studied, or even if we wanted to validate the existing
-tests, we would not be able to do so in the vast majority of cases, as
-indicated in Table II; this is in fact one of our main findings, as we
-explain in VII.B.
+The lack of code availability for most systems 
+makes performing original tests challenging.
+This is in fact one of our findings, as we explain in VII.B.
 
-We tried to equally cover every mechanism and then as the paper
-progresses we highlight the reasons why a mechanism may be widely
+We attempted to equally cover every mechanism and then
+highlight the reasons why a mechanism may be widely
 used or not. In our conclusion section, we particularly mention
-that CSP is one of the few mechanisms that contrary to others,
-has been presented in a research publication and at the same time
-is widely used. Furthermore, it is true that if a programmer uses
+that CSP is one of the few that 
+has been published and is widely used.
+It is true that if a programmer uses
 secure coding practices like prepared statements, then
-a mechanism that counters SQLIAs is not necessarily needed.
-However, as we mention in the paper, programmers are not always
-that careful and this is why protection mechanisms like SQLrand
-have been proposed in the first place.
+SQLi protections are not required.
+However, best programming practices are not always followed,
+and this motivates proposals like SQLrand,
+which might be easier to retrofit in existing code bases.
 
-In our model description, we state that there are two
-ways to initiate the majority of the presented attacks.
-In both cases, the first steps will result to the same path.
-To distinguish these first steps we use the 1 - 1.1 notation.
-The point concerning the PHP injection attack is valid. In general,
-we tried to illustrate the most known injection attacks in our
-model. Still, we can incorporate such an attack in our model
-with minor modifications.
-
-Finally, our model covers attacks that utilize DSL languages in general,
-while in our categorization there is more than one countermeasures that
-protects from XPath injection attacks.
+We use the 1/1.1 notation to distinguish some shared states by the two main ways
+attacks in our model can be initiated---we will explore a more clear representation.
+The point regarding PHP injection attacks is valid.
+We tried to capture the most known injection attacks,
+and we will incorporate this attack with a few minor modifications to the model.
+Our model covers attacks that utilize DSL languages in general,
+and in our categorization there are more than one countermeasures that
+protect from XPath injection attacks.
 
 Rev3:
 
-We do agree with the comment on the "ease of use" dimension and we will
-address it in our next revision. Also, the comment about the EiQ is
-correct: it is DBAL. Finally, we will update our SQL injection
-example to make it clearer.
+We agree with the comment on the "ease of use" dimension and we will
+address it. Also, the comment about the EiQ is
+correct: it is DBAL. We will make our SQLi example clearer.
 
-We fully agree with the the fact that the sensitivity and specificity
-metrics could also be expressed in terms of conditional probability
-and we can add that to the power.
+We fully agree that sensitivity and specificity
+could be expressed in terms of a conditional probability---we will
+include this in the paper.
 
-With our discussion in page 2 and 13 respectively we
-want to highlight that we cannot carry out a set of measurements,
-calculate sensitivity and specificity, and then using the {True | False
-} {Positives | Negatives} calculate the PPV and the NPV from equations
+Our discussion in pages 2 and 13 respectively
+highlights that we cannot carry out a set of measurements,
+calculate sensitivity and specificity, and then using {True|False}
+{Positives|Negatives} calculate PPV and NPV from equations
 3 and 4 directly. One has to go instead through equations 5 and 6.
 
-Taking into account all the related comments, we will
-update the paper to highlight the advantages of PPV and NPV.
+Taking into account all related comments, we will
+highlight the advantages of PPV and NPV.
 The gist is that, indeed, PPV and NPV answer the question
 about trusting a detection result; it is not always
 possible to get data for them (since we may not know the prevalence),
-but it may worth to try and get it, or this could be a new research
+but it may be worth it to try and get it, or this could be a new research
 direction. Of course, if we do have such data, it is a way to
 operationalize the protection a system provides.
 
@@ -127,17 +113,15 @@ made available to third parties (Table II and VII.B).
 
 Rev4:
 
-We need to make clear that we do not want to criticize the lack of testing
-in etiological mechanisms. In fact, we try to investigate
-the reason why such mechanisms are not widely used and we suggest
+We do not intend to criticize the lack of testing
+in etiological mechanisms. We attempt to 
+explore why such mechanisms are not widely used, and suggest
 that this is one reason.
 
-Regarding the comment about demanding prevalence, we need to say that
-as we state in the paper, it may be unfair to ask of
-researchers to provide PPV and NPV values for
+Regarding the comment about demanding prevalence,
+it may be unfair to ask of researchers to provide PPV and NPV values for
 their mechanisms---in fact, nobody does. In the
-last paragraph of first column in p.13 we explore what
-this would require. We can elaborate more.
+p.13 we explore what this would require---we will elaborate more.
 
-Finally, we will provide more incentives
-that the community can provide to improve code availability.
+Finally, we will discuss more incentives
+that the community could provide to improve code availability.
