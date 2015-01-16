@@ -139,3 +139,5 @@ their mechanisms---in fact, nobody does. In the
 last paragraph of first column in p.13 we explore what
 this would require. We can elaborate more.
 
+Finally, we will provide more incentives
+that the community can provide to improve code availability.
