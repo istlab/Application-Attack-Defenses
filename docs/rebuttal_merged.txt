@@ -1,87 +1,62 @@
-- General Remarks:
-
 We want to thank the reviewers for their meaningful comments.
 
-- Reviewer 1:
+As a general remark we need to say that as we state in the
+paper, we did not include in our categorization mechanisms that
+have not been presented in a research paper. However, Caja
+is an important mechanism and this is why we reference it
+as a framework that is widely used. Also, we are aware
+that some of the presented approaches utilize
+either static or dynamic analysis. As we explain in the paper though,
+we dismiss static and dynamic approaches that identify
+vulnerabilities that may lead to injection attacks
+(there is a corresponding survey that covers this area [14])
+and cover protection mechanisms that counter such attacks when
+they take place.
 
-# --- Panos ---
+Rev1:
 
-> -The sensitivity and specificity metrics are questionable (need
-> justification and relation to standard techniques), and anyway not
-> used much in Table I.
-
-That's exactly what we try to highlight in the paper. Sensitivity and
-specificity should be more widely applicable, but they are not,
-because not enough data is given in the original publications. In
-general, as we remark in VII.A, "In many cases researchers tend not to
-provide the false positive and negative results that their tools may
-produce."
-
-Concerning the usefullness of sensitivity and specicifity as metrics
-per se, their use in computer security has been advocated by other
-researchers as well, for example ***.
-
-# --- Dimitro ---
-
-# dimitro: I do not know what to say about this...
-# "The paper is tutorial-like and broad, which is not so bad by itself,
-# but it is desirable of a SoK paper to contain more insight than a
-# typical survey."
+Concerning the skepticism on the sensitivity and specificity metrics
+we need to mention that these metrics should be more widely applicable,
+but they are not, because not enough data is given in the
+original publications as we remark in VII.A. Also, the
+usefulness of such metrics in computer security has been advocated
+by other researchers as well, as we discuss in the same Section.
 
 It is true that there are to many N/As in both Tables and especially in
 Table II. However, we believe that issues concerning code availability and
 accuracy testing are instantly identified by a casual reader.
 
-We are planning to change the paper's title into: "Defending Against Code
-Injection Attacks that target Web Applications: From Research Approaches
-to Practical Tools".
+We agree that we should (and we will) incorporate the term "injection"
+into the paper's title.
 
-# dimitro: or ""Defending Against Code Injection Attacks on the Web:
-# From Research Approaches to Practical Tools"."
-# If you have any other ideas let me know.
+We can include ADsafe etc. in the paper in the way we
+include Google Caja. Also, we will include FlowFox and
+JSand (both have >20 citations --- our threshold),
+and the paper presenting IFC in WebKit's
+JavaScript Bytecode (which is a recent paper presented in a
+respected venue) in the paper. We could also include AdSentry,
+Contego and JSFlow too, but they do not reach our citation threshold.
 
-As we mention in the paper, we analyze and categorize mechanisms that have
-been described in research papers. Still, we can include ADsafe,
-Facebook JavaScript, and Secure EcmaScript in the paper in the way
-we include Google Caja. In addition, we agree that we should include
-FlowFox and JSand (both have >20 citations which is our threshold),
-and the paper presenting IFC in WebKit's JavaScript Bytecode (which is
-a recent work presented in a top venue). We could also include AdSentry, Contego
-and JSFlow too but currently, they do not reach the citation threshold.
+We agree that using "security" as a term for one of our dimensions
+may be misleading since it is a generic term and in this case
+we need to make it more specific.
 
-# dimitro: is POST (Conference on Principles of Security and Trust)
-# a top venue?
+The point about the minimalism of the security discussion is actually
+pretty good and we will try to enrich this part. A first attempt
+would be to say that approaches that provide systematic
+arguments on why their designs are secure, are not as
+by-passable as the approaches coming from the other
+category.
 
-We agree that some of the presented approaches utilize either static or
-dynamic analysis. As we explain in the paper though, we dismiss the
-static and dynamic approaches that identify vulnerabilities that
-may lead to the attacks that we refer to and cover protection
-mechanisms that stop such attacks when they are launched.
-
-# dimitro: I do not fully understand the following:
-# "The security discussion (Section IV) is somewhat minimalistic.
-# Further, more insight would be helpful on the security of the systems
-# and the attack surfaces covered beyond what is reported in Table I
-# (which talks about the classical SQL injection, XSS, CSRF and known
-# DOM-based, JSON injection, and XPath injection attacks)."
-
-We can update our model to show where the language-level and web
-framework-level protection mechanisms detect an attack. In particular
-we can show that this is done at the application level within the server.
+We can update our model to show where the language and web
+framework-level protection mechanisms detect an attack
+(the point would be at the application level within the server).
 
 The comments concerning Firing Range, XCS attacks, scriptless attacks
-and attacks that involve plug-ins are totally valid and we are
-planning to address them in the next version of the paper.
+and attacks that involve plug-ins are valid and we are
+planning to address them.
 
-- Reviewer 2:
-
---- Panos ---
-
-> The paper essentially provides only information that is directly
-> available from other publications. This applies especially to the
-> categories accuracy and performance overhead, where several mechanisms
-> do not provide data. The authors of the paper did not perform any
-> original tests.
+Rev2:
 
 Please note that even if we wanted to perform original tests on the
 systems we studied, or even if we wanted to validate the existing
@@ -89,140 +64,78 @@ tests, we would not be able to do so in the vast majority of cases, as
 indicated in Table II; this is in fact one of our main findings, as we
 explain in VII.B.
 
---- Dimitro ---
-
-# dimitro: maybe we need to mention that we cover only mechanisms
-# that have been presented in a research publication as a general
-# remark in the beginning of our response.
-
 We tried to equally cover every mechanism and then as the paper
 progresses we highlight the reasons why a mechanism may be widely
 used or not. In our conclusion section, we particularly mention
-that CSP is one of the few mechanisms that contrary to other approaches,
+that CSP is one of the few mechanisms that contrary to others,
 has been presented in a research publication and at the same time
 is widely used. Furthermore, it is true that if a programmer uses
-secure coding practices (for instance prepared statements) then
+secure coding practices like prepared statements, then
 a mechanism that counters SQLIAs is not necessarily needed.
 However, as we mention in the paper, programmers are not always
 that careful and this is why protection mechanisms like SQLrand
 have been proposed in the first place.
 
-In the description of our model, we state that there are two
+In our model description, we state that there are two
 ways to initiate the majority of the presented attacks.
 In both cases, the first steps will result to the same path.
-To distinguish these first step we use the 1 - 1.1 notation.
+To distinguish these first steps we use the 1 - 1.1 notation.
 The point concerning the PHP injection attack is valid. In general,
-we tried to illustrate the most known web injection attacks in our
-model. Still, with can easily incorporate such an attack in our model
-with minor modifications (the same applies to POI attacks as we
-already mention in the paper).
+we tried to illustrate the most known injection attacks in our
+model. Still, we can incorporate such an attack in our model
+with minor modifications.
 
-Finally, our model covers attacks that utilize DSL languages in general
-(including SQL, XPath etc.), while in our categorization there is
-more than one countermeasure that protects from XPath injection attacks.
+Finally, our model covers attacks that utilize DSL languages in general,
+while in our categorization there is more than one countermeasures that
+protects from XPath injection attacks.
 
-- Reviewer 3:
-
---- Dimitro ----
-
-As we mention in the introduction of our paper, we did not cover static
-analysis tools that detect vulnerabilities that lead to the covered attacks
-because there is a corresponding survey by that does exactly that [14].
-
-# dimitro: here we go again.
-
-As we also mentioned to the previous responses, we did not include
-in our categorization, mechanisms that have not been presented in
-a research paper. However, Caja is a very important mechanism
-and this is why we reference it in our paper and particularly as
-a framework that is widely used.
+Rev3:
 
 We do agree with the comment on the "ease of use" dimension and we will
 address it in our next revision. Also, the comment about the EiQ is
 correct: it is DBAL. Finally, we will update our SQL injection
 example to make it clearer.
 
---- Panos ----
+We fully agree with the the fact that the sensitivity and specificity
+metrics could also be expressed in terms of conditional probability
+and we can add that to the power.
 
-> From my understanding, sensitivity and specificity could also be
-> expressed in terms of conditional probability: sensitivity is the
-> conditional probability that the detection mechanism flags an attack,
-> given that an attack is taking place, and specificity is the
-> conditional probability that the mechanism does not report an attack,
-> given that no attack takes place. 
-
-Correct. We can of course add that to the power; we just thought that
-it might not be necessary to explain it.
-
-> This would help in discerning and relating these measures from and to
-> the positive and negative predictive values, and also explains
-> formulas (5) and (6) on page 13. 
-  
-Correct, as above we can easily add the explanations.
-
-> Moreover, the discussion seems to be confusing experiment measurements
-> and abstract probabilities.
-> On page 2 [actually it's on p. 5], it is stated that "sensitivity
-> and specificity can be calculated on test data alone".
-> On page 13, it is said that "PPV and NPV ... relate to the
-> effectiveness in an actual production environment".
-
-This is to highlight that we cannot carry out a set of measurements,
-calculate sensitity and specificity, and then using the {True | False
+With our discussion in page 2 and 13 respectively we
+want to highlight that we cannot carry out a set of measurements,
+calculate sensitivity and specificity, and then using the {True | False
 } {Positives | Negatives} calculate the PPV and the NPV from equations
 3 and 4 directly. One has to go instead through equations 5 and 6.
 
-> Obviously, any measurement of true and false positives and negatives
-> on test data can be skewed, if the test data is skewed.
-> Hence, if the sensitivity and specificity are measured using tests
-> that do not relate to "the production environment", the calculated
-> values are meaningless.
-
-Definitely, we can highlight that.
-
-> Yet this holds true for all four measures; it is simply related to the
-> way they are estimated.
-> The advantage of PPV and NPV is that they answer the question of
-> "given a detection result, how much can you trust it?", which is more
-> interesting in the "production environment".
->
-> This part of the paper should be revised to give a clearer picture.
-
-Taking into account all your related comments, we will do that, taking
-care not to go through the paper length limits. The gist is that,
-indeed, PPV and NPV answer the question you state; it is not always
+Taking into account all the related comments, we will
+update the paper to highlight the advantages of PPV and NPV.
+The gist is that, indeed, PPV and NPV answer the question
+about trusting a detection result; it is not always
 possible to get data for them (since we may not know the prevalence),
 but it may worth to try and get it, or this could be a new research
 direction. Of course, if we do have such data, it is a way to
 operationalize the protection a system provides.
 
-The validity of test data is in fact important independently of
-sensitivity and specificity; skewed test data will give a wrong
-picture anyway, even if nobody bothers to calculate sensitivity and
-specificity. We do not know in the papers we studies whether test data
-were skewed. We do find, however, that: more tests could have been
-carried out (cf. Table I and VII.A ) and the means to conduct tests should be
-made available to third parties (cf. Table II and VII.B).
+The comment on the skewed data is valid and we can
+elaborate on it more. The validity of test data is in fact
+important independently of sensitivity and specificity;
+skewed test data will give a wrong picture anyway, even if nobody
+bothers to calculate the metrics. We do not know in the
+papers we studied whether test data were skewed. We do find,
+however, that: more tests could have been
+carried out (Table I and VII.A) and the means to conduct tests should be
+made available to third parties (Table II and VII.B).
 
-- Reviewer 4:
-
---- Dimitro ---
+Rev4:
 
 We need to make clear that we do not want to criticize the lack of testing
-in etiological mechanisms. We try to investigate the reason why such mechanisms
-are not widely used and we suggest that this is one reason.
+in etiological mechanisms. In fact, we try to investigate
+the reason why such mechanisms are not widely used and we suggest
+that this is one reason.
 
---- Panos ---
-
-> Similarly, the demand on taking the prevalence into consideration when
-> evaluating false positives and false negatives may be an undue burden
-> on security researchers, who would have a hard time collecting these
-> probabilities. On the other hand, this might call for a common attack
-> dataset.
-
-That is why we state, in p. 13, that "With this in mind it may be
-unfair to ask of researchers to provide PPV and NPV values for
-their mechanisms---in fact, we see that nobody does." In the following
-paragraph (last paragraph of first column in p. 13) we explore what
-this would require. We can make it more clear.
+Regarding the comment about demanding prevalence, we need to say that
+as we state in the paper, it may be unfair to ask of
+researchers to provide PPV and NPV values for
+their mechanisms---in fact, nobody does. In the
+last paragraph of first column in p.13 we explore what
+this would require. We can elaborate more.
 
