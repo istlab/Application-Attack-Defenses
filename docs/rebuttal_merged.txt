@@ -6,19 +6,20 @@ We didn't consider mechanisms that haven't been presented in research papers. We
 mention Caja due to its importance.
 
 Although some of the presented works use static/dynamic analysis, we don't
-consider the area of vulnerability detection (it's been covered [14]), but focus
+consider the area of vulnerability detection (covered before [14]), but focus
 on protections against attacks that exploit such vulnerabilities.
 
 We'll address the issues indicated by the reviewers, e.g., the title, the point
-where language-protection mechanisms detect an attack, the "ease-of-use"
+where language-protection mechanisms detect attacks, the "ease-of-use"
 dimension, the SQLi example, the failure of capturing PHPi in our model and the
 model's 1/1.1 notation.
 
 Rev1:
 
 Sensitivity and specificity should be more applicable, but not enough data is
-available (see VII.A). Their use has been advocated before ("Analyzing Computer
-Security: A Threat/Vulnerability/Countermeasure Approach"---will be cited).
+available (see VII.A). Their use has been advocated before (Pfleeger and Pfleeger,
+"Analyzing Computer Security:A Threat/Vulnerability/Countermeasure Approach"---will
+be cited).
 
 The many N/As (especially in Table II) actually highlight the code availability
 and accuracy testing issues.
