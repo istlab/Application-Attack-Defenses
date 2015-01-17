@@ -1,47 +1,84 @@
 We thank the reviewers for their insightful comments.
 
-General points:
+General remarks:
 
-We didn't consider mechanisms that haven't been presented in research papers. We mention Caja due to its importance.
+We didn't consider mechanisms that haven't been presented in research papers. We
+mention Caja due to its importance.
 
-Although some of the presented works use static/dynamic analysis, we don't consider the area of static/dynamic analysis for vulnerability detection (another paper covers it [14]), but focus only on protections against attacks that exploit such vulnerabilities.
+Although some of the presented works use static/dynamic analysis, we don't
+consider the area of static/dynamic analysis for vulnerability detection
+(another paper covers it [14]), but focus on protections against attacks that
+exploit such vulnerabilities.
 
-We'll update our paper to address the issues indicated by the the reviewers, i.e. the title, the point where language-protection mechanisms detect an attack, the "ease-of-use" dimension, the SQLi example, the fact that we fail to capture PHP injection in our model and the model's 1/1.1 notation.
+We'll address the issues indicated by the reviewers, e.g., the title, the point
+where language-protection mechanisms detect an attack, the "ease-of-use"
+dimension, the SQLi example, the failure of capturing PHPi in our model and the
+model's 1/1.1 notation.
 
 Rev1:
 
-Sensitivity and specificity should be more applicable, but not enough data is given in the publications (see VII.A). The usefulness of such metrics in computer security has been advocated by others, i.e. Pfleeger and Pfleeger in "Analyzing Computer Security: A Threat/Vulnerability/Countermeasure Approach"---we’ll add the citation.
+Sensitivity and specificity should be more applicable, but not enough data is
+available (see VII.A). The usefulness of such metrics in has been advocated
+before (Pfleeger and Pfleeger, "Analyzing Computer Security: A
+Threat/Vulnerability/Countermeasure Approach"---will be cited).
 
-There are too many N/As (especially in Table II), but this actually highlights the issues regarding code availability and accuracy testing.
+The many N/As (especially in Table II) actually highlight the code availability
+and accuracy testing issues.
 
-We'll include FlowFox and JSand, the paper presenting IFC in WebKit's JavaScript-Bytecode and discuss ADsafe etc. AdSentry, Contego, and JSFlow don't reach our citation threshold.
+We'll include FlowFox and JSand, the paper presenting IFC in WebKit's
+JavaScript-Bytecode, and discuss ADsafe etc. AdSentry, Contego, and JSFlow don't
+reach our citation threshold.
 
-Using "security" as a dimension is indeed misleading---we mean ease-of-circumvention, which is orthogonal to "accuracy". We'll replace it with a more specific term.
+Using "security" as a dimension is indeed misleading---we mean
+ease-of-circumvention, which is orthogonal to "accuracy". We'll replace it with
+a more specific term.
 
-We'll enrich the security discussion. For instance, approaches that provide systematic arguments on why their designs are secure, cannot be circumvented like heuristic/threshold-based approaches.
+We'll enrich the security discussion. For instance, approaches that provide
+systematic arguments on their design's security cannot be circumvented like
+heuristic/threshold-based approaches.
 
 Rev2:
 
-The lack of code availability makes performing original tests challenging, which is one of our findings (VII.B).
+The lack of code availability makes performing original tests challenging, which
+is one of our findings (VII.B).
 
-We attempt to cover mechanisms and then highlight reasons why a mechanism may not be widely used. In the conclusions we mention that CSP is one of the few that has been published and is used.
+We attempt to cover mechanisms and then highlight reasons why they may not be
+widely used. In the conclusions we mention that CSP is one of the few that has
+been published and is used.
 
-It is true that if programmers use secure coding practices like prepared statements, then SQLi protections aren't required. However, that may not happen, and this motivates proposals like SQLrand, which might be easier to retrofit in existing codebases.
+It is true that if programmers use secure coding practices like prepared
+statements, then SQLi protections aren't required. However, that may not happen,
+and this motivates proposals like SQLrand, which might be easier to retrofit in
+existing codebases.
 
-Our model covers attacks that utilize DSLs in general, and in our categorization there are more than one countermeasures that protect from XPathi.
+Our model covers attacks that utilize DSLs in general, and in our categorization
+there are more than one countermeasures that protect from XPathi.
 
 Rev3:
 
-Sensitivity and specificity could be expressed in terms of a conditional probability---we'll include this in the paper.
+Sensitivity and specificity could be expressed in terms of a conditional
+probability---we'll include this in the paper.
 
-P.2 and p.13 highlight that we cannot perform a set of measurements, calculate sensitivity and specificity, and then using {True|False} {Positives|Negatives}, calculate PPV and NPV from equations 3 and 4 directly. One has to go instead through equations 5 and 6.
+P.2 and p.13 highlight that we cannot perform a set of measurements, calculate
+sensitivity and specificity, and then using {True|False} {Positives|Negatives},
+calculate PPV and NPV from equations 3+4. One has to go instead through
+equations 5+6.
 
-We'll expand on the advantages of PPV and NPV. PPV and NPV answer the question about trusting a detection result; however, it isn't always possible to get data for them as we indicate in p.13.
+We'll expand on the advantages of PPV and NPV. They answer the question about
+trusting a detection result; however, it isn't always possible to get data for
+them as we indicate in p.13.
 
-The comment on the skewed data is valid. We don't know in the papers we studied if test data were skewed. We do find, though, that: more tests could have been performed (Table I and VII.A) and the means to conduct tests should be made available to third parties (Table II and VII.B).
+The comment on the skewed data is valid. We don't know in the studied papers
+if test data was skewed. We do find, though, that: more tests could have been
+performed (Table I and VII.A) and the means to conduct tests should be made
+available to third parties (Table II and VII.B).
 
 Rev4:
 
-We don't intend to criticize the lack of testing in etiological mechanisms. We attempt to explore why such mechanisms aren't widely used, and suggest that this is one reason. 
+We don't intend to criticize the lack of testing in etiological mechanisms. We
+attempt to explore why such mechanisms aren't widely used, and suggest that this
+is one reason. 
 
-About demanding prevalence: it may be unfair to ask researchers to provide PPV and NPV values for their mechanisms. In p.13 we explore what this would require---we'll elaborate.
+About demanding prevalence: it may be unfair to ask researchers to provide PPV
+and NPV values for their mechanisms. In p.13 we explore what this would
+require---we'll elaborate.
