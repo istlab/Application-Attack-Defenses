@@ -1,5 +1,4 @@
-SoK: The Evolution of Defenses Against Web Application Attacks
+Defending Against Web Application Attacks: Research Approaches, Challenges and Implications
 ====
 
-A paper targeting ["IEEE Symposium on Security and Privacy"](http://www.ieee-security.org/TC/SP2015/) and in particular
-the ["Systematization of Knowledge"](http://www.ieee-security.org/TC/SP2015/cfpapers.html) call.
+A new version of the paper targeting ["IEEE Transactions on Dependable and Secure Computing"](https://www.computer.org/web/tdsc).
