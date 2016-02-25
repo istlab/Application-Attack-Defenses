@@ -780,7 +780,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   &   ConScript~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
   &   CsFire~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
   &   {\sc csp}~\cite{SSM10} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} ({\sc c}) & {\sc xss}, {\sc csrf} \\
-  &   j{\sc csrf}~\cite{PS11} & 2 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
+  &   j{\sc csrf}~\cite{PS11} & 4 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
   &   WebJail~\cite{VDDPJ11} & 25 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
@@ -805,7 +805,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   &   {\sc wasc}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
   &   Vogt et al.~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc c}) & {\sc xss} \\
   &   {\sc php} Aspis~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql}i and {\sc php}i, {\sc xss} \\
-  &   Stock et al.~\cite{SLMS14} & 0 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
+  &   Stock et al.~\cite{SLMS14} & 14 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
   \hline 
   \multirow{6}{*}{Training}
   &   {\sc didafit}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql}i \\
@@ -813,14 +813,14 @@ within a proxy (Point {\sc s}t{\sc b}).
   &   libAnomaly~\cite{VMV05} & 226 & (9,15987,60,0)\_r & 0.20--1{\it ms} per query ({\sc s}) & {\sc sql}i \\
   &   {\sc xssds}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
   &   {\sc swap}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261 {\it ms} ({\sc s}) & {\sc xss} \\ 
-  &   {\sc sd}river~\cite{MS09,MKS09,MKLS11} & 21,8,5 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql}i and {\sc xp}athi \\
+  &   {\sc sd}river~\cite{MS09,MKLS11} & 22,6 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql}i and {\sc xp}athi \\
   % &   {\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
   \thickhline
   \thickhline
   \multirow{3}{*}{Hybrid}
   &   {\sc xss-guard}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
   &   Blueprint~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
-  &   Diglossia~\cite{SMS13} & 4 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
+  &   Diglossia~\cite{SMS13} & 12 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
   \thickhline
     \end{tabular}}
     \begin{tablenotes}
@@ -1233,15 +1233,15 @@ stripped from user input. Subsequent
 refinements by Valeur et al.~\cite{VMV05} tag each transaction with
 the corresponding application as an extension of their anomaly
 detection framework called libAnomaly.
-{\sc sd}river~\cite{MS09,MKS09,MKLS11} is a signature-based mechanism
+{\sc sd}river~\cite{MS09,MKLS11} is a signature-based mechanism
 that prevents {\sc sql} and {\sc xp}ath injection attacks. The
 signatures generated during a training phase are based on features
 that can depend either on code statements or on their execution
 environment (e.g., the stack trace). Then, at runtime, the mechanism
 checks all statements for compliance and can block code statements
-containing injected elements (Point {\sc dbal}). {\sc
-  amnesia}~\cite{HO05,HO06,HO05b} is a tool that also detects {\sc
-  sql} injection attacks (Point {\sc dbal}) by associating a query model
+containing injected elements (Point {\sc dbal}).
+{\sc amnesia}~\cite{HO05,HO06,HO05b} is a tool that also detects
+{\sc sql} injection attacks (Point {\sc dbal}) by associating a query model
 with the location of every {\sc sql} statement within the application.
 Then, at runtime, it monitors the application's execution to detect
 when {\sc sql} statements diverge from the expected model.
