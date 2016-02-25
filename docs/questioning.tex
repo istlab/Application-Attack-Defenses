@@ -60,7 +60,7 @@
 
 \begin{document}
 
-\title{Defending Against Web Application Attacks: Research Approaches, Challenges and Implications}
+\title{Defending Against Web Application Attacks: Approaches, Challenges and Implications}
 
 \author{
 \IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
@@ -68,18 +68,16 @@ Panos Louridas,\IEEEauthorrefmark{2}
 Michalis Polychronakis,\IEEEauthorrefmark{3}
 and Angelos D. Keromytis\IEEEauthorrefmark{1}}\\
 \IEEEauthorblockA{\IEEEauthorrefmark{1}
-\scriptsize Network Security Lab\\
-Department of Computer Scinence\\
-Columbia University\\
+\scriptsize Department of Computer Scinence,
+Columbia University,
 \{dimitro, angelos\}@cs.columbia.edu\\
 \IEEEauthorrefmark{2}
-Software Engineering and Security Lab\\
-Department of Management Science and Technology\\
-Athens University of Economics and Business\\
+Department of Management Science and Technology,
+Athens University of Economics and Business,
 louridas@aueb.gr\\
 \IEEEauthorrefmark{3}
-Computer Science Department\\
-Stony Brook University\\
+Computer Science Department,
+Stony Brook University,
 mikepo@cs.stonybrook.edu
 }}
 
@@ -145,9 +143,9 @@ among others.
 For the past several years,
 these attacks have been topping the lists of the most dangerous vulnerabilities
 published by
-{\sc owasp},\footnote{\url{https://www.owasp.org/index.php/Top_10_2013-Top_10}}
+{\sc owasp},\footnote{\scriptsize\url{https://www.owasp.org/index.php/Top_10_2013-Top_10}}
 %~\cite{OWASPtop10},
-{\sc mitre},\footnote{\url{http://cwe.mitre.org/top25/}}
+{\sc mitre},\footnote{\scriptsize\url{http://cwe.mitre.org/top25/}}
 %~\cite{MITREtop25},
 and other organizations.
 For instance, consider the case of {\sc owasp}'s popular Top Ten
@@ -173,7 +171,7 @@ the exploitation of untrusted input validation errors can be modeled
 under a {\it common perspective}. To that end, we propose an exploitation
 model which highlights that most of the steps needed to mount
 different types of code injection attacks are
-common.\footnote{Note that we do not consider lower-level attacks based on
+common.\footnote{\scriptsize Note that we do not consider lower-level attacks based on
 the exploitation of memory corruption vulnerabilities and the injection
 of binary code---see Section~\ref{sec:attacks}.} This is validated by the fact that
 some protection mechanisms defend against more than one of these
@@ -855,7 +853,7 @@ except from availability, which we treat
 separately in Section~\ref{sec:discussion}.
 Due to the immense number of published works in the area, we only consider
 defenses that have been proposed in publications cited more than
-20 times according to Google Scholar.\footnote{\url{scholar.google.gr}}
+20 times according to Google Scholar.\footnote{\scriptsize\url{scholar.google.gr}}
 We also include some recent works that have been
 presented in top security conferences, even though they have been
 cited less than twenty times, so that recent research is not penalized.
@@ -976,7 +974,7 @@ mechanisms.
 
 A policy enforcement technique developed by Mozilla,
 called {\sc csp} (Content Security
-Policy)\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}~\cite{SSM10}
+Policy)\footnote{\scriptsize\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}~\cite{SSM10}
 is currently supported by many browsers to prevent
 {\sc xss} and {\sc csrf} attacks. To eliminate such
 attacks, web site administrators
@@ -1002,7 +1000,7 @@ place at client side, in the JavaScript engine of the browser (Point {\sc ub}).
 In this way, {\sc xxs} attacks that take advantage
 of functions such as {\tt write} and {\tt eval}, which are
 used to assemble innocuous-looking parts into harmful
-strings,\footnote{The infamous Sammy worm that
+strings,\footnote{\scriptsize The infamous Sammy worm that
 infected MySpace in 2005~\cite{SP07,ELX07}
 utilized the {\tt eval} function to assemble a
 malicious script.} would fail.
@@ -1278,7 +1276,7 @@ SELECT password from userdata WHERE id = 'Alice'
 This same application could allow users to
 login to the site using just their password via a custom login form
 (like the ``Password only login" plugin of
-Wordpress\footnote{\url{wordpress.org/plugins/password-only-login/}})
+Wordpress\footnote{\scriptsize\url{wordpress.org/plugins/password-only-login/}})
 %~\cite{password})
 but allow the login either with the user's password or with
 the administrator password. The corresponding query to verify
@@ -1431,19 +1429,19 @@ applications known to be vulnerable.
 The vulnerabilities associated with these applications
 are enlisted in the following providers: the Common
 Vulnerabilities and Exposures ({\sc cve})
-database,\footnote{\url{https://cve.mitre.org/}}
+database,\footnote{\scriptsize\url{https://cve.mitre.org/}}
 %~\cite{cve},
-the Bugtraq\footnote{\url{http://seclists.org/bugtraq/}}
+the Bugtraq\footnote{\scriptsize\url{http://seclists.org/bugtraq/}}
 security mailing list,
 %~\cite{bugtraq},
 the {\sc xss}ed.com
-security bulletin provider,\footnote{\url{www.xssed.com}}
+security bulletin provider,\footnote{\scriptsize\url{www.xssed.com}}
 %~\cite{xssed},
 Microsoft's security
-bulletin\footnote{\url{https://technet.microsoft.com/en-us/security/bulletin}}
+bulletin\footnote{\scriptsize\url{https://technet.microsoft.com/en-us/security/bulletin}}
 %~\cite{microsoftBulletin}
 and the
-ha.ckers.org\footnote{\url{http://ha.ckers.org/}}
+ha.ckers.org\footnote{\scriptsize\url{http://ha.ckers.org/}}
 security bulletin provider.
 %~\cite{hackers}.
 Figure~\ref{fig:defect_sources} presents how many, in percentage,
@@ -1453,13 +1451,13 @@ In numerous occasions authors performed tests based
 on the same applications.
 For example, 12 mechanisms were tested on a
 vulnerable version of the {\sc phpbb} bulletin board
-software.\footnote{\url{https://www.phpbb.com/}}
+software.\footnote{\scriptsize\url{https://www.phpbb.com/}}
 %~\cite{phpbb}.
 
 \begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.47]{defect-percentages.png}
+\includegraphics[scale=0.45]{defect-percentages.png}
 \end{center}
 \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
 used for testing of web attack defenses.
@@ -1878,7 +1876,7 @@ numerous mechanisms designed to
 detect one or more of types of such attacks.
 Although some deployed and widely used frameworks, 
 such as Mozilla's {\sc csp}~\cite{SSM10} and
-Google Caja,\footnote{\url{https://code.google.com/p/google-caja/}}%~\cite{M06},
+Google Caja,\footnote{\scriptsize\url{https://code.google.com/p/google-caja/}}%~\cite{M06},
 share characteristics
 (for instance, {\sc html} sanitization and {\tt eval} handling)
 with previous proposals, 
