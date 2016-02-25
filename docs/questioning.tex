@@ -1386,7 +1386,6 @@ the application is probably under attack. Note that Diglossia
 can be bypassed in the same way as other taint tracking
 approaches~\cite{NBR14}.
 
-
 \section{Observations}
 \label{sec:discussion}
 
@@ -1425,9 +1424,11 @@ central limit theorem~\cite{agresti1998,brown2001}.
 However, sample sizes in the single
 digits are not enough to produce good intervals.
 
-Regarding the subjects of tests, we see that 27 out of 35 (77.1\%)
-mechanisms were tested with real-world applications known to be
-vulnerable. The vulnerabilities associated with these applications
+Regarding the subjects of tests,
+we see that 27 out of 35 (77.1\%)
+mechanisms were tested with real-world
+applications known to be vulnerable.
+The vulnerabilities associated with these applications
 are enlisted in the following providers: the Common
 Vulnerabilities and Exposures ({\sc cve})
 database,\footnote{\url{https://cve.mitre.org/}}
@@ -1447,42 +1448,28 @@ security bulletin provider.
 %~\cite{hackers}.
 Figure~\ref{fig:defect_sources} presents how many, in percentage,
 and which, in the figure's caption, publications referred
-to which source. In numerous occasions authors performed tests based
-on the same applications. For example, 12 mechanisms were tested on a
+to which source.
+In numerous occasions authors performed tests based
+on the same applications.
+For example, 12 mechanisms were tested on a
 vulnerable version of the {\sc phpbb} bulletin board
 software.\footnote{\url{https://www.phpbb.com/}}
 %~\cite{phpbb}.
 
-
-% \begin{figure}[t]
-% \begin{center}
-% \leavevmode
-% \includegraphics[scale=0.47]{defect-percentages.png}
-% \end{center}
-% \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
-% used for testing of web attack defenses.
-% Specifically, the publications that used a particular source are as follows:
-% {\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
-% {\it Bugtraq}~\cite{PB05,KKVJ06,JEP08},
-% {\sc xss}ed.com~\cite{NSS06,APKLM10},
-% ha.ckers.org~\cite{TNH07,PSC09,LV09},
-% Microsoft~\cite{RDWDE07}.}
-% \end{figure}
-
-% \begin{figure}[t]
-% \begin{center}
-% \leavevmode
-% \includegraphics[scale=0.57]{defect-percentages.png}
-% \end{center}
-% \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
-% used for testing of web attack defenses.
-% Specifically, the publications that used a particular source are as follows:}
-% \scriptsize \Note{{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},}
-% \scriptsize \Note{Bugtraq~\cite{PB05,KKVJ06,JEP08},}
-% \scriptsize \Note{{\sc xss}ed.com~\cite{NSS06,APKLM10},}
-% \scriptsize \Note{ha.ckers.org~\cite{TNH07,PSC09,LV09},}
-% \scriptsize \Note{Microsoft~\cite{RDWDE07}.}
-% \end{figure}
+\begin{figure}[t]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.47]{defect-percentages.png}
+\end{center}
+\caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
+used for testing of web attack defenses.
+Specifically, the publications that used a particular source are as follows:
+{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
+Bugtraq~\cite{PB05,KKVJ06,JEP08},
+{\sc xss}ed.com~\cite{NSS06,APKLM10},
+ha.ckers.org~\cite{TNH07,PSC09,LV09},
+Microsoft~\cite{RDWDE07}.}
+\end{figure}
 
 There are also authors that took a different approach.
 For instance, during their initial tests,
