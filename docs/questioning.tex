@@ -1,4 +1,14 @@
-\documentclass[conference]{IEEEtran}
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+
+\let\chapter\section
+
+\usepackage[ruled]{algorithm2e}
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
 
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -14,18 +24,22 @@
 \usepackage{mathptmx}
 \usepackage{dingbat}
 \usepackage{pifont}
-\usepackage{acronym}
+\usepackage{acronym}%
 \usepackage{algpseudocode}
-\usepackage{algorithm}
+%\usepackage{algorithm}
 \usepackage{supertabular}
 \usepackage{listings}
 \usepackage{threeparttable}
+\usepackage{enumitem}
 \usepackage{pdflscape}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{subfigure}
 \usepackage{array}
 \usepackage{courier}
+\usepackage{draftwatermark}
+\SetWatermarkText{Confidential}
+\SetWatermarkScale{0.4}
 
 \usepackage[numbers,sort]{natbib}
 
@@ -44,67 +58,73 @@
 \newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
 \makeatother
 
-\date{}
 \begin{document}
 
-% \author{
-% \IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
-% Panos Louridas,\IEEEauthorrefmark{2}
-% Michalis Polychronakis,\IEEEauthorrefmark{1}
-% and Angelos D. Keromytis\IEEEauthorrefmark{1}}
-% \IEEEauthorblockA{\IEEEauthorrefmark{1}
-% Network Security Lab\\
-% Department of Computer Scinence\\
-% Columbia University\\
-% \{dimitro, mikepo, angelos\}@cs.columbia.edu\\
-% \IEEEauthorrefmark{2}
-% Software Engineering and Security Lab\\
-% Department of Management Science and Technology\\
-% Athens University of Economics and Business\\
-% louridas@aueb.gr
-% }}
+\title{Defending Against Web Application Attacks: Research Approaches, Challenges and Implications}
 
-\author{Anonymous Submission}
+\author{
+\IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
+Panos Louridas,\IEEEauthorrefmark{2}
+Michalis Polychronakis,\IEEEauthorrefmark{3}
+and Angelos D. Keromytis\IEEEauthorrefmark{1}}\\
+\IEEEauthorblockA{\IEEEauthorrefmark{1}
+\scriptsize Network Security Lab\\
+Department of Computer Scinence\\
+Columbia University\\
+\{dimitro, angelos\}@cs.columbia.edu\\
+\IEEEauthorrefmark{2}
+Software Engineering and Security Lab\\
+Department of Management Science and Technology\\
+Athens University of Economics and Business\\
+louridas@aueb.gr\\
+\IEEEauthorrefmark{3}
+Computer Science Department\\
+Stony Brook University\\
+mikepo@cs.stonybrook.edu
+}}
 
-\title{SoK: Defending Against Web Application Attacks: From Research
-  Approaches to Practical Tools}
+% \markboth{\footnotesize D. Mitropoulos et al.}{\footnotesize Defending Against Web Application Attacks:
+% Research Approaches, Challenges and Implications}
 
-\maketitle
-\thispagestyle{plain}
-\pagestyle{plain}
+\markboth{D. Mitropoulos et al., Defending Against Web Application Attacks}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
+
+\IEEEtitleabstractindextext{
 \begin{abstract}
-
-  Some of the most dangerous web attacks, such as Cross-Site
-  Scripting and SQL injection, exploit vulnerabilities
-  in web applications that may accept and process
-  data of uncertain origin without proper validation or
-  filtering, allowing the injection and execution of
-  dynamic or domain-specific language code.
-  These attacks have been constantly topping the lists of
-  various security bulletin providers despite the numerous
-  countermeasures that have been proposed over the past 15 years.
-
-  In this paper, we systematize the existing knowledge on
-  various defense mechanisms against web code injection attacks. We propose
-  a model that highlights the key weaknesses enabling these attacks,
-  and that provides a common perspective for studying the available defenses.
-  We then categorize and analyze a set of 35 previously proposed defenses 
-  based on their accuracy, performance,
-  deployment, security, and availability characteristics.
-  Detection accuracy is of particular importance,
-  as our findings show that many defense
-  mechanisms have been tested in a poor manner. In addition, we observe
-  that some mechanisms can be bypassed by attackers with knowledge
-  of how the mechanisms work. Finally, we discuss the results
-  of our analysis, with emphasis on factors that may hinder
-  the widespread adoption of defenses in practice.
+Some of the most dangerous web attacks, such as Cross-Site
+Scripting and {\sc sql} injection, exploit vulnerabilities
+in web applications that may accept and process
+data of uncertain origin without proper validation or
+filtering, allowing the injection and execution of
+dynamic or domain-specific language code.
+These attacks have been constantly topping the lists of
+various security bulletin providers despite the numerous
+countermeasures that have been proposed over the past 15 years.
+In this paper, we provide an analysis on
+various defense mechanisms against web code injection attacks. We propose
+a model that highlights the key weaknesses enabling these attacks,
+and that provides a common perspective for studying the available defenses.
+We then categorize and analyze a set of 35 previously proposed defenses 
+based on their accuracy, performance,
+deployment, security, and availability characteristics.
+Detection accuracy is of particular importance,
+as our findings show that many defense
+mechanisms have been tested in a poor manner. In addition, we observe
+that some mechanisms can be bypassed by attackers with knowledge
+of how the mechanisms work. Finally, we discuss the results
+of our analysis, with emphasis on factors that may hinder
+the widespread adoption of defenses in practice.
 
 \end{abstract}
 
 \begin{IEEEkeywords}
-Protection mechanisms, web application security,
-SQL injection, XSS, CSRF.
-\end{IEEEkeywords}
+Web Application Security, Protection Mechanisms, Exploitation Models, Software Testing,
+SQL Injection, XSS.
+\end{IEEEkeywords}}
+
+\maketitle
+
+\IEEEdisplaynontitleabstractindextext
 
 \IEEEpeerreviewmaketitle
 
@@ -117,15 +137,22 @@ exploit vulnerabilities associated with improper validation or filtering
 of untrusted inputs, resulting in the injection of malicious
 script or domain-specific language code.
 Attacks of this type include Cross-Site Scripting ({\sc xss})~\cite{SG07},
-{\sc sql} injection~\cite{RL12b}, and Cross-Site Request Forgery
-({\sc csrf}) attacks~\cite{LZRL09}, among others.
+and {\sc sql} injection attacks~\cite{RL12b},
+%and Cross-Site Request Forgery
+% ({\sc csrf}) attacks~\cite{LZRL09},
+among others.
 
 For the past several years,
 these attacks have been topping the lists of the most dangerous vulnerabilities
-published by {\sc owasp}~\cite{OWASPtop10},
-{\sc mitre}~\cite{MITREtop25}, and other organizations.
+published by
+{\sc owasp},\footnote{\url{https://www.owasp.org/index.php/Top_10_2013-Top_10}}
+%~\cite{OWASPtop10},
+{\sc mitre},\footnote{\url{http://cwe.mitre.org/top25/}}
+%~\cite{MITREtop25},
+and other organizations.
 For instance, consider the case of {\sc owasp}'s popular Top Ten
-project~\cite{OWASPtop10},
+project,%\footnote{\url{https://www.owasp.org/index.php/Top_10_2013-Top_10}}
+%~\cite{OWASPtop10},
 which aims to raise awareness about web application security by
 identifying some of the most critical risks organizations may face.
 In its three consecutive Top Ten lists (2007, 2010, 2013), different
@@ -150,8 +177,20 @@ common.\footnote{Note that we do not consider lower-level attacks based on
 the exploitation of memory corruption vulnerabilities and the injection
 of binary code---see Section~\ref{sec:attacks}.} This is validated by the fact that
 some protection mechanisms defend against more than one of these
-types of attacks. Then, we {\it categorize} a selection of representative
-protection mechanisms and finally we {\it analyze} each mechanism across the
+types of attacks.
+
+Then, we {\it categorize} a selection of representative
+protection mechanisms. Specifically, we include protection
+mechanisms that counter web attacks when they take place,
+while we do not consider countermeasures that identify
+vulnerabilities using static program analysis~\cite{SZ12}
+(which takes place during the development or testing
+phases). Similarly, dynamic analysis techniques that examine
+applications to identify vulnerabilities that may lead to the attacks
+that we described earlier are out of scope as well. Note also, that we
+didn't consider mechanisms that haven't been presented in research papers.
+
+Finally, we {\it analyze} each mechanism across the
 following dimensions:
 \begin{itemize}
 \item {\it Accuracy:} protection mechanisms are as good
@@ -181,20 +220,20 @@ characteristics. We also draw useful conclusions
 about the various protection categories and see how they compare
 to each other.
 
-There is already a survey on mitigating software vulnerabilities in
-general~\cite{SZ12}. The scope of that research is much broader than
-ours and leaves out the majority of the approaches and mechanisms that
-we consider in this work. This is mainly because that work includes
-countermeasures that identify vulnerabilities using static program analysis
-(which takes place during the development or testing phases), while we
-consider protection mechanisms that counter web attacks when they take
-place. Similarly, dynamic analysis techniques that examine
-applications to identify vulnerabilities that may lead to the attacks
-that we described earlier are out of scope as well. While
-countermeasures against {\sc sql} injection attacks have been
-previously surveyed in a 2006 paper~\cite{HVO06}, a significant number
-of new {\sc sql} injection defenses has been proposed since then, as
-we mentioned earlier.
+% There is already a survey on mitigating software vulnerabilities in
+% general~\cite{SZ12}. The scope of that research is much broader than
+% ours and leaves out the majority of the approaches and mechanisms that
+% we consider in this work. This is mainly because that work includes
+% countermeasures that identify vulnerabilities using static program analysis
+% (which takes place during the development or testing phases), while we
+% consider protection mechanisms that counter web attacks when they take
+% place. Similarly, dynamic analysis techniques that examine
+% applications to identify vulnerabilities that may lead to the attacks
+% that we described earlier are out of scope as well. While
+% countermeasures against {\sc sql} injection attacks have been
+% previously surveyed in a 2006 paper~\cite{HVO06}, a significant number
+% of new {\sc sql} injection defenses has been proposed since then, as
+% we mentioned earlier.
 
 The main contributions of this paper are the following:
 
@@ -202,13 +241,13 @@ The main contributions of this paper are the following:
 \item We provide a unified exploitation model for different types of
   web application attacks based on code injection.
 \item We categorize and analyze proposed defenses using a set of
-  criteria that are important for building protection mechanisms.
+  criteria that are important for building protection mechanisms on the web.
 \item We provide insight based on the issues that arise from our analysis. We put
   emphasis on factors that may hinder the widespread deployment of
   protection mechanisms, and the transition of tools from research to practice.
 \end{enumerate}
 
-The rest of the paper is organized as follows.
+The rest of the paper is organized as follows:
 Section~\ref{sec:attacks} provides some insights on
 code injection attacks and
 Section~\ref{sec:model} presents our proposed model.
@@ -244,7 +283,7 @@ theory.
 \begin{figure}
 \begin{center}
 \leavevmode
-\includegraphics[width=\columnwidth]{attack-tree-uml.pdf}
+\includegraphics[scale=0.55]{attack-tree-uml.pdf}
 \end{center}
 \caption{\label{fig:taxonomy}A taxonomy of dynamic and domain-specific
 language code injection attacks against web applications.}
@@ -256,9 +295,9 @@ extensive survey on binary code injection attacks was conducted by
 Lhee and Chapin~\cite{LC03}. Advances in memory corruption vulnerability
 exploitation have been studied extensively~\cite{PB04, SPWS13}
 and countermeasures to such attacks
-have already been surveyed~\cite{YJP12}\cite[Sec. 13.8]{DKZ12}.
-In this work
-we do not consider binary code injection, focusing instead on defenses
+have already been analyzed~\cite{YJP12}\cite[Sec. 13.8]{DKZ12}.
+In this work we do not consider binary code injection,
+focusing instead on defenses
 that protect web applications against attacks based on the
 injection of higher-level language code.
 
@@ -281,8 +320,8 @@ in database interfaces by taking advantage of input validation issues,
 such as incorrectly passed parameters or incorrect type handling, are
 called {\sc sql} injection attacks~\cite{CERT02,MS09,HVO06,SW06}.
 Consider a trivial exploit that takes advantage of incorrectly
-filtered quotation characters in an application that sends a temporary
-password for a forgetful user via email by executing the following
+filtered quotation characters in an application that shows the
+password of a forgetful user by executing the following
 query:
 
 \lstset{language=SQL}
@@ -292,8 +331,9 @@ SELECT password from userdata WHERE id = 'Alice'
 
 \noindent
 Attackers that would input the string {\tt anything' OR 'x'='x}
-could obtain a user's password by email. Savvy
-programmers can use certain {\sc api} functions, such as {\sc php}'s
+could view every item in the table.
+%obtain a user's password by email.
+Savvy programmers can use certain {\sc api} functions, such as {\sc php}'s
 {\tt mysql\_real\_escape\_string()}, to detect malformed input, or,
 better, use prepared {\sc sql} statements instead of statement
 templates. Unfortunately, the increasing number of {\sc sql} injection
@@ -309,8 +349,10 @@ purposes when an application does not properly handle user-supplied
 data. Based on this vulnerability attackers can supply valid {\sc
   html}, typically via a parameter value, and inject their own content
 into the application's page. {\sc html} injection is mainly associated
-with {\sc xss} attacks~\cite{BJM08,LZRL09}. However, {\sc html} injection,
-can also be used as a vehicle for {\sc csrf} attacks.
+with {\sc xss} attacks~\cite{SP11, SLMS14}. However, {\sc html} injection,
+can also be used as a vehicle for {\sc csrf} attacks~\cite{BJM08, LZRL09}
+(even though a common {\sc csrf} attack does not necessarily
+involve code injection).
 Consider a bulletin board system where {\tt img} tags are allowed.
 A malicious user could embed a {\sc csrf} request within an
 {\tt img} tag in the following manner:
@@ -389,13 +431,10 @@ by the application, result in arbitrary code execution.
 Note that the exploitation model we propose
 in the following Section also captures such attacks.
 
-\section{Exploitation Model}
-\label{sec:model}
-
 \begin{figure*}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.55]{attacks-steps-CSRF.pdf}
+\includegraphics[scale=0.50]{attacks-steps-CSRF.pdf}
 \end{center}
 \caption{\label{fig:attacks}Attack model for dynamic and domain specific
 language code injection in web applications.
@@ -404,12 +443,14 @@ while the numbers next to attack labels denote the
 sequence of steps for a particular attack.
 Points where different types of defenses
 detect or prevent attacks are marked with an `X' symbol:
-{\sc ub} (at the browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08,SSM10},
-{\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
-{\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
-{\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
+(1) {\sc ub} (at the browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08,SSM10},
+(2) {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
+(3) {\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
+(4) {\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
 \end{figure*}
 
+\section{Exploitation Model}
+\label{sec:model}
 
 We provide a step-by-step exploitation model to aid in understanding the process
 of carrying out code injection attacks against web
@@ -440,8 +481,7 @@ an {\tt img} tag including a malicious {\sc http} request ({\sc csrf 1}, {\sc
 i-csrf 1}),
 or embed malicious
 {\sc sql} code to retrieve private data from a database ({\sc dsl} 1).
-%Recall the examples we provided in Section~\ref{sec:attacks}.
-Note that {\sc xss} and {\sc csrf} attacks can start from both routes.
+Note that, {\sc xss} and {\sc csrf} attacks can start from both routes.
 
 Once the injected code reaches the vulnerable application, it becomes
 a part of a value represented by a program variable. The target of the
@@ -490,7 +530,7 @@ towards the site that is vulnerable to {\sc csrf}.
 \section{Analysis Dimensions}
 \label{sec:dimensions}
 
-Research on application attack defense mechanisms has a dual
+Research on web application attack defense mechanisms has a dual
 character. First, a defense mechanism may be important, and therefore
 publishable, because it shows that an attack can be detected or prevented in a
 reliable manner. Second, a defense mechanism may be important not
@@ -583,7 +623,10 @@ system. The ratio of reported attacks over all attacks will give us
 the sensitivity. Similarly, to calculate the specificity we can run
 the test on a controlled environment where we allow only innocuous
 events to reach the system. The ratio of non-reported events over all
-events will give us the specificity. 
+events will give us the specificity.
+
+Note that the use of sensitivity and specificity in this context
+has been advocated before~\cite{PP12}.
 
 \subsection{Availability}
 
@@ -631,7 +674,7 @@ it becomes as a practical approach.
 \begin{figure*}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.65]{defenses.pdf}
+\includegraphics[scale=0.60]{defenses.pdf}
 \end{center}
 \caption{\label{fig:defenses}The basic categories of countermeasures
 against web application attacks based on code
@@ -685,11 +728,13 @@ that is, whether there are any known ways to bypass the detection
 mechanism today.
 
 \subsection{Point of Detection}
+\label{sec:point}
 
 Detection mechanisms vary on the location where they detect an attack.
 There are four different points where an attack can be caught, as seen
 in Figure~\ref{fig:attacks}:
-\begin{itemize}
+
+\begin{enumerate}
 \item At the user's browser (Point {\sc ub}).
 \item En route from the server to the user's browser---in most cases
 within a proxy (Point {\sc s}t{\sc b}).
@@ -697,12 +742,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   (Point {\sc dbal}).
 \item After the malicious code reaches the server's database
   (Point {\sc db}).
-\end{itemize}
-
-
-
-\section{Defenses}
-\label{sec:defs}
+\end{enumerate}
 
 \begin{table*}[t]
   \renewcommand{\baselinestretch}{1.12}
@@ -711,7 +751,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 \centering
     \begin{threeparttable}
     \begin{small}
-\scalebox{0.93}{
+\scalebox{0.83}{
     \begin{tabular}{l|c|c|cc|c}
     \thickhline
     \bf{Approach}
@@ -803,6 +843,8 @@ within a proxy (Point {\sc s}t{\sc b}).
     \end{threeparttable}
 \end{table*}
 
+\section{Defenses}
+\label{sec:defs}
 
 We categorize and analyze a large set of defenses developed to detect
 and prevent
@@ -813,7 +855,7 @@ except from availability, which we treat
 separately in Section~\ref{sec:discussion}.
 Due to the immense number of published works in the area, we only consider
 defenses that have been proposed in publications cited more than
-20 times according to Google Scholar~\cite{googleScholar}.
+20 times according to Google Scholar.\footnote{\url{scholar.google.gr}}
 We also include some recent works that have been
 presented in top security conferences, even though they have been
 cited less than twenty times, so that recent research is not penalized.
@@ -933,7 +975,8 @@ return-to-JavaScript attacks, which can be used to bypass the above
 mechanisms.
 
 A policy enforcement technique developed by Mozilla,
-called {\sc csp} (Content Security Policy)~\cite{cspMoz,SSM10}
+called {\sc csp} (Content Security
+Policy)\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}~\cite{SSM10}
 is currently supported by many browsers to prevent
 {\sc xss} and {\sc csrf} attacks. To eliminate such
 attacks, web site administrators
@@ -1002,7 +1045,7 @@ the browser will not include the token.
 Thus, sites that create part of their {\sc html} code at client side
 will remain vulnerable. In addition, it does not
 support cross-origin requests.
-The above problems ar addressed by j{\sc csrf}~\cite{PS11},
+The above problems are addressed by j{\sc csrf}~\cite{PS11},
 which shares similar functionality.
 Finally, CsFire~\cite{DDHPJ10}
 examines cross-domain interactions to design a
@@ -1162,6 +1205,13 @@ tracks the flow of attacker-controlled data. To detect potential
 attacks, the scheme uses {\sc html} and JavaScript parsers that can
 identify the generation of code coming from tainted data.
 
+An issue that involves all taint tracking schemes involves
+the difficulty of maintaining accurate taint~\cite{GMPS11}
+(e.g. implicit flows~\cite{ME07}).
+In such cases, certain, tainted inputs can escape the tracking mechanism.
+Keeping track of such input maybe impractical not only because of the
+various technical difficulties, but also because it would raise false alarms.
+
 \subsubsection{Training}
 \label{sec:train}
 
@@ -1178,7 +1228,7 @@ generate and store valid code statements (e.g., {\sc sql} or {\sc
   xp}ath queries) in various forms, and detect attacks as outliers
 from the set of valid code statements. An early approach,
 {\sc didafit}~\cite{LLW02}, detects {\sc sql} injection attacks (Point
-{\sc sdb}) by recording all database transactions
+{\sc dbal}) by recording all database transactions
 stripped from user input. Subsequent
 refinements by Valeur et al.~\cite{VMV05} tag each transaction with
 the corresponding application as an extension of their anomaly
@@ -1216,8 +1266,8 @@ circumvented. For example, {\sc didafit}~\cite{LLW02}
 and libAnomaly~\cite{VMV05} do not tag transactions with their
 corresponding call sites. This can lead
 easily to false negatives. For instance, recall the application
-mentioned in Section~\ref{sec:attacks}, which will send the password
-for a forgetful user via email by executing the following query:
+mentioned in Section~\ref{sec:attacks}, which will show the password
+for a forgetful user by executing the following query:
 
 \lstset{language=SQL}
 \begin{lstlisting}
@@ -1228,7 +1278,8 @@ SELECT password from userdata WHERE id = 'Alice'
 This same application could allow users to
 login to the site using just their password via a custom login form
 (like the ``Password only login" plugin of
-Wordpress~\cite{password})
+Wordpress\footnote{\url{wordpress.org/plugins/password-only-login/}})
+%~\cite{password})
 but allow the login either with the user's password or with
 the administrator password. The corresponding query to verify
 the password on the login form would be as follows:
@@ -1378,32 +1429,60 @@ Regarding the subjects of tests, we see that 27 out of 35 (77.1\%)
 mechanisms were tested with real-world applications known to be
 vulnerable. The vulnerabilities associated with these applications
 are enlisted in the following providers: the Common
-Vulnerabilities and Exposures ({\sc cve}) database~\cite{cve},
-the Bugtraq security mailing list~\cite{bugtraq}, the {\sc xss}ed.com
-security bulletin provider~\cite{xssed}, Microsoft's security
-bulletin~\cite{microsoftBulletin} and the
-ha.ckers.org security bulletin provider~\cite{hackers}.
+Vulnerabilities and Exposures ({\sc cve})
+database,\footnote{\url{https://cve.mitre.org/}}
+%~\cite{cve},
+the Bugtraq\footnote{\url{http://seclists.org/bugtraq/}}
+security mailing list,
+%~\cite{bugtraq},
+the {\sc xss}ed.com
+security bulletin provider,\footnote{\url{www.xssed.com}}
+%~\cite{xssed},
+Microsoft's security
+bulletin\footnote{\url{https://technet.microsoft.com/en-us/security/bulletin}}
+%~\cite{microsoftBulletin}
+and the
+ha.ckers.org\footnote{\url{http://ha.ckers.org/}}
+security bulletin provider.
+%~\cite{hackers}.
 Figure~\ref{fig:defect_sources} presents how many, in percentage,
 and which, in the figure's caption, publications referred
 to which source. In numerous occasions authors performed tests based
 on the same applications. For example, 12 mechanisms were tested on a
-vulnerable version of the {\sc phpbb} bulletin board software~\cite{phpbb}.
+vulnerable version of the {\sc phpbb} bulletin board
+software.\footnote{\url{https://www.phpbb.com/}}
+%~\cite{phpbb}.
 
 
-\begin{figure}[t]
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.47]{defect-percentages.png}
-\end{center}
-\caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
-used for testing of web attack defenses.
-Specifically, the publications that used a particular source are as follows:
-{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
-{\it Bugtraq}~\cite{PB05,KKVJ06,JEP08},
-{\sc xss}ed.com~\cite{NSS06,APKLM10},
-ha.ckers.org~\cite{TNH07,PSC09,LV09},
-Microsoft~\cite{RDWDE07}.}
-\end{figure}
+% \begin{figure}[t]
+% \begin{center}
+% \leavevmode
+% \includegraphics[scale=0.47]{defect-percentages.png}
+% \end{center}
+% \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
+% used for testing of web attack defenses.
+% Specifically, the publications that used a particular source are as follows:
+% {\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
+% {\it Bugtraq}~\cite{PB05,KKVJ06,JEP08},
+% {\sc xss}ed.com~\cite{NSS06,APKLM10},
+% ha.ckers.org~\cite{TNH07,PSC09,LV09},
+% Microsoft~\cite{RDWDE07}.}
+% \end{figure}
+
+% \begin{figure}[t]
+% \begin{center}
+% \leavevmode
+% \includegraphics[scale=0.57]{defect-percentages.png}
+% \end{center}
+% \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
+% used for testing of web attack defenses.
+% Specifically, the publications that used a particular source are as follows:}
+% \scriptsize \Note{{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},}
+% \scriptsize \Note{Bugtraq~\cite{PB05,KKVJ06,JEP08},}
+% \scriptsize \Note{{\sc xss}ed.com~\cite{NSS06,APKLM10},}
+% \scriptsize \Note{ha.ckers.org~\cite{TNH07,PSC09,LV09},}
+% \scriptsize \Note{Microsoft~\cite{RDWDE07}.}
+% \end{figure}
 
 There are also authors that took a different approach.
 For instance, during their initial tests,
@@ -1419,18 +1498,18 @@ and then test the accuracy of their tools on them.
 
 \subsection{Availability}
 
-\begin{table*}
+\begin{table}
 \caption{Availability of the studied defenses.}
     \label{tab:avail}
 \centering
     \begin{threeparttable}
     \begin{small}
-\scalebox{0.93}{
+\scalebox{0.69}{
     \begin{tabular}{l|c|ccc}
     \thickhline
     \bf{Approach}
   & \bf{Mechanism}
-  & \multicolumn{3}{|c|}{Availability\tnote{1}} \\
+  & \multicolumn{3}{|c}{Availability\tnote{1}} \\
   && \bf{Source Code}
   & \bf{Executable}
   & \bf{Testbed} \\
@@ -1508,7 +1587,7 @@ and then test the accuracy of their tools on them.
     \end{tabular}}
     \end{small}
     \end{threeparttable}
-\end{table*}
+\end{table}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
 of each mechanism in terms of source code and corresponding
@@ -1606,7 +1685,7 @@ From the mechanisms that detect {\sc dsl} code injection
 attacks, 3 out of 13 (23\%) do so at the level
 of the {\sc rdbms} (Point {\sc db}).
 The other 11 are based on interposing on {\sc api} calls related to output
-vectors (Point {\sc e}i{\sc q}).
+vectors (Point {\sc dbal}).
 
 For frameworks that deal with {\sc xss} attacks, we
 see that attack detection and prevention may take place either at the server or
@@ -1812,7 +1891,8 @@ numerous mechanisms designed to
 detect one or more of types of such attacks.
 Although some deployed and widely used frameworks, 
 such as Mozilla's {\sc csp}~\cite{SSM10} and
-Google Caja~\cite{M06,caja}, share characteristics
+Google Caja,\footnote{\url{https://code.google.com/p/google-caja/}}%~\cite{M06},
+share characteristics
 (for instance, {\sc html} sanitization and {\tt eval} handling)
 with previous proposals, 
 most research works are still not used in practice.
@@ -1847,48 +1927,15 @@ There are also cases where
 researchers have made their code available ({\sc beep}~\cite{TNH07}
 and {\sc sd}river~\cite{MS09}),
 which can promote the development of better
-mechanisms. This argument has been raised by another {\sc s}o{\sc k}
-paper~\cite{SPWS13}. Furthermore, testing defenses in a production
+mechanisms. This argument has been raised by others
+researchers too~\cite{SPWS13}.
+Furthermore, testing defenses in a production
 setting could also propel their adoption.
 
 We hope that the exploitation model, analysis, and observations that
 emerged from our research can be a reference point for researchers who
 aim to develop new, practical countermeasures against web application
 attacks.
-
-% First, we introduced an exploitation model
-% to show how defense mechanisms can be seen
-% from a common point of view. Our model can
-% be a reference point for researchers who wish to develop
-% new countermeasures. Then we categorized the various
-% mechanisms and analyzed them based on specific criteria.
-% We observed that the various mechanisms
-
-% This is due to the following reasons:
-% a) the mechanisms have not been extensively tested in terms
-% of accuracy,
-% b) are hard to deploy because they require many modifications
-% either on the client-side, the server-side, or both,
-% c) they add significant overhead, and
-% d) can be bypassed by attackers that know how they work.
-% The motivation behind this research is to systematize
-% and analyze previously proposed protection mechanisms.
-% In this way we can highlight the advantages
-% and disadvantages of each mechanism, enlist them
-% into different categories, and see how they compare to each other.
-
-% \begin{itemize}
-% \item We believe that our research may facilitate researchers
-% or practitioners who would like to use one of the
-% aforementioned mechanisms and researchers who would like
-% to build new ones. Especially in the second case,
-% researchers can utilize our exploitation model as a
-% starting point to develop their approach.
-% \item We believe that forming a
-% standard way to test such mechanisms in terms
-% of accuracy and computational performance
-% would be one of the reasons of adopting them.
-% \end{itemize}
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
