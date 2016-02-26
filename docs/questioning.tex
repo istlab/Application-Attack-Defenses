@@ -102,8 +102,8 @@ These attacks have been constantly topping the lists of
 various security bulletin providers despite the numerous
 countermeasures that have been proposed over the past 15 years.
 In this paper, we provide an analysis on
-various defense mechanisms against web code injection attacks. We propose
-a model that highlights the key weaknesses enabling these attacks,
+various defense mechanisms against web code injection attacks.
+We propose a model that highlights the key weaknesses enabling these attacks,
 and that provides a common perspective for studying the available defenses.
 We then categorize and analyze a set of 35 previously proposed defenses 
 based on their accuracy, performance,
@@ -245,7 +245,7 @@ The main contributions of this paper are the following:
 % some lessons learned from our observations
 % and Section~\ref{sec:conclusion} concludes the paper.
 
-\section{Code Injection Attacks in Web Applications}
+\section{Code Injection in Web Applications}
 \label{sec:attacks}
 
 Lack of input validation is a major vulnerability behind dangerous web
@@ -441,7 +441,7 @@ detect or prevent attacks are marked with an `X' symbol:
 We provide a step-by-step exploitation model to aid in understanding the process
 of carrying out code injection attacks against web
 applications. Figure~\ref{fig:attacks} illustrates the required steps for
-different classes of injection attacks,
+different classes of attacks,
 such as {\sc sql} injection, {\sc xss}, and {\sc csrf}. Links between steps are
 labeled with the different attacks that use that path, while the
 numbers next to attack labels denote the sequence of steps for a
@@ -501,7 +501,8 @@ request towards the vulnerable site ({\sc csrf} 2).
 Note that this scenario does not involve the injection of any code through the
 exploitation of some server-side vulnerability (as is the case with Server 1).
 On the other hand, {\sc csrf} is also possible through injection
-({\sc i-csrf}). In this attack, an attacker
+({\sc i-csrf}---recall our example in the previous section).
+In this attack, an attacker
 manages to inject {\sc html} code that contains
 a malicious {\sc csrf} request in the way we described in
 Section~\ref{sec:attacks}.
@@ -970,6 +971,26 @@ can specify which domains the browser should treat
 as valid sources of script and which not. Then, the browser
 (Point {\sc ub}) will only execute scripts that exist in
 source files from white-listed domains.
+Note that,
+if an application involves
+embedded scripts, developers must utilize
+{\sc csp}'s {\em nonce} concept.
+This is an unpredictable,
+random value indicated in
+the {\tt script-src} directive which in turn,
+is applied as a nonce attribute to
+{\tt <script>} elements.
+As a result, only those elements that have the
+correct nonce will execute.
+Even if an attacker
+is able to inject markup into the page,
+the attack will be prevented by the attacker's
+inability to guess the nonce value.
+However, attackers may still bypass this feature
+and invoke a script from a non-whitelisted source.
+To do so, their injected code must
+be crafted in a way that the nonce is handled
+by the browser as an attribute of the payload~\cite{jigsaw}.
 
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
