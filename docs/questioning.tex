@@ -43,6 +43,9 @@
 
 \usepackage[numbers,sort]{natbib}
 
+\setlist[itemize]{noitemsep, leftmargin=1em}
+\setlist[enumerate]{noitemsep, leftmargin=1em}
+
 \lstset{columns=flexible,showstringspaces=false}
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
 
@@ -217,22 +220,6 @@ various mechanisms and enumerate some of their common
 characteristics. We also draw useful conclusions
 about the various protection categories and see how they compare
 to each other.
-
-% There is already a survey on mitigating software vulnerabilities in
-% general~\cite{SZ12}. The scope of that research is much broader than
-% ours and leaves out the majority of the approaches and mechanisms that
-% we consider in this work. This is mainly because that work includes
-% countermeasures that identify vulnerabilities using static program analysis
-% (which takes place during the development or testing phases), while we
-% consider protection mechanisms that counter web attacks when they take
-% place. Similarly, dynamic analysis techniques that examine
-% applications to identify vulnerabilities that may lead to the attacks
-% that we described earlier are out of scope as well. While
-% countermeasures against {\sc sql} injection attacks have been
-% previously surveyed in a 2006 paper~\cite{HVO06}, a significant number
-% of new {\sc sql} injection defenses has been proposed since then, as
-% we mentioned earlier.
-
 The main contributions of this paper are the following:
 
 \begin{enumerate}
@@ -245,18 +232,18 @@ The main contributions of this paper are the following:
   protection mechanisms, and the transition of tools from research to practice.
 \end{enumerate}
 
-The rest of the paper is organized as follows:
-Section~\ref{sec:attacks} provides some insights on
-code injection attacks and
-Section~\ref{sec:model} presents our proposed model.
-Section~\ref{sec:dimensions} introduces the dimensions
-across which we analyze the various defenses.
-Our categorization and analysis is presented in
-Section~\ref{sec:defs} and a discussion is provided in
-Section~\ref{sec:discussion}. Finally,
-Section~\ref{sec:lessons-learned} highlights
-some lessons learned from our observations
-and Section~\ref{sec:conclusion} concludes the paper.
+% The rest of the paper is organized as follows:
+% Section~\ref{sec:attacks} provides some insights on
+% code injection attacks and
+% Section~\ref{sec:model} presents our proposed model.
+% Section~\ref{sec:dimensions} introduces the dimensions
+% across which we analyze the various defenses.
+% Our categorization and analysis is presented in
+% Section~\ref{sec:defs} and a discussion is provided in
+% Section~\ref{sec:discussion}. Finally,
+% Section~\ref{sec:lessons-learned} highlights
+% some lessons learned from our observations
+% and Section~\ref{sec:conclusion} concludes the paper.
 
 \section{Code Injection Attacks in Web Applications}
 \label{sec:attacks}
@@ -293,7 +280,8 @@ extensive survey on binary code injection attacks was conducted by
 Lhee and Chapin~\cite{LC03}. Advances in memory corruption vulnerability
 exploitation have been studied extensively~\cite{PB04, SPWS13}
 and countermeasures to such attacks
-have already been analyzed~\cite{YJP12}\cite[Sec. 13.8]{DKZ12}.
+have already been analyzed~\cite{YJP12}.
+% \cite[Sec. 13.8]{DKZ12}.
 In this work we do not consider binary code injection,
 focusing instead on defenses
 that protect web applications against attacks based on the
@@ -316,7 +304,7 @@ input can become part of an {\sc sql} query and gets executed on the
 target database. Code injection attacks that exploit vulnerabilities
 in database interfaces by taking advantage of input validation issues,
 such as incorrectly passed parameters or incorrect type handling, are
-called {\sc sql} injection attacks~\cite{CERT02,MS09,HVO06,SW06}.
+called {\sc sql} injection attacks~\cite{MS09,HVO06,SW06}.
 Consider a trivial exploit that takes advantage of incorrectly
 filtered quotation characters in an application that shows the
 password of a forgetful user by executing the following
@@ -1444,7 +1432,8 @@ and the
 ha.ckers.org\footnote{\scriptsize\url{http://ha.ckers.org/}}
 security bulletin provider.
 %~\cite{hackers}.
-Figure~\ref{fig:defect_sources} presents how many, in percentage,
+Figure~\ref{fig:defect_sources},
+presents how many,
 and which, in the figure's caption, publications referred
 to which source.
 In numerous occasions authors performed tests based
@@ -1457,7 +1446,7 @@ software.\footnote{\scriptsize\url{https://www.phpbb.com/}}
 \begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.45]{defect-percentages.png}
+\includegraphics[scale=0.39]{barchart.pdf}
 \end{center}
 \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
 used for testing of web attack defenses.
@@ -1549,7 +1538,7 @@ and then test the accuracy of their tools on them.
   &   libAnomaly~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
   &   {\sc xssds}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc swap}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\sc sd}river~\cite{MS09,MKS09,MKLS11} & \tick & \tick & {\sc na} \\
+  &   {\sc sd}river~\cite{MS09,MKLS11} & \tick & \tick & {\sc na} \\
   \thickhline
   \thickhline
   \multirow{3}{*}{Hybrid}
@@ -1875,8 +1864,9 @@ Meanwhile, during the last decade, there have been
 numerous mechanisms designed to
 detect one or more of types of such attacks.
 Although some deployed and widely used frameworks, 
-such as Mozilla's {\sc csp}~\cite{SSM10} and
-Google Caja,\footnote{\scriptsize\url{https://code.google.com/p/google-caja/}}%~\cite{M06},
+such as {\sc csp}~\cite{SSM10},
+% and
+% Google Caja,\footnote{\scriptsize\url{https://code.google.com/p/google-caja/}}%~\cite{M06},
 share characteristics
 (for instance, {\sc html} sanitization and {\tt eval} handling)
 with previous proposals, 
