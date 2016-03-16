@@ -37,6 +37,19 @@
 \usepackage{subfigure}
 \usepackage{array}
 \usepackage{courier}
+\newcommand{\subparagraph}{}
+\usepackage{titlesec}
+
+\titlespacing*{\section}
+{0pt}{1ex}{0.8ex}
+\titlespacing*{\subsection}
+{0pt}{1ex}{0.8ex}
+\titlespacing*{\subsubsection}
+{0pt}{1ex}{0.8ex}
+
+\setlength{\footnotesep}{0.3cm}
+\setlength{\skip\footins}{0.1cm}
+
 \usepackage{draftwatermark}
 \SetWatermarkText{Confidential}
 \SetWatermarkScale{0.4}
@@ -63,7 +76,7 @@
 
 \begin{document}
 
-\title{Defending Against Web Application Attacks: Approaches, Challenges and Implications}
+\title{Defending Against Web Application Attacks: Approaches, Challenges and Implications \vspace{-1mm}}
 
 \author{
 \IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
@@ -82,6 +95,7 @@ louridas@aueb.gr\\
 Computer Science Department,
 Stony Brook University,
 mikepo@cs.stonybrook.edu
+\vspace{-3mm}
 }}
 
 % \markboth{\footnotesize D. Mitropoulos et al.}{\footnotesize Defending Against Web Application Attacks:
@@ -115,12 +129,13 @@ that some mechanisms can be bypassed by attackers with knowledge
 of how the mechanisms work. Finally, we discuss the results
 of our analysis, with emphasis on factors that may hinder
 the widespread adoption of defenses in practice.
-
+\vspace{-3mm}
 \end{abstract}
 
 \begin{IEEEkeywords}
 Web Application Security, Protection Mechanisms, Exploitation Models, Software Testing,
 SQL Injection, XSS.
+\vspace{-1mm}
 \end{IEEEkeywords}}
 
 \maketitle
@@ -253,25 +268,27 @@ application attacks. By taking advantage of this, attackers can inject
 their code into applications to perform malicious tasks. Exploits of
 this kind can have different forms depending on the execution context
 of the application and the location of the programming flaw that leads
-to the attack.
+to the attack~\cite{RL12b}.
 
-Bratus et al.~\cite{BLSPS11} portray the issue in a more generic way:
-{\it ``unexpected (and unexpectedly powerful) computational models
-  inside targeted systems, which turn a part of the target into a
-  so-called `weird machine' programmable by the attacker via crafted
-  inputs (a.k.a. `exploits').''} In particular, {\it ``every
-  application that copies untrusted input verbatim into an output
-  program is vulnerable to code injection.''} Ray and
-Ligatti~\cite{RL12b} have proved this claim based on formal language
-theory.
+% Bratus et al.~\cite{BLSPS11} portray the issue in a more generic way:
+% {\it ``unexpected (and unexpectedly powerful) computational models
+%   inside targeted systems, which turn a part of the target into a
+%   so-called `weird machine' programmable by the attacker via crafted
+%   inputs (a.k.a. `exploits').''} In particular, {\it ``every
+%   application that copies untrusted input verbatim into an output
+%   program is vulnerable to code injection.''} Ray and
+% Ligatti~\cite{RL12b} have proved this claim based on formal language
+% theory.
 
 \begin{figure}
 \begin{center}
 \leavevmode
 \includegraphics[scale=0.55]{attack-tree-uml.pdf}
 \end{center}
+\vspace{-3mm}
 \caption{\label{fig:taxonomy}A taxonomy of dynamic and domain-specific
 language code injection attacks against web applications.}
+\vspace{-5mm}
 \end{figure}
 
 Code injection attacks can be divided in two categories. The first
@@ -420,8 +437,9 @@ in the following Section also captures such attacks.
 \begin{figure*}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.50]{attacks-steps-CSRF.pdf}
+\includegraphics[scale=0.48]{attacks-steps-CSRF.pdf}
 \end{center}
+\vspace{-7mm}
 \caption{\label{fig:attacks}Attack model for dynamic and domain specific
 language code injection in web applications.
 Transitions are labeled with the different attacks that use that path,
@@ -433,6 +451,7 @@ detect or prevent attacks are marked with an `X' symbol:
 (2) {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
 (3) {\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
 (4) {\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
+\vspace{-4mm}
 \end{figure*}
 
 \section{Exploitation Model}
@@ -666,6 +685,7 @@ it becomes as a practical approach.
 \leavevmode
 \includegraphics[scale=0.56]{defenses.pdf}
 \end{center}
+\vspace{-3mm}
 \caption{\label{fig:defenses}The basic categories of countermeasures
 against web application attacks based on code
 injection. For each approach we provide the references
@@ -676,6 +696,7 @@ that present corresponding mechanisms:
 {\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
 {\it Training}:~\cite{LLW02,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
 {\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
+\vspace{-4mm}
 \end{figure}
 
 \subsection{Ease of Use}
@@ -738,6 +759,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   \renewcommand{\baselinestretch}{1.12}
     \caption{Comparison summary of mechanisms developed to counter application attacks based on code injection.}
     \label{tab:comp}
+    \vspace{-3mm}
 \centering
     \begin{threeparttable}
     \begin{small}
@@ -831,6 +853,7 @@ within a proxy (Point {\sc s}t{\sc b}).
     \end{tablenotes}
     \end{small}
     \end{threeparttable}
+    \vspace{-4mm}
 \end{table*}
 
 \section{Defenses}
@@ -855,7 +878,7 @@ web application defenses against injection attacks.
 We can identify three broad categories:
 {\it etiological}, {\it symptomatic}, and {\it hybrid}.
 The etiological category involves mechanisms designed to
-block attacks based on their causes and origins~\cite{JL75,L81}. 
+block attacks based on their causes and origins~\cite{L81}. 
 The symptomatic category incorporates a variety of schemes that
 inspect the behavior of applications and detect attacks based on
 their undesirable symptoms~\cite{D76,A00}.
@@ -1013,7 +1036,7 @@ In this way, {\sc xxs} attacks that take advantage
 of functions such as {\tt write} and {\tt eval}, which are
 used to assemble innocuous-looking parts into harmful
 strings,\footnote{\scriptsize The infamous Sammy worm that
-infected MySpace in 2005~\cite{SP07,ELX07}
+infected MySpace in 2005~\cite{ELX07}
 utilized the {\tt eval} function to assemble a
 malicious script.} would fail.
 
@@ -1472,6 +1495,7 @@ software.\footnote{\scriptsize\url{https://www.phpbb.com/}}
 \leavevmode
 \includegraphics[scale=0.39]{barchart.pdf}
 \end{center}
+\vspace{-3mm}
 \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
 used for testing of web attack defenses.
 Specifically, the publications that used a particular source are as follows:
@@ -1480,6 +1504,7 @@ Bugtraq~\cite{PB05,KKVJ06,JEP08},
 {\sc xss}ed.com~\cite{NSS06,APKLM10},
 ha.ckers.org~\cite{TNH07,PSC09,LV09},
 Microsoft~\cite{RDWDE07}.}
+\vspace{-4mm}
 \end{figure}
 
 There are also authors that took a different approach.
@@ -1498,6 +1523,7 @@ and then test the accuracy of their tools on them.
 
 \begin{table}
 \caption{Availability of the studied defenses.}
+\vspace{-3mm}
     \label{tab:avail}
 \centering
     \begin{threeparttable}
@@ -1507,7 +1533,7 @@ and then test the accuracy of their tools on them.
     \thickhline
     \bf{Approach}
   & \bf{Mechanism}
-  & \multicolumn{3}{|c}{Availability\tnote{1}} \\
+  & \multicolumn{3}{c}{Availability\tnote{1}} \\
   && \bf{Source Code}
   & \bf{Executable}
   & \bf{Testbed} \\
@@ -1572,7 +1598,6 @@ and then test the accuracy of their tools on them.
   \thickhline
 
     \multicolumn{5}{p{12.4cm}}{%
-  \begin{footnotesize}
        $^\textsuperscript{1}$A check mark (\tick) indicates that the publication
        includes a link to a page where the software is available.
        {\bf AO} (Available On-line) indicates
@@ -1581,10 +1606,11 @@ and then test the accuracy of their tools on them.
        the it was made available after the publication. A question 
        mark ({\bf ?}) indicates that a link to the software
        was included in the publication but is now inaccessible.
-  \end{footnotesize} } \\
+} \\
     \end{tabular}}
     \end{small}
     \end{threeparttable}
+    \vspace{-4mm}
 \end{table}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
@@ -1742,7 +1768,7 @@ answer is provided by \textsc{npv}. We can calculate \textsc{ppv} and
 \begin{equation}
 \textsc{ppv} = \frac{\textsc{tp}}{\textsc{tp} + \textsc{fp}}
 \end{equation}
-\end{minipage}%
+\end{minipage}
 \begin{minipage}{0.5\linewidth}
 \begin{equation}
 \textsc{npv} = \frac{\textsc{tn}}{\textsc{fn} + \textsc{tn}}
@@ -1759,7 +1785,7 @@ environment, \textsc{ppv} and \textsc{npv} are measured on a real,
 production environment. In fact, if \textsc{pr} is the probability of
 a particular class of attacks in the real world,
 i.e., its prevalence, then we
-have~\cite{linn2004,altman1994}:
+have~\cite{linn2004}:
 
 \begin{equation}
 \textsc{ppv} = \frac{\textsc{se}\times \textsc{pr}}{
@@ -1781,7 +1807,7 @@ based on our understanding of the volume and frequency of a particular
 class of attacks; 
 \textsc{ppv} and \textsc{npv} are the revised estimates of that
 probability based on the results of the detection
-mechanism~\cite{altman1994}. The lower the prevalence of an attack,
+mechanism. The lower the prevalence of an attack,
 the more confident we can be that a negative test result indicates
 that no attack has taken place and the less sure we can be that a
 positive test result indicates a real attack. 
@@ -1828,7 +1854,7 @@ attacks.
 
 Apart from testing practices, another area that merits improvement is
 the availability of prototypes and testbeds. We are not aware of
-specific reasons why authors of attack detection mechanisms seem to be
+specific reasons why authors of detection mechanisms seem to be
 wary of publicly releasing their code and tests. Our finding may reflect
 the status in the current point in time, when authors are urged to
 publish their code and tests, and may start, or may have already
@@ -1841,7 +1867,7 @@ publish the underlying code and data, but to make sure that it remains
 accessible, and to provide the means to test it even as technology
 advances and operating systems, file formats, and software libraries
 change. That may be too much to ask right now; what seems reasonable,
-though, is to ask of researchers working on attack detection mechanisms not to
+though, is to ask of researchers working on defenses not to
 buck the trend and to take steps to increase the availability of their
 research.
 
@@ -1933,11 +1959,12 @@ mechanisms. This argument has been raised by others
 researchers too~\cite{SPWS13}.
 Furthermore, testing defenses in a production
 setting could also propel their adoption.
-
 We hope that the exploitation model, analysis, and observations that
 emerged from our research can be a reference point for researchers who
 aim to develop new, practical countermeasures against web application
 attacks.
+
+\vspace{-2mm}
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
