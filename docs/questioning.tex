@@ -590,17 +590,20 @@ Sensitivity and specifity are defined as follows~\cite{linn2004}:
 \noindent
 With these we can calculate:
 
+\noindent\begin{minipage}{0.5\linewidth}
 \begin{equation}
   \textsc{se} = \textrm{Sensitivity} = \frac{\textsc{tp}}{\textsc{tp}
     + \textsc{fn}}
 \label{eq:sensitivity}
 \end{equation}
-
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
 \begin{equation}
   \textsc{sp} = \textrm{Specificity} = \frac{\textsc{tn}}{\textsc{fp}
     + \textsc{tn}}
 \label{eq:specificity}
 \end{equation}
+\end{minipage}\par\vspace{\belowdisplayskip}
 
 \noindent
 Sensitivity and specificity can be calculated based on test
@@ -658,10 +661,10 @@ performance evaluation analysis for a defense mechanism, the more
 evaluation results are provided for a mechanism, the more valuable
 it becomes as a practical approach.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.60]{defenses.pdf}
+\includegraphics[scale=0.56]{defenses.pdf}
 \end{center}
 \caption{\label{fig:defenses}The basic categories of countermeasures
 against web application attacks based on code
@@ -671,9 +674,9 @@ that present corresponding mechanisms:
 {\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
 {\it Parse-Tree Validation}:~\cite{BWS05,SW06},
 {\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
-{\it Training}:~\cite{LLW02,HO05,HO06,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
+{\it Training}:~\cite{LLW02,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
 {\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
-\end{figure*}
+\end{figure}
 
 \subsection{Ease of Use}
 \label{sec:deployment}
@@ -738,13 +741,13 @@ within a proxy (Point {\sc s}t{\sc b}).
 \centering
     \begin{threeparttable}
     \begin{small}
-\scalebox{0.83}{
+\scalebox{0.80}{
     \begin{tabular}{l|c|c|cc|c}
     \thickhline
     \bf{Approach}
   & \bf{Mechanism}
   & \bf{\# of Citations}
-  & \multicolumn{2}{|c|}{Requirements\tnote{1}}
+  & \multicolumn{2}{c|}{Requirements\tnote{1}}
   & \bf{Attack}\tnote{4} \\
   &&& \bf{TP,TN,FP,FN}\tnote{2}
   & \bf{Performance Overhead}\tnote{3} & \\
@@ -796,7 +799,7 @@ within a proxy (Point {\sc s}t{\sc b}).
   \hline 
   \multirow{6}{*}{Training}
   &   {\sc didafit}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql}i \\
-  &   {\sc amnesia}~\cite{HO05,HO06,HO05b} & 118,66,376 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql}i \\ 
+  &   {\sc amnesia}~\cite{HO05b} & 376 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql}i \\ 
   &   libAnomaly~\cite{VMV05} & 226 & (9,15987,60,0)\_r & 0.20--1{\it ms} per query ({\sc s}) & {\sc sql}i \\
   &   {\sc xssds}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
   &   {\sc swap}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261 {\it ms} ({\sc s}) & {\sc xss} \\ 
@@ -1071,7 +1074,7 @@ the applied policies.
 
 {\sc isr} is a method that has been applied to counter different kinds
 of application attacks~\cite{K09b}, and was originally applied for the
-prevention of binary code injection attacks~\cite{KKP03, isr03forrest}.
+prevention of binary code injection attacks~\cite{KKP03}.
 The main idea behind {\sc isr} is
 to change the representation of code
 based on a randomly chosen transformation,
@@ -1247,7 +1250,7 @@ that can depend either on code statements or on their execution
 environment (e.g., the stack trace). Then, at runtime, the mechanism
 checks all statements for compliance and can block code statements
 containing injected elements (Point {\sc dbal}).
-{\sc amnesia}~\cite{HO05,HO06,HO05b} is a tool that also detects
+{\sc amnesia}~\cite{HO05b} is a tool that also detects
 {\sc sql} injection attacks (Point {\sc dbal}) by associating a query model
 with the location of every {\sc sql} statement within the application.
 Then, at runtime, it monitors the application's execution to detect
@@ -1309,7 +1312,7 @@ The problem lies with the call location of the query, not the query alone.
 
 Mechanisms based on signatures that involve elements not only
 associated with code statements (e.g.,
-{\sc amnesia}~\cite{HO06} and
+{\sc amnesia}~\cite{HO05b} and
 {\sc sd}river~\cite{MS09})
 could detect such attacks. Specifically, {\sc sd}river
 associates a complete stack trace with the root of an {\sc sql}
@@ -1427,7 +1430,7 @@ Sensitivity and specificity are statistical measures, and as such,
 they should be interpreted with suitable confidence intervals. There are
 various methods to calculate confidence intervals, even without
 the need to have large sets of samples in order to be able to use the
-central limit theorem~\cite{agresti1998,brown2001}.
+central limit theorem~\cite{brown2001}.
 However, sample sizes in the single
 digits are not enough to produce good intervals.
 
@@ -1486,7 +1489,7 @@ the browser-based {\sc xss} filters of
 73\% out of 1,602 real-world {\sc dom}-based {\sc xss} vulnerabilities.
 These vulnerabilities were actually found as part of
 their previous research~\cite{LSJ13}.
-Finally, in the {\sc amnesia}~\cite{HO06} and
+Finally, in the {\sc amnesia}~\cite{HO05b} and
 {\sc sd}river~\cite{MS09} publications,
 the authors managed to break existing application suites
 and then test the accuracy of their tools on them.
@@ -1555,7 +1558,7 @@ and then test the accuracy of their tools on them.
   \hline
   \multirow{6}{*}{Training}
   &   {\sc didafit}~\cite{LLW02} & {\sc na} & {\sc na} & {\sc na} \\
-  &   {\sc amnesia}~\cite{HO05,HO06,HO05b} & {\sc na} & {\bf AO} & {\sc na} \\
+  &   {\sc amnesia}~\cite{HO05b} & {\sc na} & {\bf AO} & {\sc na} \\
   &   libAnomaly~\cite{VMV05} & {\bf ?} & {\bf ?} & {\bf ?} \\
   &   {\sc xssds}~\cite{JEP08} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc swap}~\cite{WPLKK09} & {\sc na} & {\sc na} & {\sc na} \\
@@ -1633,7 +1636,7 @@ as no modifications are needed at the client.
 Extensive modifications in the application's source
 code can also be a reason that can make a mechanism
 difficult to use. {\sc sql}rand~\cite{BK04},
-{\sc amnesia}~\cite{HO06},
+{\sc amnesia}~\cite{HO05b},
 mechanisms of the parse-tree validation
 subcategory, and mechanisms of the taint
 tracking subcategory are such examples.
@@ -1735,13 +1738,16 @@ how relaxed should we be that no attack has indeed taken place? The
 answer is provided by \textsc{npv}. We can calculate \textsc{ppv} and
 \textsc{npv} with the following equations:
 
+\noindent\begin{minipage}{0.5\linewidth}
 \begin{equation}
 \textsc{ppv} = \frac{\textsc{tp}}{\textsc{tp} + \textsc{fp}}
 \end{equation}
-
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
 \begin{equation}
 \textsc{npv} = \frac{\textsc{tn}}{\textsc{fn} + \textsc{tn}}
 \end{equation}
+\end{minipage}\par\vspace{\belowdisplayskip}
 
 \noindent
 Equations~\ref{eq:ppv-se-sp} and~\ref{eq:npv-se-sp} use true and false
@@ -1914,7 +1920,7 @@ basis for developing methods with more extensive coverage.
 
 To the positive side, some defenses have been extensively tested in
 terms of accuracy ({\sc sqlc}heck~\cite{SW06},
-{\sc amnesia}~\cite{HO06}, libAnomaly~\cite{VMV05}),
+{\sc amnesia}~\cite{HO05b}, libAnomaly~\cite{VMV05}),
 solve specific problems in an effective way
 (Blueprint~\cite{LV09} and the system by Stock et al.~\cite{SLMS14}) or
 have a low computational overhead
