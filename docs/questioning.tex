@@ -205,18 +205,17 @@ phases). Similarly, dynamic analysis techniques that examine
 applications to identify vulnerabilities that may lead to the attacks
 that we described earlier are out of scope as well. Note also, that we
 didn't consider mechanisms that haven't been presented in research papers.
-
 Finally, we {\it analyze} each mechanism across the
 following dimensions:
 \begin{itemize}
 \item {\it Accuracy:} protection mechanisms are as good
   as their detection capability; this requires low false positive and
   false negative rates.
-\item {\it Availability:} whether the mechanism and its
+\item {\it Availability:} whether the protection mechanism and its
   testbed are publicly available.
 \item {\it Performance overhead:} the 
   overhead imposed by the mechanisms at their points of deployment.
-\item {\it Ease of use:} whether the protection
+\item {\it Ease of use:} whether the
   mechanism is practical in terms of deployment
   and can be easily adopted by security experts.
 \item {\it Security:} the robustness of the protection mechanism against
@@ -241,7 +240,7 @@ The main contributions of this paper are the following:
 \item We provide a unified exploitation model for different types of
   web application attacks based on code injection.
 \item We categorize and analyze proposed defenses using a set of
-  criteria that are important for building protection mechanisms on the web.
+  criteria that are important for building protection mechanisms.
 \item We provide insight based on the issues that arise from our analysis. We put
   emphasis on factors that may hinder the widespread deployment of
   protection mechanisms, and the transition of tools from research to practice.
@@ -308,7 +307,7 @@ Figure~\ref{fig:taxonomy} presents a taxonomy of source
 code injection attacks against web applications.
 Such attacks may involve high-level language code, written in either a
 {\it Domain Specific Language} ({\sc dsl}) or a {\it Dynamic Language}.
-To illustrate, we briefly discuss examples from both categories
+To illustrate, we discuss examples from both categories
 that will be used throughout the paper.
 
 Injection attacks that involve {\sc dsl}s constitute an important
@@ -342,7 +341,7 @@ better, use prepared {\sc sql} statements instead of statement
 templates. Unfortunately, the increasing number of {\sc sql} injection
 attacks suggests that programmers are not always that careful. Using
 similar techniques, malicious users can mount other exploits based on
-{\sc dsl}s such as {\sc xp}ath~\cite{SW06,CDL07,MKS09}, {\sc
+{\sc dsl}s such as {\sc xp}ath~\cite{SW06,CDL07}, {\sc
   xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. The effects can be
 wide-ranging. A malicious user can view sensitive information, destroy
 or modify protected data, or even crash the entire application.
@@ -353,7 +352,8 @@ data. Based on this vulnerability attackers can supply valid {\sc
   html}, typically via a parameter value, and inject their own content
 into the application's page. {\sc html} injection is mainly associated
 with {\sc xss} attacks~\cite{SP11, SLMS14}. However, {\sc html} injection,
-can also be used as a vehicle for {\sc csrf} attacks~\cite{BJM08, LZRL09}
+can also be used as a vehicle for Cross-Site Request Forgery
+({\sc csrf}) attacks~\cite{BJM08, LZRL09}
 (even though a common {\sc csrf} attack does not necessarily
 involve code injection).
 Consider a bulletin board system where {\tt img} tags are allowed.
@@ -422,7 +422,6 @@ be executed on the server. Hence, if an attacker provides as
 input the following string: {\tt 10 ; system("touch foo");}
 then a file will be created on the server---it is easy
 to imagine more detrimental scenarios.
-
 A recent attack called {\sc php} Object Injection
 ({\sc poi})~\cite{DKH14} does not directly involve
 the injection of code, but still achieves arbitrary code execution
@@ -449,9 +448,9 @@ Points where different types of defenses
 detect or prevent attacks are marked with an `X' symbol:
 (1) {\sc ub} (at the browser):~\cite{KJKV09,LV09,TNH07,NSS06,APKLM10,ML10,YCIS07,PSC09,VDDPJ11,OWVS08,DDHPJ10,VFJKKV07,SLMS14,BV08,SSM10},
 (2) {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
-(3) {\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05,SMS13},
+(3) {\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05b,SMS13},
 (4) {\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
-\vspace{-4mm}
+\vspace{-5mm}
 \end{figure*}
 
 \section{Exploitation Model}
@@ -487,7 +486,6 @@ i-csrf 1}),
 or embed malicious
 {\sc sql} code to retrieve private data from a database ({\sc dsl} 1).
 Note that, {\sc xss} and {\sc csrf} attacks can start from both routes.
-
 Once the injected code reaches the vulnerable application, it becomes
 a part of a value represented by a program variable. The target of the
 attack determines the route from that point and on. In an {\sc sql} injection
@@ -511,7 +509,7 @@ The injected code residing at server side then re-enters the
 application's execution flow and becomes part of the content that is
 eventually sent to the user as part of a future response.
 
-Cross-site request forgery attacks typically involve just a
+{\sc csrf} attacks typically involve just a
 {\sc url} or page that contains a malicious request towards
 a site vulnerable to {\sc csrf}.
 An attacker can entice a victim to click on the {\sc url} or visit the page
@@ -542,7 +540,7 @@ publishable, because it shows that an attack can be detected or prevented in a
 reliable manner. Second, a defense mechanism may be important not
 just as a research contribution, but as a practical tool, if it can be
 used by administrators and users to shield their applications
-and services against the supported attacks.
+against the supported attacks.
 
 The detection and prevention of attacks
 in a reliable manner can be analyzed using
@@ -554,6 +552,7 @@ criteria common with other research fields:
 of the findings.
 \end{itemize}
 
+\noindent
 Whether a reliable defense mechanism has value in a practical
 setting rests on a different set of criteria:
 \begin{itemize}
@@ -576,7 +575,7 @@ crucially have to capture the presence of an attack. This, however, does not
 make a defense mechanism immediately useful. A
 detection mechanism must also be reliable.
 Detection accuracy is gauged with the following
-metrics~\cite{TDR2013,GFDLS06,A00}:
+metrics~\cite{GFDLS06,A00}:
 \begin{itemize}
 \item {\bf Sensitivity}: the probability that an attack will be
   caught.
@@ -633,7 +632,6 @@ the sensitivity. Similarly, to calculate the specificity we can run
 the test on a controlled environment where we allow only innocuous
 events to reach the system. The ratio of non-reported events over all
 events will give us the specificity.
-
 Note that the use of sensitivity and specificity in this context
 has been advocated before~\cite{PP12}.
 
@@ -679,25 +677,6 @@ Although it may not be necessary to conduct a comprehensive
 performance evaluation analysis for a defense mechanism, the more
 evaluation results are provided for a mechanism, the more valuable
 it becomes as a practical approach.
-
-\begin{figure}[t]
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.56]{defenses.pdf}
-\end{center}
-\vspace{-3mm}
-\caption{\label{fig:defenses}The basic categories of countermeasures
-against web application attacks based on code
-injection. For each approach we provide the references
-that present corresponding mechanisms:
-{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,SSM10},
-{\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
-{\it Parse-Tree Validation}:~\cite{BWS05,SW06},
-{\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
-{\it Training}:~\cite{LLW02,HO05b,VMV05,JEP08,WPLKK09,MS09,MKS09,MKLS11},
-{\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
-\vspace{-4mm}
-\end{figure}
 
 \subsection{Ease of Use}
 \label{sec:deployment}
@@ -754,6 +733,25 @@ within a proxy (Point {\sc s}t{\sc b}).
 \item After the malicious code reaches the server's database
   (Point {\sc db}).
 \end{enumerate}
+
+\begin{figure}[t]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.56]{defenses.pdf}
+\end{center}
+\vspace{-3mm}
+\caption{\label{fig:defenses}The basic categories of countermeasures
+against web application attacks based on code
+injection. For each approach we provide the references
+that present corresponding mechanisms:
+{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,SSM10},
+{\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
+{\it Parse-Tree Validation}:~\cite{BWS05,SW06},
+{\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
+{\it Training}:~\cite{LLW02,HO05b,VMV05,JEP08,WPLKK09,MS09,MKLS11},
+{\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
+\vspace{-5mm}
+\end{figure}
 
 \begin{table*}[t]
   \renewcommand{\baselinestretch}{1.12}
@@ -853,14 +851,13 @@ within a proxy (Point {\sc s}t{\sc b}).
     \end{tablenotes}
     \end{small}
     \end{threeparttable}
-    \vspace{-4mm}
+    \vspace{-5mm}
 \end{table*}
 
 \section{Defenses}
 \label{sec:defs}
 
-We categorize and analyze a large set of defenses developed to detect
-and prevent
+We categorize and analyze a large set of defenses developed to prevent
 the attacks described in Sections~\ref{sec:attacks} and~\ref{sec:model}.
 We perform our analysis across
 the dimensions discussed in the previous section,
@@ -911,7 +908,7 @@ applications against injection attacks:
 \label{sec:tree}
 
 The key idea behind parse-tree validation is to compare the tree
-representation of the abstract syntactic structure of the source code
+representation of the abstract syntactic structure of the code
 that is about to be executed with the one that was originally
 intended. If the trees diverge, the application is probably under
 attack.
@@ -1224,7 +1221,6 @@ positive data flow tracking, where tagged data is considered to be
 legitimate. Their scheme detects JavaScript-driven {\sc xss} attacks
 by ensuring that a script can send sensitive user data only to the
 site from which it came from.
-
 Stock et al.~\cite{SLMS14} propose a scheme that also operates
 in the browser (Point {\sc ub}). The scheme focuses on the detection of
 {\sc dom}-based {\sc xss} attacks. In such an attack, the malicious
@@ -1428,6 +1424,23 @@ dimensions we identified in Section~\ref{sec:dimensions}.
 
 \subsection{Accuracy}
 
+\begin{figure}[t]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.39]{barchart.pdf}
+\end{center}
+\vspace{-5mm}
+\caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
+used for testing of web attack defenses.
+Specifically, the publications that used a particular source are as follows:
+{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
+Bugtraq~\cite{PB05,KKVJ06,JEP08},
+{\sc xss}ed.com~\cite{NSS06,APKLM10},
+ha.ckers.org~\cite{TNH07,PSC09,LV09},
+Microsoft~\cite{RDWDE07}.}
+\vspace{-5mm}
+\end{figure}
+
 Table~\ref{tab:comp} indicates that the authors of 3 out of 35 (8.5\%)
 publications provided a complete tuple of {\sc tp}, {\sc tn}, 
 {\sc fp}, and {\sc fn}. On the other hand, we
@@ -1441,7 +1454,7 @@ The corresponding tuples contain {\sc tp} and {\sc fn}
 results, but {\sc tn} and {\sc fp} results are not available ({\sc
   na}). This stresses the fact that authors may be more interested in
 making sure that their mechanisms can detect known attacks rather than
-seeing how they respond under normal conditions. In some occasions,
+seeing how they respond under normal conditions. In some cases,
 where the number of {\sc tp} results are not quantified, authors did
 not mention how many or which attacks they performed. Moreover, in some
 cases we observe that even if the authors report the existence of
@@ -1489,23 +1502,6 @@ For example, 12 mechanisms were tested on a
 vulnerable version of the {\sc phpbb} bulletin board
 software.\footnote{\scriptsize\url{https://www.phpbb.com/}}
 %~\cite{phpbb}.
-
-\begin{figure}[t]
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.39]{barchart.pdf}
-\end{center}
-\vspace{-3mm}
-\caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
-used for testing of web attack defenses.
-Specifically, the publications that used a particular source are as follows:
-{\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
-Bugtraq~\cite{PB05,KKVJ06,JEP08},
-{\sc xss}ed.com~\cite{NSS06,APKLM10},
-ha.ckers.org~\cite{TNH07,PSC09,LV09},
-Microsoft~\cite{RDWDE07}.}
-\vspace{-4mm}
-\end{figure}
 
 There are also authors that took a different approach.
 For instance, during their initial tests,
@@ -1610,7 +1606,7 @@ and then test the accuracy of their tools on them.
     \end{tabular}}
     \end{small}
     \end{threeparttable}
-    \vspace{-4mm}
+    \vspace{-5mm}
 \end{table}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
@@ -1624,7 +1620,7 @@ published. In one case ({\sc csp}~\cite{SSM10}), the source was available before
 publication through the Mozilla community.
 Regarding the availability of test materials, we see that
 only 3 out of 35 (8.5\%) publications have currently their testbeds
-available on-line.
+available.
 
 \subsection{Performance Overhead}
 
@@ -1964,7 +1960,7 @@ emerged from our research can be a reference point for researchers who
 aim to develop new, practical countermeasures against web application
 attacks.
 
-\vspace{-2mm}
+\vspace{-4.5mm}
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
