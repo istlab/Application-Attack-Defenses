@@ -47,7 +47,7 @@
 \titlespacing*{\subsubsection}
 {0pt}{1ex}{0.8ex}
 
-\setlength{\footnotesep}{0.3cm}
+\setlength{\footnotesep}{0.28cm}
 \setlength{\skip\footins}{0.1cm}
 
 \usepackage{draftwatermark}
@@ -226,7 +226,7 @@ following dimensions:
 
 \noindent
 All the above requirements are considered important
-when building security mechanisms for the protection of
+when building mechanisms for the protection of
 applications~\cite{A01,A00,SPWS13,nature2014}.
 Based on this analysis, we identify the advantages
 and disadvantages of the
@@ -284,7 +284,7 @@ to the attack~\cite{RL12b}.
 \leavevmode
 \includegraphics[scale=0.55]{attack-tree-uml.pdf}
 \end{center}
-\vspace{-3mm}
+\vspace{-4mm}
 \caption{\label{fig:taxonomy}A taxonomy of dynamic and domain-specific
 language code injection attacks against web applications.}
 \vspace{-5mm}
@@ -438,7 +438,7 @@ in the following Section also captures such attacks.
 \leavevmode
 \includegraphics[scale=0.48]{attacks-steps-CSRF.pdf}
 \end{center}
-\vspace{-7mm}
+\vspace{-5mm}
 \caption{\label{fig:attacks}Attack model for dynamic and domain specific
 language code injection in web applications.
 Transitions are labeled with the different attacks that use that path,
@@ -505,7 +505,7 @@ is not saved on the server, but immediately becomes part of the
 content that is sent back to a user.
 In persistent {\sc xss} attacks, on the other hand,
 malicious code is permanently stored on the server ({\sc p-xss} 5).
-The injected code residing at server side then re-enters the
+The injected code residing at server-side then re-enters the
 application's execution flow and becomes part of the content that is
 eventually sent to the user as part of a future response.
 
@@ -661,9 +661,9 @@ obfuscation. Also, depending on the approach, the cost may be incurred
 on different places: it may affect a server
 (e.g., its memory or {\sc cpu} usage, processing throughput, or response latency),
 it may affect the client, or both. The
-usefulness of a detection mechanism depends therefore on the
+usefulness of a mechanism depends therefore on the
 computational cost it requires and on where it imposes it, as
-different overheads may be acceptable at the server side than the client side.
+different overheads may be acceptable at the server-side than the client-side.
 
 What kind of numbers is reported matters as well. Reporting absolute
 measurements gives little information on the actual overhead, unless
@@ -692,7 +692,7 @@ implementations in the future.
 
 Ease of use depends on the deployment process required for the
 mechanism. The detection mechanism may be deployed at either or both
-the server and the client side. Deployments on just the server or the client are
+the server and the client-side. Deployments on just the server or the client are
 easier to handle than deployments on both of them. The mechanism may
 be an add-on or plugin for existing software, client or server, or it
 may be tightly integrated with existing software, requiring rebuilding
@@ -737,14 +737,14 @@ within a proxy (Point {\sc s}t{\sc b}).
 \begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.56]{defenses.pdf}
+\includegraphics[scale=0.54]{defenses.pdf}
 \end{center}
-\vspace{-3mm}
+\vspace{-4.5mm}
 \caption{\label{fig:defenses}The basic categories of countermeasures
 against web application attacks based on code
 injection. For each approach we provide the references
 that present corresponding mechanisms:
-{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KKVJ06,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,SSM10},
+{\it Policy Enforcement}:~\cite{NSS06,JKK06a,KJKV09,TNH07,RDWDE07,YCIS07,OWVS08,PSC09,ML10,DDHPJ10,PS11,VDDPJ11,BV08,SSM10},
 {\sc isr}:~\cite{BK04,JB07,GC09,APKLM10},
 {\it Parse-Tree Validation}:~\cite{BWS05,SW06},
 {\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
@@ -757,11 +757,11 @@ that present corresponding mechanisms:
   \renewcommand{\baselinestretch}{1.12}
     \caption{Comparison summary of mechanisms developed to counter application attacks based on code injection.}
     \label{tab:comp}
-    \vspace{-3mm}
+    \vspace{-4mm}
 \centering
     \begin{threeparttable}
     \begin{small}
-\scalebox{0.80}{
+\scalebox{0.78}{
     \begin{tabular}{l|c|c|cc|c}
     \thickhline
     \bf{Approach}
@@ -773,25 +773,25 @@ that present corresponding mechanisms:
   & \bf{Performance Overhead}\tnote{3} & \\
     \thickhline
   \multirow{2}{*}{Parse-Tree Validation}
-  &   {\sc sqlg}uard~\cite{BWS05} & 243 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql}i \\
-  &   {\sc sqlc}heck~\cite{SW06} & 402 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql}i \\
+  &   {\sc sqlg}uard~\cite{BWS05} & 305 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql}i \\
+  &   {\sc sqlc}heck~\cite{SW06} & 473 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql}i \\
   \hline
   \multirow{13}{*}{Policy Enforcement}
-  &   {\sc dsi}~\cite{NSS06} & 135 & (5268,{\sc nq},{\sc nq},85)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
-  &   NoForge~\cite{JKK06a} & 35 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
-  &   Noxes~\cite{KKVJ06,KJKV09} & 268,40 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
+  &   {\sc dsi}~\cite{NSS06} & 168 & (5268,{\sc nq},{\sc nq},85)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
+  &   NoForge~\cite{JKK06a} & 151 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
+  &   Noxes~\cite{KJKV09} & 58 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
   % &   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
-  &   {\sc beep}~\cite{TNH07} & 282 & (61,{\sc na},{\sc na},0)\_r & 14.4\% ({\sc c}) & {\sc xss} \\
-  &   BrowserShield~\cite{RDWDE07} & 219 & (19,{\sc nq},0,0,)\_r & 8\% ({\sc s}) & {\sc xss} \\ 
-  &   CoreScript~\cite{YCIS07} & 181 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} ({\sc c}) & {\sc xss} \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & 46 & (5,{\sc na},{\sc na},0)\_s & 5.58\% ({\sc c}) & {\sc xss}, {\sc csrf} \\
+  &   {\sc beep}~\cite{TNH07} & 335 & (61,{\sc na},{\sc na},0)\_r & 14.4\% ({\sc c}) & {\sc xss} \\
+  &   BrowserShield~\cite{RDWDE07} & 263 & (19,{\sc nq},0,0,)\_r & 8\% ({\sc s}) & {\sc xss} \\ 
+  &   CoreScript~\cite{YCIS07} & 199 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} ({\sc c}) & {\sc xss} \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & 56 & (5,{\sc na},{\sc na},0)\_s & 5.58\% ({\sc c}) & {\sc xss}, {\sc csrf} \\
   % &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
-  &   Phung et al.~\cite{PSC09} & 75 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
-  &   ConScript~\cite{ML10} & 122 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
-  &   CsFire~\cite{DDHPJ10} & 35 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
-  &   {\sc csp}~\cite{SSM10} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} ({\sc c}) & {\sc xss}, {\sc csrf} \\
+  &   Phung et al.~\cite{PSC09} & 101 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
+  &   ConScript~\cite{ML10} & 152 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
+  &   CsFire~\cite{DDHPJ10} & 46 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
+  &   {\sc csp}~\cite{SSM10} & 117 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} ({\sc c}) & {\sc xss}, {\sc csrf} \\
   &   j{\sc csrf}~\cite{PS11} & 4 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
-  &   WebJail~\cite{VDDPJ11} & 25 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
+  &   WebJail~\cite{VDDPJ11} & 45 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
   % \hline
@@ -801,36 +801,36 @@ that present corresponding mechanisms:
   % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
   \hline
   \multirow{4}{*}{{\sc isr}}
-  &   {\sc sql}rand~\cite{BK04} & 286 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql}i \\
-  &   {\sc sm}ask~\cite{JB07} & 27 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   Noncespaces~\cite{GC09} & 109 & (6,{\sc na},{\sc na},0)\_r &  2\% ({\sc s}) & {\sc xss} \\ 
-  &   x{\sc js}~\cite{APKLM10} & 18 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} ({\sc c}) & {\sc xss} \\
+  &   {\sc sql}rand~\cite{BK04} & 365 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql}i \\
+  &   {\sc sm}ask~\cite{JB07} & 28 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql}i, {\sc xss} \\
+  &   Noncespaces~\cite{GC09} & 132 & (6,{\sc na},{\sc na},0)\_r &  2\% ({\sc s}) & {\sc xss} \\ 
+  &   x{\sc js}~\cite{APKLM10} & 20 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40{\it ms} ({\sc c}) & {\sc xss} \\
   \thickhline
   \thickhline
   \multirow{7}{*}{Taint Tracking}
-  &   Haldar et al.~\cite{HCF05} & 177 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
-  &   {\sc csse}~\cite{PB05} & 312 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% ({\sc s}) & {\sc sql}i, {\sc xp}athi, {\sc xss} \\
+  &   Haldar et al.~\cite{HCF05} & 208 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
+  &   {\sc csse}~\cite{PB05} & 347 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% ({\sc s}) & {\sc sql}i, {\sc xp}athi, {\sc xss} \\
   % &   {\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
-  &   Xu et al.~\cite{XBS06} & 297 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
-  &   {\sc wasc}~\cite{NLC07} & 31 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   Vogt et al.~\cite{VFJKKV07} & 322 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc c}) & {\sc xss} \\
-  &   {\sc php} Aspis~\cite{PMP11} & 12 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql}i and {\sc php}i, {\sc xss} \\
-  &   Stock et al.~\cite{SLMS14} & 14 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
+  &   Xu et al.~\cite{XBS06} & 346 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
+  &   {\sc wasc}~\cite{NLC07} & 32 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
+  &   Vogt et al.~\cite{VFJKKV07} & 400 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc c}) & {\sc xss} \\
+  &   {\sc php} Aspis~\cite{PMP11} & 20 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql}i and {\sc php}i, {\sc xss} \\
+  &   Stock et al.~\cite{SLMS14} & 15 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
   \hline 
   \multirow{6}{*}{Training}
-  &   {\sc didafit}~\cite{LLW02} & 85 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql}i \\
-  &   {\sc amnesia}~\cite{HO05b} & 376 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql}i \\ 
-  &   libAnomaly~\cite{VMV05} & 226 & (9,15987,60,0)\_r & 0.20--1{\it ms} per query ({\sc s}) & {\sc sql}i \\
-  &   {\sc xssds}~\cite{JEP08} & 64 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
-  &   {\sc swap}~\cite{WPLKK09} & 52 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261 {\it ms} ({\sc s}) & {\sc xss} \\ 
-  &   {\sc sd}river~\cite{MS09,MKLS11} & 22,6 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql}i and {\sc xp}athi \\
+  &   {\sc didafit}~\cite{LLW02} & 190 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql}i \\
+  &   {\sc amnesia}~\cite{HO05b} & 474 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql}i \\ 
+  &   libAnomaly~\cite{VMV05} & 259 & (9,15987,60,0)\_r & 0.20--1{\it ms} per query ({\sc s}) & {\sc sql}i \\
+  &   {\sc xssds}~\cite{JEP08} & 85 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
+  &   {\sc swap}~\cite{WPLKK09} & 68 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261 {\it ms} ({\sc s}) & {\sc xss} \\ 
+  &   {\sc sd}river~\cite{MS09,MKLS11} & 28 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql}i and {\sc xp}athi \\
   % &   {\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
   \thickhline
   \thickhline
   \multirow{3}{*}{Hybrid}
-  &   {\sc xss-guard}~\cite{BV08} & 97 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
-  &   Blueprint~\cite{LV09} & 110 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
-  &   Diglossia~\cite{SMS13} & 12 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
+  &   {\sc xss-guard}~\cite{BV08} & 132 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
+  &   Blueprint~\cite{LV09} & 152 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
+  &   Diglossia~\cite{SMS13} & 13 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
   \thickhline
     \end{tabular}}
     \begin{tablenotes}
@@ -851,7 +851,7 @@ that present corresponding mechanisms:
     \end{tablenotes}
     \end{small}
     \end{threeparttable}
-    \vspace{-5mm}
+    \vspace{-5.5mm}
 \end{table*}
 
 \section{Defenses}
@@ -946,13 +946,13 @@ as we will see in Section~\ref{sec:hybrid}.
 
 This approach is used to prevent {\sc xss} and {\sc csrf} attacks. When
 using a framework that implements policy enforcement, developers must
-define specific security policies on the server side. Policies can be
+define specific security policies on the server-side. Policies can be
 expressed through JavaScript extensions, pattern matching, or
 syntax-specific settings. The policies are then enforced either in the user's
 browser at runtime, or on a server-side proxy that intercepts server
 responses.
 
-Noxes~\cite{KKVJ06,KJKV09} is the only
+Noxes~\cite{KJKV09} is the only
 framework that partially allows
 users to specify policies for the prevention of {\sc xss} attacks.
 The key idea behind Noxes is to parse
@@ -1018,7 +1018,7 @@ by the browser as an attribute of the payload~\cite{jigsaw}.
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
 to confine their behavior. BrowserShield~\cite{RDWDE07}
-acts as a proxy on the server side (Point {\sc s}t{\sc b}) to
+acts as a proxy on the server-side (Point {\sc s}t{\sc b}) to
 parse the {\sc html} of server responses and identify
 scripts. Then, it rewrites them into safe equivalents
 and protects the web user from exploits
@@ -1028,7 +1028,7 @@ and the framework by Phung et al.~\cite{PSC09}
 extend JavaScript with new primitive functions that
 provide safe methods to protect potentially vulnerable
 JavaScript functions. In both cases, policy enforcement takes
-place at client side, in the JavaScript engine of the browser (Point {\sc ub}).
+place at client-side, in the JavaScript engine of the browser (Point {\sc ub}).
 In this way, {\sc xxs} attacks that take advantage
 of functions such as {\tt write} and {\tt eval}, which are
 used to assemble innocuous-looking parts into harmful
@@ -1072,14 +1072,14 @@ if the request contains the token related
 to the session {\sc id}. A disadvantage of NoForge
 is that  dynamically created {\sc html} within
 the browser will not include the token.
-Thus, sites that create part of their {\sc html} code at client side
+Thus, sites that create part of their {\sc html} code at client-side
 will remain vulnerable. In addition, it does not
 support cross-origin requests.
 The above problems are addressed by j{\sc csrf}~\cite{PS11},
 which shares similar functionality.
 Finally, CsFire~\cite{DDHPJ10}
 examines cross-domain interactions to design a
-cross-domain policy at the client side (Point {\sc ub}).
+cross-domain policy at the client-side (Point {\sc ub}).
 The policy is based on the concept of a relaxed
 same-origin policy that allows communication between
 sub-domains of the same registered domain.
@@ -1087,7 +1087,7 @@ sub-domains of the same registered domain.
 Most of the above frameworks involve
 several deployment hurdles, as they
 require significant source code modifications by the
-developers on the server side to introduce and enforce
+developers on the server-side to introduce and enforce
 the applied policies.
 
 \subsubsection{Instruction Set Randomization (ISR)}
@@ -1215,8 +1215,8 @@ and output vectors of the application must be instrumented.
 
 Vogt et al.~\cite{VFJKKV07} have developed a tainting scheme
 that follows a different approach. In contrast to the above
-schemes, which operate on the server side, their technique tracks sensitive
-information at the client side (Point {\sc ub}). This is a form of
+schemes, which operate on the server-side, their technique tracks sensitive
+information at the client-side (Point {\sc ub}). This is a form of
 positive data flow tracking, where tagged data is considered to be
 legitimate. Their scheme detects JavaScript-driven {\sc xss} attacks
 by ensuring that a script can send sensitive user data only to the
@@ -1392,7 +1392,7 @@ site.
 Blueprint~\cite{LV09} is a policy enforcement framework that
 uses parsed trees to detect {\sc xss} attacks. To guarantee
 that untrusted content is not executed, Blueprint generates at the
-server side a parsed tree from untrusted {\sc html} to ensure that it
+server-side a parsed tree from untrusted {\sc html} to ensure that it
 does not contain any dynamic content. Then, the parsed tree is
 transfered to the document generator of the browser (Point {\sc ub}),
 where untrusted browser parsing behavior is ruled out.
@@ -1429,16 +1429,16 @@ dimensions we identified in Section~\ref{sec:dimensions}.
 \leavevmode
 \includegraphics[scale=0.39]{barchart.pdf}
 \end{center}
-\vspace{-5mm}
+\vspace{-5.7mm}
 \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
 used for testing of web attack defenses.
 Specifically, the publications that used a particular source are as follows:
 {\sc cve}~\cite{XBS06,NLC07,PMP11,BK04,BV08,JB07,SMS13,WPLKK09,JKK06a,PS11},
-Bugtraq~\cite{PB05,KKVJ06,JEP08},
+Bugtraq~\cite{PB05,KJKV09,JEP08},
 {\sc xss}ed.com~\cite{NSS06,APKLM10},
 ha.ckers.org~\cite{TNH07,PSC09,LV09},
 Microsoft~\cite{RDWDE07}.}
-\vspace{-5mm}
+\vspace{-6.3mm}
 \end{figure}
 
 Table~\ref{tab:comp} indicates that the authors of 3 out of 35 (8.5\%)
@@ -1519,7 +1519,7 @@ and then test the accuracy of their tools on them.
 
 \begin{table}
 \caption{Availability of the studied defenses.}
-\vspace{-3mm}
+\vspace{-4mm}
     \label{tab:avail}
 \centering
     \begin{threeparttable}
@@ -1541,7 +1541,7 @@ and then test the accuracy of their tools on them.
   \multirow{13}{*}{Policy Enforcement}
   &   {\sc dsi}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
   &   NoForge~\cite{JKK06a} & {\bf AO} & {\bf AO} & {\sc na} \\
-  &   Noxes~\cite{KKVJ06,KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
+  &   Noxes~\cite{KJKV09}  & {\sc na} & {\sc na} & {\sc na} \\
   % &   {\it {\sc met}}~\cite{ELX07} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc beep}~\cite{TNH07} & \tick & \tick & \tick \\
   &   BrowserShield~\cite{RDWDE07} & {\sc na} & {\sc na} & {\sc na} \\
@@ -1626,7 +1626,7 @@ available.
 
 Table~\ref{tab:comp} shows the performance overhead of each mechanism.
 In addition, it indicates if the overhead is incurred at the
-server ({\sc s}) or at the client side ({\sc c}). In almost half of
+server ({\sc s}) or at the client-side ({\sc c}). In almost half of
 the approaches, 16 out of 35 (45.7\%), the overhead is provided as a
 percentage, while in other cases, 7 our of 35 (20\%), the authors
 provide the latency (in ms) that their mechanisms add to the
@@ -1650,7 +1650,7 @@ require modifications both on the server
 and at the client. Thus, it would be difficult to be
 adopted by both browser vendors and application developers. On the
 other hand, there are cases where the policies introduced at the
-server are enforced at the client side, via a library embedded in the
+server are enforced at the client-side, via a library embedded in the
 server's response (i.e., Blueprint~\cite{LV09}).
 Such an approach is convenient
 as no modifications are needed at the client.
@@ -1699,7 +1699,7 @@ subcategories.
 
 Given the fact that the final steps of
 {\sc dsl} injection and {\sc csrf} attacks take place
-at the server side, all mechanisms that detect
+at the server-side, all mechanisms that detect
 such attacks are placed at some point within the server-side infrastructure.
 From the mechanisms that detect {\sc dsl} code injection
 attacks, 3 out of 13 (23\%) do so at the level
@@ -1709,14 +1709,14 @@ vectors (Point {\sc dbal}).
 
 For frameworks that deal with {\sc xss} attacks, we
 see that attack detection and prevention may take place either at the server or
-the client side. In the first case, a proxy is typically placed in front of the server
+the client-side. In the first case, a proxy is typically placed in front of the server
 to examine the server's responses before they reach a user's 
 browser. In the second case, a modified browser or a library that is
 securely downloaded from the server checks the responses for potential
 attacks. We find that the tendency so far is to create frameworks that
-perform detection on the client side: in particular, 14 out of 24
+perform detection on the client-side: in particular, 14 out of 24
 frameworks (58,3\%) detect {\sc xss} attacks at the
-client side. Note that the majority of the mechanisms that detect
+client-side. Note that the majority of the mechanisms that detect
 such attacks on the server can also detect {\sc dsl} code
 injection attacks (6 out of 10).
 
@@ -1734,7 +1734,7 @@ aiming to reduce performance overheads and deployment hurdles.
 
 One of our key findings indicates that many proposed defenses are
 tested in a poor manner. In many cases, researchers tend to not providing
-results on false positives or false negatives for their detection mechanisms
+results on false positives or false negatives for their mechanisms
 (where applicable).
 Mere discussion on the existence of such results without quantifying
 them also blurs the picture.
@@ -1890,10 +1890,10 @@ benefits.
 The issue is more acute when the point of detection is at the client.
 We saw that many policy enforcement mechanisms that detect attacks at
 the browser are not easy to deploy because modifications are needed
-both on the server and the client side.
+both on the server and the client-side.
 Conversely, it may be possible to deliver
 the tools to the user unobtrusively; for example, we saw that
-Blueprint~\cite{LV09} enforces policies at the client side by embedding a library
+Blueprint~\cite{LV09} enforces policies at the client-side by embedding a library
 in the server's response to the client. In general, when developing a
 new countermeasure, researchers should consider where it
 will detect attacks, observe the corresponding deployment
@@ -1960,7 +1960,7 @@ emerged from our research can be a reference point for researchers who
 aim to develop new, practical countermeasures against web application
 attacks.
 
-\vspace{-4.5mm}
+\vspace{-3.5mm}
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}

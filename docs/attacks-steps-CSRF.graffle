@@ -6,8 +6,8 @@
 	<integer>0</integer>
 	<key>ApplicationVersion</key>
 	<array>
-		<string>com.omnigroup.OmniGrafflePro</string>
-		<string>139.18.0.187838</string>
+		<string>com.omnigroup.OmniGraffle6</string>
+		<string>169.10.0.256984</string>
 	</array>
 	<key>AutoAdjust</key>
 	<true/>
@@ -21,11 +21,6 @@
 		<integer>2</integer>
 		<key>Style</key>
 		<dict>
-			<key>shadow</key>
-			<dict>
-				<key>Draws</key>
-				<string>NO</string>
-			</dict>
 			<key>stroke</key>
 			<dict>
 				<key>Draws</key>
@@ -46,7 +41,7 @@
 	<key>Creator</key>
 	<string>dimitro</string>
 	<key>DisplayScale</key>
-	<string>1 0/72 in = 1.0000 in</string>
+	<string>1 in = 1.00000 in</string>
 	<key>ExportShapes</key>
 	<array>
 		<dict>
@@ -395,7 +390,7 @@
 		</dict>
 	</array>
 	<key>GraphDocumentVersion</key>
-	<integer>8</integer>
+	<integer>12</integer>
 	<key>GraphicsList</key>
 	<array>
 		<dict>
@@ -410,14 +405,19 @@
 			<integer>3117</integer>
 			<key>Points</key>
 			<array>
-				<string>{280.7123280790538, 407.80425071511587}</string>
+				<string>{280.71232807936502, 407.80425072416273}</string>
 				<string>{280.2030029296875, 393}</string>
 				<string>{217, 393}</string>
 				<string>{217, 436}</string>
-				<string>{180.38945062719714, 435.72718900479322}</string>
+				<string>{180.38945061113816, 435.72718900467356}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -475,14 +475,14 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 I-CSRF 9}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -528,16 +528,16 @@
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 6\
 2\
 7}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -585,16 +585,16 @@
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 P-XSS\
 N-XSS\
 I-CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -640,15 +640,15 @@ I-CSRF}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 6\
 6}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -696,15 +696,15 @@ I-CSRF}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 P-XSS\
 I-CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -750,15 +750,15 @@ I-CSRF}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 5\
 5}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -806,15 +806,15 @@ I-CSRF}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 P-XSS\
 I-CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -862,17 +862,17 @@ I-CSRF}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 DSL\
 P-XSS\
 N-XSS\
 I-CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -918,14 +918,14 @@ I-CSRF}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 CSRF 2}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -973,10 +973,10 @@ I-CSRF}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\fs20 \cf0 DSL injection (SQLi, XPath)\
 Persistent XSS\
@@ -984,7 +984,7 @@ Non-Persistent XSS\
 Simple CSRF\
 CSRF via HTML injection}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1034,10 +1034,10 @@ CSRF via HTML injection}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 DSL:\
 P-XSS:\
@@ -1045,7 +1045,7 @@ N-XSS:\
 CSRF:\
 I-CSRF:}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1064,11 +1064,16 @@ I-CSRF:}</string>
 			<integer>3094</integer>
 			<key>Points</key>
 			<array>
-				<string>{123.3612967793692, 462.80393739685184}</string>
-				<string>{122.54557826332166, 559.81855010986328}</string>
+				<string>{123.36129675726511, 462.80393740459112}</string>
+				<string>{122.54557826332166, 559.8185382418751}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -1097,12 +1102,17 @@ I-CSRF:}</string>
 			<integer>3093</integer>
 			<key>Points</key>
 			<array>
-				<string>{223.81215868814019, 266.91304913728305}</string>
+				<string>{223.81215867022161, 266.91304913727259}</string>
 				<string>{123, 266.85404968261719}</string>
-				<string>{123.49579101786115, 407.8039581525195}</string>
+				<string>{123.49579101792719, 407.80395817129431}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -1162,14 +1172,14 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs24 \cf0 Server 2 (vulnerable to CSRF)}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1181,22 +1191,20 @@ I-CSRF:}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>3091</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 The malicious request reaches the application}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{67.295578263321659, 559.81855010986328}, {110.5, 54}}</string>
+			<string>{{67.295578263321659, 559.8185382418751}, {110.5, 41.999958462226417}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1228,14 +1236,14 @@ I-CSRF:}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
@@ -1256,8 +1264,6 @@ I-CSRF:}</string>
 				<string>{0.5, -1}</string>
 				<string>{-0.5, -1}</string>
 			</array>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Style</key>
 			<dict>
 				<key>fill</key>
@@ -1281,7 +1287,7 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextPlacement</key>
 			<integer>0</integer>
@@ -1329,16 +1335,16 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 3\
 3\
 3}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1386,16 +1392,16 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 8\
 3\
 8}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1441,14 +1447,14 @@ I-CSRF:}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs24 \cf0 DB}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1496,15 +1502,15 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 1.2\
 1.2 }</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1552,17 +1558,17 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 1\
 1\
 1\
 1}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1610,16 +1616,16 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 1.1\
 1.1\
 1 }</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1667,16 +1673,16 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 4\
 4\
 4}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1724,16 +1730,16 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 2\
 2\
 2}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -1750,14 +1756,19 @@ I-CSRF:}</string>
 			<integer>3075</integer>
 			<key>Points</key>
 			<array>
-				<string>{865.59386333847328, 525.42329406738281}</string>
+				<string>{865.59386335408715, 525.42329406738281}</string>
 				<string>{921.90832996368408, 525.42329406738281}</string>
 				<string>{921.90832996368408, 385.42329406738281}</string>
 				<string>{848.72058582305908, 384.55055236816406}</string>
-				<string>{848.97143496346894, 293.19630245245077}</string>
+				<string>{848.97143496351327, 293.19630243631548}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -1776,7 +1787,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{270.65604743252254, 470.69110691174768}, {22, 32}}</string>
+			<string>{{270.65604743252254, 470.69110691174808}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1810,8 +1821,6 @@ I-CSRF:}</string>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Style</key>
 			<dict>
 				<key>fill</key>
@@ -1835,14 +1844,14 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fnil\fcharset0 Futura-Medium;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Futura-Medium;}
 {\colortbl;\red255\green255\blue255;\red211\green0\blue0;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\fs48 \cf2 X}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
@@ -1859,10 +1868,15 @@ I-CSRF:}</string>
 			<array>
 				<string>{608.3173189163208, 335.78610992431641}</string>
 				<string>{490.74995899200439, 335.85404968261719}</string>
-				<string>{490.85229708587195, 406.30396135127239}</string>
+				<string>{490.85229708583773, 406.30396132770807}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -1881,7 +1895,7 @@ I-CSRF:}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{407.31695959613899, 418.30029955539146}, {22, 32}}</string>
+			<string>{{407.31695984707716, 418.3002995536753}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1915,8 +1929,6 @@ I-CSRF:}</string>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Style</key>
 			<dict>
 				<key>fill</key>
@@ -1940,19 +1952,19 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fnil\fcharset0 Futura-Medium;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Futura-Medium;}
 {\colortbl;\red255\green255\blue255;\red211\green0\blue0;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\fs48 \cf2 X}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{685.08775850861048, 417.80397069231128}, {22, 32}}</string>
+			<string>{{685.08775895348731, 417.80397069231128}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -1986,8 +1998,6 @@ I-CSRF:}</string>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Style</key>
 			<dict>
 				<key>fill</key>
@@ -2011,19 +2021,19 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fnil\fcharset0 Futura-Medium;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Futura-Medium;}
 {\colortbl;\red255\green255\blue255;\red211\green0\blue0;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\fs48 \cf2 X}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{839.0938739148819, 469.94338054749238}, {22, 32}}</string>
+			<string>{{839.0938739148819, 469.94338144732257}, {22, 32}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -2057,8 +2067,6 @@ I-CSRF:}</string>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Style</key>
 			<dict>
 				<key>fill</key>
@@ -2082,14 +2090,14 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fnil\fcharset0 Futura-Medium;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Futura-Medium;}
 {\colortbl;\red255\green255\blue255;\red211\green0\blue0;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\fs48 \cf2 X}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
@@ -2104,11 +2112,16 @@ I-CSRF:}</string>
 			<integer>3067</integer>
 			<key>Points</key>
 			<array>
-				<string>{622.49385980297779, 164.36882813798022}</string>
-				<string>{623.09383022648547, 238.1963284782307}</string>
+				<string>{622.49385980415377, 164.36882815572562}</string>
+				<string>{623.09383023014311, 238.19632846048535}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2137,11 +2150,16 @@ I-CSRF:}</string>
 			<integer>3066</integer>
 			<key>Points</key>
 			<array>
-				<string>{434.09531399061905, 434.19239217643752}</string>
-				<string>{338.45298276035874, 434.84648531074509}</string>
+				<string>{434.09531398258065, 434.19239217649249}</string>
+				<string>{338.45298276839713, 434.84648531069013}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2170,11 +2188,16 @@ I-CSRF:}</string>
 			<integer>3065</integer>
 			<key>Points</key>
 			<array>
-				<string>{623.3239391122878, 349.94864849554654}</string>
-				<string>{624.07017149889157, 406.30400271905307}</string>
+				<string>{623.32393911225222, 349.94864849286222}</string>
+				<string>{624.07017149892715, 406.30400272173745}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2203,11 +2226,16 @@ I-CSRF:}</string>
 			<integer>3064</integer>
 			<key>Points</key>
 			<array>
-				<string>{337.40603983720604, 266.73913069510695}</string>
-				<string>{566.52037407343573, 265.90347031807664}</string>
+				<string>{337.40603984109242, 266.7391306950928}</string>
+				<string>{566.52037406954935, 265.9034703180908}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2251,7 +2279,7 @@ I-CSRF:}</string>
 			<key>Text</key>
 			<dict>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
@@ -2267,10 +2295,15 @@ I-CSRF:}</string>
 			<key>Points</key>
 			<array>
 				<string>{480.74995899200445, 138.59688026269538}</string>
-				<string>{565.47347197354713, 137.56236348829461}</string>
+				<string>{565.4734719785672, 137.5623634882333}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2300,10 +2333,15 @@ I-CSRF:}</string>
 			<key>Points</key>
 			<array>
 				<string>{421.74995899200439, 138.59688026269538}</string>
-				<string>{338.45299381141206, 138.46129496966091}</string>
+				<string>{338.4529937984185, 138.46129496963977}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2332,11 +2370,16 @@ I-CSRF:}</string>
 			<integer>3030</integer>
 			<key>Points</key>
 			<array>
-				<string>{281.41991888284014, 167.36882810758078}</string>
-				<string>{280.83302185245856, 239.44630562044654}</string>
+				<string>{281.4199188813979, 167.36882809092623}</string>
+				<string>{280.83302184682344, 239.44630563710118}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2360,15 +2403,13 @@ I-CSRF:}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>3029</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 Crafts malicious URL/Web Page}</string>
 			</dict>
@@ -2410,14 +2451,14 @@ I-CSRF:}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 Attacker}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -2438,11 +2479,11 @@ I-CSRF:}</string>
 					<key>Color</key>
 					<dict>
 						<key>b</key>
-						<string>0.4</string>
+						<real>0.40000000000000002</real>
 						<key>g</key>
-						<string>0.4</string>
+						<real>0.40000000000000002</real>
 						<key>r</key>
-						<string>0.4</string>
+						<real>0.40000000000000002</real>
 					</dict>
 					<key>FillType</key>
 					<integer>2</integer>
@@ -2476,11 +2517,11 @@ I-CSRF:}</string>
 					<key>Color</key>
 					<dict>
 						<key>b</key>
-						<string>0.425743</string>
+						<real>0.42574299999999998</real>
 						<key>g</key>
-						<string>0.425743</string>
+						<real>0.42574299999999998</real>
 						<key>r</key>
-						<string>0.425743</string>
+						<real>0.42574299999999998</real>
 					</dict>
 					<key>Draws</key>
 					<string>NO</string>
@@ -2535,14 +2576,14 @@ I-CSRF:}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 Attacks}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -2581,7 +2622,7 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
@@ -2596,11 +2637,16 @@ I-CSRF:}</string>
 			<integer>201</integer>
 			<key>Points</key>
 			<array>
-				<string>{792.25000477002698, 265.69631784960131}</string>
-				<string>{680.11425532439159, 265.69631784960131}</string>
+				<string>{792.25000476837158, 265.69631784960131}</string>
+				<string>{680.11425532604699, 265.69631784960131}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2631,11 +2677,16 @@ I-CSRF:}</string>
 			<integer>200</integer>
 			<key>Points</key>
 			<array>
-				<string>{850.0938739148819, 461.30396654012327}</string>
-				<string>{850.0938739148819, 511.26070203283331}</string>
+				<string>{850.0938739148819, 461.3039665222168}</string>
+				<string>{850.0938739148819, 511.26070205073995}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -2695,16 +2746,16 @@ I-CSRF:}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 DSL\
 P-XSS\
 I-CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -2752,16 +2803,16 @@ I-CSRF}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 DSL\
 P-XSS\
 I-CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -2809,16 +2860,16 @@ I-CSRF}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 P-XSS\
 N-XSS\
 I-CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -2866,16 +2917,16 @@ I-CSRF}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 DSL\
 P-XSS\
 I-CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -2923,15 +2974,15 @@ I-CSRF}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 P-XSS\
 N-XSS}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -2979,16 +3030,16 @@ N-XSS}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs20 \cf0 P-XSS\
 N-XSS\
 CSRF}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -3034,15 +3085,15 @@ CSRF}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 Point\
 StB}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -3088,15 +3139,15 @@ StB}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 Point\
 UB}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -3144,15 +3195,15 @@ UB}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 Point\
 DBAL}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -3200,15 +3251,15 @@ DBAL}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs20 \cf0 Point\
 DB}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -3228,10 +3279,15 @@ DB}</string>
 			<key>Points</key>
 			<array>
 				<string>{850.09385707191541, 539.08588218688965}</string>
-				<string>{850.09388758949353, 559.81855010986328}</string>
+				<string>{850.09388758949353, 559.8185382418751}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -3275,7 +3331,7 @@ DB}</string>
 			<key>Text</key>
 			<dict>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
@@ -3285,22 +3341,20 @@ DB}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>170</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 The malicious payload is stored in the DB}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{794.84388758949353, 559.81855010986328}, {110.5, 54}}</string>
+			<string>{{794.84388758949353, 559.8185382418751}, {110.5, 41.999958462226417}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -3332,15 +3386,15 @@ DB}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 DSL code \
 injection Attack}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
@@ -3384,14 +3438,14 @@ injection Attack}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs24 \cf0 Client}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -3439,14 +3493,14 @@ injection Attack}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
 
 \f0\b\fs24 \cf0 Server 1 (vulnerable to Code Injection)}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextRelativeArea</key>
 			<string>{{0, 0}, {1, 1}}</string>
@@ -3468,6 +3522,11 @@ injection Attack}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -3491,22 +3550,20 @@ injection Attack}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>116</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 The content reaches the user's browser}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{226.40603065490723, 559.81849670410156}, {110.5, 54}}</string>
+			<string>{{226.40603065490723, 559.81849670410156}, {110.5, 41.999958462226417}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -3538,14 +3595,14 @@ injection Attack}</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 XSS}</string>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 		</dict>
 		<dict>
@@ -3560,11 +3617,16 @@ injection Attack}</string>
 			<integer>3058</integer>
 			<key>Points</key>
 			<array>
-				<string>{623.31731623810049, 293.19631194164299}</string>
-				<string>{623.31731623810049, 321.62352509646905}</string>
+				<string>{623.31731623810049, 293.19631195068359}</string>
+				<string>{623.31731623810049, 321.62352508742845}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -3588,15 +3650,13 @@ injection Attack}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>112</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 The malicious payload becomes part of the content sent to the client}</string>
 			</dict>
@@ -3613,11 +3673,16 @@ injection Attack}</string>
 			<integer>109</integer>
 			<key>Points</key>
 			<array>
-				<string>{681.23125592109398, 433.80397069231128}</string>
-				<string>{793.29694078831483, 433.80397069231128}</string>
+				<string>{681.23125590588097, 433.80397069231128}</string>
+				<string>{793.29694080352783, 433.80397069231128}</string>
 			</array>
 			<key>Style</key>
 			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
@@ -3641,15 +3706,13 @@ injection Attack}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>108</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 The DB accepts and executes the query with the malicious payload}</string>
 			</dict>
@@ -3661,15 +3724,13 @@ injection Attack}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>106</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 The malicious payload becomes part of a query sent to the DB}</string>
 			</dict>
@@ -3681,15 +3742,13 @@ injection Attack}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>99</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 Trick a user to follow the URL/Page (e.g. via phishing)}</string>
 			</dict>
@@ -3701,15 +3760,13 @@ injection Attack}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>98</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 The malicious payload is injected into the application}</string>
 			</dict>
@@ -3721,15 +3778,13 @@ injection Attack}</string>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
 			<integer>97</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Text</key>
 			<dict>
 				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs22 \cf0 Includes malicious payload into an HTTP/HTTPS request}</string>
 			</dict>
@@ -3752,8 +3807,6 @@ injection Attack}</string>
 				<string>{0.5, -1}</string>
 				<string>{-0.5, -1}</string>
 			</array>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Style</key>
 			<dict>
 				<key>fill</key>
@@ -3777,7 +3830,7 @@ injection Attack}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextPlacement</key>
 			<integer>0</integer>
@@ -3800,8 +3853,6 @@ injection Attack}</string>
 				<string>{0.5, -1}</string>
 				<string>{-0.5, -1}</string>
 			</array>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Style</key>
 			<dict>
 				<key>fill</key>
@@ -3831,7 +3882,7 @@ injection Attack}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextPlacement</key>
 			<integer>0</integer>
@@ -3854,8 +3905,6 @@ injection Attack}</string>
 				<string>{0.5, -1}</string>
 				<string>{-0.5, -1}</string>
 			</array>
-			<key>Shape</key>
-			<string>Rectangle</string>
 			<key>Style</key>
 			<dict>
 				<key>fill</key>
@@ -3885,7 +3934,7 @@ injection Attack}</string>
 				<key>Align</key>
 				<integer>0</integer>
 				<key>VerticalPad</key>
-				<integer>0</integer>
+				<real>0.0</real>
 			</dict>
 			<key>TextPlacement</key>
 			<integer>0</integer>
@@ -3942,7 +3991,7 @@ injection Attack}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-11-15 04:36:44 +0000</string>
+	<string>2016-03-17 02:39:17 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
@@ -3969,6 +4018,11 @@ injection Attack}</string>
 		<array>
 			<string>float</string>
 			<string>18</string>
+		</array>
+		<key>NSPaperName</key>
+		<array>
+			<string>string</string>
+			<string>iso-a4</string>
 		</array>
 		<key>NSPaperSize</key>
 		<array>
@@ -4015,30 +4069,28 @@ injection Attack}</string>
 	<dict>
 		<key>CurrentSheet</key>
 		<integer>0</integer>
-		<key>ExpandedCanvases</key>
+		<key>Expanded_Canvases</key>
 		<array/>
 		<key>Frame</key>
-		<string>{{0, 45}, {1440, 832}}</string>
-		<key>ListView</key>
-		<false/>
-		<key>OutlineWidth</key>
-		<integer>142</integer>
-		<key>RightSidebar</key>
-		<false/>
+		<string>{{0, 4}, {1280, 773}}</string>
+		<key>ShowInfo</key>
+		<true/>
 		<key>Sidebar</key>
 		<true/>
 		<key>SidebarWidth</key>
 		<integer>230</integer>
+		<key>TopSlabHeight</key>
+		<real>250</real>
 		<key>VisibleRegion</key>
-		<string>{{-46, 33}, {1210, 735}}</string>
+		<string>{{-37, -133.99999999999991}, {1192.063492063492, 1052.3809523809523}}</string>
 		<key>Zoom</key>
-		<real>1</real>
+		<real>0.63</real>
 		<key>ZoomValues</key>
 		<array>
 			<array>
 				<string>Canvas 1</string>
-				<real>1</real>
-				<real>1</real>
+				<real>0.63</real>
+				<real>0.64000000000000001</real>
 			</array>
 		</array>
 	</dict>
