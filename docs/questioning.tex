@@ -41,11 +41,11 @@
 \usepackage{titlesec}
 
 \titlespacing*{\section}
-{0pt}{1ex}{0.8ex}
+{0pt}{1ex}{0.6ex}
 \titlespacing*{\subsection}
-{0pt}{1ex}{0.8ex}
+{0pt}{1ex}{0.6ex}
 \titlespacing*{\subsubsection}
-{0pt}{1ex}{0.8ex}
+{0pt}{1ex}{0.6ex}
 
 \setlength{\footnotesep}{0.28cm}
 \setlength{\skip\footins}{0.1cm}
@@ -246,18 +246,18 @@ The main contributions of this paper are the following:
   protection mechanisms, and the transition of tools from research to practice.
 \end{enumerate}
 
-% The rest of the paper is organized as follows:
-% Section~\ref{sec:attacks} provides some insights on
-% code injection attacks and
-% Section~\ref{sec:model} presents our proposed model.
-% Section~\ref{sec:dimensions} introduces the dimensions
-% across which we analyze the various defenses.
-% Our categorization and analysis is presented in
-% Section~\ref{sec:defs} and a discussion is provided in
-% Section~\ref{sec:discussion}. Finally,
-% Section~\ref{sec:lessons-learned} highlights
-% some lessons learned from our observations
-% and Section~\ref{sec:conclusion} concludes the paper.
+The rest of the paper is organized as follows:
+Section~\ref{sec:attacks} provides some insights on
+web application attacks and
+Section~\ref{sec:model} presents our proposed model.
+Section~\ref{sec:dimensions} introduces the dimensions
+across which we analyze the various defenses.
+Our categorization and analysis is presented in
+Section~\ref{sec:defs} and our observations are
+provided in Section~\ref{sec:discussion}.
+Finally, Section~\ref{sec:lessons-learned}
+highlights some lessons learned from our observations
+and Section~\ref{sec:conclusion} concludes the paper.
 
 \section{Code Injection in Web Applications}
 \label{sec:attacks}
@@ -267,17 +267,16 @@ application attacks. By taking advantage of this, attackers can inject
 their code into applications to perform malicious tasks. Exploits of
 this kind can have different forms depending on the execution context
 of the application and the location of the programming flaw that leads
-to the attack~\cite{RL12b}.
-
-% Bratus et al.~\cite{BLSPS11} portray the issue in a more generic way:
-% {\it ``unexpected (and unexpectedly powerful) computational models
-%   inside targeted systems, which turn a part of the target into a
-%   so-called `weird machine' programmable by the attacker via crafted
-%   inputs (a.k.a. `exploits').''} In particular, {\it ``every
-%   application that copies untrusted input verbatim into an output
-%   program is vulnerable to code injection.''} Ray and
-% Ligatti~\cite{RL12b} have proved this claim based on formal language
-% theory.
+to the attack.
+Bratus et al.~\cite{BLSPS11} portray the issue in a more generic way:
+{\it ``unexpected (and unexpectedly powerful) computational models
+  inside targeted systems, which turn a part of the target into a
+  so-called `weird machine' programmable by the attacker via crafted
+  inputs (a.k.a. `exploits').''} In particular, {\it ``every
+  application that copies untrusted input verbatim into an output
+  program is vulnerable to code injection.''} Ray and
+Ligatti~\cite{RL12b} have proved this claim based on formal language
+theory.
 
 \begin{figure}
 \begin{center}
@@ -664,7 +663,6 @@ it may affect the client, or both. The
 usefulness of a mechanism depends therefore on the
 computational cost it requires and on where it imposes it, as
 different overheads may be acceptable at the server-side than the client-side.
-
 What kind of numbers is reported matters as well. Reporting absolute
 measurements gives little information on the actual overhead, unless
 separate measurements are given for the system under study with and
@@ -739,7 +737,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 \leavevmode
 \includegraphics[scale=0.54]{defenses.pdf}
 \end{center}
-\vspace{-4.5mm}
+\vspace{-5mm}
 \caption{\label{fig:defenses}The basic categories of countermeasures
 against web application attacks based on code
 injection. For each approach we provide the references
@@ -750,7 +748,7 @@ that present corresponding mechanisms:
 {\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
 {\it Training}:~\cite{LLW02,HO05b,VMV05,JEP08,WPLKK09,MS09,MKLS11},
 {\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
-\vspace{-5mm}
+\vspace{-6mm}
 \end{figure}
 
 \begin{table*}[t]
@@ -1601,12 +1599,11 @@ and then test the accuracy of their tools on them.
        address is not mentioned in the paper, which probably means that
        the it was made available after the publication. A question 
        mark ({\bf ?}) indicates that a link to the software
-       was included in the publication but is now inaccessible.
-} \\
+       was included in the publication but is now inaccessible.} \\
     \end{tabular}}
     \end{small}
     \end{threeparttable}
-    \vspace{-5mm}
+    \vspace{-7mm}
 \end{table}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
@@ -1708,7 +1705,7 @@ The other 11 are based on interposing on {\sc api} calls related to output
 vectors (Point {\sc dbal}).
 
 For frameworks that deal with {\sc xss} attacks, we
-see that attack detection and prevention may take place either at the server or
+see that attack prevention may take place either at the server or
 the client-side. In the first case, a proxy is typically placed in front of the server
 to examine the server's responses before they reach a user's 
 browser. In the second case, a modified browser or a library that is
