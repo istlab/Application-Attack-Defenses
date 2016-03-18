@@ -197,7 +197,7 @@ some protection mechanisms defend against more than one of these
 types of attacks.
 
 Then, we {\it categorize} a selection of representative
-protection mechanisms. Specifically, we include protection
+protection mechanisms. In our selection we include protection
 mechanisms that counter web attacks when they take place,
 while we do not consider countermeasures that identify
 vulnerabilities using static program analysis~\cite{SZ12}
@@ -359,7 +359,7 @@ purposes when an application does not properly handle user-supplied
 data. Based on this vulnerability attackers can supply valid {\sc
   html}, typically via a parameter value, and inject their own content
 into the application's page. {\sc html} injection is mainly associated
-with {\sc xss} attacks~\cite{SP11, SLMS14}. However, {\sc html} injection,
+with {\sc xss} attacks~\cite{SP11, SLMS14}. However, {\sc html} injection
 can also be used as a vehicle for Cross-Site Request Forgery
 ({\sc csrf}) attacks~\cite{BJM08, LZRL09}
 (even though a common {\sc csrf} attack does not necessarily
@@ -652,7 +652,7 @@ implementing a detection mechanism should be available to researchers.
 Ideally the code should be available under an open source license, so
 that it is easy to modify and improve an approach; even when this is
 not possible, for whatever reason, it is important to make sure that
-all computer code and test data is available noting any restrictions
+all computer code and test data is available, noting any restrictions
 on accessibility. Availability of computer code has been recognized as
 an important issue outside the computer science field: the journal
 \emph{Nature}, in a recent editorial, adopted a publication policy stressing
@@ -874,7 +874,7 @@ except from availability, which we treat
 separately in Section~\ref{sec:discussion}.
 Due to the immense number of published works in the area, we only consider
 defenses that have been proposed in publications cited more than
-20 times according to Google Scholar.\footnote{\scriptsize\url{scholar.google.gr}}
+20 times according to Google Scholar.
 We also include some recent works that have been
 presented in top security conferences, even though they have been
 cited less than twenty times, so that recent research is not penalized.
@@ -1006,7 +1006,7 @@ source files from white-listed domains.
 Note that,
 if an application involves
 embedded scripts, developers must utilize
-{\sc csp}'s {\em nonce} concept.
+the {\sc csp}'s {\em nonce} concept.
 This is an unpredictable,
 random value indicated in
 the {\tt script-src} directive which in turn,
@@ -1158,7 +1158,7 @@ that applying {\sc isr} in a way that provides a certain degree of
 security against a motivated attacker is more difficult than
 previously thought. Furthermore, developers who wish to use such
 mechanisms must follow good coding practices and make sure that
-randomized code statement are never leaked
+randomized code statements are never leaked
 (e.g., as part of an exception error),
 as this may be used to reveal the encoding key.
 
@@ -1244,7 +1244,7 @@ attacks, the scheme uses {\sc html} and JavaScript parsers that can
 identify the generation of code coming from tainted data.
 
 An issue that involves all taint tracking schemes involves
-the difficulty of maintaining accurate taint~\cite{GMPS11}
+the difficulty of maintaining accurate taints~\cite{GMPS11}
 (e.g. implicit flows~\cite{ME07}).
 In such cases, certain, tainted inputs can escape the tracking mechanism.
 Keeping track of such input maybe impractical not only because of the
@@ -1741,7 +1741,7 @@ aiming to reduce performance overheads and deployment hurdles.
 \subsection{Improving Testing Accuracy}
 
 One of our key findings indicates that many proposed defenses are
-tested in a poor manner. In many cases, researchers tend to not providing
+tested in a poor manner. In many cases, researchers tend to not provide
 results on false positives or false negatives for their mechanisms
 (where applicable).
 Mere discussion on the existence of such results without quantifying
