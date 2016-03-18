@@ -61,6 +61,7 @@
 
 \lstset{columns=flexible,showstringspaces=false}
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{aboveskip=3.5pt,belowskip=3.5pt}
 
 \renewcommand{\algorithmiccomment}[1]{\hfill {\tt //} #1}
 \newcommand{\tick}{\ding{52}}
@@ -205,7 +206,8 @@ phases). Similarly, dynamic analysis techniques that examine
 applications to identify vulnerabilities that may lead to the attacks
 that we described earlier are out of scope as well. Note also, that we
 didn't consider mechanisms that haven't been presented in research papers.
-Finally, we {\it analyze} each mechanism across the
+
+Furthermore, we {\it analyze} each mechanism across the
 following dimensions:
 \begin{itemize}
 \item {\it Accuracy:} protection mechanisms are as good
@@ -223,7 +225,6 @@ following dimensions:
 \item {\it Detection Point:} the location where a mechanism detects an attack
   based on our exploitation model.
 \end{itemize}
-
 \noindent
 All the above requirements are considered important
 when building mechanisms for the protection of
@@ -234,6 +235,12 @@ various mechanisms and enumerate some of their common
 characteristics. We also draw useful conclusions
 about the various protection categories and see how they compare
 to each other.
+In addition, we attempt to shed light on the factors
+that may impede the adoption of defenses in practice.
+Finally,
+we provide some lessons and recommendations that
+developers of new defenses may find helpful.
+
 The main contributions of this paper are the following:
 
 \begin{enumerate}
@@ -241,10 +248,11 @@ The main contributions of this paper are the following:
   web application attacks based on code injection.
 \item We categorize and analyze proposed defenses using a set of
   criteria that are important for building protection mechanisms.
-\item We provide insight based on the issues that arise from our analysis. We put
-  emphasis on factors that may hinder the widespread deployment of
+\item We provide insight based on the issues that arise from our analysis.
+  We put emphasis on factors that may hinder the widespread deployment of
   protection mechanisms, and the transition of tools from research to practice.
 \end{enumerate}
+\vspace{-0.05mm}
 
 The rest of the paper is organized as follows:
 Section~\ref{sec:attacks} provides some insights on
@@ -268,6 +276,7 @@ their code into applications to perform malicious tasks. Exploits of
 this kind can have different forms depending on the execution context
 of the application and the location of the programming flaw that leads
 to the attack.
+
 Bratus et al.~\cite{BLSPS11} portray the issue in a more generic way:
 {\it ``unexpected (and unexpectedly powerful) computational models
   inside targeted systems, which turn a part of the target into a
@@ -283,7 +292,7 @@ theory.
 \leavevmode
 \includegraphics[scale=0.55]{attack-tree-uml.pdf}
 \end{center}
-\vspace{-4mm}
+\vspace{-5mm}
 \caption{\label{fig:taxonomy}A taxonomy of dynamic and domain-specific
 language code injection attacks against web applications.}
 \vspace{-5mm}
@@ -421,6 +430,7 @@ be executed on the server. Hence, if an attacker provides as
 input the following string: {\tt 10 ; system("touch foo");}
 then a file will be created on the server---it is easy
 to imagine more detrimental scenarios.
+
 A recent attack called {\sc php} Object Injection
 ({\sc poi})~\cite{DKH14} does not directly involve
 the injection of code, but still achieves arbitrary code execution
@@ -437,7 +447,7 @@ in the following Section also captures such attacks.
 \leavevmode
 \includegraphics[scale=0.48]{attacks-steps-CSRF.pdf}
 \end{center}
-\vspace{-5mm}
+\vspace{-5.5mm}
 \caption{\label{fig:attacks}Attack model for dynamic and domain specific
 language code injection in web applications.
 Transitions are labeled with the different attacks that use that path,
@@ -449,7 +459,7 @@ detect or prevent attacks are marked with an `X' symbol:
 (2) {\sc s}t{\sc b} (en route from the server to the browser):~\cite{RDWDE07,JKK06a,GC09,JB07,NLC07,WPLKK09,JEP08,PS11},
 (3) {\sc dbal} (at the database abstraction layer):~\cite{BWS05,SW06,HCF05,XBS06,PB05,PMP11,MS09,HO05b,SMS13},
 (4) {\sc db} (at the database):~\cite{BK04,LLW02,VMV05}.}
-\vspace{-5mm}
+\vspace{-6mm}
 \end{figure*}
 
 \section{Exploitation Model}
@@ -545,8 +555,8 @@ The detection and prevention of attacks
 in a reliable manner can be analyzed using
 criteria common with other research fields:
 \begin{itemize}
-\item Statistical measurements that show how reliable the detection really
-  is.
+\item Statistical measurements that show how
+reliable the detection really is.
 \item Research practices that promote replication and validation
 of the findings.
 \end{itemize}
@@ -607,6 +617,7 @@ Sensitivity and specifity are defined as follows~\cite{linn2004}:
 \noindent
 With these we can calculate:
 
+\vspace{0.5mm}
 \noindent\begin{minipage}{0.5\linewidth}
 \begin{equation}
   \textsc{se} = \textrm{Sensitivity} = \frac{\textsc{tp}}{\textsc{tp}
@@ -737,7 +748,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 \leavevmode
 \includegraphics[scale=0.54]{defenses.pdf}
 \end{center}
-\vspace{-5mm}
+\vspace{-5.4mm}
 \caption{\label{fig:defenses}The basic categories of countermeasures
 against web application attacks based on code
 injection. For each approach we provide the references
@@ -748,7 +759,7 @@ that present corresponding mechanisms:
 {\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
 {\it Training}:~\cite{LLW02,HO05b,VMV05,JEP08,WPLKK09,MS09,MKLS11},
 {\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
-\vspace{-6mm}
+\vspace{-5.6mm}
 \end{figure}
 
 \begin{table*}[t]
@@ -759,7 +770,7 @@ that present corresponding mechanisms:
 \centering
     \begin{threeparttable}
     \begin{small}
-\scalebox{0.78}{
+\scalebox{0.77}{
     \begin{tabular}{l|c|c|cc|c}
     \thickhline
     \bf{Approach}
@@ -849,7 +860,7 @@ that present corresponding mechanisms:
     \end{tablenotes}
     \end{small}
     \end{threeparttable}
-    \vspace{-5.5mm}
+    \vspace{-6mm}
 \end{table*}
 
 \section{Defenses}
@@ -911,7 +922,7 @@ that is about to be executed with the one that was originally
 intended. If the trees diverge, the application is probably under
 attack.
 
-For domain-specific language code injection attacks, mechanisms check 
+For {\sc dsl} code injection attacks, mechanisms check 
 the query before the inclusion of user input with the one
 resulting after the inclusion of user input.
 Two mechanisms that implement this approach for protection
@@ -1603,7 +1614,7 @@ and then test the accuracy of their tools on them.
     \end{tabular}}
     \end{small}
     \end{threeparttable}
-    \vspace{-7mm}
+    \vspace{-6mm}
 \end{table}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
@@ -1757,6 +1768,7 @@ how relaxed should we be that no attack has indeed taken place? The
 answer is provided by \textsc{npv}. We can calculate \textsc{ppv} and
 \textsc{npv} with the following equations:
 
+\vspace{0.5mm}
 \noindent\begin{minipage}{0.5\linewidth}
 \begin{equation}
 \textsc{ppv} = \frac{\textsc{tp}}{\textsc{tp} + \textsc{fp}}
@@ -1956,8 +1968,6 @@ We hope that the exploitation model, analysis, and observations that
 emerged from our research can be a reference point for researchers who
 aim to develop new, practical countermeasures against web application
 attacks.
-
-\vspace{-3mm}
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
