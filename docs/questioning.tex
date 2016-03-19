@@ -1290,7 +1290,7 @@ pattern. {\sc swap}~\cite{WPLKK09} creates a unique identifier
 Then, a JavaScript detection component placed in a web proxy (Point
 {\sc s}t{\sc b}) searches for injected scripts with no corresponding {\sc id}
 in the server's responses. If no injected scripts are found, the proxy
-forwards the request to the client. This mechanism is relatively
+forwards the response to the client. This mechanism is relatively
 inflexible since it does not support dynamic scripts. In addition, it
 imposes a significant overhead (see Table~\ref{tab:comp}). The authors
 of {\sc xssds}~\cite{JEP08} have implemented a similar mechanism
