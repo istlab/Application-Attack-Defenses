@@ -41,11 +41,11 @@
 \usepackage{titlesec}
 
 \titlespacing*{\section}
-{0pt}{1ex}{0.6ex}
+{0pt}{1ex}{0.55ex}
 \titlespacing*{\subsection}
-{0pt}{1ex}{0.6ex}
+{0pt}{1ex}{0.55ex}
 \titlespacing*{\subsubsection}
-{0pt}{1ex}{0.6ex}
+{0pt}{1ex}{0.55ex}
 
 \setlength{\footnotesep}{0.28cm}
 \setlength{\skip\footins}{0.1cm}
@@ -61,7 +61,7 @@
 
 \lstset{columns=flexible,showstringspaces=false}
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
-\lstset{aboveskip=3.5pt,belowskip=3.5pt}
+\lstset{aboveskip=3.3pt,belowskip=3.3pt}
 
 \renewcommand{\algorithmiccomment}[1]{\hfill {\tt //} #1}
 \newcommand{\tick}{\ding{52}}
@@ -209,6 +209,7 @@ didn't consider mechanisms that haven't been presented in research papers.
 
 Furthermore, we {\it analyze} each mechanism across the
 following dimensions:
+\vspace{-1.5mm}
 \begin{itemize}
 \item {\it Accuracy:} protection mechanisms are as good
   as their detection capability; this requires low false positive and
@@ -225,6 +226,7 @@ following dimensions:
 \item {\it Detection Point:} the location where a mechanism detects an attack
   based on our exploitation model.
 \end{itemize}
+\vspace{-1.5mm} 
 \noindent
 All the above requirements are considered important
 when building mechanisms for the protection of
@@ -252,7 +254,7 @@ The main contributions of this paper are the following:
   We put emphasis on factors that may hinder the widespread deployment of
   protection mechanisms, and the transition of tools from research to practice.
 \end{enumerate}
-\vspace{-0.05mm}
+\vspace{-0.5mm}
 
 The rest of the paper is organized as follows:
 Section~\ref{sec:attacks} provides some insights on
@@ -290,12 +292,12 @@ theory.
 \begin{figure}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.55]{attack-tree-uml.pdf}
+\includegraphics[scale=0.52]{attack-tree-uml.pdf}
 \end{center}
-\vspace{-5mm}
+\vspace{-6mm}
 \caption{\label{fig:taxonomy}A taxonomy of dynamic and domain-specific
 language code injection attacks against web applications.}
-\vspace{-5mm}
+\vspace{-5.8mm}
 \end{figure}
 
 Code injection attacks can be divided in two categories. The first
@@ -328,7 +330,7 @@ input can become part of an {\sc sql} query and gets executed on the
 target database. Code injection attacks that exploit vulnerabilities
 in database interfaces by taking advantage of input validation issues,
 such as incorrectly passed parameters or incorrect type handling, are
-called {\sc sql} injection attacks~\cite{MS09,HVO06,SW06}.
+called {\sc sql} injection attacks~\cite{HVO06,SW06}.
 Consider a trivial exploit that takes advantage of incorrectly
 filtered quotation characters in an application that shows the
 password of a forgetful user by executing the following
@@ -349,7 +351,7 @@ better, use prepared {\sc sql} statements instead of statement
 templates. Unfortunately, the increasing number of {\sc sql} injection
 attacks suggests that programmers are not always that careful. Using
 similar techniques, malicious users can mount other exploits based on
-{\sc dsl}s such as {\sc xp}ath~\cite{SW06,CDL07}, {\sc
+{\sc dsl}s such as {\sc xp}ath~\cite{SW06}, {\sc
   xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. The effects can be
 wide-ranging. A malicious user can view sensitive information, destroy
 or modify protected data, or even crash the entire application.
@@ -359,9 +361,9 @@ purposes when an application does not properly handle user-supplied
 data. Based on this vulnerability attackers can supply valid {\sc
   html}, typically via a parameter value, and inject their own content
 into the application's page. {\sc html} injection is mainly associated
-with {\sc xss} attacks~\cite{SP11, SLMS14}. However, {\sc html} injection
+with {\sc xss} attacks~\cite{SLMS14}. However, {\sc html} injection
 can also be used as a vehicle for Cross-Site Request Forgery
-({\sc csrf}) attacks~\cite{BJM08, LZRL09}
+({\sc csrf}) attacks~\cite{LZRL09}
 (even though a common {\sc csrf} attack does not necessarily
 involve code injection).
 Consider a bulletin board system where {\tt img} tags are allowed.
@@ -381,12 +383,12 @@ while the administrator of the bulletin board system
 will have no immediate indication that there has been an attack.
 
 A recent class of code injection attacks involve dynamic languages
-such as JavaScript and {\sc php}~\cite{SFVM09,SMS13}.
+such as JavaScript and {\sc php}~\cite{SMS13}.
 JavaScript injection attacks make up a large subset of dynamic
 language code injection attacks and are considered a critical issue
 in web application security mainly because they are associated with
 major vulnerabilities such as {\sc xss} attacks~\cite{SG07} and
-Cross-Channel Scripting ({\sc xcs}) attacks~\cite{W10,BBB09}.
+Cross-Channel Scripting ({\sc xcs}) attacks~\cite{BBB09}.
 Such attacks are enabled when a web application accepts
 and redisplays data of uncertain origin without
 proper validation and filtering. Based on this flaw, an attacker
@@ -538,7 +540,6 @@ and then it will re-enter the application when
 a user visits a page ({\sc i-csrf} 6). When the
 content reaches the browser, a malicious request will be generated
 towards the site that is vulnerable to {\sc csrf}.
-
 
 \section{Analysis Dimensions}
 \label{sec:dimensions}
@@ -732,7 +733,7 @@ mechanism today.
 Detection mechanisms vary on the location where they detect an attack.
 There are four different points where an attack can be caught, as seen
 in Figure~\ref{fig:attacks}:
-
+\vspace{-0.5mm}
 \begin{enumerate}
 \item At the user's browser (Point {\sc ub}).
 \item En route from the server to the user's browser---in most cases
@@ -742,13 +743,14 @@ within a proxy (Point {\sc s}t{\sc b}).
 \item After the malicious code reaches the server's database
   (Point {\sc db}).
 \end{enumerate}
+\vspace{-0.5mm}
 
 \begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.54]{defenses.pdf}
+\includegraphics[scale=0.53]{defenses.pdf}
 \end{center}
-\vspace{-5.4mm}
+\vspace{-5.8mm}
 \caption{\label{fig:defenses}The basic categories of countermeasures
 against web application attacks based on code
 injection. For each approach we provide the references
@@ -759,18 +761,18 @@ that present corresponding mechanisms:
 {\it Taint Tracking}:~\cite{HCF05,PB05,XBS06,NLC07,VFJKKV07,PMP11,SLMS14},
 {\it Training}:~\cite{LLW02,HO05b,VMV05,JEP08,WPLKK09,MS09,MKLS11},
 {\it Hybrid}:~\cite{BV08,LV09,SMS13}.}
-\vspace{-5.6mm}
+\vspace{-5.5mm}
 \end{figure}
 
 \begin{table*}[t]
   \renewcommand{\baselinestretch}{1.12}
     \caption{Comparison summary of mechanisms developed to counter application attacks based on code injection.}
     \label{tab:comp}
-    \vspace{-4mm}
+    \vspace{-4.5mm}
 \centering
     \begin{threeparttable}
     \begin{small}
-\scalebox{0.77}{
+\scalebox{0.78}{
     \begin{tabular}{l|c|c|cc|c}
     \thickhline
     \bf{Approach}
@@ -860,7 +862,7 @@ that present corresponding mechanisms:
     \end{tablenotes}
     \end{small}
     \end{threeparttable}
-    \vspace{-6mm}
+    \vspace{-6.7mm}
 \end{table*}
 
 \section{Defenses}
@@ -894,12 +896,13 @@ in this work, grouped according to the subcategories shown in
 Figure~\ref{fig:defenses}, and for each mechanism
 provides the following information:
 
+\vspace{-0.5mm}
 \begin{enumerate}
 \item Number of citations of the corresponding publication(s).
 \item Accuracy and computational overhead measurements.
 \item Types of attacks handled.
 \end{enumerate}
-
+\vspace{-0.5mm}
 \noindent
 Recall that the point of operation for each mechanism is provided
 in the caption of Figure~\ref{fig:attacks}.
@@ -992,6 +995,7 @@ described by Athanasopoulos et al.~\cite{APKLM10}, who also describe
 another recent variation of JavaScript injection attacks, known as
 return-to-JavaScript attacks, which can be used to bypass the above
 mechanisms.
+\vspace{-0.5mm}
 
 A policy enforcement technique developed by Mozilla,
 called {\sc csp} (Content Security
@@ -1023,6 +1027,7 @@ and invoke a script from a non-whitelisted source.
 To do so, their injected code must
 be crafted in a way that the nonce is handled
 by the browser as an attribute of the payload~\cite{jigsaw}.
+\vspace{-0.5mm}
 
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
@@ -1423,6 +1428,7 @@ tree of the ``shadow'' (Point {\sc dbal}). If the trees do not match,
 the application is probably under attack. Note that Diglossia
 can be bypassed in the same way as other taint tracking
 approaches~\cite{NBR14}.
+\vspace{-1mm}
 
 \section{Observations}
 \label{sec:discussion}
@@ -1436,7 +1442,7 @@ dimensions we identified in Section~\ref{sec:dimensions}.
 \begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.39]{barchart.pdf}
+\includegraphics[scale=0.40]{barchart.pdf}
 \end{center}
 \vspace{-5.7mm}
 \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
@@ -1614,7 +1620,7 @@ and then test the accuracy of their tools on them.
     \end{tabular}}
     \end{small}
     \end{threeparttable}
-    \vspace{-6mm}
+    \vspace{-6.5mm}
 \end{table}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
@@ -1972,6 +1978,53 @@ attacks.
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
+
+\section*{Author Biographies}
+\noindent
+{\bf Dimitris Mitropoulos} is a Postdoctoral Researcher
+in the Computer Science Department
+at Columbia University in the City of New York.
+He holds a PhD ('14) in Cyber Security from the
+Athens University of Economics and Business.
+He is an {\sc ieee} member, a member of SysSec,
+and an official writer for the
+{\sc xrds}: Crossroads blog of {\sc acm}.
+His research interests include application security,
+systems security and software engineering.
+
+\noindent
+{\bf Panos Louridas} is an Associate Professor at
+the Athens University of Economics and Business.
+He has published in many areas of software engineering
+and is actively involved in the application of security
+research for the development of high-stakes production
+systems, such as e-voting.
+
+\noindent
+{\bf Michalis Polychronakis} is an Assistant Professor
+at Stony Brook University.
+He received the B.Sc. ('03), M.Sc. ('05), and Ph.D. ('09)
+degrees in Computer Science from the University of Crete, Greece.
+% while working as a research assistant in the Distributed
+% Computing Systems Lab at {\sc forth-ics}.
+Before joining Stony Brook, he was an Associate Research
+Scientist at Columbia University in the City of New York.
+His research interests include
+network and system security and network monitoring and measurement.
+
+\noindent
+{\bf Angelos D. Keromytis} is an Associate Professor
+of Computer Science at Columbia University in the City
+of New York, and the director of the Network Security Lab.
+He is currently serving as  Program Manager with the
+Information Innovation Office ({\sc i}2O) at the Defense Advanced
+Research Projects Agency ({\sc darpa}),
+part of the Department of Defense.
+His research interests are in systems
+and network security,
+and cryptography.
+He is an {\sc acm} Distinguished Scientist since 2012,
+and a founder of Allure Security Technology Inc.
 
 \end{document} 
 
