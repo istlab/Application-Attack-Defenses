@@ -104,7 +104,7 @@ mikepo@cs.stonybrook.edu
 % \markboth{\footnotesize D. Mitropoulos et al.}{\footnotesize Defending Against Web Application Attacks:
 % Research Approaches, Challenges and Implications}
 
-\markboth{Mitropoulos et al.}%
+\markboth{Response to Review Comments.}%
 {Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
 
 \IEEEtitleabstractindextext{
@@ -151,7 +151,7 @@ SQL Injection, XSS.
 \label{sec:rem}
 
 We are thankful to the reviewers for their thorough reviews.
-We have revised our research paper based on their suggestions and comments.
+We have revised our paper based on their suggestions and comments.
 All additions and changes are highlighted in yellow
 in the revised manuscript.
 Number wise answers to their specific
@@ -160,23 +160,144 @@ comments / suggestions / queries are as follows.
 \section{AE Comments}
 \label{sec:ae}
 
-{\bf Comment} ``Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.".\\
+{\bf Comment} ``The second and third reviewers have pointed out problems in missing related work and
+descriptions that need to polished. Please address them carefully in the next revision
+for the next round of review."\\
 
 \noindent
 {\bf Response:}
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum".\\
+Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.\\
 
 \section{Reviewer \#1}
 \label{sec:r1}
 
-{\bf Comment 1:} ``Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum".\\
+{\bf Comment 1:} ``One downside of this work is that it was not clear from the
+description what constitutes a defense against a web application
+attack. The authors do say that vulnerability analysis techniques are
+out-of-bounds (which I agree with), but what about related
+technologies such as Web Application Firewalls? Where does one draw
+the line? What are the criteria to evaluate new techniques to see if
+they fit into your defenses (so that the authors can evaluate using
+your techniques)?"\\
+
+\noindent
+{\bf Response:}
+Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.\\
+
+\noindent
+{\bf Comment 2:} ``Also, I felt that the focus on studying ``popular" defenses (those with
+greater than 20 citations or published recently) ignores one of the	
+main benefits of a survey paper: to help the community discover
+overlooked yet quality research. I appreciate that surveying the 35
+papers is a good contribution, but I wonder if the results of the
+evaluation would be more impactful (in terms of finding overlooked
+research) if the survey was more inclusive."\\
+
+\noindent
+{\bf Response:}
+Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.\\
+
+\noindent
+{\bf Comment 3:} ``Some minor comments for the authors:
+\begin{itemize}
+\item Introduction ``didn't" $\rightarrow$ did not
+\item Introduction ``haven't" $\rightarrow$ have not
+\item Section 2: PHP Object Injection vulnerabilities do not have to be
+ ``part of cookies". These could come any user input, not necessarily
+ cookies (similar to other code injection vulnerabilities).
+\item Section 4.5 ``canny attacks" and ``cannier attacker" should probably
+ be ``savvy" or a different word.
+\item Section 5.1.2 it is not clear from your description that the CSP
+ policy is communicated via HTTP header. This may not be clear to
+ those readers that aren't familiar with CSP.
+\item Section 5.1.2 ``XXS" $\rightarrow$ ``XSS".
+\item Section 5.2.1 ``maybe" $\rightarrow$ ``may be"".
+\end{itemize}
+
+\noindent
+{\bf Response:}
+Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.\\
+
+\section{Reviewer \#2}
+\label{sec:r2}
+
+{\bf Comment 1:} ``Τhe analysis on the accuracy and performance overhead is not reasonable. The paper presents metrics that were originally reported in other papers, which were evaluated under different assumptions and settings. Simply listing the numbers found in those papers in a table might be misleading. However, the reviewer acknowledges that it is very difficult to have access to those systems for a fair comparison, and agrees with the recommendation on improving the availability of the source code and dataset in future research."\\
+
+\noindent
+{\bf Response:}
+Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.\\
+
+\noindent
+{\bf Comment 2:} ``Admittedly, transition from scientific research to real product
+is challenging due to availability, usability, performance and deployment issues.
+Except for that, the paper does not thorouly discuss why many previous works
+cannot stop attacks against web applications, nor provide useful guidance on
+how future research could improve upon existing works. Are there any fundamental
+limitations in previous works that make them not suitable for defending against
+some specific (if not all) attacks? Can we integrate multiple solutions to build
+stronger defense mechanisms?"\\
 
 \noindent
 {\bf Response:}
 Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum".\\
 
 \noindent
-{\bf Comment 2:} ``Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum".\\
+{\bf Comment 3:} ``Some recent works in the (or related) 
+ield are not discussed in this paper.
+For example, information flow control solutions and
+proposals that confine or isolate JavaScript could
+be used to defend against code injection attacks.
+Examples are: {\sc jsf}low: Tracking information
+flow in JavaScript and its {\sc api}s ({\sc sac}'14).
+Protecting users by confining JavaScript with {\sc cowl} ({\sc osdi} '14).
+Runtime monitoring and formal analysis of information fows in Chromium ({\sc ndss} '15)."\\
+
+\noindent
+{\bf Response:}
+Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.\\
+
+\section{Reviewer \#3}
+\label{sec:r3}
+
+{\bf Comment 1:} ``The biggest omission that I see, however, is that the
+exploitation model does not consider inter-frame attacks, where an attacker
+e.g., lures victims to framed vulnerable sites and performs cross-frame code
+injection.  Granted, this is a relatively newer update to the pantheon of
+web application attacks, but given the rising prevalence of client-side
+web application code it's in my estimation an important one.  And, postMessage
+security research dates back to at least the late 2000s, so it's actually not
+*that* new."\\
+
+\noindent
+{\bf Response:}
+Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum".\\
+
+\noindent
+{\bf Comment 2:} ``Similarly, {\sc xss} is introduced as an attack that has two forms, reflected and
+persistent.  However, even though it's mentioned later on, how would DOM-based
+{\sc xss} fit into this breakdown?  I don't believe it does (neatly), and am of the
+view that it constitutes a third category since it can be performed on-demand
+and purely client-side across frames without persistence, combining aspects of
+both of the above categories."\\
+
+\noindent
+{\bf Response:}
+Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum".\\
+
+\noindent
+{\bf Comment 3:} ``Aside from those issues, one could take issue with a lack of coverage of some
+(in my opinion) important approaches that hew towards the
+secure-by-construction ideology. For instance, there is work from the {\sc pl}
+community (e.g., Ur/Web) that makes certain attacks impossible by design.
+There is other {\sc pl} work I didn't see mentioned that also takes a
+secure-by-design approach (e.g., {\sc jif}/{\sc sif}). There is work from the systems
+community focused on {\sc difc} (e.g., Hails, Aeolus).  I anticipate that these
+wouldn't rate highly on the ease-of-use metrics, but it would have been nice
+to see them mentioned.  I did notice that static analyses were specifically
+called out as not being in-scope, but other work that was mentioned does
+require application modification (e.g., {\sc js} confinement).  So, while I'm sure
+there's a line one should draw, it's not clearly defined here and some of the
+above could, in the current presentation, be considered missing."\\
 
 \noindent
 {\bf Response:}
