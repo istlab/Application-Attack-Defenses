@@ -205,7 +205,7 @@ vulnerabilities using static program analysis~\cite{SZ12}
 phases). Similarly, dynamic analysis techniques that examine
 applications to identify vulnerabilities that may lead to the attacks
 that we described earlier are out of scope as well. Note also, that we
-didn't consider mechanisms that haven't been presented in research papers.
+did not consider mechanisms that have not been presented in research papers.
 
 Furthermore, we {\it analyze} each mechanism across the
 following dimensions:
@@ -437,10 +437,11 @@ A recent attack called {\sc php} Object Injection
 ({\sc poi})~\cite{DKH14} does not directly involve
 the injection of code, but still achieves arbitrary code execution
 in the context of a {\sc php} application through the
-injection of specially crafted objects.
-These objects are injected as part of cookies,
-which, when deserialized
-by the application, result in arbitrary code execution.
+injection of specially crafted objects
+(e.g. as part of cookies).
+When deserialized
+by the application, these objects result in
+arbitrary code execution.
 Note that the exploitation model we propose
 in the following Section also captures such attacks.
 
@@ -716,8 +717,8 @@ of source code.
 \subsection{Security}
 
 Defenders and attackers are often caught in a cat-and-mouse game,
-where countermeasures are bypassed by canny attacks, which are caught
-by more sophisticated countermeasures, yet again bypassed by cannier
+where countermeasures are bypassed by savvy attacks, which are caught
+by more sophisticated countermeasures, yet again bypassed by savvier
 attacks, and so on. We use security to refer to the ability of a
 detection mechanism to resist circumvention. 
 
@@ -1004,7 +1005,9 @@ is currently supported by many browsers to prevent
 {\sc xss} and {\sc csrf} attacks. To eliminate such
 attacks, web site administrators
 can specify which domains the browser should treat
-as valid sources of script and which not. Then, the browser
+as valid sources of script and which not.
+These policies are communicated via the {\sc http} header.
+Then, the browser
 (Point {\sc ub}) will only execute scripts that exist in
 source files from white-listed domains.
 Note that,
@@ -1043,7 +1046,7 @@ extend JavaScript with new primitive functions that
 provide safe methods to protect potentially vulnerable
 JavaScript functions. In both cases, policy enforcement takes
 place at client-side, in the JavaScript engine of the browser (Point {\sc ub}).
-In this way, {\sc xxs} attacks that take advantage
+In this way, {\sc xss} attacks that take advantage
 of functions such as {\tt write} and {\tt eval}, which are
 used to assemble innocuous-looking parts into harmful
 strings,\footnote{\scriptsize The infamous Sammy worm that
@@ -1252,7 +1255,7 @@ An issue that involves all taint tracking schemes involves
 the difficulty of maintaining accurate taints~\cite{GMPS11}
 (e.g. implicit flows~\cite{ME07}).
 In such cases, certain, tainted inputs can escape the tracking mechanism.
-Keeping track of such input maybe impractical not only because of the
+Keeping track of such input may be impractical not only because of the
 various technical difficulties, but also because it would raise false alarms.
 
 \subsubsection{Training}
