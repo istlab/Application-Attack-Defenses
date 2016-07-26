@@ -40,16 +40,6 @@
 \newcommand{\subparagraph}{}
 \usepackage{titlesec}
 
-\titlespacing*{\section}
-{0pt}{1ex}{0.55ex}
-\titlespacing*{\subsection}
-{0pt}{1ex}{0.55ex}
-\titlespacing*{\subsubsection}
-{0pt}{1ex}{0.55ex}
-
-\setlength{\footnotesep}{0.28cm}
-\setlength{\skip\footins}{0.1cm}
-
 \usepackage{draftwatermark}
 \SetWatermarkText{Confidential}
 \SetWatermarkScale{0.4}
@@ -228,15 +218,15 @@ Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lo
 \begin{enumerate}
 \item Introduction: ``didn't" $\rightarrow$ did not
 \item Introduction: ``haven't" $\rightarrow$ have not
-\item Section 2: PHP Object Injection vulnerabilities do not have to be
+\item Section 2: {\sc php} Object Injection vulnerabilities do not have to be
  ``part of cookies". These could come any user input, not necessarily
  cookies (similar to other code injection vulnerabilities).
 \item Section 4.5 ``canny attacks" and ``cannier attacker" should probably
  be ``savvy" or a different word.
-\item Section 5.1.2 it is not clear from your description that the CSP
- policy is communicated via HTTP header. This may not be clear to
- those readers that aren't familiar with CSP.
-\item Section 5.1.2 ``XXS" $\rightarrow$ ``XSS".
+\item Section 5.1.2 it is not clear from your description that the {\sc csp}
+ policy is communicated via {\sc http} header. This may not be clear to
+ those readers that aren't familiar with {\sc csp}.
+\item Section 5.1.2 ``{\sc xxs}" $\rightarrow$ ``{\sc xss}".
 \item Section 5.2.1 ``maybe" $\rightarrow$ ``may be"".
 \end{enumerate}
 
@@ -264,10 +254,14 @@ in future research."\\
 
 \noindent
 {\bf Response:}
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum.\\
+Initial note:
+This is an interesting comment.
+We need to mention that we did not intend to
+compare the mechanisms with each other.
+Our intention was to highlight that currently there
+are many different testing setups and
+environments for defenses that counter
+similar attacks (see Subsection 6.1).\\
 
 \noindent
 {\bf Comment 2:} ``Admittedly, transition
@@ -295,7 +289,7 @@ Lorem Ipsum. Lorem Ipsum".\\
 
 \noindent
 {\bf Comment 3:} ``Some recent works in the (or related) 
-ield are not discussed in this paper.
+field are not discussed in this paper.
 For example, information flow control solutions and
 proposals that confine or isolate JavaScript could
 be used to defend against code injection attacks.
