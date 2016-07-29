@@ -112,7 +112,7 @@ In this paper, we provide an analysis on
 various defense mechanisms against web code injection attacks.
 We propose a model that highlights the key weaknesses enabling these attacks,
 and that provides a common perspective for studying the available defenses.
-We then categorize and analyze a set of 35 previously proposed defenses 
+We then categorize and analyze a set of 41 previously proposed defenses 
 based on their accuracy, performance,
 deployment, security, and availability characteristics.
 Detection accuracy is of particular importance,
@@ -264,11 +264,15 @@ environments for defenses that counter
 similar attacks (see Subsection 6.1).\\
 
 \noindent
+Second note:
+We also changed the caption of Table 1.\\
+
+\noindent
 {\bf Comment 2:} ``Admittedly, transition
 from scientific research to real product
 is challenging due to availability, usability,
 performance and deployment issues.
-Except for that, the paper does not thorouly
+Except for that, the paper does not thoroughly
 discuss why many previous works
 cannot stop attacks against web applications,
 nor provide useful guidance on
@@ -301,10 +305,26 @@ fows in Chromium ({\sc ndss} '15)."\\
 
 \noindent
 {\bf Response:}
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum.\\
+We have updated our paper to include the
+aforementioned mechanisms
+(see Subsection 5.3, Figure 2 and 3).
+The 3rd reviewer also
+indicated that some representative
+{\sc ifc} frameworks were missing.
+Hence, we have added those too.
+Note that,
+those mechanisms are not
+always easy to adopt because
+developers need to learn new constructs
+to utilize them.
+We mention that in Subsection 6.4
+(``Ease of Use").
+Finally,
+the addition of {\sc ifc} mechanisms
+in our study affects many of our results
+throughout Section 6 (``Observations").
+Consequently,
+we have updated this section too.\\
 
 \section{Reviewer \#3}
 \label{sec:r3}
@@ -341,7 +361,7 @@ However,
 even though it's mentioned later on,
 how would {\sc dom}-based {\sc xss} fit into this breakdown?
 I don't believe it does (neatly),
-and am of the view that it constitutes a third
+and I am of the view that it constitutes a third
 category since it can be performed on-demand
 and purely client-side across frames without persistence,
 combining aspects of both of the above categories."\\
@@ -380,10 +400,45 @@ be considered missing."\\
 
 \noindent
 {\bf Response:}
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum. Lorem Ipsum. Lorem Ipsum.
-Lorem Ipsum. Lorem Ipsum".\\
+The 2nd reviewer has also indicated that
+information flow control solutions
+were missing from our study.
+Our paper now includes six solutions
+that follow this approach
+including {\sc sif}~\cite{CVMA07},
+Hails~\cite{GLSTMMR12}
+and Aeolus~\cite{CPSPBCCSL12}
+(see Subsection 5.3, Figure 2 and 3).
+Nevertheless,
+we did not include Ur/Web~\cite{C10b}
+in our study because it is a static 
+analysis mechanism
+(recall that we only consider defenses
+that prevent attacks when they take place).
+
+Note that,
+most of these mechanisms were not
+extensively tested in terms of security.
+However,
+such solutions do not need to be
+established purely through testing,
+since they provide systematic
+arguments as to why their design is
+secure against application attacks.
+We stress this issue in Subsection
+7.1 (``Improving Testing Accuracy").
+Furthermore,
+we discuss the usability issues of
+{\sc ifc} solutions in Subsection 6.4
+(``Ease of Use").
+
+As we pointed out in our
+response to the 2nd reviewer,
+the addition of {\sc ifc} mechanisms
+in our paper affects many of our results
+throughout Section 6 (``Observations").
+Consequently,
+we have updated this section too.\\
 
 \bibliographystyle{IEEEtran}
 \bibliography{comments}
