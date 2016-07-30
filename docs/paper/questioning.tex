@@ -67,7 +67,7 @@
 
 \lstset{columns=flexible,showstringspaces=false}
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
-\lstset{aboveskip=3.3pt,belowskip=3.3pt}
+\lstset{aboveskip=3.2pt,belowskip=3.1pt}
 
 \renewcommand{\algorithmiccomment}[1]{\hfill {\tt //} #1}
 \newcommand{\tick}{\ding{52}}
@@ -84,7 +84,7 @@
 \begin{document}
 
 \title{Defending Against Web Application Attacks: Approaches, Challenges and Implications \vspace{-1mm}}
-
+\vspace{-1mm}
 \author{
 \IEEEauthorblockN{Dimitris Mitropoulos,\IEEEauthorrefmark{1}
 Panos Louridas,\IEEEauthorrefmark{2}
@@ -159,7 +159,7 @@ most dangerous and prevalent web application attacks, however,
 exploit vulnerabilities associated with improper validation or filtering
 of untrusted inputs, resulting in the injection of malicious
 script or domain-specific language code.
-Attacks of this type include Cross-Site Scripting ({\sc xss})~\cite{SG07},
+Attacks of this type include Cross-Site Scripting ({\sc xss})~\cite{SW06},
 and {\sc sql} injection attacks~\cite{RL12b},
 %and Cross-Site Request Forgery
 % ({\sc csrf}) attacks~\cite{LZRL09},
@@ -237,7 +237,7 @@ following dimensions:
 \noindent
 All the above requirements are considered important
 when building mechanisms for the protection of
-applications~\cite{A01,A00,SPWS13,nature2014}.
+applications~\cite{A00,SPWS13,nature2014}.
 Based on this analysis, we identify the advantages
 and disadvantages of the
 various mechanisms and enumerate some of their common
@@ -304,14 +304,14 @@ theory.
 \vspace{-6mm}
 \caption{\label{fig:taxonomy}A taxonomy of dynamic and domain-specific
 language code injection attacks against web applications.}
-\vspace{-5.8mm}
+\vspace{-6.5mm}
 \end{figure}
 
 Code injection attacks can be divided in two categories. The first
 involves binary code and the second higher-level language code. An
 extensive survey on binary code injection attacks was conducted by
 Lhee and Chapin~\cite{LC03}. Advances in memory corruption vulnerability
-exploitation have been studied extensively~\cite{PB04, SPWS13}
+exploitation have been studied extensively~\cite{SPWS13}
 and countermeasures to such attacks
 have already been analyzed~\cite{YJP12}.
 % \cite[Sec. 13.8]{DKZ12}.
@@ -347,7 +347,7 @@ query:
 \begin{lstlisting}
 SELECT password from userdata WHERE id = 'Alice'
 \end{lstlisting}
-
+\vspace{-1mm}
 \noindent
 Attackers that would input the string {\tt anything' OR 'x'='x}
 could view every item in the table.
@@ -358,8 +358,8 @@ better, use prepared {\sc sql} statements instead of statement
 templates. Unfortunately, the increasing number of {\sc sql} injection
 attacks suggests that programmers are not always that careful. Using
 similar techniques, malicious users can mount other exploits based on
-{\sc dsl}s such as {\sc xp}ath~\cite{SW06}, {\sc
-  xml}~\cite{MSM13} and {\sc json}~\cite{SMS13}. The effects can be
+{\sc dsl}s such as {\sc xp}ath~\cite{SW06},
+{\sc xml} and {\sc json}~\cite{SMS13}. The effects can be
 wide-ranging. A malicious user can view sensitive information, destroy
 or modify protected data, or even crash the entire application.
 
@@ -376,12 +376,12 @@ involve code injection).
 Consider a bulletin board system where {\tt img} tags are allowed.
 A malicious user could embed a {\sc csrf} request within an
 {\tt img} tag in the following manner:
-
+\vspace{-0.5mm}
 \lstset{language=HTML}
 \begin{lstlisting}
 <img src='http://www.vulnerable.com/admin.php?edituserwithID=13&addgroup=admin'/>
 \end{lstlisting}
-
+\vspace{-1mm}
 \noindent
 When the page with this injected code is accessed by an administrator,
 the attacker (with {\sc id} 13) will gain administrative privileges
@@ -394,13 +394,13 @@ such as JavaScript and {\sc php}~\cite{SMS13}.
 JavaScript injection attacks make up a large subset of dynamic
 language code injection attacks and are considered a critical issue
 in web application security mainly because they are associated with
-major vulnerabilities such as {\sc xss} attacks~\cite{SG07} and
+major vulnerabilities such as {\sc xss} attacks and
 Cross-Channel Scripting ({\sc xcs}) attacks~\cite{BBB09}.
 Such attacks are enabled when a web application accepts
 and redisplays data of uncertain origin without
 proper validation and filtering. Based on this flaw, an attacker
 can manage to inject a script in the JavaScript engine of a browser
-and alter its execution flow~\cite{ELX07}.
+and alter its execution flow.
 For a typical {\sc xss} example that involves JavaScript injection
 consider a web page that prints the value
 of a query parameter ({\tt query}) from the
@@ -413,26 +413,26 @@ under their control (malicious.com).
 This could be achieved by including the following
 link to the malicious web site (or sending it via phishing
 email) and inducing the user to click on it:
-
+\vspace{-0.5mm}
 \lstset{language=HTML}
 \begin{lstlisting}
 http://example.com/vulnerable.html?query=<iframe src="javascript:document.body.innerHTML=+'<img src=\"http://malicious.com/?c='+encodeURIComponent(document.cookie)+'\">'"></iframe>
 \end{lstlisting}
-
+\vspace{-1mm}
 \noindent
 Note that in many cases {\sc xss} attacks
 involve the injection of both {\sc html} and JavaScript code.
 
 A simple example of a {\sc php} injection attack is an input string
 that is fed into an {\tt eval()} function call, e.g.:
-
+\vspace{-0.5mm}
 \lstset{language=PHP}
 \begin{lstlisting}
 $variable = $_GET['var']; 
 $input = $_GET['value'];
 eval('$variable = ' . $input . ';')
 \end{lstlisting}
-
+\vspace{-0.5mm}
 \noindent
 The user may pass into the {\tt value} parameter code that will
 be executed on the server. Hence, if an attacker provides as
@@ -540,11 +540,28 @@ even if the {\sc http} response that
 triggers the injection seems legitimate.
 Notably,
 a {\sc dom}-based {\sc xss} attack
-can follow a path of either a persistent {\sc xss}
+can follow the path of either a persistent {\sc xss}
 attack or a non-persistent {\sc xss} attack.
 Also,
 it can be performed on-demand and purely client-side
 across frames.}
+
+\hlc[yellow]{A Cross Frame Scripting (\textsc{xfs})
+attack is a recent threat that combines
+a malicious script with
+an {\tt iframe} that loads a legitimate page in
+an effort to steal data from a user.
+Consider an attacker that lures
+a user to navigate to a web page the attacker controls
+via social engineering.
+The attacker's page then loads JavaScript
+and an {\sc html} {\tt iframe} pointing to a legitimate site.
+Once the user enters his or her
+credentials into the legitimate site,
+the malicious script records all keystrokes.
+An {\sc xfs} attack can be captured by our model
+because the steps needed are pretty similar to the steps of
+a non-persistent \textsc{xss} attack.}
 
 {\sc csrf} attacks typically involve just a
 {\sc url} or page that contains a malicious request towards
@@ -567,23 +584,6 @@ a user visits a page ({\sc i-csrf} 6). When the
 content reaches the browser, a malicious request will be generated
 towards the site that is vulnerable to {\sc csrf}.
 
-\hlc[yellow]{A Cross Frame Scripting (\textsc{xfs})
-attack is a recent threat that combines
-a malicious script with
-an {\tt iframe} that loads a legitimate page in
-an effort to steal data from a user.
-Consider an attacker that lures
-a user to navigate to a web page the attacker controls
-via social engineering.
-The attacker's page then loads JavaScript
-and an HTML {\tt iframe} pointing to a legitimate site.
-Once the user enters his or her
-credentials into the legitimate site,
-the malicious script records all keystrokes.
-An {\sc xfs} attack can be also captured by our model
-because the steps are pretty similar to the steps of
-a non-persistent \textsc{xss} attack.}
-
 \section{Analysis Dimensions}
 \label{sec:dimensions}
 
@@ -599,20 +599,23 @@ The detection and prevention of attacks
 in a reliable manner can be analyzed using
 criteria common with other research fields:
 \begin{itemize}
+\vspace{-1mm}
 \item Statistical measurements that show how
 reliable the detection really is.
 \item Research practices that promote replication and validation
 of the findings.
+\vspace{-1mm}
 \end{itemize}
-
 \noindent
 Whether a reliable defense mechanism has value in a practical
 setting rests on a different set of criteria:
 \begin{itemize}
+\vspace{-0.5mm}
 \item What are the overheads imposed by the mechanism?
 \item How easy is it to deploy and use the mechanism?
 \item How robust is it against ways to circumvent it?
 \item At which point throughout the system does it block an attack?
+\vspace{-0.5mm}
 \end{itemize}
 
 The first two criteria correspond to \emph{Accuracy} and
@@ -629,6 +632,7 @@ make a defense mechanism immediately useful. A
 detection mechanism must also be reliable.
 Detection accuracy is gauged with the following
 metrics~\cite{GFDLS06,A00}:
+\vspace{-0.7mm}
 \begin{itemize}
 \item {\bf Sensitivity}: the probability that an attack will be
   caught.
@@ -643,11 +647,12 @@ metrics~\cite{GFDLS06,A00}:
   probability that an event is not an attack given that the detection
   mechanism flags it as normal.
 \end{itemize}
-
+\vspace{-0.7mm}
 \noindent
 We will focus on sensitivity and specificity; we will come back to
 \textsc{ppv} and \textsc{npv} in Section~\ref{sec:lessons-learned}.
 Sensitivity and specifity are defined as follows~\cite{linn2004}:
+\vspace{-0.7mm}
 \begin{itemize}
 \item True Positive (\textsc{tp}): an attack that raises an alarm.
 \item True Negative (\textsc{tn}): an event that is not an attack and that does
@@ -657,7 +662,7 @@ Sensitivity and specifity are defined as follows~\cite{linn2004}:
 \item False Negative (\textsc{fn}): an event that although is an attack, does
   not raise an alarm.
 \end{itemize}
-
+\vspace{-0.7mm}
 \noindent
 With these we can calculate:
 
@@ -733,6 +738,7 @@ it becomes as a practical approach.
 
 \subsection{Ease of Use}
 \label{sec:deployment}
+\vspace{-0.5mm}
 
 The value of a detection mechanism as a practical tool depends on how
 easy it is to deploy it in a production setting. This aspect is
@@ -756,7 +762,9 @@ ease of use. A detection mechanism that is available as a ready-to-install
 package will trump others that only exist in the form
 of source code. 
 
+\vspace{-0.5mm}
 \subsection{Security}
+\vspace{-0.5mm}
 
 Defenders and attackers are often caught in a cat-and-mouse game,
 where countermeasures are bypassed by \hlc[yellow]{savvy} attacks, which are caught
@@ -772,11 +780,12 @@ mechanism today.
 
 \subsection{Point of Detection}
 \label{sec:point}
+\vspace{-0.5mm}
 
 Detection mechanisms vary on the location where they detect an attack.
 There are four different points where an attack can be caught, as seen
 in Figure~\ref{fig:attacks}:
-\vspace{-0.5mm}
+\vspace{-1mm}
 \begin{enumerate}
 \item At the user's browser (Point {\sc ub}).
 \item En route from the server to the user's browser---in most cases
@@ -786,12 +795,12 @@ within a proxy (Point {\sc s}t{\sc b}).
 \item After the malicious code reaches the server's database
   (Point {\sc db}).
 \end{enumerate}
-\vspace{-0.5mm}
+\vspace{-0.8mm}
 
 \begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.53]{defenses.pdf}
+\includegraphics[scale=0.50]{defenses.pdf}
 \end{center}
 \vspace{-5.8mm}
 \caption{\label{fig:defenses}The basic categories of countermeasures
@@ -808,7 +817,7 @@ that present corresponding mechanisms:
 \end{figure}
 
 \begin{table*}[t]
-  \renewcommand{\baselinestretch}{1.12}
+  \renewcommand{\baselinestretch}{1.10}
     \caption{\hlc[yellow]{Summary of mechanisms developed to counter application
     attacks based on code injection. The different results does not necessarily
     % \newline
@@ -909,7 +918,7 @@ that present corresponding mechanisms:
     \end{tabular}}
     \vspace{-0.5mm}
     \begin{tablenotes}
-  \begin{tiny}
+  \begin{scriptsize}
         \item[1] {\sc na} (Not Available) indicates that a requirement is not mentioned in the paper.
   {\sc nq} (Not Quantified) indicates that a requirement is mentioned in the publication
   but is not quantified.
@@ -921,17 +930,17 @@ that present corresponding mechanisms:
   A question mark ({\bf ?}) denotes that no test results are reported.
     \item[3] Whether the overhead is incurred on the server ({\sc s}) or the client ({\sc c}). 
     \item[4] {\it i} stands for injection.
-    \vspace{-1.8mm}
     \item[5] The numbers in this particular case involve requests.
-  \end{tiny}
+  \end{scriptsize}
     \end{tablenotes}
     \end{small}
     \end{threeparttable}
-    \vspace{-6.7mm}
+    \vspace{-7mm}
 \end{table*}
 
 \section{Defenses}
 \label{sec:defs}
+\vspace{-0.5mm}
 
 We categorize and analyze a large set of defenses developed to prevent
 the attacks described in Sections~\ref{sec:attacks} and~\ref{sec:model}.
@@ -951,7 +960,7 @@ web application defenses against injection attacks.
 We can identify three broad categories:
 {\it etiological}, {\it symptomatic}, and {\it hybrid}.
 The etiological category involves mechanisms designed to
-block attacks based on their causes and origins~\cite{L81}. 
+block attacks based on their causes and origins. 
 The symptomatic category incorporates a variety of schemes that
 inspect the behavior of applications and detect attacks based on
 their undesirable symptoms~\cite{D76,A00}.
@@ -974,15 +983,18 @@ in the caption of Figure~\ref{fig:attacks}.
 
 \subsection{Etiological}
 \label{sec:prot}
+\vspace{-0.5mm}
 
 There are three main categories of etiological approaches used to protect web
 applications against injection attacks:
 \emph{Parse-Tree Validation},
 \emph{Policy Enforcement}, and
-\emph{Instruction Set Randomization} ({\sc isr}).
+\emph{Instruction Set Randomization}.
+\vspace{-3.5mm}
 
 \subsubsection{Parse-Tree Validation}
 \label{sec:tree}
+\vspace{-1mm}
 
 The key idea behind parse-tree validation is to compare the tree
 representation of the abstract syntactic structure of the code
@@ -1017,9 +1029,11 @@ for mechanisms that borrow elements from
 this approach and examine the syntax trees
 of scripts to detect JavaScript-driven {\sc xss} attacks,
 as we will see in Section~\ref{sec:hybrid}.
+\vspace{-0.5mm}
 
 \subsubsection{Policy Enforcement}
 \label{sec:policy}
+\vspace{-0.5mm}
 
 This approach is used to prevent {\sc xss} and {\sc csrf} attacks. When
 using a framework that implements policy enforcement, developers must
@@ -1043,6 +1057,7 @@ web site''). The main issue with Noxes is that
 {\sc url}s can be dynamically assembled by scripts,
 which may lead to false alarms.
 
+\vspace{-1mm}
 Some frameworks define policies based on information and
 features provided by the Document Object Model ({\sc dom}) of a web
 page. Specifically, developers must place all legitimate scripts
@@ -1060,8 +1075,8 @@ described by Athanasopoulos et al.~\cite{APKLM10}, who also describe
 another recent variation of JavaScript injection attacks, known as
 return-to-JavaScript attacks, which can be used to bypass the above
 mechanisms.
-\vspace{-0.5mm}
 
+\vspace{-1.5mm}
 A policy enforcement technique developed by Mozilla,
 called {\sc csp} (Content Security
 Policy)\footnote{\scriptsize\url{https://developer.mozilla.org/en-US/docs/Web/Security/CSP}}~\cite{SSM10}
@@ -1094,7 +1109,6 @@ and invoke a script from a non-whitelisted source.
 To do so, their injected code must
 be crafted in a way that the nonce is handled
 by the browser as an attribute of the payload~\cite{jigsaw}.
-\vspace{-0.5mm}
 
 Another policy enforcement approach introduces
 policies directly either in {\sc html} or JavaScript code
@@ -1114,7 +1128,7 @@ In this way, \hlc[yellow]{{\sc xss}} attacks that take advantage
 of functions such as {\tt write} and {\tt eval}, which are
 used to assemble innocuous-looking parts into harmful
 strings,\footnote{\scriptsize The infamous Sammy worm that
-infected MySpace in 2005~\cite{ELX07}
+infected MySpace in 2005
 utilized the {\tt eval} function to assemble a
 malicious script.} would fail.
 
@@ -1164,14 +1178,15 @@ cross-domain policy at the client-side (Point {\sc ub}).
 The policy is based on the concept of a relaxed
 same-origin policy that allows communication between
 sub-domains of the same registered domain.
-
 Most of the above frameworks involve
 several deployment hurdles, as they
 require significant source code modifications by the
 developers on the server-side to introduce and enforce
 the applied policies.
 
+\vspace{-0.3mm}
 \subsubsection{Instruction Set Randomization (ISR)}
+\vspace{-0.8mm}
 
 {\sc isr} is a method that has been applied to counter different kinds
 of application attacks~\cite{K09b}, and was originally applied for the
@@ -1241,7 +1256,9 @@ a proxy within the database
 server, while Noncespaces and x{\sc js}~\cite{APKLM10}
 require modifications on both the server and the client.
 
+\vspace{-0.3mm}
 \subsection{Symptomatic}
+\vspace{-0.8mm}
 
 Symptomatic techniques follow two main approaches. They either track
 untrusted input and ban certain operations on it, or they first learn what
@@ -1250,6 +1267,7 @@ as safe.
 
 \subsubsection{Taint Tracking}
 \label{sec:taint}
+\vspace{-0.3mm}
 
 A taint tracking scheme marks untrusted (``tainted'') data, such as
 a variable set by a field in a web form, and traces its propagation
@@ -1321,6 +1339,7 @@ various technical difficulties, but also because it would raise false alarms.
 
 \subsubsection{Training}
 \label{sec:train}
+\vspace{-0.7mm}
 
 Training techniques are based on the ideas of Denning's original
 intrusion detection framework~\cite{Den87}. In particular, a training
@@ -1380,7 +1399,7 @@ for a forgetful user by executing the following query:
 \begin{lstlisting}
 SELECT password from userdata WHERE id = 'Alice'
 \end{lstlisting}
-
+\vspace{-1mm}
 \noindent
 This same application could allow users to
 login to the site using just their password via a custom login form
@@ -1395,7 +1414,7 @@ the password on the login form would be as follows:
 \begin{lstlisting}
 SELECT password from userdata WHERE id = 'Alice' OR id = 'admin'
 \end{lstlisting}
-
+\vspace{-1mm}
 \noindent
 Even if the application's administrators have chosen to use
 either {\sc didafit}~\cite{LLW02} or
@@ -1436,8 +1455,10 @@ modifications are required for every query that exists
 in the application. Finally, {\sc swap} and {\sc xssds}
 are implemented within a proxy on the server-side.
 
+\vspace{-0.3mm}
 \subsection{Hybrid}
 \label{sec:hybrid}
+\vspace{-0.8mm}
 
 This category includes mechanisms that borrow
 characteristics from both etiological and symptomatic approaches.
@@ -1507,37 +1528,36 @@ through dynamic checks.}
 \hlc[yellow]{{\sc ifc} frameworks do not
 focus explicitly on JavaScript and they
 have a broader scope.
-They can be used to build secure
-distributed applications,
-thus preventing different attacks,
-including {\sc xss} and {\sc dsl}-driven
-code injection.
+They can be used to build secure applications,
+thus preventing different attacks.
+Policies can be provided either as compile-time
+program annotations,
+or as run-time requirements defined by the user.
 Such frameworks include {\sc sif}
 (Servlet Information Flow)}~\cite{CVMA07}\hlc[yellow]{,
 % Ur/Web}~\cite{C10b}\hlc[yellow]{,
 Hails}~\cite{GLSTMMR12}
-\hlc[yellow]{, and Aeolus}~\cite{CPSPBCCSL12}\hlc[yellow]{.
-Policies can be provided either as compile-time
-program annotations,
-or as run-time requirements defined by the user.}
+\hlc[yellow]{, and Aeolus}~\cite{CPSPBCCSL12}.
 
 \vspace{-1mm}
-
 \section{Observations}
 \label{sec:discussion}
+\vspace{-1.25mm}
 
 We group our key observations on the \hlc[yellow]{41} publications that
 we consider in this work along the
 dimensions we identified in Section~\ref{sec:dimensions}.
 
+\vspace{-1mm}
 \subsection{Accuracy}
+\vspace{-0.8mm}
 
 \begin{figure}[t]
 \begin{center}
 \leavevmode
 \includegraphics[scale=0.40]{barchart.pdf}
 \end{center}
-\vspace{-5.7mm}
+\vspace{-6mm}
 \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
 used for testing of web attack defenses.
 Specifically, the publications that used a particular source are as follows:
@@ -1546,7 +1566,7 @@ Bugtraq~\cite{PB05,KJKV09,JEP08},
 {\sc xss}ed.com~\cite{NSS06,APKLM10},
 ha.ckers.org~\cite{TNH07,PSC09,LV09},
 Microsoft~\cite{RDWDE07}.}
-\vspace{-6.3mm}
+\vspace{-6mm}
 \end{figure}
 
 Table~\ref{tab:comp} indicates that the authors of 3 out of \hlc[yellow]{41 (7.3\%)}
@@ -1624,8 +1644,10 @@ the authors managed to break existing application suites
 and then test the accuracy of their tools on them.
 
 \subsection{Availability}
+\vspace{-0.8mm}
 
 \begin{table}
+\renewcommand{\baselinestretch}{1.10}
 \caption{Availability of the studied defenses.}
 \vspace{-4mm}
     \label{tab:avail}
@@ -1721,7 +1743,7 @@ and then test the accuracy of their tools on them.
     \end{tabular}}
     \end{small}
     \end{threeparttable}
-    \vspace{-6.5mm}
+    \vspace{-7.5mm}
 \end{table}
 
 Table~\ref{tab:avail} presents our findings regarding the availability
@@ -1737,7 +1759,9 @@ Regarding the availability of test materials, we see that
 only \hlc[yellow]{4} out of \hlc[yellow]{41 (9.7\%)} publications have currently their testbeds
 available.
 
+\vspace{-0.3mm}
 \subsection{Performance Overhead}
+\vspace{-0.5mm}
 
 Table~\ref{tab:comp} shows the performance overhead of each mechanism.
 In addition, it indicates if the overhead is incurred at the
@@ -1756,8 +1780,10 @@ or not quantified ({\sc nq}).
 \hlc[yellow]{, the authors indicate that with
 their mechanisms, the execution time is doubled.}
 
+\vspace{-0.3mm}
 \subsection{Ease of Use}
 \label{sec:deploy2}
+\vspace{-0.4mm}
 
 Mechanisms in different categories face different deployment issues.
 Consider the majority of mechanisms in the policy enforcement
@@ -1800,7 +1826,7 @@ Aeolus}~\cite{CPSPBCCSL12}
 \hlc[yellow]{provide a simple security model
 that tries to match the way programmers understand
 authorization and access control
-with the tracking of the information flow.}
+with the tracking of information flow.}
 
 Finally, even though many of the mechanisms that involve
 training are easy to deploy, they have a distinct disadvantage.
@@ -1811,7 +1837,9 @@ However, with the increased adoption of automated testing
 and continuous integration frameworks, this phase could be
 easily repeated.
 
+\vspace{-0.3mm}
 \subsection{Security}
+\vspace{-0.5mm}
 
 In our discussion of the various mechanisms in Section~\ref{sec:defs}, we
 observed that some of them can be bypassed by attackers that know
@@ -1830,7 +1858,9 @@ range of different mechanisms: they can be used to bypass mechanisms
 in the hybrid category, as well as the policy enforcement and training
 subcategories.
 
+\vspace{-0.3mm}
 \subsection{Point of Detection}
+\vspace{-0.5mm}
 
 Given the fact that the final steps of
 {\sc dsl} injection and {\sc csrf} attacks take place
@@ -1854,10 +1884,12 @@ perform detection on the client-side: in particular,
 frameworks (\hlc[yellow]{60\%}) detect {\sc xss} attacks at the
 client-side. Note that the majority of the mechanisms that detect
 such attacks on the server can also detect {\sc dsl} code
-injection attacks (\hlc[yellow]{9 out of 13}).
+injection (\hlc[yellow]{9 out of 13}).
 
+\vspace{-0.3mm}
 \section{Recommendations and Lessons Learned}
 \label{sec:lessons-learned}
+\vspace{-0.3mm}
 
 Our observations lead to some lessons and recommendations that
 developers of new mechanisms may find helpful. In particular,
@@ -1866,7 +1898,9 @@ call for improvements in the accuracy of experimental testing
 and code availability, while
 aiming to reduce performance overheads and deployment hurdles.
 
+\vspace{-0.3mm}
 \subsection{Improving Testing Accuracy}
+\vspace{-0.3mm}
 
 One of our key findings indicates that many proposed defenses are
 tested in a poor manner. In many cases, researchers tend to not provide
@@ -1921,7 +1955,7 @@ production environment. In fact, if \textsc{pr} is the probability of
 a particular class of attacks in the real world,
 i.e., its prevalence, then we
 have~\cite{linn2004}:
-
+\vspace{-1mm}
 \begin{equation}
 \textsc{ppv} = \frac{\textsc{se}\times \textsc{pr}}{
 \textsc{se}\times \textsc{pr} + (1 - \textsc{sp})\times (1 -
@@ -1935,6 +1969,7 @@ have~\cite{linn2004}:
 \textsc{pr})}
 \label{eq:npv-se-sp}
 \end{equation}
+\vspace{-4mm}
 
 \noindent
 Prevalence is the prior probability that an event might be an attack,
@@ -1985,7 +2020,9 @@ attacks and detects them in an accurate manner, as seen in
 Table~\ref{tab:comp}. It is also extensively tested with real-world
 attacks.
 
+\vspace{-0.3mm}
 \subsection{Code Availability}
+\vspace{-0.7mm}
 
 Apart from testing practices, another area that merits improvement is
 the availability of prototypes and testbeds. We are not aware of
@@ -2006,8 +2043,10 @@ though, is to ask of researchers working on defenses not to
 buck the trend and to take steps to increase the availability of their
 research.
 
+\vspace{-0.3mm}
 \subsection{\hlc[yellow]{Performance Overhead,
 Deployment and Security Remarks}}
+\vspace{-0.3mm}
 
 Performance overhead comes up as a non-trivial issue. We observe
 that there are some mechanisms that introduce an overhead
@@ -2051,23 +2090,25 @@ many taint tracking solutions,
 and mimicry attacks can be launched
 to bypass training and policy enforcement defenses.
 {\sc ifc} mechanisms though,
-could deal with such attacks because they
-combine characteristics from different categories.
+can deal with such attacks.
 This indicates that when solutions
 borrow elements from other categories
+(recall that {\sc ifc} mechanisms
+belong to the hybrid category)
 could be more effective.
-Taking one step further,
+Also,
 we could say that different mechanisms could
 be used together to defend different attacks.
 For instance,
-developers could use {\sc csp}}~\cite{SSM10}
+developers could employ both {\sc csp}}~\cite{SSM10}
 \hlc[yellow]{and \textsc{sql}rand}~\cite{BK04}
-\hlc[yellow]{ together
-to deal with {\sc xss} and {\sc sql} injection
-respectively.}
+\hlc[yellow]{to deal with {\sc xss}
+and {\sc sql} injection respectively.}
 
+\vspace{-0.3mm}
 \section{Conclusion}
 \label{sec:conclusion}
+\vspace{-0.3mm}
 
 Despite many approaches that have been developed,
 attacks based on code injection against web applications
@@ -2128,10 +2169,14 @@ emerged from our research can be a reference point for researchers who
 aim to develop new, practical countermeasures against web application
 attacks.
 
+\vspace{-3mm}
+
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
+\vspace{-0.5mm}
 
 \section*{Author Biographies}
+\vspace{-0.5mm}
 \noindent
 {\bf Dimitris Mitropoulos} is a Postdoctoral Researcher
 in the Computer Science Department
@@ -2167,8 +2212,7 @@ of Computer Science at Columbia University,
 and the director of the Network Security Lab.
 He is currently serving as  Program Manager with the
 Information Innovation Office ({\sc i}2O) at the Defense Advanced
-Research Projects Agency ({\sc darpa}),
-part of the Department of Defense.
+Research Projects Agency ({\sc darpa}).
 His research interests are in systems
 and network security,
 and cryptography.
