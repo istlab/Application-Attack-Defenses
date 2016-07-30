@@ -455,7 +455,7 @@ in the following Section also captures such attacks.
 \begin{figure*}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.48]{attacks-steps-CSRF.pdf}
+\includegraphics[scale=0.46]{attacks-steps-CSRF.pdf}
 \end{center}
 \vspace{-5.5mm}
 \caption{\label{fig:attacks}Attack model for dynamic and domain specific
@@ -1461,7 +1461,6 @@ shows a specific image to a user. In a vulnerable web site that allows
 users to post data and contains this banner rotator, a malicious user
 could create and store a script that has the same code structure, with
 the same JavaScript keywords contained in the rotator script.
-%% PL You mean like the rotator?
 In this script, attackers could also include references to tiny
 images hosted on a web server that is maintained by them in order to
 retrieve the {\sc ip} addresses of the users that visit the vulnerable
@@ -2007,7 +2006,8 @@ though, is to ask of researchers working on defenses not to
 buck the trend and to take steps to increase the availability of their
 research.
 
-\subsection{Performance Overhead and Deployment Remarks}
+\subsection{\hlc[yellow]{Performance Overhead,
+Deployment and Security Remarks}}
 
 Performance overhead comes up as a non-trivial issue. We observe
 that there are some mechanisms that introduce an overhead
@@ -2038,6 +2038,33 @@ in the server's response to the client. In general, when developing a
 new countermeasure, researchers should consider where it
 will detect attacks, observe the corresponding deployment
 challenges, and try to mitigate them.
+
+\hlc[yellow]{From a security perspective,
+we saw that there are cases where
+mechanisms coming from the same category
+can be bypassed by similar attack patterns.
+This denotes that there are issues
+found in the design of each approach.
+Recall for instance,
+that implicit flows can be used against
+many taint tracking solutions,
+and mimicry attacks can be launched
+to bypass training and policy enforcement defenses.
+{\sc ifc} mechanisms though,
+could deal with such attacks because they
+combine characteristics from different categories.
+This indicates that when solutions
+borrow elements from other categories
+could be more effective.
+Taking one step further,
+we could say that different mechanisms could
+be used together to defend different attacks.
+For instance,
+developers could use {\sc csp}}~\cite{SSM10}
+\hlc[yellow]{and \textsc{sql}rand}~\cite{BK04}
+\hlc[yellow]{ together
+to deal with {\sc xss} and {\sc sql} injection
+respectively.}
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -2108,12 +2135,9 @@ attacks.
 \noindent
 {\bf Dimitris Mitropoulos} is a Postdoctoral Researcher
 in the Computer Science Department
-at Columbia University in the City of New York.
+at Columbia University.
 He holds a PhD ('14) in Cyber Security from the
 Athens University of Economics and Business.
-He is an {\sc ieee} member, a member of SysSec,
-and an official writer for the
-{\sc xrds}: Crossroads blog of {\sc acm}.
 His research interests include application security,
 systems security and software engineering.
 
@@ -2128,19 +2152,19 @@ systems, such as e-voting.
 \noindent
 {\bf Michalis Polychronakis} is an Assistant Professor
 at Stony Brook University.
-He received the B.Sc. ('03), M.Sc. ('05), and Ph.D. ('09)
-degrees in Computer Science from the University of Crete, Greece.
+He received a Ph.D. ('09)
+degree in Computer Science from the University of Crete, Greece.
 % while working as a research assistant in the Distributed
 % Computing Systems Lab at {\sc forth-ics}.
 Before joining Stony Brook, he was an Associate Research
-Scientist at Columbia University in the City of New York.
+Scientist at Columbia University.
 His research interests include
 network and system security and network monitoring and measurement.
 
 \noindent
 {\bf Angelos D. Keromytis} is an Associate Professor
-of Computer Science at Columbia University in the City
-of New York, and the director of the Network Security Lab.
+of Computer Science at Columbia University,
+and the director of the Network Security Lab.
 He is currently serving as  Program Manager with the
 Information Innovation Office ({\sc i}2O) at the Defense Advanced
 Research Projects Agency ({\sc darpa}),
@@ -2148,8 +2172,6 @@ part of the Department of Defense.
 His research interests are in systems
 and network security,
 and cryptography.
-He is an {\sc acm} Distinguished Scientist since 2012,
-and a founder of Allure Security Technology Inc.
 
 \end{document} 
 
