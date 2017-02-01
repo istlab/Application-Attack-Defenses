@@ -7,7 +7,7 @@
 	<key>ApplicationVersion</key>
 	<array>
 		<string>com.omnigroup.OmniGraffle6</string>
-		<string>169.17.0.263360</string>
+		<string>169.20.0.267128</string>
 	</array>
 	<key>AutoAdjust</key>
 	<true/>
@@ -602,7 +602,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2016-07-30 01:00:16 +0000</string>
+	<string>2016-11-07 19:58:07 +0000</string>
 	<key>Modifier</key>
 	<string>dimitro</string>
 	<key>NotesVisible</key>
@@ -695,7 +695,7 @@
 		<key>TopSlabHeight</key>
 		<real>250</real>
 		<key>VisibleRegion</key>
-		<string>{{92, 1.5}, {566, 600}}</string>
+		<string>{{77, 0}, {581, 615}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

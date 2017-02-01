@@ -44,8 +44,6 @@
 \usepackage{soul,color}
 \usepackage[dvipsnames]{xcolor}
 
-\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
-
 \titlespacing*{\section}
 {0pt}{1ex}{0.55ex}
 \titlespacing*{\subsection}
@@ -56,9 +54,9 @@
 \setlength{\footnotesep}{0.28cm}
 \setlength{\skip\footins}{0.1cm}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Confidential}
-\SetWatermarkScale{0.4}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Confidential}
+% \SetWatermarkScale{0.4}
 
 \usepackage[numbers,sort]{natbib}
 
@@ -126,7 +124,7 @@ In this paper, we provide an analysis on
 various defense mechanisms against web code injection attacks.
 We propose a model that highlights the key weaknesses enabling these attacks,
 and that provides a common perspective for studying the available defenses.
-We then categorize and analyze a set of \hlc[yellow]{41} previously proposed defenses 
+We then categorize and analyze a set of 41 previously proposed defenses 
 based on their accuracy, performance,
 deployment, security, and availability characteristics.
 Detection accuracy is of particular importance,
@@ -211,8 +209,8 @@ vulnerabilities using static program analysis~\cite{SZ12}
 phases). Similarly, dynamic analysis techniques that examine
 applications to identify vulnerabilities that may lead to the attacks
 that we described earlier are out of scope as well. Note also, that we
-\hlc[yellow]{did not} consider mechanisms that
-\hlc[yellow]{have not} been presented in research papers.
+did not consider mechanisms that
+have not been presented in research papers.
 
 Furthermore, we {\it analyze} each mechanism across the
 following dimensions:
@@ -440,15 +438,15 @@ input the following string: {\tt 10 ; system("touch foo");}
 then a file will be created on the server---it is easy
 to imagine more detrimental scenarios.
 
-\hlc[yellow]{A recent attack called {\sc php} Object Injection
-({\sc poi})}~\cite{DKH14} \hlc[yellow]{does not directly involve
+A recent attack called {\sc php} Object Injection
+({\sc poi})~\cite{DKH14} does not directly involve
 the injection of code, but still achieves arbitrary code execution
 in the context of a {\sc php} application through the
 injection of specially crafted objects
 (e.g., as part of cookies).
 When deserialized
 by the application, these objects result in
-arbitrary code execution.}
+arbitrary code execution.
 Note that the exploitation model we propose
 in the following Section also captures such attacks.
 
@@ -513,12 +511,12 @@ attack, the injected code becomes part of a query that
 eventually reaches the database where it is executed.
 
 Cross-site scripting
-attacks fall into \hlc[yellow]{three} categories,
+attacks fall into three categories,
 {\it non-persistent}
 (also known as \emph{reflected}) {\sc xss},
 {\it persistent} (also known as \emph{stored}) {\sc xss}
-\hlc[yellow]{and \textit{Document Object Model} ({\sc dom})
-\textit{-based} \textsc{xss}.}
+and \textit{Document Object Model} ({\sc dom})
+\textit{-based} \textsc{xss}.
 Non-persistent {\sc xss} attacks take place when the
 data provided by a user is processed on-the-fly
 by server-side application logic and ends up without proper sanitization
@@ -532,7 +530,7 @@ malicious code is permanently stored on the server ({\sc p-xss} 5).
 The injected code residing at server-side then re-enters the
 application's execution flow and becomes part of the content that is
 eventually sent to the user as part of a future response.
-\hlc[yellow]{{\sc dom}-based {\sc xss} attacks involve
+{\sc dom}-based {\sc xss} attacks involve
 the modification of the {\sc dom} of a webpage.
 The {\sc dom} treats an {\sc html} document
 as a tree structure where each node is an
@@ -558,9 +556,9 @@ Such an attack can be performed
 purely client-side across {\sc html} frames.
 Hence,
 server-side defenses might not be effective
-in this case.}
+in this case.
 
-\hlc[yellow]{A Cross Frame Scripting (\textsc{xfs})
+A Cross Frame Scripting (\textsc{xfs})
 attack is a recent threat that combines
 a malicious script with
 an {\tt iframe} that loads a legitimate page in
@@ -571,7 +569,7 @@ The attacker's page then loads JavaScript
 and an {\sc html} {\tt iframe} pointing to a legitimate site.
 Once the user enters his or her
 credentials into the legitimate site,
-the malicious script records all keystrokes.}
+the malicious script records all keystrokes.
 
 {\sc csrf} attacks typically involve just a
 {\sc url} or page that contains a malicious request towards
@@ -777,8 +775,8 @@ of source code.
 \vspace{-0.5mm}
 
 Defenders and attackers are often caught in a cat-and-mouse game,
-where countermeasures are bypassed by \hlc[yellow]{savvy} attacks, which are caught
-by more sophisticated countermeasures, yet again bypassed by \hlc[yellow]{savvier}
+where countermeasures are bypassed by savvy attacks, which are caught
+by more sophisticated countermeasures, yet again bypassed by savvier
 attacks, and so on. We use security to refer to the ability of a
 detection mechanism to resist circumvention. 
 
@@ -828,15 +826,15 @@ that present corresponding mechanisms:
 
 \begin{table*}[t]
   \renewcommand{\baselinestretch}{1.10}
-    \caption{\hlc[yellow]{Summary of mechanisms developed to counter application
+    \caption{Summary of mechanisms developed to counter application
     attacks based on code injection. The different results does not necessarily
     % \newline
     % \hspace{\linewidth}
     indicate that one mechanism is more effective than the other.
     This is because most of them were evaluated under different assumptions
-    and settings.}}
+    and settings.}
     \label{tab:comp}
-    \vspace{-5.2mm}
+    \vspace{-4.8mm}
 \centering
     \begin{threeparttable}
     \begin{small}
@@ -910,20 +908,20 @@ that present corresponding mechanisms:
   &   {\sc xss-guard}~\cite{BV08} & 132 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
   &   Blueprint~\cite{LV09} & 152 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
   &   Diglossia~\cite{SMS13} & 13 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
-  &   \hlc[yellow]{{\sc jsf}low}~\cite{HBBS14} & \hlc[yellow]{62} & \hlc[yellow]{({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r}
-  & \hlc[yellow]{2$\times$ ({\sc c})} & \hlc[yellow]{{\sc xss}} \\
-  &   \hlc[yellow]{{\sc cowl}}~\cite{SYMRHKM14} & \hlc[yellow]{27} & \hlc[yellow]{({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r}
-  & \hlc[yellow]{16\% ({\sc c})} & \hlc[yellow]{{\sc xss}} \\
-  &   \hlc[yellow]{Bauer et al.}~\cite{BCJPST15} & \hlc[yellow]{5} & \hlc[yellow]{({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}}
-  & \hlc[yellow]{average 55\% ({\sc c})} & \hlc[yellow]{{\sc xss}} \\
-  &   \hlc[yellow]{{\sc sif}}~\cite{CVMA07} & \hlc[yellow]{146} & \hlc[yellow]{({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}}
-  & \hlc[yellow]{26\% ({\sc s})} & \hlc[yellow]{{\sc sql}i, {\sc xss}} \\
+  &   {\sc jsf}low~\cite{HBBS14} & 62 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
+  &   2$\times$ ({\sc c}) & {\sc xss} \\
+  &   {\sc cowl}~\cite{SYMRHKM14} & 27 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
+  &   16\% ({\sc c}) & {\sc xss} \\
+  &   Bauer et al.~\cite{BCJPST15} & 5 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
+  &   average 55\% ({\sc c}) & {\sc xss} \\
+  &   {\sc sif}~\cite{CVMA07} & 146 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
+  &   26\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
   % &   \hlc[yellow]{Ur/Web}~\cite{C10b} & \hlc[yellow]{59} & \hlc[yellow]{({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s}
   % & \hlc[yellow]{average 55\% ({\sc s})} & \hlc[yellow]{{\sc sql}i} \\
-  &   \hlc[yellow]{Hails}~\cite{GLSTMMR12} & \hlc[yellow]{78} & \hlc[yellow]{({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r}
-  & \hlc[yellow]{28\% ({\sc s},{\sc c})} & \hlc[yellow]{{\sc sql}i, {\sc xss}} \\
-  &   \hlc[yellow]{Aeolus}~\cite{CPSPBCCSL12} & \hlc[yellow]{52} & \hlc[yellow]{({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}}
-  & \hlc[yellow]{323.5ms per request ({\sc s})} & \hlc[yellow]{{\sc sql}i, {\sc xss}} \\
+  &   Hails~\cite{GLSTMMR12} & 78 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
+  &   28\% ({\sc s},{\sc c}) & {\sc sql}i, {\sc xss} \\
+  &   Aeolus~\cite{CPSPBCCSL12} & 52 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
+  &   323.5ms per request ({\sc s}) & {\sc sql}i, {\sc xss} \\
   \thickhline
     \end{tabular}}
     \vspace{-0.5mm}
@@ -1095,7 +1093,7 @@ is currently supported by many browsers to prevent
 attacks, web site administrators
 can specify which domains the browser should treat
 as valid sources of script and which not.
-\hlc[yellow]{These policies are communicated via the {\sc http} headers.}
+These policies are communicated via the {\sc http} headers.
 Then, the browser
 (Point {\sc ub}) will only execute scripts that exist in
 source files from white-listed domains.
@@ -1134,7 +1132,7 @@ extend JavaScript with new primitive functions that
 provide safe methods to protect potentially vulnerable
 JavaScript functions. In both cases, policy enforcement takes
 place at client-side, in the JavaScript engine of the browser (Point {\sc ub}).
-In this way, \hlc[yellow]{{\sc xss}} attacks that take advantage
+In this way, {\sc xss} attacks that take advantage
 of functions such as {\tt write} and {\tt eval}, which are
 used to assemble innocuous-looking parts into harmful
 strings,\footnote{\scriptsize The infamous Sammy worm that
@@ -1344,7 +1342,7 @@ An issue that involves all taint tracking schemes involves
 the difficulty of maintaining accurate taints~\cite{GMPS11}
 (e.g., implicit flows~\cite{ME07}).
 In such cases, certain, tainted inputs can escape the tracking mechanism.
-Keeping track of such input \hlc[yellow]{may be} impractical not only because of the
+Keeping track of such input may be impractical not only because of the
 various technical difficulties, but also because it would raise false alarms.
 
 \subsubsection{Training}
@@ -1473,7 +1471,7 @@ are implemented within a proxy on the server-side.
 
 This category includes mechanisms that borrow
 characteristics from both etiological and symptomatic approaches.
-\hlc[yellow]{Five} of them focus on the detection of {\sc xss}
+Five of them focus on the detection of {\sc xss}
 attacks and one focuses on {\sc dsl} code injection attacks.
 
 {\sc xss-guard}~\cite{BV08} is a training scheme that employs
@@ -1524,19 +1522,19 @@ the application is probably under attack. Note that Diglossia
 can be bypassed in the same way as other taint tracking
 approaches~\cite{NBR14}.
 
-\hlc[yellow]{Information Flow Control ({\sc ifc})
+Information Flow Control ({\sc ifc})
 mechanisms combine positive taint tracking and
 policy enforcement to prevent {\sc xss} attacks on the
 client-side (Point {\sc ub}).
 Representative implementations such as
-{\sc jsf}low}~\cite{HBBS14}\hlc[yellow]{, {\sc cowl}}~\cite{SYMRHKM14}
-\hlc[yellow]{and the framework by Bauer et al.}~\cite{BCJPST15}
-\hlc[yellow]{allow developers to express information flow
-policies extending the type system of JavaScript.
+{\sc jsf}low~\cite{HBBS14}, {\sc cowl}~\cite{SYMRHKM14}
+and the framework by Bauer et al.~\cite{BCJPST15}
+allow developers to express information flow
+policies by extending the type system of JavaScript.
 Then,
 the policies are enforced by the JavaScript interpreter
-through dynamic checks.}
-\hlc[yellow]{{\sc ifc} frameworks do not
+through dynamic checks.
+{\sc ifc} frameworks do not
 focus explicitly on JavaScript and they
 have a broader scope.
 They can be used to build secure applications,
@@ -1545,17 +1543,17 @@ Policies can be provided either as compile-time
 program annotations,
 or as run-time requirements defined by the user.
 Such frameworks include {\sc sif}
-(Servlet Information Flow)}~\cite{CVMA07}\hlc[yellow]{,
+(Servlet Information Flow)~\cite{CVMA07},
 % Ur/Web}~\cite{C10b}\hlc[yellow]{,
-Hails}~\cite{GLSTMMR12}
-\hlc[yellow]{, and Aeolus}~\cite{CPSPBCCSL12}.
+Hails~\cite{GLSTMMR12},
+and Aeolus~\cite{CPSPBCCSL12}.
 
 \vspace{-1mm}
 \section{Observations}
 \label{sec:discussion}
 \vspace{-1.25mm}
 
-We group our key observations on the \hlc[yellow]{41} publications that
+We group our key observations on the 41 publications that
 we consider in this work along the
 dimensions we identified in Section~\ref{sec:dimensions}.
 
@@ -1580,13 +1578,13 @@ Microsoft~\cite{RDWDE07}.}
 \vspace{-6mm}
 \end{figure}
 
-Table~\ref{tab:comp} indicates that the authors of 3 out of \hlc[yellow]{41 (7.3\%)}
+Table~\ref{tab:comp} indicates that the authors of 3 out of 41 (7.3\%)
 publications provided a complete tuple of {\sc tp}, {\sc tn}, 
 {\sc fp}, and {\sc fn}. On the other hand, we
-see that \hlc[yellow]{7} out of \hlc[yellow]{41 (17\%)} were not tested at all.
+see that 7 out of 41 (17\%) were not tested at all.
 In these cases, all four elements of the tuple
 are not available ({\sc na}). An interesting observation is
-that in 10 out of the \hlc[yellow]{41 (24.3\%)}
+that in 10 out of the 41 (24.3\%)
 publications, the evaluation focused on only on attack detection,
 and there was no test focusing on false positives.
 The corresponding tuples contain {\sc tp} and {\sc fn}
@@ -1610,7 +1608,7 @@ However, sample sizes in the single
 digits are not enough to produce good intervals.
 
 Regarding the subjects of tests,
-we see that \hlc[yellow]{30} out of \hlc[yellow]{41 (73.1\%)}
+we see that 30 out of 41 (73.1\%)
 mechanisms were tested with real-world
 applications known to be vulnerable.
 The vulnerabilities associated with these applications
@@ -1733,14 +1731,14 @@ and then test the accuracy of their tools on them.
   &   {\sc xss-guard}~\cite{BV08} & {\sc na} & {\sc na} & {\sc na} \\
   &   Blueprint~\cite{LV09} & {\bf ?} & {\bf ?} & {\bf ?} \\
   &   Diglossia~\cite{SMS13} & {\sc na} & {\sc na} & {\sc na} \\
-  &   \hlc[yellow]{{\sc jsf}low}~\cite{HBBS14} & \hlc[yellow]{\tick} & \hlc[yellow]{\tick} & \hlc[yellow]{{\sc na}} \\
-  &   \hlc[yellow]{{\sc cowl}}~\cite{SYMRHKM14} &  \hlc[yellow]{{\sc na}} & \hlc[yellow]{{\sc na}} & \hlc[yellow]{{\sc na}} \\
-  &   \hlc[yellow]{Bauer et al.}~\cite{BCJPST15} &  \hlc[yellow]{{\sc na}} & \hlc[yellow]{{\sc na}} & \hlc[yellow]{{\sc na}} \\
-  &   \hlc[yellow]{{\sc sif}}~\cite{CVMA07} & \hlc[yellow]{{\bf AO}} & \hlc[yellow]{{\sc na}} & \hlc[yellow]{{\sc na}} \\
+  &   {\sc jsf}low~\cite{HBBS14} & \tick & \tick & {\sc na} \\
+  &   {\sc cowl}~\cite{SYMRHKM14} & {\sc na} & {\sc na} & {\sc na} \\
+  &   Bauer et al.~\cite{BCJPST15} & {\sc na} & {\sc na} & {\sc na} \\
+  &   {\sc sif}~\cite{CVMA07} & {\bf AO} & {\sc na} & {\sc na} \\
   % &   \hlc[yellow]{Ur/Web}~\cite{C10b} & \hlc[yellow]{59} & \hlc[yellow]{({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s}
   % & \hlc[yellow]{average 55\% ({\sc s})} & \hlc[yellow]{{\sc sql}i} \\
-  &   \hlc[yellow]{Hails}~\cite{GLSTMMR12} &  \hlc[yellow]{{\bf AO}} & \hlc[yellow]{{\sc na}} & \hlc[yellow]{{\bf AO}} \\
-  &   \hlc[yellow]{Aeolus}~\cite{CPSPBCCSL12} &  \hlc[yellow]{\tick} & \hlc[yellow]{\tick} & \hlc[yellow]{{\sc na}} \\
+  &   Hails~\cite{GLSTMMR12} &  {\bf AO} & {\sc na} & {\bf AO} \\
+  &   Aeolus~\cite{CPSPBCCSL12} &  \tick & \tick & {\sc na} \\
   \thickhline
 
     \multicolumn{5}{p{12.4cm}}{%
@@ -1761,15 +1759,15 @@ and then test the accuracy of their tools on them.
 Table~\ref{tab:avail} presents our findings regarding the availability
 of each mechanism in terms of source code and corresponding
 executables. We also examined the availability of the testbeds
-mentioned in each paper. We see that only \hlc[yellow]{8} out of \hlc[yellow]{41 (19.5\%)} of the
+mentioned in each paper. We see that only 8 out of 41 (19.5\%) of the
 publications provided a link to their mechanism and, 2 from these 6
 web pages are currently not available.
-In \hlc[yellow]{7} cases the authors made either
+In 7 cases the authors made either
 the source code or their executables available after their paper got
 published. In one case ({\sc csp}~\cite{SSM10}), the source was available before the
 publication through the Mozilla community.
 Regarding the availability of test materials, we see that
-only \hlc[yellow]{4} out of \hlc[yellow]{41 (9.7\%)} publications have currently their testbeds
+only 4 out of 41 (9.7\%) publications have currently their testbeds
 available.
 
 \vspace{-0.3mm}
@@ -1779,20 +1777,20 @@ available.
 Table~\ref{tab:comp} shows the performance overhead of each mechanism.
 In addition, it indicates if the overhead is incurred at the
 server ({\sc s}) or at the client-side ({\sc c}). In almost half of
-the approaches, \hlc[yellow]{20} out of \hlc[yellow]{41 (48.7\%)}, the overhead is provided as a
-percentage, while in other cases, \hlc[yellow]{8} our of \hlc[yellow]{41 (19.5\%)}, the authors
+the approaches, 20 out of 41 (48.7\%), the overhead is provided as a
+percentage, while in other cases, 8 our of 41 (19.5\%), the authors
 provide the latency (in ms) that their mechanisms add to the
 normal execution time of the protected application.
 Note that in some
 cases, the times of normal executions are not provided
 so it is not possible to convert absolute
-time measurements to percentage overheads. In 10 cases (\hlc[yellow]{24.3\%}), the
+time measurements to percentage overheads. In 10 cases (24.3\%), the
 overhead was either not available ({\sc na})
 or not quantified ({\sc nq}).
-\hlc[yellow]{For \textsc{php} Aspis}~\cite{PMP11}
-\hlc[yellow]{and {\sc jsf}low}~\cite{HBBS14}
-\hlc[yellow]{the authors indicate that with
-their mechanisms the execution time is doubled.}
+For \textsc{php} Aspis~\cite{PMP11}
+and {\sc jsf}low~\cite{HBBS14}
+the authors indicate that with
+their mechanisms the execution time is doubled.
 
 \vspace{-0.3mm}
 \subsection{Ease of Use}
@@ -1825,7 +1823,6 @@ code fragment that involves the execution of a query.
 In the latter case they should also change
 all the code fragments that involve user input handling.
 
-\hlc[yellow]{
 By design,
 {\sc ifc} frameworks provide
 limited support for securing legacy applications
@@ -1836,11 +1833,11 @@ However,
 there are attempts to overcome such issues.
 For instance,
 the authors of
-Aeolus}~\cite{CPSPBCCSL12}
-\hlc[yellow]{provide a simple security model
+Aeolus~\cite{CPSPBCCSL12}
+provide a simple security model
 that tries to match the way programmers understand
 authorization and access control
-with the tracking of information flow.}
+with the tracking of information flow.
 
 Finally, even though many of the mechanisms that involve
 training are easy to deploy, they have a distinct disadvantage.
@@ -1881,9 +1878,9 @@ Given the fact that the final steps of
 at the server-side, all mechanisms that detect
 such attacks are placed at some point within the server-side infrastructure.
 From the mechanisms that detect {\sc dsl} code injection
-attacks, 3 out of \hlc[yellow]{16 (18.7\%)} do so at the level
+attacks, 3 out of 16 (18.7\%) do so at the level
 of the {\sc rdbms} (Point {\sc db}).
-The other \hlc[yellow]{13} are based on interposing on {\sc api} calls related to output
+The other 13 are based on interposing on {\sc api} calls related to output
 vectors (Point {\sc dbal}).
 
 For frameworks that deal with {\sc xss} attacks, we
@@ -1894,11 +1891,11 @@ browser. In the second case, a modified browser or a library that is
 securely downloaded from the server checks the responses for potential
 attacks. We find that the tendency so far is to create frameworks that
 perform detection on the client-side: in particular,
-\hlc[yellow]{18} out of \hlc[yellow]{30}
-frameworks (\hlc[yellow]{60\%}) detect {\sc xss} attacks at the
+18 out of 30
+frameworks (60\%) detect {\sc xss} attacks at the
 client-side. Note that the majority of the mechanisms that detect
 such attacks on the server can also detect {\sc dsl} code
-injection (\hlc[yellow]{9 out of 13}).
+injection (9 out of 13).
 
 \vspace{-0.3mm}
 \section{Recommendations and Lessons Learned}
@@ -1923,7 +1920,7 @@ results on false positives or false negatives for their mechanisms
 Mere discussion on the existence of such results without quantifying
 them also blurs the picture.
 
-\hlc[yellow]{A reasonable argument would be that many defenses
+A reasonable argument would be that many defenses
 (e.g., many mechanisms coming from the etiological category,
 or the {\sc ifc} frameworks), do not need to be
 validated purely through testing, since they provide systematic
@@ -1933,7 +1930,7 @@ however, their implementation should be flawless
 and precisely follow its specification, which may not
 be the case in practice. Moreover, even mechanisms that detect attacks
 based on their root cause, instead of their observed behavior, may still be
-circumvented by evasive attacks.}
+circumvented by evasive attacks.
 
 When we introduced specificity and sensitivity in
 Section~\ref{ssec:diagnostic-performance}, we deferred discussion of
@@ -2058,8 +2055,8 @@ buck the trend and to take steps to increase the availability of their
 research.
 
 \vspace{-0.3mm}
-\subsection{\hlc[yellow]{Performance Overhead,
-Deployment and Security Remarks}}
+\subsection{Performance Overhead,
+Deployment and Security Remarks}
 \vspace{-0.3mm}
 
 Performance overhead comes up as a non-trivial issue. We observe
@@ -2092,7 +2089,7 @@ new countermeasure, researchers should consider where it
 will detect attacks, observe the corresponding deployment
 challenges, and try to mitigate them.
 
-\hlc[yellow]{From a security perspective,
+From a security perspective,
 we saw that there are cases where
 mechanisms coming from the same category
 can be bypassed by similar attack patterns.
@@ -2115,10 +2112,10 @@ Also,
 we could say that different mechanisms could
 be used together to defend different attacks.
 For instance,
-developers could employ both {\sc csp}}~\cite{SSM10}
-\hlc[yellow]{and \textsc{sql}rand}~\cite{BK04}
-\hlc[yellow]{to deal with {\sc xss}
-and {\sc sql} injection respectively.}
+developers could employ both {\sc csp}~\cite{SSM10}
+and \textsc{sql}rand~\cite{BK04}
+to deal with {\sc xss}
+and {\sc sql} injection respectively.
 
 \vspace{-0.3mm}
 \section{Conclusion}
