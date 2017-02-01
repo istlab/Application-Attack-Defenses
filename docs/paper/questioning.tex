@@ -515,8 +515,8 @@ attacks fall into three categories,
 {\it non-persistent}
 (also known as \emph{reflected}) {\sc xss},
 {\it persistent} (also known as \emph{stored}) {\sc xss}
-and \textit{Document Object Model} ({\sc dom})
-\textit{-based} \textsc{xss}.
+and \textit{Document Object Model} ({\sc dom}) -
+\textit{based} \textsc{xss}~\cite{SLMS14}.
 Non-persistent {\sc xss} attacks take place when the
 data provided by a user is processed on-the-fly
 by server-side application logic and ends up without proper sanitization
@@ -834,7 +834,7 @@ that present corresponding mechanisms:
     This is because most of them were evaluated under different assumptions
     and settings.}
     \label{tab:comp}
-    \vspace{-4.8mm}
+    \vspace{-4.6mm}
 \centering
     \begin{threeparttable}
     \begin{small}
@@ -1659,7 +1659,7 @@ and then test the accuracy of their tools on them.
 \begin{table}
 \renewcommand{\baselinestretch}{1.10}
 \caption{Availability of the studied defenses.}
-\vspace{-4mm}
+\vspace{-4.4mm}
     \label{tab:avail}
 \centering
     \begin{threeparttable}
@@ -1897,10 +1897,10 @@ client-side. Note that the majority of the mechanisms that detect
 such attacks on the server can also detect {\sc dsl} code
 injection (9 out of 13).
 
-\vspace{-0.3mm}
+\vspace{-0.5mm}
 \section{Recommendations and Lessons Learned}
 \label{sec:lessons-learned}
-\vspace{-0.3mm}
+\vspace{-0.5mm}
 
 Our observations lead to some lessons and recommendations that
 developers of new mechanisms may find helpful. In particular,
@@ -1954,6 +1954,7 @@ answer is provided by \textsc{npv}. We can calculate \textsc{ppv} and
 \textsc{npv} = \frac{\textsc{tn}}{\textsc{fn} + \textsc{tn}}
 \end{equation}
 \end{minipage}\par\vspace{\belowdisplayskip}
+\vspace{-1.5mm}
 
 \noindent
 Equations~\ref{eq:ppv-se-sp} and~\ref{eq:npv-se-sp} use true and false
@@ -1966,7 +1967,7 @@ production environment. In fact, if \textsc{pr} is the probability of
 a particular class of attacks in the real world,
 i.e., its prevalence, then we
 have~\cite{linn2004}:
-\vspace{-1mm}
+\vspace{-1.5mm}
 \begin{equation}
 \textsc{ppv} = \frac{\textsc{se}\times \textsc{pr}}{
 \textsc{se}\times \textsc{pr} + (1 - \textsc{sp})\times (1 -
@@ -1980,7 +1981,7 @@ have~\cite{linn2004}:
 \textsc{pr})}
 \label{eq:npv-se-sp}
 \end{equation}
-\vspace{-4mm}
+\vspace{-4.5mm}
 
 \noindent
 Prevalence is the prior probability that an event might be an attack,
@@ -2031,7 +2032,7 @@ attacks and detects them in an accurate manner, as seen in
 Table~\ref{tab:comp}. It is also extensively tested with real-world
 attacks.
 
-\vspace{-0.3mm}
+\vspace{-0.6mm}
 \subsection{Code Availability}
 \vspace{-0.7mm}
 
@@ -2054,10 +2055,10 @@ though, is to ask of researchers working on defenses not to
 buck the trend and to take steps to increase the availability of their
 research.
 
-\vspace{-0.3mm}
+\vspace{-0.8mm}
 \subsection{Performance Overhead,
 Deployment and Security Remarks}
-\vspace{-0.3mm}
+\vspace{-1.3mm}
 
 Performance overhead comes up as a non-trivial issue. We observe
 that there are some mechanisms that introduce an overhead
@@ -2117,10 +2118,10 @@ and \textsc{sql}rand~\cite{BK04}
 to deal with {\sc xss}
 and {\sc sql} injection respectively.
 
-\vspace{-0.3mm}
+\vspace{-1mm}
 \section{Conclusion}
 \label{sec:conclusion}
-\vspace{-0.3mm}
+\vspace{-1mm}
 
 Despite many approaches that have been developed,
 attacks based on code injection against web applications
@@ -2181,14 +2182,22 @@ emerged from our research can be a reference point for researchers who
 aim to develop new, practical countermeasures against web application
 attacks.
 
-\vspace{-4mm}
+\vspace{-1.5mm}
+
+\section*{Acknowledgements}
+\vspace{-1mm}
+We would like to thank the anonymous reviewers
+for their suggestions and comments.
+This work was supported by {\sc nsf} Grant No. {\sc cns}-13-18415.
+
+\vspace{-8mm}
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
-\vspace{-0.5mm}
+\vspace{-1.2mm}
 
 \section*{Author Biographies}
-\vspace{-0.5mm}
+\vspace{-1.1mm}
 \noindent
 {\bf Dimitris Mitropoulos} is a Postdoctoral Researcher
 in the Computer Science Department
