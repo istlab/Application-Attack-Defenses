@@ -297,7 +297,7 @@ theory.
 \begin{figure}
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.52]{attack-tree-uml.pdf}
+\includegraphics[scale=0.52]{attack-tree.png}
 \end{center}
 \vspace{-6mm}
 \caption{\label{fig:taxonomy}A taxonomy of dynamic and domain-specific
@@ -453,7 +453,7 @@ in the following Section also captures such attacks.
 \begin{figure*}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.46]{attacks-steps-CSRF.pdf}
+\includegraphics[scale=0.46]{attacks-steps.png}
 \end{center}
 \vspace{-5.5mm}
 \caption{\label{fig:attacks}Attack model for dynamic and domain specific
@@ -808,7 +808,7 @@ within a proxy (Point {\sc s}t{\sc b}).
 \begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.50]{defenses.pdf}
+\includegraphics[scale=0.50]{defenses.png}
 \end{center}
 \vspace{-5.8mm}
 \caption{\label{fig:defenses}The basic categories of countermeasures
@@ -850,25 +850,25 @@ that present corresponding mechanisms:
   & \bf{Performance Overhead}\tnote{3} & \\
     \thickhline
   \multirow{2}{*}{Parse-Tree Validation}
-  &   {\sc sqlg}uard~\cite{BWS05} & 305 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql}i \\
-  &   {\sc sqlc}heck~\cite{SW06} & 473 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql}i \\
+  &   {\sc sqlg}uard~\cite{BWS05} & 368 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 3\% ({\sc s}) & {\sc sql}i \\
+  &   {\sc sqlc}heck~\cite{SW06} & 547 & (36848,7648,0,0)\_r & 3ms per query ({\sc s}) & {\sc sql}i \\
   \hline
   \multirow{13}{*}{Policy Enforcement}
-  &   {\sc dsi}~\cite{NSS06} & 168 & (5268,{\sc nq},{\sc nq},85)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
-  &   NoForge~\cite{JKK06a} & 151 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
-  &   Noxes~\cite{KJKV09} & 58 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
+  &   {\sc dsi}~\cite{NSS06} & 188 & (5268,{\sc nq},{\sc nq},85)\_r & 1.85\% ({\sc c}) & {\sc xss} \\ 
+  &   NoForge~\cite{JKK06a} & 166 & (7,{\sc nq},{\sc nq},0)\_r & {\sc na} ({\sc s}) & {\sc csrf} \\
+  &   Noxes~\cite{KJKV09} & 69 & (3,{\sc na},{\sc na},0)\_r & {\sc na} ({\sc c}) & {\sc xss} \\
   % &   {\it {\sc met}}~\cite{ELX07} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} & {\sc xss} \\ 
-  &   {\sc beep}~\cite{TNH07} & 335 & (61,{\sc na},{\sc na},0)\_r & 14.4\% ({\sc c}) & {\sc xss} \\
-  &   BrowserShield~\cite{RDWDE07} & 263 & (19,{\sc nq},0,0,)\_r & 8\% ({\sc s}) & {\sc xss} \\ 
-  &   CoreScript~\cite{YCIS07} & 199 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} ({\sc c}) & {\sc xss} \\
-  &   {\it {\sc soma}}~\cite{OWVS08} & 56 & (5,{\sc na},{\sc na},0)\_s & 5.58\% ({\sc c}) & {\sc xss}, {\sc csrf} \\
+  &   {\sc beep}~\cite{TNH07} & 362 & (61,{\sc na},{\sc na},0)\_r & 14.4\% ({\sc c}) & {\sc xss} \\
+  &   BrowserShield~\cite{RDWDE07} & 273 & (19,{\sc nq},0,0,)\_r & 8\% ({\sc s}) & {\sc xss} \\ 
+  &   CoreScript~\cite{YCIS07} & 212 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s & {\sc nq} ({\sc c}) & {\sc xss} \\
+  &   {\it {\sc soma}}~\cite{OWVS08} & 65 & (5,{\sc na},{\sc na},0)\_s & 5.58\% ({\sc c}) & {\sc xss}, {\sc csrf} \\
   % &   {\it Barth et al.}~\cite{BJM08} & 271 & & {\bf ?} & {\sc csrf} \\
-  &   Phung et al.~\cite{PSC09} & 101 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
+  &   Phung et al.~\cite{PSC09} & 124 & (37,{\sc na},{\sc na},4)\_r & 5.37\% ({\sc c}) & {\sc xss} \\
   &   ConScript~\cite{ML10} & 152 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 7\% ({\sc c}) & {\sc xss} \\
-  &   CsFire~\cite{DDHPJ10} & 46 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
-  &   {\sc csp}~\cite{SSM10} & 117 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} ({\sc c}) & {\sc xss}, {\sc csrf} \\
+  &   CsFire~\cite{DDHPJ10} & 52 & (419582,1141807,0,3)\_r\tnote{5} & {\sc na} ({\sc c}) & {\sc csrf} \\
+  &   {\sc csp}~\cite{SSM10} & 143 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc nq} ({\sc c}) & {\sc xss}, {\sc csrf} \\
   &   j{\sc csrf}~\cite{PS11} & 4 & (2,{\sc na},{\sc na},0)\_r & 2ms ({\sc s}) & {\sc csrf} \\
-  &   WebJail~\cite{VDDPJ11} & 45 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
+  &   WebJail~\cite{VDDPJ11} & 53 & (2,{\sc na},{\sc na},1)\_{\bf ?} & $\sim$6.89ms ({\sc c}) & {\sc xss} \\
   % &   {\it TreeHouse}~\cite{IW12} & 18 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 757–-1218ms & {\sc xss} \\
   % &   {\it {\sc js}and}~\cite{AVBPDP12} & 22 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & up to 31.2\% & {\sc xss}\\
   % \hline
@@ -878,49 +878,49 @@ that present corresponding mechanisms:
   % &   {\it Mashup{\sc os}}~\cite{WFHJ07} & 149 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & 1--59\% & {\sc xss} \\
   \hline
   \multirow{4}{*}{{\sc isr}}
-  &   {\sc sql}rand~\cite{BK04} & 365 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql}i \\
-  &   {\sc sm}ask~\cite{JB07} & 28 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   Noncespaces~\cite{GC09} & 132 & (6,{\sc na},{\sc na},0)\_r &  2\% ({\sc s}) & {\sc xss} \\ 
-  &   x{\sc js}~\cite{APKLM10} & 20 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40ms ({\sc c}) & {\sc xss} \\
+  &   {\sc sql}rand~\cite{BK04} & 428 & (3,{\sc na},{\sc na},0)\_a & $\le$6.5{\it ms} ({\sc s}) & {\sc sql}i \\
+  &   {\sc sm}ask~\cite{JB07} & 31 & (5,{\sc nq},{\sc nq},{\sc nq})\_r  & {\sc na} ({\sc s}) & {\sc sql}i, {\sc xss} \\
+  &   Noncespaces~\cite{GC09} & 146 & (6,{\sc na},{\sc na},0)\_r &  2\% ({\sc s}) & {\sc xss} \\ 
+  &   x{\sc js}~\cite{APKLM10} & 29 & (1380,{\sc na},{\sc na},1)\_r & 1.6--40ms ({\sc c}) & {\sc xss} \\
   \thickhline
   \thickhline
   \multirow{7}{*}{Taint Tracking}
-  &   Haldar et al.~\cite{HCF05} & 208 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
-  &   {\sc csse}~\cite{PB05} & 347 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% ({\sc s}) & {\sc sql}i, {\sc xp}athi, {\sc xss} \\
+  &   Haldar et al.~\cite{HCF05} & 234 & (2,{\sc na},{\sc na},0)\_s & {\sc nq} ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
+  &   {\sc csse}~\cite{PB05} & 387 & (7,{\sc nq},{\sc nq},{\sc nq})\_r & 2--10\% ({\sc s}) & {\sc sql}i, {\sc xp}athi, {\sc xss} \\
   % &   {\it SecuriFly}~\cite{MLL05} & 31 & \xmark,\tick & 9--125\% & {\sc sql} injection, {\sc xss} \\ 
-  &   Xu et al.~\cite{XBS06} & 346 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
-  &   {\sc wasc}~\cite{NLC07} & 32 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
-  &   Vogt et al.~\cite{VFJKKV07} & 400 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc c}) & {\sc xss} \\
-  &   {\sc php} Aspis~\cite{PMP11} & 20 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql}i and {\sc php}i, {\sc xss} \\
-  &   Stock et al.~\cite{SLMS14} & 15 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
+  &   Xu et al.~\cite{XBS06} & 368 & (9,{\sc nq},0,{\sc nq})\_r & average 76\% ({\sc s}) & {\sc sql}i, {\sc xss} \\ 
+  &   {\sc wasc}~\cite{NLC07} & 37 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 30\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
+  &   Vogt et al.~\cite{VFJKKV07} & 490 & ({\sc nq},{\sc nq},{\sc nq},{\sc na})\_r & {\sc nq} ({\sc c}) & {\sc xss} \\
+  &   {\sc php} Aspis~\cite{PMP11} & 26 & (12,{\sc nq},{\sc nq},2)\_r & 2.2$\times$ ({\sc s}) & {\sc sql}i and {\sc php}i, {\sc xss} \\
+  &   Stock et al.~\cite{SLMS14} & 23 & (1169,{\sc na},{\sc na},0)\_r & 7--17\% ({\sc c}) & {\sc dom}-based {\sc xss} \\
   \hline 
   \multirow{6}{*}{Training}
-  &   {\sc didafit}~\cite{LLW02} & 190 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql}i \\
-  &   {\sc amnesia}~\cite{HO05b} & 474 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql}i \\ 
-  &   libAnomaly~\cite{VMV05} & 259 & (9,15987,60,0)\_r & 0.20--1ms per query ({\sc s}) & {\sc sql}i \\
-  &   {\sc xssds}~\cite{JEP08} & 85 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
-  &   {\sc swap}~\cite{WPLKK09} & 68 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261ms ({\sc s}) & {\sc xss} \\ 
-  &   {\sc sd}river~\cite{MS09,MKLS11} & 28 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql}i and {\sc xp}athi \\
+  &   {\sc didafit}~\cite{LLW02} & 208 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?} & {\sc na} ({\sc s}) & {\sc sql}i \\
+  &   {\sc amnesia}~\cite{HO05b} & 551 & (1470,{\sc nq},0,0)\_a & {\sc nq} ({\sc s}) & {\sc sql}i \\ 
+  &   libAnomaly~\cite{VMV05} & 310 & (9,15987,60,0)\_r & 0.20--1ms per query ({\sc s}) & {\sc sql}i \\
+  &   {\sc xssds}~\cite{JEP08} & 96 & ({\sc nq},{\sc nq},{\sc nq},0)\_r & {\sc nq} ({\sc s}) & {\sc xss} \\
+  &   {\sc swap}~\cite{WPLKK09} & 83 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r & up to 261ms ({\sc s}) & {\sc xss} \\ 
+  &   {\sc sd}river~\cite{MS09,MKLS11} & 36 & (241,{\sc nq},0,0)\_a & 39\% ({\sc s}) & {\sc sql}i and {\sc xp}athi \\
   % &   {\it Laranjeiro et al.}~\cite{LVM09,ALVM09,LVM10} & 9,40,1 & \xmark,\xmark  & \xmark & {\sc sql} and {\sc xp}ath injection \\
   \thickhline
   \thickhline
   \multirow{9}{*}{Hybrid}
-  &   {\sc xss-guard}~\cite{BV08} & 132 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
-  &   Blueprint~\cite{LV09} & 152 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
-  &   Diglossia~\cite{SMS13} & 13 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
-  &   {\sc jsf}low~\cite{HBBS14} & 62 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
+  &   {\sc xss-guard}~\cite{BV08} & 153 & (8,{\sc nq},{\sc nq},{\sc nq})\_r & 5--24\% ({\sc c}) & {\sc xss} \\
+  &   Blueprint~\cite{LV09} & 187 & (94,{\sc na},{\sc na},0)\_r & 13.6\% ({\sc c}) & {\sc xss} \\
+  &   Diglossia~\cite{SMS13} & 23 & (25,{\sc nq},{\sc nq},{\sc nq})\_r & 13\% ({\sc s}) & {\sc sql}i and {\sc json}i \\
+  &   {\sc jsf}low~\cite{HBBS14} & 72 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
   &   2$\times$ ({\sc c}) & {\sc xss} \\
-  &   {\sc cowl}~\cite{SYMRHKM14} & 27 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
+  &   {\sc cowl}~\cite{SYMRHKM14} & 41 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
   &   16\% ({\sc c}) & {\sc xss} \\
-  &   Bauer et al.~\cite{BCJPST15} & 5 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
+  &   Bauer et al.~\cite{BCJPST15} & 10 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
   &   average 55\% ({\sc c}) & {\sc xss} \\
-  &   {\sc sif}~\cite{CVMA07} & 146 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
+  &   {\sc sif}~\cite{CVMA07} & 155 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
   &   26\% ({\sc s}) & {\sc sql}i, {\sc xss} \\
   % &   \hlc[yellow]{Ur/Web}~\cite{C10b} & \hlc[yellow]{59} & \hlc[yellow]{({\sc nq},{\sc nq},{\sc nq},{\sc na})\_s}
   % & \hlc[yellow]{average 55\% ({\sc s})} & \hlc[yellow]{{\sc sql}i} \\
-  &   Hails~\cite{GLSTMMR12} & 78 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
+  &   Hails~\cite{GLSTMMR12} & 92 & ({\sc nq},{\sc nq},{\sc nq},{\sc nq})\_r
   &   28\% ({\sc s},{\sc c}) & {\sc sql}i, {\sc xss} \\
-  &   Aeolus~\cite{CPSPBCCSL12} & 52 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
+  &   Aeolus~\cite{CPSPBCCSL12} & 58 & ({\sc na},{\sc na},{\sc na},{\sc na})\_{\bf ?}
   &   323.5ms per request ({\sc s}) & {\sc sql}i, {\sc xss} \\
   \thickhline
     \end{tabular}}
@@ -1564,7 +1564,7 @@ dimensions we identified in Section~\ref{sec:dimensions}.
 \begin{figure}[t]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.40]{barchart.pdf}
+\includegraphics[scale=0.40]{barchart.png}
 \end{center}
 \vspace{-6mm}
 \caption{\label{fig:defect_sources}Most common sources of real-world vulnerabilities
@@ -1675,8 +1675,8 @@ and then test the accuracy of their tools on them.
   & \bf{Testbed} \\
     \thickhline
   \multirow{2}{*}{Parse-Tree Validation}
-  &   {\sc sqlc}heck~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
   &   {\sc sqlg}uard~\cite{BWS05} & {\bf AO} & {\bf AO} & {\sc na} \\
+  &   {\sc sqlc}heck~\cite{SW06} & {\sc na} & {\sc na} & {\sc na} \\
   \hline
   \multirow{13}{*}{Policy Enforcement}
   &   {\sc dsi}~\cite{NSS06} & {\sc na} & {\sc na} & {\sc na} \\
@@ -2194,10 +2194,10 @@ This work was supported by {\sc nsf} Grant No. {\sc cns}-13-18415.
 
 \bibliographystyle{IEEEtran}
 \bibliography{questioning}
-\vspace{-1.2mm}
+\vspace{-1.6mm}
 
 \section*{Author Biographies}
-\vspace{-1.1mm}
+\vspace{-0.7mm}
 \noindent
 {\bf Dimitris Mitropoulos} is a Postdoctoral Researcher
 in the Computer Science Department
